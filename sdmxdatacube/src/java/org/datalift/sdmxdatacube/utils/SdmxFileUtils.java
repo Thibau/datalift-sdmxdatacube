@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.Reader;
 
 /**
- * Utility for SDMX files
+ * Utility for SDMX filesg
  * @author thibaut
  *
  */
