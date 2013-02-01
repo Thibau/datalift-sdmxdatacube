@@ -290,7 +290,7 @@
     <jar jarfile="${jar.path}" update="true">
       <fileset dir="${classes.dir}"/>
       <service type="org.datalift.fwk.Module">
-        <provider classname="org.datalift.sdmxdatacube.SdmxDataCubeController"/>
+        <provider classname="org.datalift.sdmxdatacube.SDMXDataCubeController"/>
       </service>
     </jar>
   </target>

@@ -35,3 +35,6 @@ local.properties
 framework
 core
 *~
+
+sdmx-datacube/build
+sdmx-datacube/dist
