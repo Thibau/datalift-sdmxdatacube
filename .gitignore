@@ -19,6 +19,7 @@ local.properties
 .classpath
 .settings/
 .loadpath
+sdmxdatacube/build/**
 
 # External tool builders
 .externalToolBuilders/
