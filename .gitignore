@@ -32,5 +32,5 @@ local.properties
 # PDT-specific
 .buildpath
 
-./framework
-./core
+framework
+core
