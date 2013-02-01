@@ -4,8 +4,21 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
 
+/**
+ * Utility for SDMX files
+ * @author thibaut
+ *
+ */
 public class SdmxFileUtils {
 
+	/**
+	 * Check if a Reader contains Sdmx XML
+	 * 
+	 * @param i
+	 *            the Reader
+	 * @return True if i contains SDMX XML, else false
+	 * @throws IOException
+	 */
 	public static boolean isSdmx(Reader i) throws IOException {
 		BufferedReader in = new BufferedReader(i);
 		String line = null;
