@@ -1,0 +1,2519 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Structure xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message" xmlns:common="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common" xmlns:compact="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/compact" xmlns:cross="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/cross" xmlns:generic="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/generic" xmlns:query="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/query" xmlns:structure="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure" xmlns:utility="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/utility" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message SDMXMessage.xsd">
+<Header>
+<ID>agr_r_milkpr_DSD</ID>
+<Test>false</Test>
+<Truncated>false</Truncated>
+<Name xml:lang="en">agr_r_milkpr_DSD</Name>
+<Prepared>2012-11-22T19:04:51</Prepared>
+<Sender id="EUROSTAT">
+<Name xml:lang="en">EUROSTAT</Name>
+</Sender>
+<Receiver id="XML">
+<Name xml:lang="en">XML File</Name>
+</Receiver>
+</Header>
+
+<CodeLists>
+<structure:CodeList id="CL_MILKITEM" agencyID="EUROSTAT" isFinal="false">
+<structure:Name xml:lang="en">Item of milk</structure:Name>
+<structure:Name xml:lang="de">Milchposten</structure:Name>
+<structure:Name xml:lang="fr">Postes de lait</structure:Name>
+<structure:Code value="PRO">
+<structure:Description xml:lang="en">Products obtained (1 000 t)</structure:Description>
+<structure:Description xml:lang="de">Hergestellte Erzeugnisse (1 000 t)</structure:Description>
+<structure:Description xml:lang="fr">Produits obtenus (1 000 t)</structure:Description>
+</structure:Code>
+</structure:CodeList>
+<structure:CodeList id="CL_PRODMILK" agencyID="EUROSTAT" isFinal="false">
+<structure:Name xml:lang="en">Milk product</structure:Name>
+<structure:Name xml:lang="de">Milchprodukt</structure:Name>
+<structure:Name xml:lang="fr">Produit laitier</structure:Name>
+<structure:Code value="MF001">
+<structure:Description xml:lang="en">Cows' milk - Total</structure:Description>
+<structure:Description xml:lang="de">Kuhmilch - Insgesamt</structure:Description>
+<structure:Description xml:lang="fr">Lait de vache - Total</structure:Description>
+</structure:Code>
+</structure:CodeList>
+<structure:CodeList id="CL_GEO" agencyID="EUROSTAT" isFinal="false">
+<structure:Name xml:lang="en">Geopolitical entity (declaring)</structure:Name>
+<structure:Name xml:lang="de">Geopolitische Meldeeinheit</structure:Name>
+<structure:Name xml:lang="fr">Entité géopolitique (déclarante)</structure:Name>
+<structure:Code value="EU27">
+<structure:Description xml:lang="en">European Union (27 countries)</structure:Description>
+<structure:Description xml:lang="de">Europäische Union (27 Länder)</structure:Description>
+<structure:Description xml:lang="fr">Union européenne (27 pays)</structure:Description>
+</structure:Code>
+<structure:Code value="EU25">
+<structure:Description xml:lang="en">European Union (25 countries)</structure:Description>
+<structure:Description xml:lang="de">Europäische Union (25 Länder)</structure:Description>
+<structure:Description xml:lang="fr">Union européenne (25 pays)</structure:Description>
+</structure:Code>
+<structure:Code value="EU15">
+<structure:Description xml:lang="en">European Union (15 countries)</structure:Description>
+<structure:Description xml:lang="de">Europäische Union (15 Länder)</structure:Description>
+<structure:Description xml:lang="fr">Union européenne (15 pays)</structure:Description>
+</structure:Code>
+<structure:Code value="NMS10">
+<structure:Description xml:lang="en">New Member States (10 countries)</structure:Description>
+<structure:Description xml:lang="de">Neue Mitgliedstaaten (10 Länder)</structure:Description>
+<structure:Description xml:lang="fr">Nouveaux Etats membres (10 pays)</structure:Description>
+</structure:Code>
+<structure:Code value="EA13">
+<structure:Description xml:lang="en">Euro area (13 countries)</structure:Description>
+<structure:Description xml:lang="de">Euroraum (13 Länder)</structure:Description>
+<structure:Description xml:lang="fr">Zone euro (13 pays)</structure:Description>
+</structure:Code>
+<structure:Code value="EA12">
+<structure:Description xml:lang="en">Euro area (12 countries)</structure:Description>
+<structure:Description xml:lang="de">Euroraum (12 Länder)</structure:Description>
+<structure:Description xml:lang="fr">Zone euro (12 pays)</structure:Description>
+</structure:Code>
+<structure:Code value="EA11">
+<structure:Description xml:lang="en">Euro area (11 countries)</structure:Description>
+<structure:Description xml:lang="de">Euroraum (11 Länder)</structure:Description>
+<structure:Description xml:lang="fr">Zone euro (11 pays)</structure:Description>
+</structure:Code>
+<structure:Code value="BE">
+<structure:Description xml:lang="en">Belgium</structure:Description>
+<structure:Description xml:lang="de">Belgien</structure:Description>
+<structure:Description xml:lang="fr">Belgique</structure:Description>
+</structure:Code>
+<structure:Code value="BE1">
+<structure:Description xml:lang="en">Région de Bruxelles-Capitale / Brussels Hoofdstedelijk Gewest</structure:Description>
+<structure:Description xml:lang="de">Région de Bruxelles-Capitale / Brussels Hoofdstedelijk Gewest</structure:Description>
+<structure:Description xml:lang="fr">Région de Bruxelles-Capitale / Brussels Hoofdstedelijk Gewest</structure:Description>
+</structure:Code>
+<structure:Code value="BE10">
+<structure:Description xml:lang="en">Région de Bruxelles-Capitale / Brussels Hoofdstedelijk Gewest</structure:Description>
+<structure:Description xml:lang="de">Région de Bruxelles-Capitale / Brussels Hoofdstedelijk Gewest</structure:Description>
+<structure:Description xml:lang="fr">Région de Bruxelles-Capitale / Brussels Hoofdstedelijk Gewest</structure:Description>
+</structure:Code>
+<structure:Code value="BE2">
+<structure:Description xml:lang="en">Vlaams Gewest</structure:Description>
+<structure:Description xml:lang="de">Vlaams Gewest</structure:Description>
+<structure:Description xml:lang="fr">Vlaams Gewest</structure:Description>
+</structure:Code>
+<structure:Code value="BE21">
+<structure:Description xml:lang="en">Prov. Antwerpen</structure:Description>
+<structure:Description xml:lang="de">Prov. Antwerpen</structure:Description>
+<structure:Description xml:lang="fr">Prov. Antwerpen</structure:Description>
+</structure:Code>
+<structure:Code value="BE22">
+<structure:Description xml:lang="en">Prov. Limburg (BE)</structure:Description>
+<structure:Description xml:lang="de">Prov. Limburg (BE)</structure:Description>
+<structure:Description xml:lang="fr">Prov. Limburg (BE)</structure:Description>
+</structure:Code>
+<structure:Code value="BE23">
+<structure:Description xml:lang="en">Prov. Oost-Vlaanderen</structure:Description>
+<structure:Description xml:lang="de">Prov. Oost-Vlaanderen</structure:Description>
+<structure:Description xml:lang="fr">Prov. Oost-Vlaanderen</structure:Description>
+</structure:Code>
+<structure:Code value="BE24">
+<structure:Description xml:lang="en">Prov. Vlaams-Brabant</structure:Description>
+<structure:Description xml:lang="de">Prov. Vlaams-Brabant</structure:Description>
+<structure:Description xml:lang="fr">Prov. Vlaams-Brabant</structure:Description>
+</structure:Code>
+<structure:Code value="BE25">
+<structure:Description xml:lang="en">Prov. West-Vlaanderen</structure:Description>
+<structure:Description xml:lang="de">Prov. West-Vlaanderen</structure:Description>
+<structure:Description xml:lang="fr">Prov. West-Vlaanderen</structure:Description>
+</structure:Code>
+<structure:Code value="BE3">
+<structure:Description xml:lang="en">Région wallonne</structure:Description>
+<structure:Description xml:lang="de">Région wallonne</structure:Description>
+<structure:Description xml:lang="fr">Région wallonne</structure:Description>
+</structure:Code>
+<structure:Code value="BE31">
+<structure:Description xml:lang="en">Prov. Brabant Wallon</structure:Description>
+<structure:Description xml:lang="de">Prov. Brabant Wallon</structure:Description>
+<structure:Description xml:lang="fr">Prov. Brabant Wallon</structure:Description>
+</structure:Code>
+<structure:Code value="BE32">
+<structure:Description xml:lang="en">Prov. Hainaut</structure:Description>
+<structure:Description xml:lang="de">Prov. Hainaut</structure:Description>
+<structure:Description xml:lang="fr">Prov. Hainaut</structure:Description>
+</structure:Code>
+<structure:Code value="BE33">
+<structure:Description xml:lang="en">Prov. Liège</structure:Description>
+<structure:Description xml:lang="de">Prov. Liège</structure:Description>
+<structure:Description xml:lang="fr">Prov. Liège</structure:Description>
+</structure:Code>
+<structure:Code value="BE34">
+<structure:Description xml:lang="en">Prov. Luxembourg (BE)</structure:Description>
+<structure:Description xml:lang="de">Prov. Luxembourg (BE)</structure:Description>
+<structure:Description xml:lang="fr">Prov. Luxembourg (BE)</structure:Description>
+</structure:Code>
+<structure:Code value="BE35">
+<structure:Description xml:lang="en">Prov. Namur</structure:Description>
+<structure:Description xml:lang="de">Prov. Namur</structure:Description>
+<structure:Description xml:lang="fr">Prov. Namur</structure:Description>
+</structure:Code>
+<structure:Code value="BG">
+<structure:Description xml:lang="en">Bulgaria</structure:Description>
+<structure:Description xml:lang="de">Bulgarien</structure:Description>
+<structure:Description xml:lang="fr">Bulgarie</structure:Description>
+</structure:Code>
+<structure:Code value="BG3">
+<structure:Description xml:lang="en">Severna i yugoiztochna Bulgaria</structure:Description>
+<structure:Description xml:lang="de">Severna i yugoiztochna Bulgaria</structure:Description>
+<structure:Description xml:lang="fr">Severna i yugoiztochna Bulgaria</structure:Description>
+</structure:Code>
+<structure:Code value="BG31">
+<structure:Description xml:lang="en">Severozapaden</structure:Description>
+<structure:Description xml:lang="de">Severozapaden</structure:Description>
+<structure:Description xml:lang="fr">Severozapaden</structure:Description>
+</structure:Code>
+<structure:Code value="BG32">
+<structure:Description xml:lang="en">Severen tsentralen</structure:Description>
+<structure:Description xml:lang="de">Severen tsentralen</structure:Description>
+<structure:Description xml:lang="fr">Severen tsentralen</structure:Description>
+</structure:Code>
+<structure:Code value="BG33">
+<structure:Description xml:lang="en">Severoiztochen</structure:Description>
+<structure:Description xml:lang="de">Severoiztochen</structure:Description>
+<structure:Description xml:lang="fr">Severoiztochen</structure:Description>
+</structure:Code>
+<structure:Code value="BG34">
+<structure:Description xml:lang="en">Yugoiztochen</structure:Description>
+<structure:Description xml:lang="de">Yugoiztochen</structure:Description>
+<structure:Description xml:lang="fr">Yugoiztochen</structure:Description>
+</structure:Code>
+<structure:Code value="BG4">
+<structure:Description xml:lang="en">Yugozapadna i yuzhna tsentralna Bulgaria</structure:Description>
+<structure:Description xml:lang="de">Yugozapadna i yuzhna tsentralna Bulgaria</structure:Description>
+<structure:Description xml:lang="fr">Yugozapadna i yuzhna tsentralna Bulgaria</structure:Description>
+</structure:Code>
+<structure:Code value="BG41">
+<structure:Description xml:lang="en">Yugozapaden</structure:Description>
+<structure:Description xml:lang="de">Yugozapaden</structure:Description>
+<structure:Description xml:lang="fr">Yugozapaden</structure:Description>
+</structure:Code>
+<structure:Code value="BG42">
+<structure:Description xml:lang="en">Yuzhen tsentralen</structure:Description>
+<structure:Description xml:lang="de">Yuzhen tsentralen</structure:Description>
+<structure:Description xml:lang="fr">Yuzhen tsentralen</structure:Description>
+</structure:Code>
+<structure:Code value="CZ">
+<structure:Description xml:lang="en">Czech Republic</structure:Description>
+<structure:Description xml:lang="de">Tschechische Republik</structure:Description>
+<structure:Description xml:lang="fr">République tchèque</structure:Description>
+</structure:Code>
+<structure:Code value="CZ0">
+<structure:Description xml:lang="en">Ceská republika</structure:Description>
+<structure:Description xml:lang="de">Ceská republika</structure:Description>
+<structure:Description xml:lang="fr">Ceská republika</structure:Description>
+</structure:Code>
+<structure:Code value="CZ01">
+<structure:Description xml:lang="en">Praha</structure:Description>
+<structure:Description xml:lang="de">Praha</structure:Description>
+<structure:Description xml:lang="fr">Praha</structure:Description>
+</structure:Code>
+<structure:Code value="CZ02">
+<structure:Description xml:lang="en">Strední Cechy</structure:Description>
+<structure:Description xml:lang="de">Strední Cechy</structure:Description>
+<structure:Description xml:lang="fr">Strední Cechy</structure:Description>
+</structure:Code>
+<structure:Code value="CZ03">
+<structure:Description xml:lang="en">Jihozápad</structure:Description>
+<structure:Description xml:lang="de">Jihozápad</structure:Description>
+<structure:Description xml:lang="fr">Jihozápad</structure:Description>
+</structure:Code>
+<structure:Code value="CZ04">
+<structure:Description xml:lang="en">Severozápad</structure:Description>
+<structure:Description xml:lang="de">Severozápad</structure:Description>
+<structure:Description xml:lang="fr">Severozápad</structure:Description>
+</structure:Code>
+<structure:Code value="CZ05">
+<structure:Description xml:lang="en">Severovýchod</structure:Description>
+<structure:Description xml:lang="de">Severovýchod</structure:Description>
+<structure:Description xml:lang="fr">Severovýchod</structure:Description>
+</structure:Code>
+<structure:Code value="CZ06">
+<structure:Description xml:lang="en">Jihovýchod</structure:Description>
+<structure:Description xml:lang="de">Jihovýchod</structure:Description>
+<structure:Description xml:lang="fr">Jihovýchod</structure:Description>
+</structure:Code>
+<structure:Code value="CZ07">
+<structure:Description xml:lang="en">Strední Morava</structure:Description>
+<structure:Description xml:lang="de">Strední Morava</structure:Description>
+<structure:Description xml:lang="fr">Strední Morava</structure:Description>
+</structure:Code>
+<structure:Code value="CZ08">
+<structure:Description xml:lang="en">Moravskoslezsko</structure:Description>
+<structure:Description xml:lang="de">Moravskoslezsko</structure:Description>
+<structure:Description xml:lang="fr">Moravskoslezsko</structure:Description>
+</structure:Code>
+<structure:Code value="DK">
+<structure:Description xml:lang="en">Denmark</structure:Description>
+<structure:Description xml:lang="de">Dänemark</structure:Description>
+<structure:Description xml:lang="fr">Danemark</structure:Description>
+</structure:Code>
+<structure:Code value="DK0">
+<structure:Description xml:lang="en">Danmark</structure:Description>
+<structure:Description xml:lang="de">Danmark</structure:Description>
+<structure:Description xml:lang="fr">Danmark</structure:Description>
+</structure:Code>
+<structure:Code value="DK01">
+<structure:Description xml:lang="en">Hovedstaden</structure:Description>
+<structure:Description xml:lang="de">Hovedstaden</structure:Description>
+<structure:Description xml:lang="fr">Hovedstaden</structure:Description>
+</structure:Code>
+<structure:Code value="DK02">
+<structure:Description xml:lang="en">Sjælland</structure:Description>
+<structure:Description xml:lang="de">Sjælland</structure:Description>
+<structure:Description xml:lang="fr">Sjælland</structure:Description>
+</structure:Code>
+<structure:Code value="DK03">
+<structure:Description xml:lang="en">Syddanmark</structure:Description>
+<structure:Description xml:lang="de">Syddanmark</structure:Description>
+<structure:Description xml:lang="fr">Syddanmark</structure:Description>
+</structure:Code>
+<structure:Code value="DK04">
+<structure:Description xml:lang="en">Midtjylland</structure:Description>
+<structure:Description xml:lang="de">Midtjylland</structure:Description>
+<structure:Description xml:lang="fr">Midtjylland</structure:Description>
+</structure:Code>
+<structure:Code value="DK05">
+<structure:Description xml:lang="en">Nordjylland</structure:Description>
+<structure:Description xml:lang="de">Nordjylland</structure:Description>
+<structure:Description xml:lang="fr">Nordjylland</structure:Description>
+</structure:Code>
+<structure:Code value="DE">
+<structure:Description xml:lang="en">Germany (including  former GDR from 1991)</structure:Description>
+<structure:Description xml:lang="de">Deutschland (einschließlich der ehemaligen DDR seit 1991)</structure:Description>
+<structure:Description xml:lang="fr">Allemagne (incluant l'ancienne RDA à partir de 1991)</structure:Description>
+</structure:Code>
+<structure:Code value="DE1">
+<structure:Description xml:lang="en">Baden-Württemberg</structure:Description>
+<structure:Description xml:lang="de">Baden-Württemberg</structure:Description>
+<structure:Description xml:lang="fr">Baden-Württemberg</structure:Description>
+</structure:Code>
+<structure:Code value="DE11">
+<structure:Description xml:lang="en">Stuttgart</structure:Description>
+<structure:Description xml:lang="de">Stuttgart</structure:Description>
+<structure:Description xml:lang="fr">Stuttgart</structure:Description>
+</structure:Code>
+<structure:Code value="DE12">
+<structure:Description xml:lang="en">Karlsruhe</structure:Description>
+<structure:Description xml:lang="de">Karlsruhe</structure:Description>
+<structure:Description xml:lang="fr">Karlsruhe</structure:Description>
+</structure:Code>
+<structure:Code value="DE13">
+<structure:Description xml:lang="en">Freiburg</structure:Description>
+<structure:Description xml:lang="de">Freiburg</structure:Description>
+<structure:Description xml:lang="fr">Freiburg</structure:Description>
+</structure:Code>
+<structure:Code value="DE14">
+<structure:Description xml:lang="en">Tübingen</structure:Description>
+<structure:Description xml:lang="de">Tübingen</structure:Description>
+<structure:Description xml:lang="fr">Tübingen</structure:Description>
+</structure:Code>
+<structure:Code value="DE2">
+<structure:Description xml:lang="en">Bayern</structure:Description>
+<structure:Description xml:lang="de">Bayern</structure:Description>
+<structure:Description xml:lang="fr">Bayern</structure:Description>
+</structure:Code>
+<structure:Code value="DE21">
+<structure:Description xml:lang="en">Oberbayern</structure:Description>
+<structure:Description xml:lang="de">Oberbayern</structure:Description>
+<structure:Description xml:lang="fr">Oberbayern</structure:Description>
+</structure:Code>
+<structure:Code value="DE22">
+<structure:Description xml:lang="en">Niederbayern</structure:Description>
+<structure:Description xml:lang="de">Niederbayern</structure:Description>
+<structure:Description xml:lang="fr">Niederbayern</structure:Description>
+</structure:Code>
+<structure:Code value="DE23">
+<structure:Description xml:lang="en">Oberpfalz</structure:Description>
+<structure:Description xml:lang="de">Oberpfalz</structure:Description>
+<structure:Description xml:lang="fr">Oberpfalz</structure:Description>
+</structure:Code>
+<structure:Code value="DE24">
+<structure:Description xml:lang="en">Oberfranken</structure:Description>
+<structure:Description xml:lang="de">Oberfranken</structure:Description>
+<structure:Description xml:lang="fr">Oberfranken</structure:Description>
+</structure:Code>
+<structure:Code value="DE25">
+<structure:Description xml:lang="en">Mittelfranken</structure:Description>
+<structure:Description xml:lang="de">Mittelfranken</structure:Description>
+<structure:Description xml:lang="fr">Mittelfranken</structure:Description>
+</structure:Code>
+<structure:Code value="DE26">
+<structure:Description xml:lang="en">Unterfranken</structure:Description>
+<structure:Description xml:lang="de">Unterfranken</structure:Description>
+<structure:Description xml:lang="fr">Unterfranken</structure:Description>
+</structure:Code>
+<structure:Code value="DE27">
+<structure:Description xml:lang="en">Schwaben</structure:Description>
+<structure:Description xml:lang="de">Schwaben</structure:Description>
+<structure:Description xml:lang="fr">Schwaben</structure:Description>
+</structure:Code>
+<structure:Code value="DE3">
+<structure:Description xml:lang="en">Berlin</structure:Description>
+<structure:Description xml:lang="de">Berlin</structure:Description>
+<structure:Description xml:lang="fr">Berlin</structure:Description>
+</structure:Code>
+<structure:Code value="DE30">
+<structure:Description xml:lang="en">Berlin</structure:Description>
+<structure:Description xml:lang="de">Berlin</structure:Description>
+<structure:Description xml:lang="fr">Berlin</structure:Description>
+</structure:Code>
+<structure:Code value="DE4">
+<structure:Description xml:lang="en">Brandenburg</structure:Description>
+<structure:Description xml:lang="de">Brandenburg</structure:Description>
+<structure:Description xml:lang="fr">Brandenburg</structure:Description>
+</structure:Code>
+<structure:Code value="DE40">
+<structure:Description xml:lang="en">Brandenburg</structure:Description>
+<structure:Description xml:lang="de">Brandenburg</structure:Description>
+<structure:Description xml:lang="fr">Brandenburg</structure:Description>
+</structure:Code>
+<structure:Code value="DE41">
+<structure:Description xml:lang="en">Brandenburg - Nordost (NUTS 2006)</structure:Description>
+<structure:Description xml:lang="de">Brandenburg - Nordost (NUTS 2006)</structure:Description>
+<structure:Description xml:lang="fr">Brandenburg - Nordost (NUTS 2006)</structure:Description>
+</structure:Code>
+<structure:Code value="DE42">
+<structure:Description xml:lang="en">Brandenburg - Südwest (NUTS 2006)</structure:Description>
+<structure:Description xml:lang="de">Brandenburg - Südwest (NUTS 2006)</structure:Description>
+<structure:Description xml:lang="fr">Brandenburg - Südwest (NUTS 2006)</structure:Description>
+</structure:Code>
+<structure:Code value="DE5">
+<structure:Description xml:lang="en">Bremen</structure:Description>
+<structure:Description xml:lang="de">Bremen</structure:Description>
+<structure:Description xml:lang="fr">Bremen</structure:Description>
+</structure:Code>
+<structure:Code value="DE50">
+<structure:Description xml:lang="en">Bremen</structure:Description>
+<structure:Description xml:lang="de">Bremen</structure:Description>
+<structure:Description xml:lang="fr">Bremen</structure:Description>
+</structure:Code>
+<structure:Code value="DE6">
+<structure:Description xml:lang="en">Hamburg</structure:Description>
+<structure:Description xml:lang="de">Hamburg</structure:Description>
+<structure:Description xml:lang="fr">Hamburg</structure:Description>
+</structure:Code>
+<structure:Code value="DE60">
+<structure:Description xml:lang="en">Hamburg</structure:Description>
+<structure:Description xml:lang="de">Hamburg</structure:Description>
+<structure:Description xml:lang="fr">Hamburg</structure:Description>
+</structure:Code>
+<structure:Code value="DE7">
+<structure:Description xml:lang="en">Hessen</structure:Description>
+<structure:Description xml:lang="de">Hessen</structure:Description>
+<structure:Description xml:lang="fr">Hessen</structure:Description>
+</structure:Code>
+<structure:Code value="DE71">
+<structure:Description xml:lang="en">Darmstadt</structure:Description>
+<structure:Description xml:lang="de">Darmstadt</structure:Description>
+<structure:Description xml:lang="fr">Darmstadt</structure:Description>
+</structure:Code>
+<structure:Code value="DE72">
+<structure:Description xml:lang="en">Gießen</structure:Description>
+<structure:Description xml:lang="de">Gießen</structure:Description>
+<structure:Description xml:lang="fr">Gießen</structure:Description>
+</structure:Code>
+<structure:Code value="DE73">
+<structure:Description xml:lang="en">Kassel</structure:Description>
+<structure:Description xml:lang="de">Kassel</structure:Description>
+<structure:Description xml:lang="fr">Kassel</structure:Description>
+</structure:Code>
+<structure:Code value="DE8">
+<structure:Description xml:lang="en">Mecklenburg-Vorpommern</structure:Description>
+<structure:Description xml:lang="de">Mecklenburg-Vorpommern</structure:Description>
+<structure:Description xml:lang="fr">Mecklenburg-Vorpommern</structure:Description>
+</structure:Code>
+<structure:Code value="DE80">
+<structure:Description xml:lang="en">Mecklenburg-Vorpommern</structure:Description>
+<structure:Description xml:lang="de">Mecklenburg-Vorpommern</structure:Description>
+<structure:Description xml:lang="fr">Mecklenburg-Vorpommern</structure:Description>
+</structure:Code>
+<structure:Code value="DE9">
+<structure:Description xml:lang="en">Niedersachsen</structure:Description>
+<structure:Description xml:lang="de">Niedersachsen</structure:Description>
+<structure:Description xml:lang="fr">Niedersachsen</structure:Description>
+</structure:Code>
+<structure:Code value="DE91">
+<structure:Description xml:lang="en">Braunschweig</structure:Description>
+<structure:Description xml:lang="de">Braunschweig</structure:Description>
+<structure:Description xml:lang="fr">Braunschweig</structure:Description>
+</structure:Code>
+<structure:Code value="DE92">
+<structure:Description xml:lang="en">Hannover</structure:Description>
+<structure:Description xml:lang="de">Hannover</structure:Description>
+<structure:Description xml:lang="fr">Hannover</structure:Description>
+</structure:Code>
+<structure:Code value="DE93">
+<structure:Description xml:lang="en">Lüneburg</structure:Description>
+<structure:Description xml:lang="de">Lüneburg</structure:Description>
+<structure:Description xml:lang="fr">Lüneburg</structure:Description>
+</structure:Code>
+<structure:Code value="DE94">
+<structure:Description xml:lang="en">Weser-Ems</structure:Description>
+<structure:Description xml:lang="de">Weser-Ems</structure:Description>
+<structure:Description xml:lang="fr">Weser-Ems</structure:Description>
+</structure:Code>
+<structure:Code value="DEA">
+<structure:Description xml:lang="en">Nordrhein-Westfalen</structure:Description>
+<structure:Description xml:lang="de">Nordrhein-Westfalen</structure:Description>
+<structure:Description xml:lang="fr">Nordrhein-Westfalen</structure:Description>
+</structure:Code>
+<structure:Code value="DEA1">
+<structure:Description xml:lang="en">Düsseldorf</structure:Description>
+<structure:Description xml:lang="de">Düsseldorf</structure:Description>
+<structure:Description xml:lang="fr">Düsseldorf</structure:Description>
+</structure:Code>
+<structure:Code value="DEA2">
+<structure:Description xml:lang="en">Köln</structure:Description>
+<structure:Description xml:lang="de">Köln</structure:Description>
+<structure:Description xml:lang="fr">Köln</structure:Description>
+</structure:Code>
+<structure:Code value="DEA3">
+<structure:Description xml:lang="en">Münster</structure:Description>
+<structure:Description xml:lang="de">Münster</structure:Description>
+<structure:Description xml:lang="fr">Münster</structure:Description>
+</structure:Code>
+<structure:Code value="DEA4">
+<structure:Description xml:lang="en">Detmold</structure:Description>
+<structure:Description xml:lang="de">Detmold</structure:Description>
+<structure:Description xml:lang="fr">Detmold</structure:Description>
+</structure:Code>
+<structure:Code value="DEA5">
+<structure:Description xml:lang="en">Arnsberg</structure:Description>
+<structure:Description xml:lang="de">Arnsberg</structure:Description>
+<structure:Description xml:lang="fr">Arnsberg</structure:Description>
+</structure:Code>
+<structure:Code value="DEB">
+<structure:Description xml:lang="en">Rheinland-Pfalz</structure:Description>
+<structure:Description xml:lang="de">Rheinland-Pfalz</structure:Description>
+<structure:Description xml:lang="fr">Rheinland-Pfalz</structure:Description>
+</structure:Code>
+<structure:Code value="DEB1">
+<structure:Description xml:lang="en">Koblenz</structure:Description>
+<structure:Description xml:lang="de">Koblenz</structure:Description>
+<structure:Description xml:lang="fr">Koblenz</structure:Description>
+</structure:Code>
+<structure:Code value="DEB2">
+<structure:Description xml:lang="en">Trier</structure:Description>
+<structure:Description xml:lang="de">Trier</structure:Description>
+<structure:Description xml:lang="fr">Trier</structure:Description>
+</structure:Code>
+<structure:Code value="DEB3">
+<structure:Description xml:lang="en">Rheinhessen-Pfalz</structure:Description>
+<structure:Description xml:lang="de">Rheinhessen-Pfalz</structure:Description>
+<structure:Description xml:lang="fr">Rheinhessen-Pfalz</structure:Description>
+</structure:Code>
+<structure:Code value="DEC">
+<structure:Description xml:lang="en">Saarland</structure:Description>
+<structure:Description xml:lang="de">Saarland</structure:Description>
+<structure:Description xml:lang="fr">Saarland</structure:Description>
+</structure:Code>
+<structure:Code value="DEC0">
+<structure:Description xml:lang="en">Saarland</structure:Description>
+<structure:Description xml:lang="de">Saarland</structure:Description>
+<structure:Description xml:lang="fr">Saarland</structure:Description>
+</structure:Code>
+<structure:Code value="DED">
+<structure:Description xml:lang="en">Sachsen</structure:Description>
+<structure:Description xml:lang="de">Sachsen</structure:Description>
+<structure:Description xml:lang="fr">Sachsen</structure:Description>
+</structure:Code>
+<structure:Code value="DED1">
+<structure:Description xml:lang="en">Chemnitz (NUTS 2006)</structure:Description>
+<structure:Description xml:lang="de">Chemnitz (NUTS 2006)</structure:Description>
+<structure:Description xml:lang="fr">Chemnitz (NUTS 2006)</structure:Description>
+</structure:Code>
+<structure:Code value="DED2">
+<structure:Description xml:lang="en">Dresden</structure:Description>
+<structure:Description xml:lang="de">Dresden</structure:Description>
+<structure:Description xml:lang="fr">Dresden</structure:Description>
+</structure:Code>
+<structure:Code value="DED3">
+<structure:Description xml:lang="en">Leipzig (NUTS 2006)</structure:Description>
+<structure:Description xml:lang="de">Leipzig (NUTS 2006)</structure:Description>
+<structure:Description xml:lang="fr">Leipzig (NUTS 2006)</structure:Description>
+</structure:Code>
+<structure:Code value="DED4">
+<structure:Description xml:lang="en">Chemnitz</structure:Description>
+<structure:Description xml:lang="de">Chemnitz</structure:Description>
+<structure:Description xml:lang="fr">Chemnitz</structure:Description>
+</structure:Code>
+<structure:Code value="DED5">
+<structure:Description xml:lang="en">Leipzig</structure:Description>
+<structure:Description xml:lang="de">Leipzig</structure:Description>
+<structure:Description xml:lang="fr">Leipzig</structure:Description>
+</structure:Code>
+<structure:Code value="DEE">
+<structure:Description xml:lang="en">Sachsen-Anhalt</structure:Description>
+<structure:Description xml:lang="de">Sachsen-Anhalt</structure:Description>
+<structure:Description xml:lang="fr">Sachsen-Anhalt</structure:Description>
+</structure:Code>
+<structure:Code value="DEE0">
+<structure:Description xml:lang="en">Sachsen-Anhalt</structure:Description>
+<structure:Description xml:lang="de">Sachsen-Anhalt</structure:Description>
+<structure:Description xml:lang="fr">Sachsen-Anhalt</structure:Description>
+</structure:Code>
+<structure:Code value="DEE1">
+<structure:Description xml:lang="en">Dessau (NUTS 1999)</structure:Description>
+<structure:Description xml:lang="de">Dessau (NUTS 1999)</structure:Description>
+<structure:Description xml:lang="fr">Dessau (NUTS 1999)</structure:Description>
+</structure:Code>
+<structure:Code value="DEE2">
+<structure:Description xml:lang="en">Halle (NUTS 2003)</structure:Description>
+<structure:Description xml:lang="de">Halle (NUTS 2003)</structure:Description>
+<structure:Description xml:lang="fr">Halle (NUTS 2003)</structure:Description>
+</structure:Code>
+<structure:Code value="DEE3">
+<structure:Description xml:lang="en">Magdeburg (NUTS 2003)</structure:Description>
+<structure:Description xml:lang="de">Magdeburg (NUTS 2003)</structure:Description>
+<structure:Description xml:lang="fr">Magdeburg (NUTS 2003)</structure:Description>
+</structure:Code>
+<structure:Code value="DEF">
+<structure:Description xml:lang="en">Schleswig-Holstein</structure:Description>
+<structure:Description xml:lang="de">Schleswig-Holstein</structure:Description>
+<structure:Description xml:lang="fr">Schleswig-Holstein</structure:Description>
+</structure:Code>
+<structure:Code value="DEF0">
+<structure:Description xml:lang="en">Schleswig-Holstein</structure:Description>
+<structure:Description xml:lang="de">Schleswig-Holstein</structure:Description>
+<structure:Description xml:lang="fr">Schleswig-Holstein</structure:Description>
+</structure:Code>
+<structure:Code value="DEG">
+<structure:Description xml:lang="en">Thüringen</structure:Description>
+<structure:Description xml:lang="de">Thüringen</structure:Description>
+<structure:Description xml:lang="fr">Thüringen</structure:Description>
+</structure:Code>
+<structure:Code value="DEG0">
+<structure:Description xml:lang="en">Thüringen</structure:Description>
+<structure:Description xml:lang="de">Thüringen</structure:Description>
+<structure:Description xml:lang="fr">Thüringen</structure:Description>
+</structure:Code>
+<structure:Code value="EE">
+<structure:Description xml:lang="en">Estonia</structure:Description>
+<structure:Description xml:lang="de">Estland</structure:Description>
+<structure:Description xml:lang="fr">Estonie</structure:Description>
+</structure:Code>
+<structure:Code value="EE0">
+<structure:Description xml:lang="en">Eesti</structure:Description>
+<structure:Description xml:lang="de">Eesti</structure:Description>
+<structure:Description xml:lang="fr">Eesti</structure:Description>
+</structure:Code>
+<structure:Code value="EE00">
+<structure:Description xml:lang="en">Eesti</structure:Description>
+<structure:Description xml:lang="de">Eesti</structure:Description>
+<structure:Description xml:lang="fr">Eesti</structure:Description>
+</structure:Code>
+<structure:Code value="IE">
+<structure:Description xml:lang="en">Ireland</structure:Description>
+<structure:Description xml:lang="de">Irland</structure:Description>
+<structure:Description xml:lang="fr">Irlande</structure:Description>
+</structure:Code>
+<structure:Code value="IE0">
+<structure:Description xml:lang="en">Éire/Ireland</structure:Description>
+<structure:Description xml:lang="de">Éire/Ireland</structure:Description>
+<structure:Description xml:lang="fr">Éire/Ireland</structure:Description>
+</structure:Code>
+<structure:Code value="IE01">
+<structure:Description xml:lang="en">Border, Midland and Western</structure:Description>
+<structure:Description xml:lang="de">Border, Midland and Western</structure:Description>
+<structure:Description xml:lang="fr">Border, Midland and Western</structure:Description>
+</structure:Code>
+<structure:Code value="IE02">
+<structure:Description xml:lang="en">Southern and Eastern</structure:Description>
+<structure:Description xml:lang="de">Southern and Eastern</structure:Description>
+<structure:Description xml:lang="fr">Southern and Eastern</structure:Description>
+</structure:Code>
+<structure:Code value="EL">
+<structure:Description xml:lang="en">Greece</structure:Description>
+<structure:Description xml:lang="de">Griechenland</structure:Description>
+<structure:Description xml:lang="fr">Grèce</structure:Description>
+</structure:Code>
+<structure:Code value="EL1">
+<structure:Description xml:lang="en">Voreia Ellada</structure:Description>
+<structure:Description xml:lang="de">Voreia Ellada</structure:Description>
+<structure:Description xml:lang="fr">Voreia Ellada</structure:Description>
+</structure:Code>
+<structure:Code value="EL11">
+<structure:Description xml:lang="en">Anatoliki Makedonia, Thraki</structure:Description>
+<structure:Description xml:lang="de">Anatoliki Makedonia, Thraki</structure:Description>
+<structure:Description xml:lang="fr">Anatoliki Makedonia, Thraki</structure:Description>
+</structure:Code>
+<structure:Code value="EL12">
+<structure:Description xml:lang="en">Kentriki Makedonia</structure:Description>
+<structure:Description xml:lang="de">Kentriki Makedonia</structure:Description>
+<structure:Description xml:lang="fr">Kentriki Makedonia</structure:Description>
+</structure:Code>
+<structure:Code value="EL13">
+<structure:Description xml:lang="en">Dytiki Makedonia</structure:Description>
+<structure:Description xml:lang="de">Dytiki Makedonia</structure:Description>
+<structure:Description xml:lang="fr">Dytiki Makedonia</structure:Description>
+</structure:Code>
+<structure:Code value="EL14">
+<structure:Description xml:lang="en">Thessalia</structure:Description>
+<structure:Description xml:lang="de">Thessalia</structure:Description>
+<structure:Description xml:lang="fr">Thessalia</structure:Description>
+</structure:Code>
+<structure:Code value="EL2">
+<structure:Description xml:lang="en">Kentriki Ellada</structure:Description>
+<structure:Description xml:lang="de">Kentriki Ellada</structure:Description>
+<structure:Description xml:lang="fr">Kentriki Ellada</structure:Description>
+</structure:Code>
+<structure:Code value="EL21">
+<structure:Description xml:lang="en">Ipeiros</structure:Description>
+<structure:Description xml:lang="de">Ipeiros</structure:Description>
+<structure:Description xml:lang="fr">Ipeiros</structure:Description>
+</structure:Code>
+<structure:Code value="EL22">
+<structure:Description xml:lang="en">Ionia Nisia</structure:Description>
+<structure:Description xml:lang="de">Ionia Nisia</structure:Description>
+<structure:Description xml:lang="fr">Ionia Nisia</structure:Description>
+</structure:Code>
+<structure:Code value="EL23">
+<structure:Description xml:lang="en">Dytiki Ellada</structure:Description>
+<structure:Description xml:lang="de">Dytiki Ellada</structure:Description>
+<structure:Description xml:lang="fr">Dytiki Ellada</structure:Description>
+</structure:Code>
+<structure:Code value="EL24">
+<structure:Description xml:lang="en">Sterea Ellada</structure:Description>
+<structure:Description xml:lang="de">Sterea Ellada</structure:Description>
+<structure:Description xml:lang="fr">Sterea Ellada</structure:Description>
+</structure:Code>
+<structure:Code value="EL25">
+<structure:Description xml:lang="en">Peloponnisos</structure:Description>
+<structure:Description xml:lang="de">Peloponnisos</structure:Description>
+<structure:Description xml:lang="fr">Peloponnisos</structure:Description>
+</structure:Code>
+<structure:Code value="EL3">
+<structure:Description xml:lang="en">Attiki</structure:Description>
+<structure:Description xml:lang="de">Attiki</structure:Description>
+<structure:Description xml:lang="fr">Attiki</structure:Description>
+</structure:Code>
+<structure:Code value="EL30">
+<structure:Description xml:lang="en">Attiki</structure:Description>
+<structure:Description xml:lang="de">Attiki</structure:Description>
+<structure:Description xml:lang="fr">Attiki</structure:Description>
+</structure:Code>
+<structure:Code value="EL4">
+<structure:Description xml:lang="en">Nisia Aigaiou, Kriti</structure:Description>
+<structure:Description xml:lang="de">Nisia Aigaiou, Kriti</structure:Description>
+<structure:Description xml:lang="fr">Nisia Aigaiou, Kriti</structure:Description>
+</structure:Code>
+<structure:Code value="EL41">
+<structure:Description xml:lang="en">Voreio Aigaio</structure:Description>
+<structure:Description xml:lang="de">Voreio Aigaio</structure:Description>
+<structure:Description xml:lang="fr">Voreio Aigaio</structure:Description>
+</structure:Code>
+<structure:Code value="EL42">
+<structure:Description xml:lang="en">Notio Aigaio</structure:Description>
+<structure:Description xml:lang="de">Notio Aigaio</structure:Description>
+<structure:Description xml:lang="fr">Notio Aigaio</structure:Description>
+</structure:Code>
+<structure:Code value="EL43">
+<structure:Description xml:lang="en">Kriti</structure:Description>
+<structure:Description xml:lang="de">Kriti</structure:Description>
+<structure:Description xml:lang="fr">Kriti</structure:Description>
+</structure:Code>
+<structure:Code value="ES">
+<structure:Description xml:lang="en">Spain</structure:Description>
+<structure:Description xml:lang="de">Spanien</structure:Description>
+<structure:Description xml:lang="fr">Espagne</structure:Description>
+</structure:Code>
+<structure:Code value="ES1">
+<structure:Description xml:lang="en">Noroeste (ES)</structure:Description>
+<structure:Description xml:lang="de">Noroeste (ES)</structure:Description>
+<structure:Description xml:lang="fr">Noroeste (ES)</structure:Description>
+</structure:Code>
+<structure:Code value="ES11">
+<structure:Description xml:lang="en">Galicia</structure:Description>
+<structure:Description xml:lang="de">Galicia</structure:Description>
+<structure:Description xml:lang="fr">Galicia</structure:Description>
+</structure:Code>
+<structure:Code value="ES12">
+<structure:Description xml:lang="en">Principado de Asturias</structure:Description>
+<structure:Description xml:lang="de">Principado de Asturias</structure:Description>
+<structure:Description xml:lang="fr">Principado de Asturias</structure:Description>
+</structure:Code>
+<structure:Code value="ES13">
+<structure:Description xml:lang="en">Cantabria</structure:Description>
+<structure:Description xml:lang="de">Cantabria</structure:Description>
+<structure:Description xml:lang="fr">Cantabria</structure:Description>
+</structure:Code>
+<structure:Code value="ES2">
+<structure:Description xml:lang="en">Noreste (ES)</structure:Description>
+<structure:Description xml:lang="de">Noreste (ES)</structure:Description>
+<structure:Description xml:lang="fr">Noreste (ES)</structure:Description>
+</structure:Code>
+<structure:Code value="ES21">
+<structure:Description xml:lang="en">País Vasco</structure:Description>
+<structure:Description xml:lang="de">País Vasco</structure:Description>
+<structure:Description xml:lang="fr">País Vasco</structure:Description>
+</structure:Code>
+<structure:Code value="ES22">
+<structure:Description xml:lang="en">Comunidad Foral de Navarra</structure:Description>
+<structure:Description xml:lang="de">Comunidad Foral de Navarra</structure:Description>
+<structure:Description xml:lang="fr">Comunidad Foral de Navarra</structure:Description>
+</structure:Code>
+<structure:Code value="ES23">
+<structure:Description xml:lang="en">La Rioja</structure:Description>
+<structure:Description xml:lang="de">La Rioja</structure:Description>
+<structure:Description xml:lang="fr">La Rioja</structure:Description>
+</structure:Code>
+<structure:Code value="ES24">
+<structure:Description xml:lang="en">Aragón</structure:Description>
+<structure:Description xml:lang="de">Aragón</structure:Description>
+<structure:Description xml:lang="fr">Aragón</structure:Description>
+</structure:Code>
+<structure:Code value="ES3">
+<structure:Description xml:lang="en">Comunidad de Madrid</structure:Description>
+<structure:Description xml:lang="de">Comunidad de Madrid</structure:Description>
+<structure:Description xml:lang="fr">Comunidad de Madrid</structure:Description>
+</structure:Code>
+<structure:Code value="ES30">
+<structure:Description xml:lang="en">Comunidad de Madrid</structure:Description>
+<structure:Description xml:lang="de">Comunidad de Madrid</structure:Description>
+<structure:Description xml:lang="fr">Comunidad de Madrid</structure:Description>
+</structure:Code>
+<structure:Code value="ES4">
+<structure:Description xml:lang="en">Centro (ES)</structure:Description>
+<structure:Description xml:lang="de">Centro (ES)</structure:Description>
+<structure:Description xml:lang="fr">Centro (ES)</structure:Description>
+</structure:Code>
+<structure:Code value="ES41">
+<structure:Description xml:lang="en">Castilla y León</structure:Description>
+<structure:Description xml:lang="de">Castilla y León</structure:Description>
+<structure:Description xml:lang="fr">Castilla y León</structure:Description>
+</structure:Code>
+<structure:Code value="ES42">
+<structure:Description xml:lang="en">Castilla-la Mancha</structure:Description>
+<structure:Description xml:lang="de">Castilla-la Mancha</structure:Description>
+<structure:Description xml:lang="fr">Castilla-la Mancha</structure:Description>
+</structure:Code>
+<structure:Code value="ES43">
+<structure:Description xml:lang="en">Extremadura</structure:Description>
+<structure:Description xml:lang="de">Extremadura</structure:Description>
+<structure:Description xml:lang="fr">Extremadura</structure:Description>
+</structure:Code>
+<structure:Code value="ES5">
+<structure:Description xml:lang="en">Este (ES)</structure:Description>
+<structure:Description xml:lang="de">Este (ES)</structure:Description>
+<structure:Description xml:lang="fr">Este (ES)</structure:Description>
+</structure:Code>
+<structure:Code value="ES51">
+<structure:Description xml:lang="en">Cataluña</structure:Description>
+<structure:Description xml:lang="de">Cataluña</structure:Description>
+<structure:Description xml:lang="fr">Cataluña</structure:Description>
+</structure:Code>
+<structure:Code value="ES52">
+<structure:Description xml:lang="en">Comunidad Valenciana</structure:Description>
+<structure:Description xml:lang="de">Comunidad Valenciana</structure:Description>
+<structure:Description xml:lang="fr">Comunidad Valenciana</structure:Description>
+</structure:Code>
+<structure:Code value="ES53">
+<structure:Description xml:lang="en">Illes Balears</structure:Description>
+<structure:Description xml:lang="de">Illes Balears</structure:Description>
+<structure:Description xml:lang="fr">Illes Balears</structure:Description>
+</structure:Code>
+<structure:Code value="ES6">
+<structure:Description xml:lang="en">Sur (ES)</structure:Description>
+<structure:Description xml:lang="de">Sur (ES)</structure:Description>
+<structure:Description xml:lang="fr">Sur (ES)</structure:Description>
+</structure:Code>
+<structure:Code value="ES61">
+<structure:Description xml:lang="en">Andalucía</structure:Description>
+<structure:Description xml:lang="de">Andalucía</structure:Description>
+<structure:Description xml:lang="fr">Andalucía</structure:Description>
+</structure:Code>
+<structure:Code value="ES62">
+<structure:Description xml:lang="en">Región de Murcia</structure:Description>
+<structure:Description xml:lang="de">Región de Murcia</structure:Description>
+<structure:Description xml:lang="fr">Región de Murcia</structure:Description>
+</structure:Code>
+<structure:Code value="ES63">
+<structure:Description xml:lang="en">Ciudad Autónoma de Ceuta (ES)</structure:Description>
+<structure:Description xml:lang="de">Ciudad Autónoma de Ceuta (ES)</structure:Description>
+<structure:Description xml:lang="fr">Ciudad Autónoma de Ceuta (ES)</structure:Description>
+</structure:Code>
+<structure:Code value="ES64">
+<structure:Description xml:lang="en">Ciudad Autónoma de Melilla (ES)</structure:Description>
+<structure:Description xml:lang="de">Ciudad Autónoma de Melilla (ES)</structure:Description>
+<structure:Description xml:lang="fr">Ciudad Autónoma de Melilla (ES)</structure:Description>
+</structure:Code>
+<structure:Code value="ES7">
+<structure:Description xml:lang="en">Canarias (ES)</structure:Description>
+<structure:Description xml:lang="de">Canarias (ES)</structure:Description>
+<structure:Description xml:lang="fr">Canarias (ES)</structure:Description>
+</structure:Code>
+<structure:Code value="ES70">
+<structure:Description xml:lang="en">Canarias (ES)</structure:Description>
+<structure:Description xml:lang="de">Canarias (ES)</structure:Description>
+<structure:Description xml:lang="fr">Canarias (ES)</structure:Description>
+</structure:Code>
+<structure:Code value="FR">
+<structure:Description xml:lang="en">France</structure:Description>
+<structure:Description xml:lang="de">Frankreich</structure:Description>
+<structure:Description xml:lang="fr">France</structure:Description>
+</structure:Code>
+<structure:Code value="FR1">
+<structure:Description xml:lang="en">Île de France</structure:Description>
+<structure:Description xml:lang="de">Île de France</structure:Description>
+<structure:Description xml:lang="fr">Île de France</structure:Description>
+</structure:Code>
+<structure:Code value="FR10">
+<structure:Description xml:lang="en">Île de France</structure:Description>
+<structure:Description xml:lang="de">Île de France</structure:Description>
+<structure:Description xml:lang="fr">Île de France</structure:Description>
+</structure:Code>
+<structure:Code value="FR2">
+<structure:Description xml:lang="en">Bassin Parisien</structure:Description>
+<structure:Description xml:lang="de">Bassin Parisien</structure:Description>
+<structure:Description xml:lang="fr">Bassin Parisien</structure:Description>
+</structure:Code>
+<structure:Code value="FR21">
+<structure:Description xml:lang="en">Champagne-Ardenne</structure:Description>
+<structure:Description xml:lang="de">Champagne-Ardenne</structure:Description>
+<structure:Description xml:lang="fr">Champagne-Ardenne</structure:Description>
+</structure:Code>
+<structure:Code value="FR22">
+<structure:Description xml:lang="en">Picardie</structure:Description>
+<structure:Description xml:lang="de">Picardie</structure:Description>
+<structure:Description xml:lang="fr">Picardie</structure:Description>
+</structure:Code>
+<structure:Code value="FR23">
+<structure:Description xml:lang="en">Haute-Normandie</structure:Description>
+<structure:Description xml:lang="de">Haute-Normandie</structure:Description>
+<structure:Description xml:lang="fr">Haute-Normandie</structure:Description>
+</structure:Code>
+<structure:Code value="FR24">
+<structure:Description xml:lang="en">Centre (FR)</structure:Description>
+<structure:Description xml:lang="de">Centre (FR)</structure:Description>
+<structure:Description xml:lang="fr">Centre (FR)</structure:Description>
+</structure:Code>
+<structure:Code value="FR25">
+<structure:Description xml:lang="en">Basse-Normandie</structure:Description>
+<structure:Description xml:lang="de">Basse-Normandie</structure:Description>
+<structure:Description xml:lang="fr">Basse-Normandie</structure:Description>
+</structure:Code>
+<structure:Code value="FR26">
+<structure:Description xml:lang="en">Bourgogne</structure:Description>
+<structure:Description xml:lang="de">Bourgogne</structure:Description>
+<structure:Description xml:lang="fr">Bourgogne</structure:Description>
+</structure:Code>
+<structure:Code value="FR3">
+<structure:Description xml:lang="en">Nord - Pas-de-Calais</structure:Description>
+<structure:Description xml:lang="de">Nord - Pas-de-Calais</structure:Description>
+<structure:Description xml:lang="fr">Nord - Pas-de-Calais</structure:Description>
+</structure:Code>
+<structure:Code value="FR30">
+<structure:Description xml:lang="en">Nord - Pas-de-Calais</structure:Description>
+<structure:Description xml:lang="de">Nord - Pas-de-Calais</structure:Description>
+<structure:Description xml:lang="fr">Nord - Pas-de-Calais</structure:Description>
+</structure:Code>
+<structure:Code value="FR4">
+<structure:Description xml:lang="en">Est (FR)</structure:Description>
+<structure:Description xml:lang="de">Est (FR)</structure:Description>
+<structure:Description xml:lang="fr">Est (FR)</structure:Description>
+</structure:Code>
+<structure:Code value="FR41">
+<structure:Description xml:lang="en">Lorraine</structure:Description>
+<structure:Description xml:lang="de">Lorraine</structure:Description>
+<structure:Description xml:lang="fr">Lorraine</structure:Description>
+</structure:Code>
+<structure:Code value="FR42">
+<structure:Description xml:lang="en">Alsace</structure:Description>
+<structure:Description xml:lang="de">Alsace</structure:Description>
+<structure:Description xml:lang="fr">Alsace</structure:Description>
+</structure:Code>
+<structure:Code value="FR43">
+<structure:Description xml:lang="en">Franche-Comté</structure:Description>
+<structure:Description xml:lang="de">Franche-Comté</structure:Description>
+<structure:Description xml:lang="fr">Franche-Comté</structure:Description>
+</structure:Code>
+<structure:Code value="FR5">
+<structure:Description xml:lang="en">Ouest (FR)</structure:Description>
+<structure:Description xml:lang="de">Ouest (FR)</structure:Description>
+<structure:Description xml:lang="fr">Ouest (FR)</structure:Description>
+</structure:Code>
+<structure:Code value="FR51">
+<structure:Description xml:lang="en">Pays de la Loire</structure:Description>
+<structure:Description xml:lang="de">Pays de la Loire</structure:Description>
+<structure:Description xml:lang="fr">Pays de la Loire</structure:Description>
+</structure:Code>
+<structure:Code value="FR52">
+<structure:Description xml:lang="en">Bretagne</structure:Description>
+<structure:Description xml:lang="de">Bretagne</structure:Description>
+<structure:Description xml:lang="fr">Bretagne</structure:Description>
+</structure:Code>
+<structure:Code value="FR53">
+<structure:Description xml:lang="en">Poitou-Charentes</structure:Description>
+<structure:Description xml:lang="de">Poitou-Charentes</structure:Description>
+<structure:Description xml:lang="fr">Poitou-Charentes</structure:Description>
+</structure:Code>
+<structure:Code value="FR6">
+<structure:Description xml:lang="en">Sud-Ouest (FR)</structure:Description>
+<structure:Description xml:lang="de">Sud-Ouest (FR)</structure:Description>
+<structure:Description xml:lang="fr">Sud-Ouest (FR)</structure:Description>
+</structure:Code>
+<structure:Code value="FR61">
+<structure:Description xml:lang="en">Aquitaine</structure:Description>
+<structure:Description xml:lang="de">Aquitaine</structure:Description>
+<structure:Description xml:lang="fr">Aquitaine</structure:Description>
+</structure:Code>
+<structure:Code value="FR62">
+<structure:Description xml:lang="en">Midi-Pyrénées</structure:Description>
+<structure:Description xml:lang="de">Midi-Pyrénées</structure:Description>
+<structure:Description xml:lang="fr">Midi-Pyrénées</structure:Description>
+</structure:Code>
+<structure:Code value="FR63">
+<structure:Description xml:lang="en">Limousin</structure:Description>
+<structure:Description xml:lang="de">Limousin</structure:Description>
+<structure:Description xml:lang="fr">Limousin</structure:Description>
+</structure:Code>
+<structure:Code value="FR7">
+<structure:Description xml:lang="en">Centre-Est (FR)</structure:Description>
+<structure:Description xml:lang="de">Centre-Est (FR)</structure:Description>
+<structure:Description xml:lang="fr">Centre-Est (FR)</structure:Description>
+</structure:Code>
+<structure:Code value="FR71">
+<structure:Description xml:lang="en">Rhône-Alpes</structure:Description>
+<structure:Description xml:lang="de">Rhône-Alpes</structure:Description>
+<structure:Description xml:lang="fr">Rhône-Alpes</structure:Description>
+</structure:Code>
+<structure:Code value="FR72">
+<structure:Description xml:lang="en">Auvergne</structure:Description>
+<structure:Description xml:lang="de">Auvergne</structure:Description>
+<structure:Description xml:lang="fr">Auvergne</structure:Description>
+</structure:Code>
+<structure:Code value="FR8">
+<structure:Description xml:lang="en">Méditerranée</structure:Description>
+<structure:Description xml:lang="de">Méditerranée</structure:Description>
+<structure:Description xml:lang="fr">Méditerranée</structure:Description>
+</structure:Code>
+<structure:Code value="FR81">
+<structure:Description xml:lang="en">Languedoc-Roussillon</structure:Description>
+<structure:Description xml:lang="de">Languedoc-Roussillon</structure:Description>
+<structure:Description xml:lang="fr">Languedoc-Roussillon</structure:Description>
+</structure:Code>
+<structure:Code value="FR82">
+<structure:Description xml:lang="en">Provence-Alpes-Côte d'Azur</structure:Description>
+<structure:Description xml:lang="de">Provence-Alpes-Côte d'Azur</structure:Description>
+<structure:Description xml:lang="fr">Provence-Alpes-Côte d'Azur</structure:Description>
+</structure:Code>
+<structure:Code value="FR83">
+<structure:Description xml:lang="en">Corse</structure:Description>
+<structure:Description xml:lang="de">Corse</structure:Description>
+<structure:Description xml:lang="fr">Corse</structure:Description>
+</structure:Code>
+<structure:Code value="FR9">
+<structure:Description xml:lang="en">Départements d'outre-mer (FR)</structure:Description>
+<structure:Description xml:lang="de">Départements d'outre-mer (FR)</structure:Description>
+<structure:Description xml:lang="fr">Départements d'outre-mer (FR)</structure:Description>
+</structure:Code>
+<structure:Code value="FR91">
+<structure:Description xml:lang="en">Guadeloupe (FR)</structure:Description>
+<structure:Description xml:lang="de">Guadeloupe (FR)</structure:Description>
+<structure:Description xml:lang="fr">Guadeloupe (FR)</structure:Description>
+</structure:Code>
+<structure:Code value="FR92">
+<structure:Description xml:lang="en">Martinique (FR)</structure:Description>
+<structure:Description xml:lang="de">Martinique (FR)</structure:Description>
+<structure:Description xml:lang="fr">Martinique (FR)</structure:Description>
+</structure:Code>
+<structure:Code value="FR93">
+<structure:Description xml:lang="en">Guyane (FR)</structure:Description>
+<structure:Description xml:lang="de">Guyana (FR)</structure:Description>
+<structure:Description xml:lang="fr">Guyane (FR)</structure:Description>
+</structure:Code>
+<structure:Code value="FR94">
+<structure:Description xml:lang="en">Réunion (FR)</structure:Description>
+<structure:Description xml:lang="de">Réunion (FR)</structure:Description>
+<structure:Description xml:lang="fr">Réunion (FR)</structure:Description>
+</structure:Code>
+<structure:Code value="IT">
+<structure:Description xml:lang="en">Italy</structure:Description>
+<structure:Description xml:lang="de">Italien</structure:Description>
+<structure:Description xml:lang="fr">Italie</structure:Description>
+</structure:Code>
+<structure:Code value="ITC">
+<structure:Description xml:lang="en">Nord-Ovest</structure:Description>
+<structure:Description xml:lang="de">Nord-Ovest</structure:Description>
+<structure:Description xml:lang="fr">Nord-Ovest</structure:Description>
+</structure:Code>
+<structure:Code value="ITC1">
+<structure:Description xml:lang="en">Piemonte</structure:Description>
+<structure:Description xml:lang="de">Piemonte</structure:Description>
+<structure:Description xml:lang="fr">Piemonte</structure:Description>
+</structure:Code>
+<structure:Code value="ITC2">
+<structure:Description xml:lang="en">Valle d'Aosta/Vallée d'Aoste</structure:Description>
+<structure:Description xml:lang="de">Valle d'Aosta/Vallée d'Aoste</structure:Description>
+<structure:Description xml:lang="fr">Valle d'Aosta/Vallée d'Aoste</structure:Description>
+</structure:Code>
+<structure:Code value="ITC3">
+<structure:Description xml:lang="en">Liguria</structure:Description>
+<structure:Description xml:lang="de">Liguria</structure:Description>
+<structure:Description xml:lang="fr">Liguria</structure:Description>
+</structure:Code>
+<structure:Code value="ITC4">
+<structure:Description xml:lang="en">Lombardia</structure:Description>
+<structure:Description xml:lang="de">Lombardia</structure:Description>
+<structure:Description xml:lang="fr">Lombardia</structure:Description>
+</structure:Code>
+<structure:Code value="ITH">
+<structure:Description xml:lang="en">Nord-Est</structure:Description>
+<structure:Description xml:lang="de">Nord-Est</structure:Description>
+<structure:Description xml:lang="fr">Nord-Est</structure:Description>
+</structure:Code>
+<structure:Code value="ITH1">
+<structure:Description xml:lang="en">Provincia Autonoma di Bolzano/Bozen</structure:Description>
+<structure:Description xml:lang="de">Provincia Autonoma di Bolzano/Bozen</structure:Description>
+<structure:Description xml:lang="fr">Provincia Autonoma di Bolzano/Bozen</structure:Description>
+</structure:Code>
+<structure:Code value="ITH2">
+<structure:Description xml:lang="en">Provincia Autonoma di Trento</structure:Description>
+<structure:Description xml:lang="de">Provincia Autonoma di Trento</structure:Description>
+<structure:Description xml:lang="fr">Provincia Autonoma di Trento</structure:Description>
+</structure:Code>
+<structure:Code value="ITH3">
+<structure:Description xml:lang="en">Veneto</structure:Description>
+<structure:Description xml:lang="de">Veneto</structure:Description>
+<structure:Description xml:lang="fr">Veneto</structure:Description>
+</structure:Code>
+<structure:Code value="ITH4">
+<structure:Description xml:lang="en">Friuli-Venezia Giulia</structure:Description>
+<structure:Description xml:lang="de">Friuli-Venezia Giulia</structure:Description>
+<structure:Description xml:lang="fr">Friuli-Venezia Giulia</structure:Description>
+</structure:Code>
+<structure:Code value="ITH5">
+<structure:Description xml:lang="en">Emilia-Romagna</structure:Description>
+<structure:Description xml:lang="de">Emilia-Romagna</structure:Description>
+<structure:Description xml:lang="fr">Emilia-Romagna</structure:Description>
+</structure:Code>
+<structure:Code value="ITI">
+<structure:Description xml:lang="en">Centro (IT)</structure:Description>
+<structure:Description xml:lang="de">Centro (IT)</structure:Description>
+<structure:Description xml:lang="fr">Centro (IT)</structure:Description>
+</structure:Code>
+<structure:Code value="ITI1">
+<structure:Description xml:lang="en">Toscana</structure:Description>
+<structure:Description xml:lang="de">Toscana</structure:Description>
+<structure:Description xml:lang="fr">Toscana</structure:Description>
+</structure:Code>
+<structure:Code value="ITI2">
+<structure:Description xml:lang="en">Umbria</structure:Description>
+<structure:Description xml:lang="de">Umbria</structure:Description>
+<structure:Description xml:lang="fr">Umbria</structure:Description>
+</structure:Code>
+<structure:Code value="ITI3">
+<structure:Description xml:lang="en">Marche</structure:Description>
+<structure:Description xml:lang="de">Marche</structure:Description>
+<structure:Description xml:lang="fr">Marche</structure:Description>
+</structure:Code>
+<structure:Code value="ITI4">
+<structure:Description xml:lang="en">Lazio</structure:Description>
+<structure:Description xml:lang="de">Lazio</structure:Description>
+<structure:Description xml:lang="fr">Lazio</structure:Description>
+</structure:Code>
+<structure:Code value="ITD">
+<structure:Description xml:lang="en">Nord-Est (NUTS 2006)</structure:Description>
+<structure:Description xml:lang="de">Nord-Est (NUTS 2006)</structure:Description>
+<structure:Description xml:lang="fr">Nord-Est (NUTS 2006)</structure:Description>
+</structure:Code>
+<structure:Code value="ITD5">
+<structure:Description xml:lang="en">Emilia-Romagna (NUTS 2006)</structure:Description>
+<structure:Description xml:lang="de">Emilia-Romagna (NUTS 2006)</structure:Description>
+<structure:Description xml:lang="fr">Emilia-Romagna (NUTS 2006)</structure:Description>
+</structure:Code>
+<structure:Code value="ITE">
+<structure:Description xml:lang="en">Centro (I) (NUTS 2006)</structure:Description>
+<structure:Description xml:lang="de">Centro (I) (NUTS 2006)</structure:Description>
+<structure:Description xml:lang="fr">Centro (I) (NUTS 2006)</structure:Description>
+</structure:Code>
+<structure:Code value="ITE3">
+<structure:Description xml:lang="en">Marche (NUTS 2006)</structure:Description>
+<structure:Description xml:lang="de">Marche (NUTS 2006)</structure:Description>
+<structure:Description xml:lang="fr">Marche (NUTS 2006)</structure:Description>
+</structure:Code>
+<structure:Code value="ITF">
+<structure:Description xml:lang="en">Sud</structure:Description>
+<structure:Description xml:lang="de">Sud</structure:Description>
+<structure:Description xml:lang="fr">Sud</structure:Description>
+</structure:Code>
+<structure:Code value="ITF1">
+<structure:Description xml:lang="en">Abruzzo</structure:Description>
+<structure:Description xml:lang="de">Abruzzo</structure:Description>
+<structure:Description xml:lang="fr">Abruzzo</structure:Description>
+</structure:Code>
+<structure:Code value="ITF2">
+<structure:Description xml:lang="en">Molise</structure:Description>
+<structure:Description xml:lang="de">Molise</structure:Description>
+<structure:Description xml:lang="fr">Molise</structure:Description>
+</structure:Code>
+<structure:Code value="ITF3">
+<structure:Description xml:lang="en">Campania</structure:Description>
+<structure:Description xml:lang="de">Campania</structure:Description>
+<structure:Description xml:lang="fr">Campania</structure:Description>
+</structure:Code>
+<structure:Code value="ITF4">
+<structure:Description xml:lang="en">Puglia</structure:Description>
+<structure:Description xml:lang="de">Puglia</structure:Description>
+<structure:Description xml:lang="fr">Puglia</structure:Description>
+</structure:Code>
+<structure:Code value="ITF5">
+<structure:Description xml:lang="en">Basilicata</structure:Description>
+<structure:Description xml:lang="de">Basilicata</structure:Description>
+<structure:Description xml:lang="fr">Basilicata</structure:Description>
+</structure:Code>
+<structure:Code value="ITF6">
+<structure:Description xml:lang="en">Calabria</structure:Description>
+<structure:Description xml:lang="de">Calabria</structure:Description>
+<structure:Description xml:lang="fr">Calabria</structure:Description>
+</structure:Code>
+<structure:Code value="ITG">
+<structure:Description xml:lang="en">Isole</structure:Description>
+<structure:Description xml:lang="de">Isole</structure:Description>
+<structure:Description xml:lang="fr">Isole</structure:Description>
+</structure:Code>
+<structure:Code value="ITG1">
+<structure:Description xml:lang="en">Sicilia</structure:Description>
+<structure:Description xml:lang="de">Sicilia</structure:Description>
+<structure:Description xml:lang="fr">Sicilia</structure:Description>
+</structure:Code>
+<structure:Code value="ITG2">
+<structure:Description xml:lang="en">Sardegna</structure:Description>
+<structure:Description xml:lang="de">Sardegna</structure:Description>
+<structure:Description xml:lang="fr">Sardegna</structure:Description>
+</structure:Code>
+<structure:Code value="CY">
+<structure:Description xml:lang="en">Cyprus</structure:Description>
+<structure:Description xml:lang="de">Zypern</structure:Description>
+<structure:Description xml:lang="fr">Chypre</structure:Description>
+</structure:Code>
+<structure:Code value="CY0">
+<structure:Description xml:lang="en">Kypros</structure:Description>
+<structure:Description xml:lang="de">Kypros</structure:Description>
+<structure:Description xml:lang="fr">Kypros</structure:Description>
+</structure:Code>
+<structure:Code value="CY00">
+<structure:Description xml:lang="en">Kypros</structure:Description>
+<structure:Description xml:lang="de">Kypros</structure:Description>
+<structure:Description xml:lang="fr">Kypros</structure:Description>
+</structure:Code>
+<structure:Code value="LV">
+<structure:Description xml:lang="en">Latvia</structure:Description>
+<structure:Description xml:lang="de">Lettland</structure:Description>
+<structure:Description xml:lang="fr">Lettonie</structure:Description>
+</structure:Code>
+<structure:Code value="LV0">
+<structure:Description xml:lang="en">Latvija</structure:Description>
+<structure:Description xml:lang="de">Latvija</structure:Description>
+<structure:Description xml:lang="fr">Latvija</structure:Description>
+</structure:Code>
+<structure:Code value="LV00">
+<structure:Description xml:lang="en">Latvija</structure:Description>
+<structure:Description xml:lang="de">Latvija</structure:Description>
+<structure:Description xml:lang="fr">Latvija</structure:Description>
+</structure:Code>
+<structure:Code value="LT">
+<structure:Description xml:lang="en">Lithuania</structure:Description>
+<structure:Description xml:lang="de">Litauen</structure:Description>
+<structure:Description xml:lang="fr">Lituanie</structure:Description>
+</structure:Code>
+<structure:Code value="LT0">
+<structure:Description xml:lang="en">Lietuva</structure:Description>
+<structure:Description xml:lang="de">Lietuva</structure:Description>
+<structure:Description xml:lang="fr">Lietuva</structure:Description>
+</structure:Code>
+<structure:Code value="LT00">
+<structure:Description xml:lang="en">Lietuva</structure:Description>
+<structure:Description xml:lang="de">Lietuva</structure:Description>
+<structure:Description xml:lang="fr">Lietuva</structure:Description>
+</structure:Code>
+<structure:Code value="LU">
+<structure:Description xml:lang="en">Luxembourg</structure:Description>
+<structure:Description xml:lang="de">Luxemburg</structure:Description>
+<structure:Description xml:lang="fr">Luxembourg</structure:Description>
+</structure:Code>
+<structure:Code value="LU0">
+<structure:Description xml:lang="en">Luxembourg</structure:Description>
+<structure:Description xml:lang="de">Luxemburg</structure:Description>
+<structure:Description xml:lang="fr">Luxembourg</structure:Description>
+</structure:Code>
+<structure:Code value="LU00">
+<structure:Description xml:lang="en">Luxembourg</structure:Description>
+<structure:Description xml:lang="de">Luxemburg</structure:Description>
+<structure:Description xml:lang="fr">Luxembourg</structure:Description>
+</structure:Code>
+<structure:Code value="HU">
+<structure:Description xml:lang="en">Hungary</structure:Description>
+<structure:Description xml:lang="de">Ungarn</structure:Description>
+<structure:Description xml:lang="fr">Hongrie</structure:Description>
+</structure:Code>
+<structure:Code value="HU1">
+<structure:Description xml:lang="en">Közép-Magyarország</structure:Description>
+<structure:Description xml:lang="de">Közép-Magyarország</structure:Description>
+<structure:Description xml:lang="fr">Közép-Magyarország</structure:Description>
+</structure:Code>
+<structure:Code value="HU10">
+<structure:Description xml:lang="en">Közép-Magyarország</structure:Description>
+<structure:Description xml:lang="de">Közép-Magyarország</structure:Description>
+<structure:Description xml:lang="fr">Közép-Magyarország</structure:Description>
+</structure:Code>
+<structure:Code value="HU2">
+<structure:Description xml:lang="en">Dunántúl</structure:Description>
+<structure:Description xml:lang="de">Dunántúl</structure:Description>
+<structure:Description xml:lang="fr">Dunántúl</structure:Description>
+</structure:Code>
+<structure:Code value="HU21">
+<structure:Description xml:lang="en">Közép-Dunántúl</structure:Description>
+<structure:Description xml:lang="de">Közép-Dunántúl</structure:Description>
+<structure:Description xml:lang="fr">Közép-Dunántúl</structure:Description>
+</structure:Code>
+<structure:Code value="HU22">
+<structure:Description xml:lang="en">Nyugat-Dunántúl</structure:Description>
+<structure:Description xml:lang="de">Nyugat-Dunántúl</structure:Description>
+<structure:Description xml:lang="fr">Nyugat-Dunántúl</structure:Description>
+</structure:Code>
+<structure:Code value="HU23">
+<structure:Description xml:lang="en">Dél-Dunántúl</structure:Description>
+<structure:Description xml:lang="de">Dél-Dunántúl</structure:Description>
+<structure:Description xml:lang="fr">Dél-Dunántúl</structure:Description>
+</structure:Code>
+<structure:Code value="HU3">
+<structure:Description xml:lang="en">Alföld és Észak</structure:Description>
+<structure:Description xml:lang="de">Alföld és Észak</structure:Description>
+<structure:Description xml:lang="fr">Alföld és Észak</structure:Description>
+</structure:Code>
+<structure:Code value="HU31">
+<structure:Description xml:lang="en">Észak-Magyarország</structure:Description>
+<structure:Description xml:lang="de">Észak-Magyarország</structure:Description>
+<structure:Description xml:lang="fr">Észak-Magyarország</structure:Description>
+</structure:Code>
+<structure:Code value="HU32">
+<structure:Description xml:lang="en">Észak-Alföld</structure:Description>
+<structure:Description xml:lang="de">Észak-Alföld</structure:Description>
+<structure:Description xml:lang="fr">Észak-Alföld</structure:Description>
+</structure:Code>
+<structure:Code value="HU33">
+<structure:Description xml:lang="en">Dél-Alföld</structure:Description>
+<structure:Description xml:lang="de">Dél-Alföld</structure:Description>
+<structure:Description xml:lang="fr">Dél-Alföld</structure:Description>
+</structure:Code>
+<structure:Code value="MT">
+<structure:Description xml:lang="en">Malta</structure:Description>
+<structure:Description xml:lang="de">Malta</structure:Description>
+<structure:Description xml:lang="fr">Malte</structure:Description>
+</structure:Code>
+<structure:Code value="MT0">
+<structure:Description xml:lang="en">Malta</structure:Description>
+<structure:Description xml:lang="de">Malta</structure:Description>
+<structure:Description xml:lang="fr">Malta</structure:Description>
+</structure:Code>
+<structure:Code value="MT00">
+<structure:Description xml:lang="en">Malta</structure:Description>
+<structure:Description xml:lang="de">Malta</structure:Description>
+<structure:Description xml:lang="fr">Malta</structure:Description>
+</structure:Code>
+<structure:Code value="NL">
+<structure:Description xml:lang="en">Netherlands</structure:Description>
+<structure:Description xml:lang="de">Niederlande</structure:Description>
+<structure:Description xml:lang="fr">Pays-Bas</structure:Description>
+</structure:Code>
+<structure:Code value="NL1">
+<structure:Description xml:lang="en">Noord-Nederland</structure:Description>
+<structure:Description xml:lang="de">Noord-Nederland</structure:Description>
+<structure:Description xml:lang="fr">Noord-Nederland</structure:Description>
+</structure:Code>
+<structure:Code value="NL11">
+<structure:Description xml:lang="en">Groningen</structure:Description>
+<structure:Description xml:lang="de">Groningen</structure:Description>
+<structure:Description xml:lang="fr">Groningen</structure:Description>
+</structure:Code>
+<structure:Code value="NL12">
+<structure:Description xml:lang="en">Friesland (NL)</structure:Description>
+<structure:Description xml:lang="de">Friesland (NL)</structure:Description>
+<structure:Description xml:lang="fr">Friesland (NL)</structure:Description>
+</structure:Code>
+<structure:Code value="NL13">
+<structure:Description xml:lang="en">Drenthe</structure:Description>
+<structure:Description xml:lang="de">Drenthe</structure:Description>
+<structure:Description xml:lang="fr">Drenthe</structure:Description>
+</structure:Code>
+<structure:Code value="NL2">
+<structure:Description xml:lang="en">Oost-Nederland</structure:Description>
+<structure:Description xml:lang="de">Oost-Nederland</structure:Description>
+<structure:Description xml:lang="fr">Oost-Nederland</structure:Description>
+</structure:Code>
+<structure:Code value="NL21">
+<structure:Description xml:lang="en">Overijssel</structure:Description>
+<structure:Description xml:lang="de">Overijssel</structure:Description>
+<structure:Description xml:lang="fr">Overijssel</structure:Description>
+</structure:Code>
+<structure:Code value="NL22">
+<structure:Description xml:lang="en">Gelderland</structure:Description>
+<structure:Description xml:lang="de">Gelderland</structure:Description>
+<structure:Description xml:lang="fr">Gelderland</structure:Description>
+</structure:Code>
+<structure:Code value="NL23">
+<structure:Description xml:lang="en">Flevoland</structure:Description>
+<structure:Description xml:lang="de">Flevoland</structure:Description>
+<structure:Description xml:lang="fr">Flevoland</structure:Description>
+</structure:Code>
+<structure:Code value="NL3">
+<structure:Description xml:lang="en">West-Nederland</structure:Description>
+<structure:Description xml:lang="de">West-Nederland</structure:Description>
+<structure:Description xml:lang="fr">West-Nederland</structure:Description>
+</structure:Code>
+<structure:Code value="NL31">
+<structure:Description xml:lang="en">Utrecht</structure:Description>
+<structure:Description xml:lang="de">Utrecht</structure:Description>
+<structure:Description xml:lang="fr">Utrecht</structure:Description>
+</structure:Code>
+<structure:Code value="NL32">
+<structure:Description xml:lang="en">Noord-Holland</structure:Description>
+<structure:Description xml:lang="de">Noord-Holland</structure:Description>
+<structure:Description xml:lang="fr">Noord-Holland</structure:Description>
+</structure:Code>
+<structure:Code value="NL33">
+<structure:Description xml:lang="en">Zuid-Holland</structure:Description>
+<structure:Description xml:lang="de">Zuid-Holland</structure:Description>
+<structure:Description xml:lang="fr">Zuid-Holland</structure:Description>
+</structure:Code>
+<structure:Code value="NL34">
+<structure:Description xml:lang="en">Zeeland</structure:Description>
+<structure:Description xml:lang="de">Zeeland</structure:Description>
+<structure:Description xml:lang="fr">Zeeland</structure:Description>
+</structure:Code>
+<structure:Code value="NL4">
+<structure:Description xml:lang="en">Zuid-Nederland</structure:Description>
+<structure:Description xml:lang="de">Zuid-Nederland</structure:Description>
+<structure:Description xml:lang="fr">Zuid-Nederland</structure:Description>
+</structure:Code>
+<structure:Code value="NL41">
+<structure:Description xml:lang="en">Noord-Brabant</structure:Description>
+<structure:Description xml:lang="de">Noord-Brabant</structure:Description>
+<structure:Description xml:lang="fr">Noord-Brabant</structure:Description>
+</structure:Code>
+<structure:Code value="NL42">
+<structure:Description xml:lang="en">Limburg (NL)</structure:Description>
+<structure:Description xml:lang="de">Limburg (NL)</structure:Description>
+<structure:Description xml:lang="fr">Limburg (NL)</structure:Description>
+</structure:Code>
+<structure:Code value="AT">
+<structure:Description xml:lang="en">Austria</structure:Description>
+<structure:Description xml:lang="de">Österreich</structure:Description>
+<structure:Description xml:lang="fr">Autriche</structure:Description>
+</structure:Code>
+<structure:Code value="AT1">
+<structure:Description xml:lang="en">Ostösterreich</structure:Description>
+<structure:Description xml:lang="de">Ostösterreich</structure:Description>
+<structure:Description xml:lang="fr">Ostösterreich</structure:Description>
+</structure:Code>
+<structure:Code value="AT11">
+<structure:Description xml:lang="en">Burgenland (AT)</structure:Description>
+<structure:Description xml:lang="de">Burgenland (AT)</structure:Description>
+<structure:Description xml:lang="fr">Burgenland (AT)</structure:Description>
+</structure:Code>
+<structure:Code value="AT12">
+<structure:Description xml:lang="en">Niederösterreich</structure:Description>
+<structure:Description xml:lang="de">Niederösterreich</structure:Description>
+<structure:Description xml:lang="fr">Niederösterreich</structure:Description>
+</structure:Code>
+<structure:Code value="AT13">
+<structure:Description xml:lang="en">Wien</structure:Description>
+<structure:Description xml:lang="de">Wien</structure:Description>
+<structure:Description xml:lang="fr">Wien</structure:Description>
+</structure:Code>
+<structure:Code value="AT2">
+<structure:Description xml:lang="en">Südösterreich</structure:Description>
+<structure:Description xml:lang="de">Südösterreich</structure:Description>
+<structure:Description xml:lang="fr">Südösterreich</structure:Description>
+</structure:Code>
+<structure:Code value="AT21">
+<structure:Description xml:lang="en">Kärnten</structure:Description>
+<structure:Description xml:lang="de">Kärnten</structure:Description>
+<structure:Description xml:lang="fr">Kärnten</structure:Description>
+</structure:Code>
+<structure:Code value="AT22">
+<structure:Description xml:lang="en">Steiermark</structure:Description>
+<structure:Description xml:lang="de">Steiermark</structure:Description>
+<structure:Description xml:lang="fr">Steiermark</structure:Description>
+</structure:Code>
+<structure:Code value="AT3">
+<structure:Description xml:lang="en">Westösterreich</structure:Description>
+<structure:Description xml:lang="de">Westösterreich</structure:Description>
+<structure:Description xml:lang="fr">Westösterreich</structure:Description>
+</structure:Code>
+<structure:Code value="AT31">
+<structure:Description xml:lang="en">Oberösterreich</structure:Description>
+<structure:Description xml:lang="de">Oberösterreich</structure:Description>
+<structure:Description xml:lang="fr">Oberösterreich</structure:Description>
+</structure:Code>
+<structure:Code value="AT32">
+<structure:Description xml:lang="en">Salzburg</structure:Description>
+<structure:Description xml:lang="de">Salzburg</structure:Description>
+<structure:Description xml:lang="fr">Salzburg</structure:Description>
+</structure:Code>
+<structure:Code value="AT33">
+<structure:Description xml:lang="en">Tirol</structure:Description>
+<structure:Description xml:lang="de">Tirol</structure:Description>
+<structure:Description xml:lang="fr">Tirol</structure:Description>
+</structure:Code>
+<structure:Code value="AT34">
+<structure:Description xml:lang="en">Vorarlberg</structure:Description>
+<structure:Description xml:lang="de">Vorarlberg</structure:Description>
+<structure:Description xml:lang="fr">Vorarlberg</structure:Description>
+</structure:Code>
+<structure:Code value="PL">
+<structure:Description xml:lang="en">Poland</structure:Description>
+<structure:Description xml:lang="de">Polen</structure:Description>
+<structure:Description xml:lang="fr">Pologne</structure:Description>
+</structure:Code>
+<structure:Code value="PL1">
+<structure:Description xml:lang="en">Region Centralny</structure:Description>
+<structure:Description xml:lang="de">Region Centralny</structure:Description>
+<structure:Description xml:lang="fr">Region Centralny</structure:Description>
+</structure:Code>
+<structure:Code value="PL11">
+<structure:Description xml:lang="en">Lódzkie</structure:Description>
+<structure:Description xml:lang="de">Lódzkie</structure:Description>
+<structure:Description xml:lang="fr">Lódzkie</structure:Description>
+</structure:Code>
+<structure:Code value="PL12">
+<structure:Description xml:lang="en">Mazowieckie</structure:Description>
+<structure:Description xml:lang="de">Mazowieckie</structure:Description>
+<structure:Description xml:lang="fr">Mazowieckie</structure:Description>
+</structure:Code>
+<structure:Code value="PL2">
+<structure:Description xml:lang="en">Region Poludniowy</structure:Description>
+<structure:Description xml:lang="de">Region Poludniowy</structure:Description>
+<structure:Description xml:lang="fr">Region Poludniowy</structure:Description>
+</structure:Code>
+<structure:Code value="PL21">
+<structure:Description xml:lang="en">Malopolskie</structure:Description>
+<structure:Description xml:lang="de">Malopolskie</structure:Description>
+<structure:Description xml:lang="fr">Malopolskie</structure:Description>
+</structure:Code>
+<structure:Code value="PL22">
+<structure:Description xml:lang="en">Slaskie</structure:Description>
+<structure:Description xml:lang="de">Slaskie</structure:Description>
+<structure:Description xml:lang="fr">Slaskie</structure:Description>
+</structure:Code>
+<structure:Code value="PL3">
+<structure:Description xml:lang="en">Region Wschodni</structure:Description>
+<structure:Description xml:lang="de">Region Wschodni</structure:Description>
+<structure:Description xml:lang="fr">Region Wschodni</structure:Description>
+</structure:Code>
+<structure:Code value="PL31">
+<structure:Description xml:lang="en">Lubelskie</structure:Description>
+<structure:Description xml:lang="de">Lubelskie</structure:Description>
+<structure:Description xml:lang="fr">Lubelskie</structure:Description>
+</structure:Code>
+<structure:Code value="PL32">
+<structure:Description xml:lang="en">Podkarpackie</structure:Description>
+<structure:Description xml:lang="de">Podkarpackie</structure:Description>
+<structure:Description xml:lang="fr">Podkarpackie</structure:Description>
+</structure:Code>
+<structure:Code value="PL33">
+<structure:Description xml:lang="en">Swietokrzyskie</structure:Description>
+<structure:Description xml:lang="de">Swietokrzyskie</structure:Description>
+<structure:Description xml:lang="fr">Swietokrzyskie</structure:Description>
+</structure:Code>
+<structure:Code value="PL34">
+<structure:Description xml:lang="en">Podlaskie</structure:Description>
+<structure:Description xml:lang="de">Podlaskie</structure:Description>
+<structure:Description xml:lang="fr">Podlaskie</structure:Description>
+</structure:Code>
+<structure:Code value="PL4">
+<structure:Description xml:lang="en">Region Pólnocno-Zachodni</structure:Description>
+<structure:Description xml:lang="de">Region Pólnocno-Zachodni</structure:Description>
+<structure:Description xml:lang="fr">Region Pólnocno-Zachodni</structure:Description>
+</structure:Code>
+<structure:Code value="PL41">
+<structure:Description xml:lang="en">Wielkopolskie</structure:Description>
+<structure:Description xml:lang="de">Wielkopolskie</structure:Description>
+<structure:Description xml:lang="fr">Wielkopolskie</structure:Description>
+</structure:Code>
+<structure:Code value="PL42">
+<structure:Description xml:lang="en">Zachodniopomorskie</structure:Description>
+<structure:Description xml:lang="de">Zachodniopomorskie</structure:Description>
+<structure:Description xml:lang="fr">Zachodniopomorskie</structure:Description>
+</structure:Code>
+<structure:Code value="PL43">
+<structure:Description xml:lang="en">Lubuskie</structure:Description>
+<structure:Description xml:lang="de">Lubuskie</structure:Description>
+<structure:Description xml:lang="fr">Lubuskie</structure:Description>
+</structure:Code>
+<structure:Code value="PL5">
+<structure:Description xml:lang="en">Region Poludniowo-Zachodni</structure:Description>
+<structure:Description xml:lang="de">Region Poludniowo-Zachodni</structure:Description>
+<structure:Description xml:lang="fr">Region Poludniowo-Zachodni</structure:Description>
+</structure:Code>
+<structure:Code value="PL51">
+<structure:Description xml:lang="en">Dolnoslaskie</structure:Description>
+<structure:Description xml:lang="de">Dolnoslaskie</structure:Description>
+<structure:Description xml:lang="fr">Dolnoslaskie</structure:Description>
+</structure:Code>
+<structure:Code value="PL52">
+<structure:Description xml:lang="en">Opolskie</structure:Description>
+<structure:Description xml:lang="de">Opolskie</structure:Description>
+<structure:Description xml:lang="fr">Opolskie</structure:Description>
+</structure:Code>
+<structure:Code value="PL6">
+<structure:Description xml:lang="en">Region Pólnocny</structure:Description>
+<structure:Description xml:lang="de">Region Pólnocny</structure:Description>
+<structure:Description xml:lang="fr">Region Pólnocny</structure:Description>
+</structure:Code>
+<structure:Code value="PL61">
+<structure:Description xml:lang="en">Kujawsko-Pomorskie</structure:Description>
+<structure:Description xml:lang="de">Kujawsko-Pomorskie</structure:Description>
+<structure:Description xml:lang="fr">Kujawsko-Pomorskie</structure:Description>
+</structure:Code>
+<structure:Code value="PL62">
+<structure:Description xml:lang="en">Warminsko-Mazurskie</structure:Description>
+<structure:Description xml:lang="de">Warminsko-Mazurskie</structure:Description>
+<structure:Description xml:lang="fr">Warminsko-Mazurskie</structure:Description>
+</structure:Code>
+<structure:Code value="PL63">
+<structure:Description xml:lang="en">Pomorskie</structure:Description>
+<structure:Description xml:lang="de">Pomorskie</structure:Description>
+<structure:Description xml:lang="fr">Pomorskie</structure:Description>
+</structure:Code>
+<structure:Code value="PT">
+<structure:Description xml:lang="en">Portugal</structure:Description>
+<structure:Description xml:lang="de">Portugal</structure:Description>
+<structure:Description xml:lang="fr">Portugal</structure:Description>
+</structure:Code>
+<structure:Code value="PT1">
+<structure:Description xml:lang="en">Continente</structure:Description>
+<structure:Description xml:lang="de">Continente</structure:Description>
+<structure:Description xml:lang="fr">Continente</structure:Description>
+</structure:Code>
+<structure:Code value="PT11">
+<structure:Description xml:lang="en">Norte</structure:Description>
+<structure:Description xml:lang="de">Norte</structure:Description>
+<structure:Description xml:lang="fr">Norte</structure:Description>
+</structure:Code>
+<structure:Code value="PT15">
+<structure:Description xml:lang="en">Algarve</structure:Description>
+<structure:Description xml:lang="de">Algarve</structure:Description>
+<structure:Description xml:lang="fr">Algarve</structure:Description>
+</structure:Code>
+<structure:Code value="PT16">
+<structure:Description xml:lang="en">Centro (PT)</structure:Description>
+<structure:Description xml:lang="de">Centro (PT)</structure:Description>
+<structure:Description xml:lang="fr">Centro (PT)</structure:Description>
+</structure:Code>
+<structure:Code value="PT17">
+<structure:Description xml:lang="en">Lisboa</structure:Description>
+<structure:Description xml:lang="de">Lisboa</structure:Description>
+<structure:Description xml:lang="fr">Lisboa</structure:Description>
+</structure:Code>
+<structure:Code value="PT18">
+<structure:Description xml:lang="en">Alentejo</structure:Description>
+<structure:Description xml:lang="de">Alentejo</structure:Description>
+<structure:Description xml:lang="fr">Alentejo</structure:Description>
+</structure:Code>
+<structure:Code value="PT2">
+<structure:Description xml:lang="en">Região Autónoma dos Açores (PT)</structure:Description>
+<structure:Description xml:lang="de">Região Autónoma dos Açores (PT)</structure:Description>
+<structure:Description xml:lang="fr">Região Autónoma dos Açores (PT)</structure:Description>
+</structure:Code>
+<structure:Code value="PT20">
+<structure:Description xml:lang="en">Região Autónoma dos Açores (PT)</structure:Description>
+<structure:Description xml:lang="de">Região Autónoma dos Açores (PT)</structure:Description>
+<structure:Description xml:lang="fr">Região Autónoma dos Açores (PT)</structure:Description>
+</structure:Code>
+<structure:Code value="PT3">
+<structure:Description xml:lang="en">Região Autónoma da Madeira (PT)</structure:Description>
+<structure:Description xml:lang="de">Região Autónoma da Madeira (PT)</structure:Description>
+<structure:Description xml:lang="fr">Região Autónoma da Madeira (PT)</structure:Description>
+</structure:Code>
+<structure:Code value="PT30">
+<structure:Description xml:lang="en">Região Autónoma da Madeira (PT)</structure:Description>
+<structure:Description xml:lang="de">Região Autónoma da Madeira (PT)</structure:Description>
+<structure:Description xml:lang="fr">Região Autónoma da Madeira (PT)</structure:Description>
+</structure:Code>
+<structure:Code value="RO">
+<structure:Description xml:lang="en">Romania</structure:Description>
+<structure:Description xml:lang="de">Rumänien</structure:Description>
+<structure:Description xml:lang="fr">Roumanie</structure:Description>
+</structure:Code>
+<structure:Code value="RO1">
+<structure:Description xml:lang="en">Macroregiunea unu</structure:Description>
+<structure:Description xml:lang="de">Macroregiunea unu</structure:Description>
+<structure:Description xml:lang="fr">Macroregiunea unu</structure:Description>
+</structure:Code>
+<structure:Code value="RO11">
+<structure:Description xml:lang="en">Nord-Vest</structure:Description>
+<structure:Description xml:lang="de">Nord-Vest</structure:Description>
+<structure:Description xml:lang="fr">Nord-Vest</structure:Description>
+</structure:Code>
+<structure:Code value="RO12">
+<structure:Description xml:lang="en">Centru</structure:Description>
+<structure:Description xml:lang="de">Centru</structure:Description>
+<structure:Description xml:lang="fr">Centru</structure:Description>
+</structure:Code>
+<structure:Code value="RO2">
+<structure:Description xml:lang="en">Macroregiunea doi</structure:Description>
+<structure:Description xml:lang="de">Macroregiunea doi</structure:Description>
+<structure:Description xml:lang="fr">Macroregiunea doi</structure:Description>
+</structure:Code>
+<structure:Code value="RO21">
+<structure:Description xml:lang="en">Nord-Est</structure:Description>
+<structure:Description xml:lang="de">Nord-Est</structure:Description>
+<structure:Description xml:lang="fr">Nord-Est</structure:Description>
+</structure:Code>
+<structure:Code value="RO22">
+<structure:Description xml:lang="en">Sud-Est</structure:Description>
+<structure:Description xml:lang="de">Sud-Est</structure:Description>
+<structure:Description xml:lang="fr">Sud-Est</structure:Description>
+</structure:Code>
+<structure:Code value="RO3">
+<structure:Description xml:lang="en">Macroregiunea trei</structure:Description>
+<structure:Description xml:lang="de">Macroregiunea trei</structure:Description>
+<structure:Description xml:lang="fr">Macroregiunea trei</structure:Description>
+</structure:Code>
+<structure:Code value="RO31">
+<structure:Description xml:lang="en">Sud - Muntenia</structure:Description>
+<structure:Description xml:lang="de">Sud - Muntenia</structure:Description>
+<structure:Description xml:lang="fr">Sud - Muntenia</structure:Description>
+</structure:Code>
+<structure:Code value="RO32">
+<structure:Description xml:lang="en">Bucuresti - Ilfov</structure:Description>
+<structure:Description xml:lang="de">Bucuresti - Ilfov</structure:Description>
+<structure:Description xml:lang="fr">Bucuresti - Ilfov</structure:Description>
+</structure:Code>
+<structure:Code value="RO4">
+<structure:Description xml:lang="en">Macroregiunea patru</structure:Description>
+<structure:Description xml:lang="de">Macroregiunea patru</structure:Description>
+<structure:Description xml:lang="fr">Macroregiunea patru</structure:Description>
+</structure:Code>
+<structure:Code value="RO41">
+<structure:Description xml:lang="en">Sud-Vest Oltenia</structure:Description>
+<structure:Description xml:lang="de">Sud-Vest Oltenia</structure:Description>
+<structure:Description xml:lang="fr">Sud-Vest Oltenia</structure:Description>
+</structure:Code>
+<structure:Code value="RO42">
+<structure:Description xml:lang="en">Vest</structure:Description>
+<structure:Description xml:lang="de">Vest</structure:Description>
+<structure:Description xml:lang="fr">Vest</structure:Description>
+</structure:Code>
+<structure:Code value="SI">
+<structure:Description xml:lang="en">Slovenia</structure:Description>
+<structure:Description xml:lang="de">Slowenien</structure:Description>
+<structure:Description xml:lang="fr">Slovénie</structure:Description>
+</structure:Code>
+<structure:Code value="SI0">
+<structure:Description xml:lang="en">Slovenija</structure:Description>
+<structure:Description xml:lang="de">Slovenija</structure:Description>
+<structure:Description xml:lang="fr">Slovenija</structure:Description>
+</structure:Code>
+<structure:Code value="SI01">
+<structure:Description xml:lang="en">Vzhodna Slovenija</structure:Description>
+<structure:Description xml:lang="de">Vzhodna Slovenija</structure:Description>
+<structure:Description xml:lang="fr">Vzhodna Slovenija</structure:Description>
+</structure:Code>
+<structure:Code value="SI02">
+<structure:Description xml:lang="en">Zahodna Slovenija</structure:Description>
+<structure:Description xml:lang="de">Zahodna Slovenija</structure:Description>
+<structure:Description xml:lang="fr">Zahodna Slovenija</structure:Description>
+</structure:Code>
+<structure:Code value="SK">
+<structure:Description xml:lang="en">Slovakia</structure:Description>
+<structure:Description xml:lang="de">Slowakei</structure:Description>
+<structure:Description xml:lang="fr">Slovaquie</structure:Description>
+</structure:Code>
+<structure:Code value="SK0">
+<structure:Description xml:lang="en">Slovensko</structure:Description>
+<structure:Description xml:lang="de">Slovensko</structure:Description>
+<structure:Description xml:lang="fr">Slovensko</structure:Description>
+</structure:Code>
+<structure:Code value="SK01">
+<structure:Description xml:lang="en">Bratislavský kraj</structure:Description>
+<structure:Description xml:lang="de">Bratislavský kraj</structure:Description>
+<structure:Description xml:lang="fr">Bratislavský kraj</structure:Description>
+</structure:Code>
+<structure:Code value="SK02">
+<structure:Description xml:lang="en">Západné Slovensko</structure:Description>
+<structure:Description xml:lang="de">Západné Slovensko</structure:Description>
+<structure:Description xml:lang="fr">Západné Slovensko</structure:Description>
+</structure:Code>
+<structure:Code value="SK03">
+<structure:Description xml:lang="en">Stredné Slovensko</structure:Description>
+<structure:Description xml:lang="de">Stredné Slovensko</structure:Description>
+<structure:Description xml:lang="fr">Stredné Slovensko</structure:Description>
+</structure:Code>
+<structure:Code value="SK04">
+<structure:Description xml:lang="en">Východné Slovensko</structure:Description>
+<structure:Description xml:lang="de">Východné Slovensko</structure:Description>
+<structure:Description xml:lang="fr">Východné Slovensko</structure:Description>
+</structure:Code>
+<structure:Code value="FI">
+<structure:Description xml:lang="en">Finland</structure:Description>
+<structure:Description xml:lang="de">Finnland</structure:Description>
+<structure:Description xml:lang="fr">Finlande</structure:Description>
+</structure:Code>
+<structure:Code value="FI1">
+<structure:Description xml:lang="en">Manner-Suomi</structure:Description>
+<structure:Description xml:lang="de">Manner-Suomi</structure:Description>
+<structure:Description xml:lang="fr">Manner-Suomi</structure:Description>
+</structure:Code>
+<structure:Code value="FI13">
+<structure:Description xml:lang="en">Itä-Suomi (NUTS 2006)</structure:Description>
+<structure:Description xml:lang="de">Itä-Suomi (NUTS 2006)</structure:Description>
+<structure:Description xml:lang="fr">Itä-Suomi (NUTS 2006)</structure:Description>
+</structure:Code>
+<structure:Code value="FI18">
+<structure:Description xml:lang="en">Etelä-Suomi (NUTS 2006)</structure:Description>
+<structure:Description xml:lang="de">Etelä-Suomi (NUTS 2006)</structure:Description>
+<structure:Description xml:lang="fr">Etelä-Suomi (NUTS 2006)</structure:Description>
+</structure:Code>
+<structure:Code value="FI19">
+<structure:Description xml:lang="en">Länsi-Suomi</structure:Description>
+<structure:Description xml:lang="de">Länsi-Suomi</structure:Description>
+<structure:Description xml:lang="fr">Länsi-Suomi</structure:Description>
+</structure:Code>
+<structure:Code value="FI1A">
+<structure:Description xml:lang="en">Pohjois-Suomi (NUTS 2006)</structure:Description>
+<structure:Description xml:lang="de">Pohjois-Suomi (NUTS 2006)</structure:Description>
+<structure:Description xml:lang="fr">Pohjois-Suomi (NUTS 2006)</structure:Description>
+</structure:Code>
+<structure:Code value="FI1B">
+<structure:Description xml:lang="en">Helsinki-Uusimaa</structure:Description>
+<structure:Description xml:lang="de">Helsinki-Uusimaa</structure:Description>
+<structure:Description xml:lang="fr">Helsinki-Uusimaa</structure:Description>
+</structure:Code>
+<structure:Code value="FI1C">
+<structure:Description xml:lang="en">Etelä-Suomi</structure:Description>
+<structure:Description xml:lang="de">Etelä-Suomi</structure:Description>
+<structure:Description xml:lang="fr">Etelä-Suomi</structure:Description>
+</structure:Code>
+<structure:Code value="FI1D">
+<structure:Description xml:lang="en">Pohjois- ja Itä-Suomi</structure:Description>
+<structure:Description xml:lang="de">Pohjois- ja Itä-Suomi</structure:Description>
+<structure:Description xml:lang="fr">Pohjois- ja Itä-Suomi</structure:Description>
+</structure:Code>
+<structure:Code value="FI2">
+<structure:Description xml:lang="en">Åland</structure:Description>
+<structure:Description xml:lang="de">Åland</structure:Description>
+<structure:Description xml:lang="fr">Åland</structure:Description>
+</structure:Code>
+<structure:Code value="FI20">
+<structure:Description xml:lang="en">Åland</structure:Description>
+<structure:Description xml:lang="de">Åland</structure:Description>
+<structure:Description xml:lang="fr">Åland</structure:Description>
+</structure:Code>
+<structure:Code value="SE">
+<structure:Description xml:lang="en">Sweden</structure:Description>
+<structure:Description xml:lang="de">Schweden</structure:Description>
+<structure:Description xml:lang="fr">Suède</structure:Description>
+</structure:Code>
+<structure:Code value="SE1">
+<structure:Description xml:lang="en">Östra Sverige</structure:Description>
+<structure:Description xml:lang="de">Östra Sverige</structure:Description>
+<structure:Description xml:lang="fr">Östra Sverige</structure:Description>
+</structure:Code>
+<structure:Code value="SE11">
+<structure:Description xml:lang="en">Stockholm</structure:Description>
+<structure:Description xml:lang="de">Stockholm</structure:Description>
+<structure:Description xml:lang="fr">Stockholm</structure:Description>
+</structure:Code>
+<structure:Code value="SE12">
+<structure:Description xml:lang="en">Östra Mellansverige</structure:Description>
+<structure:Description xml:lang="de">Östra Mellansverige</structure:Description>
+<structure:Description xml:lang="fr">Östra Mellansverige</structure:Description>
+</structure:Code>
+<structure:Code value="SE2">
+<structure:Description xml:lang="en">Södra Sverige</structure:Description>
+<structure:Description xml:lang="de">Södra Sverige</structure:Description>
+<structure:Description xml:lang="fr">Södra Sverige</structure:Description>
+</structure:Code>
+<structure:Code value="SE21">
+<structure:Description xml:lang="en">Småland med öarna</structure:Description>
+<structure:Description xml:lang="de">Småland med öarna</structure:Description>
+<structure:Description xml:lang="fr">Småland med öarna</structure:Description>
+</structure:Code>
+<structure:Code value="SE22">
+<structure:Description xml:lang="en">Sydsverige</structure:Description>
+<structure:Description xml:lang="de">Sydsverige</structure:Description>
+<structure:Description xml:lang="fr">Sydsverige</structure:Description>
+</structure:Code>
+<structure:Code value="SE23">
+<structure:Description xml:lang="en">Västsverige</structure:Description>
+<structure:Description xml:lang="de">Västsverige</structure:Description>
+<structure:Description xml:lang="fr">Västsverige</structure:Description>
+</structure:Code>
+<structure:Code value="SE3">
+<structure:Description xml:lang="en">Norra Sverige</structure:Description>
+<structure:Description xml:lang="de">Norra Sverige</structure:Description>
+<structure:Description xml:lang="fr">Norra Sverige</structure:Description>
+</structure:Code>
+<structure:Code value="SE31">
+<structure:Description xml:lang="en">Norra Mellansverige</structure:Description>
+<structure:Description xml:lang="de">Norra Mellansverige</structure:Description>
+<structure:Description xml:lang="fr">Norra Mellansverige</structure:Description>
+</structure:Code>
+<structure:Code value="SE32">
+<structure:Description xml:lang="en">Mellersta Norrland</structure:Description>
+<structure:Description xml:lang="de">Mellersta Norrland</structure:Description>
+<structure:Description xml:lang="fr">Mellersta Norrland</structure:Description>
+</structure:Code>
+<structure:Code value="SE33">
+<structure:Description xml:lang="en">Övre Norrland</structure:Description>
+<structure:Description xml:lang="de">Övre Norrland</structure:Description>
+<structure:Description xml:lang="fr">Övre Norrland</structure:Description>
+</structure:Code>
+<structure:Code value="UK">
+<structure:Description xml:lang="en">United Kingdom</structure:Description>
+<structure:Description xml:lang="de">Vereinigtes Königreich</structure:Description>
+<structure:Description xml:lang="fr">Royaume-Uni</structure:Description>
+</structure:Code>
+<structure:Code value="UKC">
+<structure:Description xml:lang="en">North East (UK)</structure:Description>
+<structure:Description xml:lang="de">North East (UK)</structure:Description>
+<structure:Description xml:lang="fr">North East (UK)</structure:Description>
+</structure:Code>
+<structure:Code value="UKC1">
+<structure:Description xml:lang="en">Tees Valley and Durham</structure:Description>
+<structure:Description xml:lang="de">Tees Valley and Durham</structure:Description>
+<structure:Description xml:lang="fr">Tees Valley and Durham</structure:Description>
+</structure:Code>
+<structure:Code value="UKC2">
+<structure:Description xml:lang="en">Northumberland and Tyne and Wear</structure:Description>
+<structure:Description xml:lang="de">Northumberland and Tyne and Wear</structure:Description>
+<structure:Description xml:lang="fr">Northumberland and Tyne and Wear</structure:Description>
+</structure:Code>
+<structure:Code value="UKD">
+<structure:Description xml:lang="en">North West (UK)</structure:Description>
+<structure:Description xml:lang="de">North West (UK)</structure:Description>
+<structure:Description xml:lang="fr">North West (UK)</structure:Description>
+</structure:Code>
+<structure:Code value="UKD1">
+<structure:Description xml:lang="en">Cumbria</structure:Description>
+<structure:Description xml:lang="de">Cumbria</structure:Description>
+<structure:Description xml:lang="fr">Cumbria</structure:Description>
+</structure:Code>
+<structure:Code value="UKD2">
+<structure:Description xml:lang="en">Cheshire (NUTS 2006)</structure:Description>
+<structure:Description xml:lang="de">Cheshire (NUTS 2006)</structure:Description>
+<structure:Description xml:lang="fr">Cheshire (NUTS 2006)</structure:Description>
+</structure:Code>
+<structure:Code value="UKD3">
+<structure:Description xml:lang="en">Greater Manchester</structure:Description>
+<structure:Description xml:lang="de">Greater Manchester</structure:Description>
+<structure:Description xml:lang="fr">Greater Manchester</structure:Description>
+</structure:Code>
+<structure:Code value="UKD4">
+<structure:Description xml:lang="en">Lancashire</structure:Description>
+<structure:Description xml:lang="de">Lancashire</structure:Description>
+<structure:Description xml:lang="fr">Lancashire</structure:Description>
+</structure:Code>
+<structure:Code value="UKD5">
+<structure:Description xml:lang="en">Merseyside (NUTS 2006)</structure:Description>
+<structure:Description xml:lang="de">Merseyside (NUTS 2006)</structure:Description>
+<structure:Description xml:lang="fr">Merseyside (NUTS 2006)</structure:Description>
+</structure:Code>
+<structure:Code value="UKD6">
+<structure:Description xml:lang="en">Cheshire</structure:Description>
+<structure:Description xml:lang="de">Cheshire</structure:Description>
+<structure:Description xml:lang="fr">Cheshire</structure:Description>
+</structure:Code>
+<structure:Code value="UKD7">
+<structure:Description xml:lang="en">Merseyside</structure:Description>
+<structure:Description xml:lang="de">Merseyside</structure:Description>
+<structure:Description xml:lang="fr">Merseyside</structure:Description>
+</structure:Code>
+<structure:Code value="UKE">
+<structure:Description xml:lang="en">Yorkshire and The Humber</structure:Description>
+<structure:Description xml:lang="de">Yorkshire and The Humber</structure:Description>
+<structure:Description xml:lang="fr">Yorkshire and The Humber</structure:Description>
+</structure:Code>
+<structure:Code value="UKE1">
+<structure:Description xml:lang="en">East Yorkshire and Northern Lincolnshire</structure:Description>
+<structure:Description xml:lang="de">East Yorkshire and Northern Lincolnshire</structure:Description>
+<structure:Description xml:lang="fr">East Yorkshire and Northern Lincolnshire</structure:Description>
+</structure:Code>
+<structure:Code value="UKE2">
+<structure:Description xml:lang="en">North Yorkshire</structure:Description>
+<structure:Description xml:lang="de">North Yorkshire</structure:Description>
+<structure:Description xml:lang="fr">North Yorkshire</structure:Description>
+</structure:Code>
+<structure:Code value="UKE3">
+<structure:Description xml:lang="en">South Yorkshire</structure:Description>
+<structure:Description xml:lang="de">South Yorkshire</structure:Description>
+<structure:Description xml:lang="fr">South Yorkshire</structure:Description>
+</structure:Code>
+<structure:Code value="UKE4">
+<structure:Description xml:lang="en">West Yorkshire</structure:Description>
+<structure:Description xml:lang="de">West Yorkshire</structure:Description>
+<structure:Description xml:lang="fr">West Yorkshire</structure:Description>
+</structure:Code>
+<structure:Code value="UKF">
+<structure:Description xml:lang="en">East Midlands (UK)</structure:Description>
+<structure:Description xml:lang="de">East Midlands (UK)</structure:Description>
+<structure:Description xml:lang="fr">East Midlands (UK)</structure:Description>
+</structure:Code>
+<structure:Code value="UKF1">
+<structure:Description xml:lang="en">Derbyshire and Nottinghamshire</structure:Description>
+<structure:Description xml:lang="de">Derbyshire and Nottinghamshire</structure:Description>
+<structure:Description xml:lang="fr">Derbyshire and Nottinghamshire</structure:Description>
+</structure:Code>
+<structure:Code value="UKF2">
+<structure:Description xml:lang="en">Leicestershire, Rutland and Northamptonshire</structure:Description>
+<structure:Description xml:lang="de">Leicestershire, Rutland and Northamptonshire</structure:Description>
+<structure:Description xml:lang="fr">Leicestershire, Rutland and Northamptonshire</structure:Description>
+</structure:Code>
+<structure:Code value="UKF3">
+<structure:Description xml:lang="en">Lincolnshire</structure:Description>
+<structure:Description xml:lang="de">Lincolnshire</structure:Description>
+<structure:Description xml:lang="fr">Lincolnshire</structure:Description>
+</structure:Code>
+<structure:Code value="UKG">
+<structure:Description xml:lang="en">West Midlands (UK)</structure:Description>
+<structure:Description xml:lang="de">West Midlands (UK)</structure:Description>
+<structure:Description xml:lang="fr">West Midlands (UK)</structure:Description>
+</structure:Code>
+<structure:Code value="UKG1">
+<structure:Description xml:lang="en">Herefordshire, Worcestershire and Warwickshire</structure:Description>
+<structure:Description xml:lang="de">Herefordshire, Worcestershire and Warwickshire</structure:Description>
+<structure:Description xml:lang="fr">Herefordshire, Worcestershire and Warwickshire</structure:Description>
+</structure:Code>
+<structure:Code value="UKG2">
+<structure:Description xml:lang="en">Shropshire and Staffordshire</structure:Description>
+<structure:Description xml:lang="de">Shropshire and Staffordshire</structure:Description>
+<structure:Description xml:lang="fr">Shropshire and Staffordshire</structure:Description>
+</structure:Code>
+<structure:Code value="UKG3">
+<structure:Description xml:lang="en">West Midlands</structure:Description>
+<structure:Description xml:lang="de">West Midlands</structure:Description>
+<structure:Description xml:lang="fr">West Midlands</structure:Description>
+</structure:Code>
+<structure:Code value="UKH">
+<structure:Description xml:lang="en">East of England</structure:Description>
+<structure:Description xml:lang="de">East of England</structure:Description>
+<structure:Description xml:lang="fr">East of England</structure:Description>
+</structure:Code>
+<structure:Code value="UKH1">
+<structure:Description xml:lang="en">East Anglia</structure:Description>
+<structure:Description xml:lang="de">East Anglia</structure:Description>
+<structure:Description xml:lang="fr">East Anglia</structure:Description>
+</structure:Code>
+<structure:Code value="UKH2">
+<structure:Description xml:lang="en">Bedfordshire and Hertfordshire</structure:Description>
+<structure:Description xml:lang="de">Bedfordshire and Hertfordshire</structure:Description>
+<structure:Description xml:lang="fr">Bedfordshire and Hertfordshire</structure:Description>
+</structure:Code>
+<structure:Code value="UKH3">
+<structure:Description xml:lang="en">Essex</structure:Description>
+<structure:Description xml:lang="de">Essex</structure:Description>
+<structure:Description xml:lang="fr">Essex</structure:Description>
+</structure:Code>
+<structure:Code value="UKI">
+<structure:Description xml:lang="en">London</structure:Description>
+<structure:Description xml:lang="de">London</structure:Description>
+<structure:Description xml:lang="fr">London</structure:Description>
+</structure:Code>
+<structure:Code value="UKI1">
+<structure:Description xml:lang="en">Inner London</structure:Description>
+<structure:Description xml:lang="de">Inner London</structure:Description>
+<structure:Description xml:lang="fr">Inner London</structure:Description>
+</structure:Code>
+<structure:Code value="UKI2">
+<structure:Description xml:lang="en">Outer London</structure:Description>
+<structure:Description xml:lang="de">Outer London</structure:Description>
+<structure:Description xml:lang="fr">Outer London</structure:Description>
+</structure:Code>
+<structure:Code value="UKJ">
+<structure:Description xml:lang="en">South East (UK)</structure:Description>
+<structure:Description xml:lang="de">South East (UK)</structure:Description>
+<structure:Description xml:lang="fr">South East (UK)</structure:Description>
+</structure:Code>
+<structure:Code value="UKJ1">
+<structure:Description xml:lang="en">Berkshire, Buckinghamshire and Oxfordshire</structure:Description>
+<structure:Description xml:lang="de">Berkshire, Buckinghamshire and Oxfordshire</structure:Description>
+<structure:Description xml:lang="fr">Berkshire, Buckinghamshire and Oxfordshire</structure:Description>
+</structure:Code>
+<structure:Code value="UKJ2">
+<structure:Description xml:lang="en">Surrey, East and West Sussex</structure:Description>
+<structure:Description xml:lang="de">Surrey, East and West Sussex</structure:Description>
+<structure:Description xml:lang="fr">Surrey, East and West Sussex</structure:Description>
+</structure:Code>
+<structure:Code value="UKJ3">
+<structure:Description xml:lang="en">Hampshire and Isle of Wight</structure:Description>
+<structure:Description xml:lang="de">Hampshire and Isle of Wight</structure:Description>
+<structure:Description xml:lang="fr">Hampshire and Isle of Wight</structure:Description>
+</structure:Code>
+<structure:Code value="UKJ4">
+<structure:Description xml:lang="en">Kent</structure:Description>
+<structure:Description xml:lang="de">Kent</structure:Description>
+<structure:Description xml:lang="fr">Kent</structure:Description>
+</structure:Code>
+<structure:Code value="UKK">
+<structure:Description xml:lang="en">South West (UK)</structure:Description>
+<structure:Description xml:lang="de">South West (UK)</structure:Description>
+<structure:Description xml:lang="fr">South West (UK)</structure:Description>
+</structure:Code>
+<structure:Code value="UKK1">
+<structure:Description xml:lang="en">Gloucestershire, Wiltshire and Bristol/Bath area</structure:Description>
+<structure:Description xml:lang="de">Gloucestershire, Wiltshire and Bristol/Bath area</structure:Description>
+<structure:Description xml:lang="fr">Gloucestershire, Wiltshire and Bristol/Bath area</structure:Description>
+</structure:Code>
+<structure:Code value="UKK2">
+<structure:Description xml:lang="en">Dorset and Somerset</structure:Description>
+<structure:Description xml:lang="de">Dorset and Somerset</structure:Description>
+<structure:Description xml:lang="fr">Dorset and Somerset</structure:Description>
+</structure:Code>
+<structure:Code value="UKK3">
+<structure:Description xml:lang="en">Cornwall and Isles of Scilly</structure:Description>
+<structure:Description xml:lang="de">Cornwall and Isles of Scilly</structure:Description>
+<structure:Description xml:lang="fr">Cornwall and Isles of Scilly</structure:Description>
+</structure:Code>
+<structure:Code value="UKK4">
+<structure:Description xml:lang="en">Devon</structure:Description>
+<structure:Description xml:lang="de">Devon</structure:Description>
+<structure:Description xml:lang="fr">Devon</structure:Description>
+</structure:Code>
+<structure:Code value="UKL">
+<structure:Description xml:lang="en">Wales</structure:Description>
+<structure:Description xml:lang="de">Wales</structure:Description>
+<structure:Description xml:lang="fr">Wales</structure:Description>
+</structure:Code>
+<structure:Code value="UKL1">
+<structure:Description xml:lang="en">West Wales and The Valleys</structure:Description>
+<structure:Description xml:lang="de">West Wales and The Valleys</structure:Description>
+<structure:Description xml:lang="fr">West Wales and The Valleys</structure:Description>
+</structure:Code>
+<structure:Code value="UKL2">
+<structure:Description xml:lang="en">East Wales</structure:Description>
+<structure:Description xml:lang="de">East Wales</structure:Description>
+<structure:Description xml:lang="fr">East Wales</structure:Description>
+</structure:Code>
+<structure:Code value="UKM">
+<structure:Description xml:lang="en">Scotland</structure:Description>
+<structure:Description xml:lang="de">Scotland</structure:Description>
+<structure:Description xml:lang="fr">Scotland</structure:Description>
+</structure:Code>
+<structure:Code value="UKM1">
+<structure:Description xml:lang="en">North Eastern Scotland (NUTS 2003)</structure:Description>
+<structure:Description xml:lang="de">North Eastern Scotland (NUTS 2003)</structure:Description>
+<structure:Description xml:lang="fr">North Eastern Scotland (NUTS 2003)</structure:Description>
+</structure:Code>
+<structure:Code value="UKM2">
+<structure:Description xml:lang="en">Eastern Scotland</structure:Description>
+<structure:Description xml:lang="de">Eastern Scotland</structure:Description>
+<structure:Description xml:lang="fr">Eastern Scotland</structure:Description>
+</structure:Code>
+<structure:Code value="UKM3">
+<structure:Description xml:lang="en">South Western Scotland</structure:Description>
+<structure:Description xml:lang="de">South Western Scotland</structure:Description>
+<structure:Description xml:lang="fr">South Western Scotland</structure:Description>
+</structure:Code>
+<structure:Code value="UKM4">
+<structure:Description xml:lang="en">Highlands and Islands (NUTS 2003)</structure:Description>
+<structure:Description xml:lang="de">Highlands and Islands (NUTS 2003)</structure:Description>
+<structure:Description xml:lang="fr">Highlands and Islands (NUTS 2003)</structure:Description>
+</structure:Code>
+<structure:Code value="UKM5">
+<structure:Description xml:lang="en">North Eastern Scotland</structure:Description>
+<structure:Description xml:lang="de">North Eastern Scotland</structure:Description>
+<structure:Description xml:lang="fr">North Eastern Scotland</structure:Description>
+</structure:Code>
+<structure:Code value="UKM6">
+<structure:Description xml:lang="en">Highlands and Islands</structure:Description>
+<structure:Description xml:lang="de">Highlands and Islands</structure:Description>
+<structure:Description xml:lang="fr">Highlands and Islands</structure:Description>
+</structure:Code>
+<structure:Code value="UKN">
+<structure:Description xml:lang="en">Northern Ireland (UK)</structure:Description>
+<structure:Description xml:lang="de">Northern Ireland (UK)</structure:Description>
+<structure:Description xml:lang="fr">Northern Ireland (UK)</structure:Description>
+</structure:Code>
+<structure:Code value="UKN0">
+<structure:Description xml:lang="en">Northern Ireland (UK)</structure:Description>
+<structure:Description xml:lang="de">Northern Ireland (UK)</structure:Description>
+<structure:Description xml:lang="fr">Northern Ireland (UK)</structure:Description>
+</structure:Code>
+<structure:Code value="IS">
+<structure:Description xml:lang="en">Iceland</structure:Description>
+<structure:Description xml:lang="de">Island</structure:Description>
+<structure:Description xml:lang="fr">Islande</structure:Description>
+</structure:Code>
+<structure:Code value="HR">
+<structure:Description xml:lang="en">Croatia</structure:Description>
+<structure:Description xml:lang="de">Kroatien</structure:Description>
+<structure:Description xml:lang="fr">Croatie</structure:Description>
+</structure:Code>
+<structure:Code value="HR01">
+<structure:Description xml:lang="en">Sjeverozapadna Hrvatska</structure:Description>
+<structure:Description xml:lang="de">Sjeverozapadna Hrvatska</structure:Description>
+<structure:Description xml:lang="fr">Sjeverozapadna Hrvatska</structure:Description>
+</structure:Code>
+<structure:Code value="HR02">
+<structure:Description xml:lang="en">Sredisnja i Istocna (Panonska) Hrvatska</structure:Description>
+<structure:Description xml:lang="de">Sredisnja i Istocna (Panonska) Hrvatska</structure:Description>
+<structure:Description xml:lang="fr">Sredisnja i Istocna (Panonska) Hrvatska</structure:Description>
+</structure:Code>
+<structure:Code value="HR03">
+<structure:Description xml:lang="en">Jadranska Hrvatska</structure:Description>
+<structure:Description xml:lang="de">Jadranska Hrvatska</structure:Description>
+<structure:Description xml:lang="fr">Jadranska Hrvatska</structure:Description>
+</structure:Code>
+<structure:Code value="TR">
+<structure:Description xml:lang="en">Turkey</structure:Description>
+<structure:Description xml:lang="de">Türkei</structure:Description>
+<structure:Description xml:lang="fr">Turquie</structure:Description>
+</structure:Code>
+<structure:Code value="TR1">
+<structure:Description xml:lang="en">Istanbul</structure:Description>
+<structure:Description xml:lang="de">Istanbul</structure:Description>
+<structure:Description xml:lang="fr">Istanbul</structure:Description>
+</structure:Code>
+<structure:Code value="TR10">
+<structure:Description xml:lang="en">Istanbul</structure:Description>
+<structure:Description xml:lang="de">Istanbul</structure:Description>
+<structure:Description xml:lang="fr">Istanbul</structure:Description>
+</structure:Code>
+<structure:Code value="TR2">
+<structure:Description xml:lang="en">Bati Marmara</structure:Description>
+<structure:Description xml:lang="de">Bati Marmara</structure:Description>
+<structure:Description xml:lang="fr">Bati Marmara</structure:Description>
+</structure:Code>
+<structure:Code value="TR21">
+<structure:Description xml:lang="en">Tekirdag, Edirne, Kirklareli</structure:Description>
+<structure:Description xml:lang="de">Tekirdag, Edirne, Kirklareli</structure:Description>
+<structure:Description xml:lang="fr">Tekirdag, Edirne, Kirklareli</structure:Description>
+</structure:Code>
+<structure:Code value="TR22">
+<structure:Description xml:lang="en">Balikesir, Çanakkale</structure:Description>
+<structure:Description xml:lang="de">Balikesir, Çanakkale</structure:Description>
+<structure:Description xml:lang="fr">Balikesir, Çanakkale</structure:Description>
+</structure:Code>
+<structure:Code value="TR3">
+<structure:Description xml:lang="en">Ege</structure:Description>
+<structure:Description xml:lang="de">Ege</structure:Description>
+<structure:Description xml:lang="fr">Ege</structure:Description>
+</structure:Code>
+<structure:Code value="TR31">
+<structure:Description xml:lang="en">Izmir</structure:Description>
+<structure:Description xml:lang="de">Izmir</structure:Description>
+<structure:Description xml:lang="fr">Izmir</structure:Description>
+</structure:Code>
+<structure:Code value="TR32">
+<structure:Description xml:lang="en">Aydin, Denizli, Mugla</structure:Description>
+<structure:Description xml:lang="de">Aydin, Denizli, Mugla</structure:Description>
+<structure:Description xml:lang="fr">Aydin, Denizli, Mugla</structure:Description>
+</structure:Code>
+<structure:Code value="TR33">
+<structure:Description xml:lang="en">Manisa, Afyonkarahisar, Kütahya, Usak</structure:Description>
+<structure:Description xml:lang="de">Manisa, Afyonkarahisar, Kütahya, Usak</structure:Description>
+<structure:Description xml:lang="fr">Manisa, Afyonkarahisar, Kütahya, Usak</structure:Description>
+</structure:Code>
+<structure:Code value="TR4">
+<structure:Description xml:lang="en">Dogu Marmara</structure:Description>
+<structure:Description xml:lang="de">Dogu Marmara</structure:Description>
+<structure:Description xml:lang="fr">Dogu Marmara</structure:Description>
+</structure:Code>
+<structure:Code value="TR41">
+<structure:Description xml:lang="en">Bursa, Eskisehir, Bilecik</structure:Description>
+<structure:Description xml:lang="de">Bursa, Eskisehir, Bilecik</structure:Description>
+<structure:Description xml:lang="fr">Bursa, Eskisehir, Bilecik</structure:Description>
+</structure:Code>
+<structure:Code value="TR42">
+<structure:Description xml:lang="en">Kocaeli, Sakarya, Düzce, Bolu, Yalova</structure:Description>
+<structure:Description xml:lang="de">Kocaeli, Sakarya, Düzce, Bolu, Yalova</structure:Description>
+<structure:Description xml:lang="fr">Kocaeli, Sakarya, Düzce, Bolu, Yalova</structure:Description>
+</structure:Code>
+<structure:Code value="TR5">
+<structure:Description xml:lang="en">Bati Anadolu</structure:Description>
+<structure:Description xml:lang="de">Bati Anadolu</structure:Description>
+<structure:Description xml:lang="fr">Bati Anadolu</structure:Description>
+</structure:Code>
+<structure:Code value="TR51">
+<structure:Description xml:lang="en">Ankara</structure:Description>
+<structure:Description xml:lang="de">Ankara</structure:Description>
+<structure:Description xml:lang="fr">Ankara</structure:Description>
+</structure:Code>
+<structure:Code value="TR52">
+<structure:Description xml:lang="en">Konya, Karaman</structure:Description>
+<structure:Description xml:lang="de">Konya, Karaman</structure:Description>
+<structure:Description xml:lang="fr">Konya, Karaman</structure:Description>
+</structure:Code>
+<structure:Code value="TR6">
+<structure:Description xml:lang="en">Akdeniz</structure:Description>
+<structure:Description xml:lang="de">Akdeniz</structure:Description>
+<structure:Description xml:lang="fr">Akdeniz</structure:Description>
+</structure:Code>
+<structure:Code value="TR61">
+<structure:Description xml:lang="en">Antalya, Isparta, Burdur</structure:Description>
+<structure:Description xml:lang="de">Antalya, Isparta, Burdur</structure:Description>
+<structure:Description xml:lang="fr">Antalya, Isparta, Burdur</structure:Description>
+</structure:Code>
+<structure:Code value="TR62">
+<structure:Description xml:lang="en">Adana, Mersin</structure:Description>
+<structure:Description xml:lang="de">Adana, Mersin</structure:Description>
+<structure:Description xml:lang="fr">Adana, Mersin</structure:Description>
+</structure:Code>
+<structure:Code value="TR63">
+<structure:Description xml:lang="en">Hatay, Kahramanmaras, Osmaniye</structure:Description>
+<structure:Description xml:lang="de">Hatay, Kahramanmaras, Osmaniye</structure:Description>
+<structure:Description xml:lang="fr">Hatay, Kahramanmaras, Osmaniye</structure:Description>
+</structure:Code>
+<structure:Code value="TR7">
+<structure:Description xml:lang="en">Orta Anadolu</structure:Description>
+<structure:Description xml:lang="de">Orta Anadolu</structure:Description>
+<structure:Description xml:lang="fr">Orta Anadolu</structure:Description>
+</structure:Code>
+<structure:Code value="TR71">
+<structure:Description xml:lang="en">Kirikkale, Aksaray, Nigde, Nevsehir, Kirsehir</structure:Description>
+<structure:Description xml:lang="de">Kirikkale, Aksaray, Nigde, Nevsehir, Kirsehir</structure:Description>
+<structure:Description xml:lang="fr">Kirikkale, Aksaray, Nigde, Nevsehir, Kirsehir</structure:Description>
+</structure:Code>
+<structure:Code value="TR72">
+<structure:Description xml:lang="en">Kayseri, Sivas, Yozgat</structure:Description>
+<structure:Description xml:lang="de">Kayseri, Sivas, Yozgat</structure:Description>
+<structure:Description xml:lang="fr">Kayseri, Sivas, Yozgat</structure:Description>
+</structure:Code>
+<structure:Code value="TR8">
+<structure:Description xml:lang="en">Bati Karadeniz</structure:Description>
+<structure:Description xml:lang="de">Bati Karadeniz</structure:Description>
+<structure:Description xml:lang="fr">Bati Karadeniz</structure:Description>
+</structure:Code>
+<structure:Code value="TR81">
+<structure:Description xml:lang="en">Zonguldak, Karabük, Bartin</structure:Description>
+<structure:Description xml:lang="de">Zonguldak, Karabük, Bartin</structure:Description>
+<structure:Description xml:lang="fr">Zonguldak, Karabük, Bartin</structure:Description>
+</structure:Code>
+<structure:Code value="TR82">
+<structure:Description xml:lang="en">Kastamonu, Çankiri, Sinop</structure:Description>
+<structure:Description xml:lang="de">Kastamonu, Çankiri, Sinop</structure:Description>
+<structure:Description xml:lang="fr">Kastamonu, Çankiri, Sinop</structure:Description>
+</structure:Code>
+<structure:Code value="TR83">
+<structure:Description xml:lang="en">Samsun, Tokat, Çorum, Amasya</structure:Description>
+<structure:Description xml:lang="de">Samsun, Tokat, Çorum, Amasya</structure:Description>
+<structure:Description xml:lang="fr">Samsun, Tokat, Çorum, Amasya</structure:Description>
+</structure:Code>
+<structure:Code value="TR9">
+<structure:Description xml:lang="en">Dogu Karadeniz</structure:Description>
+<structure:Description xml:lang="de">Dogu Karadeniz</structure:Description>
+<structure:Description xml:lang="fr">Dogu Karadeniz</structure:Description>
+</structure:Code>
+<structure:Code value="TR90">
+<structure:Description xml:lang="en">Trabzon, Ordu, Giresun, Rize, Artvin, Gümüshane</structure:Description>
+<structure:Description xml:lang="de">Trabzon, Ordu, Giresun, Rize, Artvin, Gümüshane</structure:Description>
+<structure:Description xml:lang="fr">Trabzon, Ordu, Giresun, Rize, Artvin, Gümüshane</structure:Description>
+</structure:Code>
+<structure:Code value="TRA">
+<structure:Description xml:lang="en">Kuzeydogu Anadolu</structure:Description>
+<structure:Description xml:lang="de">Kuzeydogu Anadolu</structure:Description>
+<structure:Description xml:lang="fr">Kuzeydogu Anadolu</structure:Description>
+</structure:Code>
+<structure:Code value="TRA1">
+<structure:Description xml:lang="en">Erzurum, Erzincan, Bayburt</structure:Description>
+<structure:Description xml:lang="de">Erzurum, Erzincan, Bayburt</structure:Description>
+<structure:Description xml:lang="fr">Erzurum, Erzincan, Bayburt</structure:Description>
+</structure:Code>
+<structure:Code value="TRA2">
+<structure:Description xml:lang="en">Agri, Kars, Igdir, Ardahan</structure:Description>
+<structure:Description xml:lang="de">Agri, Kars, Igdir, Ardahan</structure:Description>
+<structure:Description xml:lang="fr">Agri, Kars, Igdir, Ardahan</structure:Description>
+</structure:Code>
+<structure:Code value="TRB">
+<structure:Description xml:lang="en">Ortadogu Anadolu</structure:Description>
+<structure:Description xml:lang="de">Ortadogu Anadolu</structure:Description>
+<structure:Description xml:lang="fr">Ortadogu Anadolu</structure:Description>
+</structure:Code>
+<structure:Code value="TRB1">
+<structure:Description xml:lang="en">Malatya, Elazig, Bingöl, Tunceli</structure:Description>
+<structure:Description xml:lang="de">Malatya, Elazig, Bingöl, Tunceli</structure:Description>
+<structure:Description xml:lang="fr">Malatya, Elazig, Bingöl, Tunceli</structure:Description>
+</structure:Code>
+<structure:Code value="TRB2">
+<structure:Description xml:lang="en">Van, Mus, Bitlis, Hakkari</structure:Description>
+<structure:Description xml:lang="de">Van, Mus, Bitlis, Hakkari</structure:Description>
+<structure:Description xml:lang="fr">Van, Mus, Bitlis, Hakkari</structure:Description>
+</structure:Code>
+<structure:Code value="TRC">
+<structure:Description xml:lang="en">Güneydogu Anadolu</structure:Description>
+<structure:Description xml:lang="de">Güneydogu Anadolu</structure:Description>
+<structure:Description xml:lang="fr">Güneydogu Anadolu</structure:Description>
+</structure:Code>
+<structure:Code value="TRC1">
+<structure:Description xml:lang="en">Gaziantep, Adiyaman, Kilis</structure:Description>
+<structure:Description xml:lang="de">Gaziantep, Adiyaman, Kilis</structure:Description>
+<structure:Description xml:lang="fr">Gaziantep, Adiyaman, Kilis</structure:Description>
+</structure:Code>
+<structure:Code value="TRC2">
+<structure:Description xml:lang="en">Sanliurfa, Diyarbakir</structure:Description>
+<structure:Description xml:lang="de">Sanliurfa, Diyarbakir</structure:Description>
+<structure:Description xml:lang="fr">Sanliurfa, Diyarbakir</structure:Description>
+</structure:Code>
+<structure:Code value="TRC3">
+<structure:Description xml:lang="en">Mardin, Batman, Sirnak, Siirt</structure:Description>
+<structure:Description xml:lang="de">Mardin, Batman, Sirnak, Siirt</structure:Description>
+<structure:Description xml:lang="fr">Mardin, Batman, Sirnak, Siirt</structure:Description>
+</structure:Code>
+</structure:CodeList>
+<structure:CodeList id="CL_TIME_FORMAT" agencyID="SDMX">
+<structure:Name xml:lang="en">Time Format</structure:Name>
+<structure:Code value="P1Y">
+<structure:Description xml:lang="en">Annual</structure:Description>
+</structure:Code>
+<structure:Code value="P6M">
+<structure:Description xml:lang="en">Semi-annual</structure:Description>
+</structure:Code>
+<structure:Code value="P3M">
+<structure:Description xml:lang="en">Quarterly</structure:Description>
+</structure:Code>
+<structure:Code value="P1M">
+<structure:Description xml:lang="en">Monthly</structure:Description>
+</structure:Code>
+<structure:Code value="P7D">
+<structure:Description xml:lang="en">Weekly</structure:Description>
+</structure:Code>
+<structure:Code value="P1D">
+<structure:Description xml:lang="en">Daily</structure:Description>
+</structure:Code>
+<structure:Code value="PT1M">
+<structure:Description xml:lang="en">Minutely</structure:Description>
+</structure:Code>
+</structure:CodeList>
+<structure:CodeList id="CL_FREQ" agencyID="SDMX">
+<structure:Name xml:lang="en">Frequency code list</structure:Name>
+<structure:Code value="A">
+<structure:Description xml:lang="en">Annual</structure:Description>
+</structure:Code>
+<structure:Code value="S">
+<structure:Description xml:lang="en">Half-yearly, semester</structure:Description>
+</structure:Code>
+<structure:Code value="Q">
+<structure:Description xml:lang="en">Quarterly</structure:Description>
+</structure:Code>
+<structure:Code value="M">
+<structure:Description xml:lang="en">Monthly</structure:Description>
+</structure:Code>
+<structure:Code value="W">
+<structure:Description xml:lang="en">Weekly</structure:Description>
+</structure:Code>
+<structure:Code value="B">
+<structure:Description xml:lang="en">Business week</structure:Description>
+</structure:Code>
+<structure:Code value="D">
+<structure:Description xml:lang="en">Daily</structure:Description>
+</structure:Code>
+<structure:Code value="H">
+<structure:Description xml:lang="en">Hourly</structure:Description>
+</structure:Code>
+<structure:Code value="N">
+<structure:Description xml:lang="en">Minutely</structure:Description>
+</structure:Code>
+</structure:CodeList>
+<structure:CodeList id="CL_OBS_STATUS" agencyID="EUROSTAT" isFinal="false">
+<structure:Name xml:lang="en">Observation status code list</structure:Name>
+<structure:Code value="b">
+<structure:Description xml:lang="en">break in series</structure:Description>
+<structure:Description xml:lang="de">Zeitreihenbruch</structure:Description>
+<structure:Description xml:lang="fr">rupture de série</structure:Description>
+</structure:Code>
+<structure:Code value="c">
+<structure:Description xml:lang="en">confidential</structure:Description>
+<structure:Description xml:lang="de">vertraulich</structure:Description>
+<structure:Description xml:lang="fr">confidentiel</structure:Description>
+</structure:Code>
+<structure:Code value="e">
+<structure:Description xml:lang="en">estimated</structure:Description>
+<structure:Description xml:lang="de">geschätzt</structure:Description>
+<structure:Description xml:lang="fr">estimé</structure:Description>
+</structure:Code>
+<structure:Code value="f">
+<structure:Description xml:lang="en">forecast</structure:Description>
+<structure:Description xml:lang="de">Prognose</structure:Description>
+<structure:Description xml:lang="fr">prévision</structure:Description>
+</structure:Code>
+<structure:Code value="i">
+<structure:Description xml:lang="en">see metadata</structure:Description>
+<structure:Description xml:lang="de">siehe Metadaten</structure:Description>
+<structure:Description xml:lang="fr">voir métadonnées</structure:Description>
+</structure:Code>
+<structure:Code value="n">
+<structure:Description xml:lang="en">not significant</structure:Description>
+<structure:Description xml:lang="de">unbedeutend</structure:Description>
+<structure:Description xml:lang="fr">non significatif</structure:Description>
+</structure:Code>
+<structure:Code value="p">
+<structure:Description xml:lang="en">provisional</structure:Description>
+<structure:Description xml:lang="de">vorläufig</structure:Description>
+<structure:Description xml:lang="fr">provisoire</structure:Description>
+</structure:Code>
+<structure:Code value="r">
+<structure:Description xml:lang="en">revised</structure:Description>
+<structure:Description xml:lang="de">revidiert</structure:Description>
+<structure:Description xml:lang="fr">révisé</structure:Description>
+</structure:Code>
+<structure:Code value="s">
+<structure:Description xml:lang="en">Eurostat estimate</structure:Description>
+<structure:Description xml:lang="de">Eurostat Schätzung</structure:Description>
+<structure:Description xml:lang="fr">estimation Eurostat</structure:Description>
+</structure:Code>
+<structure:Code value="u">
+<structure:Description xml:lang="en">unreliable</structure:Description>
+<structure:Description xml:lang="de">unzuverlässig</structure:Description>
+<structure:Description xml:lang="fr">non fiable</structure:Description>
+</structure:Code>
+<structure:Code value="z">
+<structure:Description xml:lang="en">not applicable (incl. real zero)</structure:Description>
+<structure:Description xml:lang="de">nicht zutreffend (einschl. reale Null)</structure:Description>
+<structure:Description xml:lang="fr">non applicable (zéro réel inclus)</structure:Description>
+</structure:Code>
+</structure:CodeList>
+</CodeLists>
+
+<Concepts>
+<structure:ConceptScheme agencyID="EUROSTAT" id="CONCEPTS" isFinal="true">
+<structure:Name xml:lang="en">Concepts</structure:Name>
+<structure:Concept id="FREQ"><structure:Name xml:lang="en">Frequency</structure:Name>
+</structure:Concept>
+<structure:Concept id="milkitem"><structure:Name xml:lang="en">Item of milk</structure:Name>
+<structure:Name xml:lang="de">Milchposten</structure:Name>
+<structure:Name xml:lang="fr">Postes de lait</structure:Name>
+</structure:Concept>
+<structure:Concept id="prodmilk"><structure:Name xml:lang="en">Milk product</structure:Name>
+<structure:Name xml:lang="de">Milchprodukt</structure:Name>
+<structure:Name xml:lang="fr">Produit laitier</structure:Name>
+</structure:Concept>
+<structure:Concept id="geo"><structure:Name xml:lang="en">Geopolitical entity (declaring)</structure:Name>
+<structure:Name xml:lang="de">Geopolitische Meldeeinheit</structure:Name>
+<structure:Name xml:lang="fr">Entité géopolitique (déclarante)</structure:Name>
+</structure:Concept>
+<structure:Concept id="TIME_PERIOD"><structure:Name xml:lang="en">Time period or range</structure:Name>
+</structure:Concept>
+<structure:Concept id="OBS_VALUE"><structure:Name xml:lang="en">Observation Value</structure:Name>
+</structure:Concept>
+<structure:Concept id="OBS_STATUS"><structure:Name xml:lang="en">Observation Status</structure:Name>
+</structure:Concept>
+</structure:ConceptScheme>
+</Concepts>
+
+<KeyFamilies>
+<structure:KeyFamily id="agr_r_milkpr_DSD" agencyID="EUROSTAT" isFinal="false" isExternalReference="false"><structure:Name xml:lang="en">agr_r_milkpr_DSD</structure:Name>
+
+<structure:Components>
+<structure:Dimension conceptSchemeRef="CONCEPTS" conceptRef="FREQ" codelist="CL_FREQ" isFrequencyDimension="true"/>
+<structure:Dimension conceptSchemeRef="CONCEPTS" conceptRef="milkitem" codelist="CL_MILKITEM" crossSectionalAttachDataSet="false" crossSectionalAttachGroup="false" crossSectionalAttachSection="true" crossSectionalAttachObservation="false"></structure:Dimension>
+<structure:Dimension conceptSchemeRef="CONCEPTS" conceptRef="prodmilk" codelist="CL_PRODMILK" crossSectionalAttachDataSet="false" crossSectionalAttachGroup="false" crossSectionalAttachSection="true" crossSectionalAttachObservation="false"></structure:Dimension>
+<structure:Dimension conceptSchemeRef="CONCEPTS" conceptRef="geo" codelist="CL_GEO" crossSectionalAttachDataSet="false" crossSectionalAttachGroup="false" crossSectionalAttachSection="true" crossSectionalAttachObservation="false"></structure:Dimension>
+<structure:TimeDimension conceptSchemeRef="CONCEPTS" conceptRef="TIME_PERIOD"><structure:TextFormat textType="String"></structure:TextFormat>
+</structure:TimeDimension>
+<structure:PrimaryMeasure conceptSchemeRef="CONCEPTS" conceptRef="OBS_VALUE">
+<structure:TextFormat textType="Double"></structure:TextFormat>
+</structure:PrimaryMeasure>
+
+<structure:Attribute conceptRef="TIME_FORMAT" conceptSchemeRef="CONCEPTS" codelist="CL_TIME_FORMAT" attachmentLevel="Series" assignmentStatus="Mandatory"></structure:Attribute>
+<structure:Attribute conceptSchemeRef="CONCEPTS" conceptRef="OBS_STATUS" codelist="CL_OBS_STATUS" attachmentLevel="Observation" assignmentStatus="Conditional" crossSectionalAttachDataSet="false" crossSectionalAttachGroup="false" crossSectionalAttachSection="false" crossSectionalAttachObservation="true"><structure:TextFormat textType="String"></structure:TextFormat>
+</structure:Attribute>
+</structure:Components>
+</structure:KeyFamily>
+</KeyFamilies>
+
+</Structure>
