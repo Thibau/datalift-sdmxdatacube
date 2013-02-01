@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GenericData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message ../../../SDMX%202.1/Version%20publi%C3%A9e/SDMX_2-1_ALL/SDMX_2-1_SECTION_3B_SDMX_ML_Schemas_Samples_2011May12/schemas/SDMXMessage.xsd"
+    xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message"
+    xmlns:g="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/data/generic"
+    xmlns:s="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+    xmlns:r="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/registry"
+    xmlns:c="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+    <Header>
+        <ID>AGEQUINQUENNAL6809_DONNEES_21</ID>
+        <Test></Test>
+        <Prepared>2013-01-10T14:12:24</Prepared>
+        <Sender id="FR1">
+            <Contact>
+                <c:Name xml:lang="fr-FR">Institut national de la statistique et des études économiques (Insee)</c:Name>
+                <Department xml:lang="fr-FR">Département de la démographie</Department>
+            </Contact>
+        </Sender>
+        <Structure dimensionAtObservation="AllDimensions" structureID="RP_AGEQUINQUENNAL6809_DSD">
+            <c:Structure>
+                <Ref xmlns="" agencyID="FR1" id="RP_AGEQUINQUENNAL6809_DSD"/>
+            </c:Structure>
+        </Structure>
+        <Source xml:lang="fr-FR">
+            Thème   
+            Évolution et structure de la population
+            
+            Base     
+            Âge Quinquennal LR - Données Harmonisées RP68-09
+            
+            Titre       
+            Population par âge quinquennal et par sexe aux recensements de 1968 à 2009, séries départementales et communales (France métropolitaine et départements d'outre-mer)
+            
+            Les séries sont établies à partir des exploitations complémentaires (par sondage) des recensements de 1968, 1975, 1982, 1990, 1999 et 2009 pour la métropole, et de 1990, 1999 et 2009 pour les DOM.
+            
+            Les données portent sur la population par âge révolu (en 20 tranches quinquennales) et par sexe.
+            
+            Les données départementales sont dans la géographie en vigueur au 1er janvier 2011.
+            Les données communales sont en géographie courante (en vigueur à la date des recensements).
+            
+            Toutes les données sont additives.
+        </Source>
+    </Header>
+    <DataSet structureRef="RP_AGEQUINQUENNAL6809_DSD" setID="RP_AGEQUINQUENNAL6809_DST_DEP" publicationYear="2012">
+        <g:Obs>
+            <g:ObsKey>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-1" value="De 0 à 4 ans"/>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-2" value="Hommes"/>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-3" value="RP1968"/>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-4" value="01"/>
+            </g:ObsKey>
+            <g:ObsValue value="14324"/>
+            <g:Attributes>
+                <g:Value id="RP-AGEQUINQUENNAL6809-COM-ATT-2" value="82"/>
+            </g:Attributes>
+        </g:Obs>
+        <g:Obs>
+            <g:ObsKey>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-1" value="De 0 à 4 ans"/>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-2" value="Hommes"/>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-3" value="RP1968"/>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-4" value="02"/>
+            </g:ObsKey>
+            <g:ObsValue value="25508"/>
+            <g:Attributes>
+                <g:Value id="RP-AGEQUINQUENNAL6809-COM-ATT-2" value="22"/>
+            </g:Attributes>
+        </g:Obs>
+        <g:Obs>
+            <g:ObsKey>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-1" value="De 0 à 4 ans"/>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-2" value="Hommes"/>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-3" value="RP1968"/>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-4" value="03"/>
+            </g:ObsKey>
+            <g:ObsValue value="14720"/>
+            <g:Attributes>
+                <g:Value id="RP-AGEQUINQUENNAL6809-COM-ATT-2" value="83"/>
+            </g:Attributes>
+        </g:Obs>
+        <g:Obs>
+            <g:ObsKey>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-1" value="De 0 à 4 ans"/>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-2" value="Hommes"/>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-3" value="RP1968"/>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-4" value="04"/>
+            </g:ObsKey>
+            <g:ObsValue value="4656"/>
+            <g:Attributes>
+                <g:Value id="RP-AGEQUINQUENNAL6809-COM-ATT-2" value="93"/>
+            </g:Attributes>
+        </g:Obs>
+        <g:Obs>
+            <g:ObsKey>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-1" value="De 0 à 4 ans"/>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-2" value="Hommes"/>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-3" value="RP1968"/>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-4" value="05"/>
+            </g:ObsKey>
+            <g:ObsValue value="3652"/>
+            <g:Attributes>
+                <g:Value id="RP-AGEQUINQUENNAL6809-COM-ATT-2" value="93"/>
+            </g:Attributes>
+        </g:Obs>
+        <g:Obs>
+            <g:ObsKey>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-1" value="De 0 à 4 ans"/>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-2" value="Hommes"/>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-3" value="RP1968"/>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-4" value="06"/>
+            </g:ObsKey>
+            <g:ObsValue value="22020"/>
+            <g:Attributes>
+                <g:Value id="RP-AGEQUINQUENNAL6809-COM-ATT-2" value="93"/>
+            </g:Attributes>
+        </g:Obs>
+        <g:Obs>
+            <g:ObsKey>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-1" value="De 0 à 4 ans"/>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-2" value="Hommes"/>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-3" value="RP1968"/>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-4" value="07"/>
+            </g:ObsKey>
+            <g:ObsValue value="10864"/>
+            <g:Attributes>
+                <g:Value id="RP-AGEQUINQUENNAL6809-COM-ATT-2" value="82"/>
+            </g:Attributes>
+        </g:Obs>
+        <g:Obs>
+            <g:ObsKey>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-1" value="De 0 à 4 ans"/>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-2" value="Hommes"/>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-3" value="RP1968"/>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-4" value="08"/>
+            </g:ObsKey>
+            <g:ObsValue value="16156"/>
+            <g:Attributes>
+                <g:Value id="RP-AGEQUINQUENNAL6809-COM-ATT-2" value="21"/>
+            </g:Attributes>
+        </g:Obs>
+        <g:Obs>
+            <g:ObsKey>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-1" value="De 0 à 4 ans"/>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-2" value="Hommes"/>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-3" value="RP1968"/>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-4" value="09"/>
+            </g:ObsKey>
+            <g:ObsValue value="4568"/>
+            <g:Attributes>
+                <g:Value id="RP-AGEQUINQUENNAL6809-COM-ATT-2" value="73"/>
+            </g:Attributes>
+        </g:Obs>
+        <g:Obs>
+            <g:ObsKey>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-1" value="De 0 à 4 ans"/>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-2" value="Hommes"/>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-3" value="RP1968"/>
+                <g:Value id="RP-AGEQUINQUENNAL6809-DEP-DIM-4" value="10"/>
+            </g:ObsKey>
+            <g:ObsValue value="12516"/>
+            <g:Attributes>
+                <g:Value id="RP-AGEQUINQUENNAL6809-COM-ATT-2" value="21"/>
+            </g:Attributes>
+        </g:Obs>
+    </DataSet>
+</GenericData>

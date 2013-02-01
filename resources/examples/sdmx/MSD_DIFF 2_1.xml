@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Structure xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message ../../../../SDMX%202.1/Version%20publi%C3%A9e/SDMX_2-1_ALL/SDMX_2-1_SECTION_3B_SDMX_ML_Schemas_Samples_2011May12/schemas/SDMXMessage.xsd"
+ xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message"
+ xmlns:s="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+ xmlns:c="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+ xmlns:r="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/registry">
+  <Header>
+    <ID>REGISTRY_RESPONSE</ID>
+    <Test>false</Test>
+    <Prepared>2012-02-15T19:12:24</Prepared>
+    <Sender id="INSEE"/>
+  </Header>
+    <Structures>
+        <s:CategorySchemes>
+    <s:CategoryScheme id="INSEE_REFER_SCHEME" agencyID="INSEE" version="1.0" urn="urn:insee:sdmx.infomodel.categoryscheme.CategoryScheme=INSEE:INSEE_REFER_SCHEME:1.0" isFinal="true">
+        <c:Annotations>
+            <c:Annotation>
+                <c:AnnotationText>Schéma pour grouper les produits de diffusion que l'on retrouve sur insee.fr. Il ne s'agit ici que d'un échantillon hors RP</c:AnnotationText>
+            </c:Annotation>
+        </c:Annotations>
+        <c:Name xml:lang="fr">Une catégorisation des produits de diffusion de l'INSEE</c:Name>
+        <s:Category id="COLLECTNAT">
+        <c:Name xml:lang="fr">Collection Nationale</c:Name>
+        <c:Description xml:lang="fr">Présentation de toutes les collections de l'Insee, et accès gratuit aux contenus</c:Description>
+        <s:Category id="COLLECTNATIP">
+            <c:Name xml:lang="fr">Insee Première</c:Name>
+            <c:Description xml:lang="fr">Présente les premiers résultats des enquêtes et études réalisées par l'Insee</c:Description>
+        </s:Category>
+        <s:Category id="COLLECTNATIA">
+          <c:Name xml:lang="fr">Insee Analyses</c:Name>
+          <c:Description xml:lang="fr">Résumés de travaux d'analyse conduits à l'Insee, généralement publiés sous forme de documents de travail, articles ou dossiers.</c:Description>
+        </s:Category>
+        <s:Category id="COLLECTNATIC">
+          <c:Name xml:lang="fr">Insee Conjoncture</c:Name>
+          <c:Description xml:lang="fr">Présente les premiers résultats des enquêtes et études réalisées par l'Insee</c:Description>
+        </s:Category>
+        <s:Category id="COLLECTNATIRE">
+          <c:Name xml:lang="fr">Insee Références</c:Name>
+          <c:Description xml:lang="fr">Ouvrages sur tous les domaines économiques et sociaux.</c:Description>
+        </s:Category>
+        <s:Category id="COLLECTNATECOSTAT">
+          <c:Name xml:lang="fr">Economie et Statistique</c:Name>
+          <c:Description xml:lang="fr">Chaque mois, les analyses économiques qui font référence dans le débat public.</c:Description>
+        </s:Category>
+        <s:Category id="COLLECTNATIR">
+          <c:Name xml:lang="fr">Insee Résultats</c:Name>
+          <c:Description xml:lang="fr">Résultats les plus récents sous forme de tableaux détaillés, accompagnés des méthodes et des concepts utilisés.</c:Description>
+        </s:Category>
+        <s:Category id="COLLECTNATIM">
+          <c:Name xml:lang="fr">Insee Méthodes</c:Name>
+          <c:Description xml:lang="fr">Présente de manière détaillée et complète la méthodologie des principaux travaux statistiques de l'Insee.</c:Description>
+        </s:Category>
+        <s:Category id="COLLECTNATDT">
+          <c:Name xml:lang="fr">Documents de Travail</c:Name>
+          <c:Description xml:lang="fr">Présentent les premiers résultats de travaux à caractère technique.</c:Description>
+        </s:Category>
+        <s:Category id="COLLECTNATCS">
+          <c:Name xml:lang="fr">Courrier des statistiques</c:Name>
+          <c:Description xml:lang="fr">Rend compte des faits, évolutions et débats qui marquent la statistique publique, française et internationale.</c:Description>
+        </s:Category>
+        <s:Category id="COLLECTNATRS">
+          <c:Name xml:lang="fr">Recueil d'études sociales</c:Name>
+          <c:Description xml:lang="fr">Rassemblent les études publiées par différents organismes publics français d'études et de statistiques</c:Description>
+        </s:Category>
+        <s:Category id="COLLECTNATSY">
+          <c:Name xml:lang="fr">Synthèses</c:Name>
+          <c:Description xml:lang="fr">Présentent les résultats commentés des travaux de la Statistique publique. La publication de cette collection s'est achevée au 31 décembre 2004.</c:Description>
+        </s:Category>
+      </s:Category>
+    </s:CategoryScheme>
+        </s:CategorySchemes>
+        <s:Categorisations>
+            <s:Categorisation agencyID="INSEE" id="COLLECTNATIP">
+                <c:Name xml:lang="fr">Insee Première</c:Name>
+                <c:Description xml:lang="fr">Présente les premiers résultats des enquêtes et études réalisées par l'Insee</c:Description>
+                <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNAT_IP_N"/></s:Source>
+                <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATIP"/></s:Target>
+            </s:Categorisation>
+            <s:Categorisation agencyID="INSEE" id="COLLECTNATIA">
+                <c:Name xml:lang="fr">Insee Analyses</c:Name>
+                <c:Description xml:lang="fr">Résumés de travaux d'analyse conduits à l'Insee, généralement publiés sous forme de documents de travail, articles ou dossiers.</c:Description>
+                <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNAT_IA_N"/></s:Source>
+                <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATIA"/></s:Target>
+            </s:Categorisation>
+            <s:Categorisation agencyID="INSEE" id="COLLECTNATICIR">
+              <c:Name xml:lang="fr">Informations Rapides</c:Name>
+              <c:Description xml:lang="fr">Les Informations Rapides présentent les derniers indices et les résultats les plus récents des enquêtes de conjoncture de l'Insee</c:Description>
+                <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNATIC_INFORAP_N"/></s:Source>
+                <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATIC"/></s:Target>
+            </s:Categorisation>
+            <s:Categorisation agencyID="INSEE" id="COLLECTNATICNC">
+               <c:Name xml:lang="fr">Note de Conjoncture</c:Name>
+               <c:Description xml:lang="fr">Pour suivre la situation et les perspectives à court terme de l'économie française, l'Insee publie, chaque année, trois notes de conjoncture</c:Description>
+                <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNATIC_NOTCONJ_N"/></s:Source>
+                <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATIC"/></s:Target>
+            </s:Categorisation>
+            <s:Categorisation agencyID="INSEE" id="COLLECTNATICCF">
+              <c:Name xml:lang="fr">Conjoncture in France</c:Name>
+              <c:Description xml:lang="fr">Issu de la Note ou du Point de conjoncture, Conjoncture in France livre une synthèse de la conjoncture économique de la France rédigée en anglais.</c:Description>
+                <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNATIC_CONJINFR_N"/></s:Source>
+                <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATIC"/></s:Target>
+            </s:Categorisation>
+          <s:Categorisation agencyID="INSEE" id="COLLECTNATIRASF">
+            <c:Name xml:lang="fr">Annuaire Statistique de la France</c:Name>
+            <c:Description xml:lang="fr">L'annuaire statistique de la France en 18 thématiques</c:Description>
+            <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNATIR_ANSTATFR_N"/></s:Source>
+            <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATIC"/></s:Target>
+          </s:Categorisation>
+          <s:Categorisation agencyID="INSEE" id="COLLECTNATIR50C">
+            <c:Name xml:lang="fr">Cinquante ans de consommation en France</c:Name>
+            <c:Description xml:lang="fr">Tirées des données de la Comptabilité nationale, une trentaine de fiches traitent des principaux postes de dépenses et des facteurs influençant la consommation du pays depuis cinquante ans</c:Description>
+            <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNATIR_50CONSFR_N"/></s:Source>
+            <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATIC"/></s:Target>
+          </s:Categorisation>
+          <s:Categorisation agencyID="INSEE" id="COLLECTNATIRDS">
+            <c:Name xml:lang="fr">Données sociales : La société française</c:Name>
+            <c:Description xml:lang="fr">Une centaine de spécialistes des statistiques et des sciences sociales réunissent leurs compétences pour dresser un large panorama des mutations et des constantes de la société française</c:Description>
+            <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNATIR_DONSOC_N"/></s:Source>
+            <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATIC"/></s:Target>
+          </s:Categorisation>
+          <s:Categorisation agencyID="INSEE" id="COLLECTNATIRES">
+            <c:Name xml:lang="fr">Emploi et salaires</c:Name>
+            <c:Description xml:lang="fr">Une centaine de spécialistes des statistiques et des sciences sociales réunissent leurs compétences pour dresser un large panorama des mutations et des constantes de la société française</c:Description>
+            <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNATIR_EMPLSAL_A"/></s:Source>
+            <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATIC"/></s:Target>
+          </s:Categorisation>
+          <s:Categorisation agencyID="INSEE" id="COLLECTNATIRFH">
+            <c:Name xml:lang="fr">Femmes et Hommes</c:Name>
+            <c:Description xml:lang="fr">"Femmes et hommes - Regards sur la parité" apporte un éclairage sur une thématique particulière (édition 2008 : nouveaux détenteurs d'un titre de séjour et leurs trajectoires familiales et professionnelles)</c:Description>
+            <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNATIR_FH_A4"/></s:Source>
+            <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATIC"/></s:Target>
+          </s:Categorisation>
+          <s:Categorisation agencyID="INSEE" id="COLLECTNATIRFE">
+            <c:Name xml:lang="fr">Formations et Emploi</c:Name>
+            <c:Description xml:lang="fr">"Formations et emploi" dresse un panorama détaillé des formations initiale et continue et de l'insertion des jeunes</c:Description>
+            <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNATIR_FORMATEMPL_A2"/></s:Source>
+            <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATIC"/></s:Target>
+          </s:Categorisation>
+          <s:Categorisation agencyID="INSEE" id="COLLECTNATIRFPS">
+            <c:Name xml:lang="fr">France, Portrait Social</c:Name>
+            <c:Description xml:lang="fr">"France, portrait social" présente le bilan des évolutions économiques et sociales de la société française pour l’année écoulée</c:Description>
+            <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNATIR_FRPORTSOC_A"/></s:Source>
+            <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATIC"/></s:Target>
+          </s:Categorisation>
+          <s:Categorisation agencyID="INSEE" id="COLLECTNATIRFR">
+            <c:Name xml:lang="fr">La France et ses Régions</c:Name>
+            <c:Description xml:lang="fr">L'ouvrage rassemble indicateurs et analyses statistiques illustrant les disparités et similitudes des 26 régions françaises et leur positionnement dans le cadre européen</c:Description>
+            <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNATIR_FRREG_N"/></s:Source>
+            <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATIC"/></s:Target>
+          </s:Categorisation>
+          <s:Categorisation agencyID="INSEE" id="COLLECTNATIRAND">
+            <c:Name xml:lang="fr">L'agriculture, Nouveaux Défis</c:Name>
+            <c:Description xml:lang="fr">Ouvrage consacré à l'agriculture qui coïncide avec le remaniement en profondeur de la politique agricole commune, confrontée à l'émergence d'autres puissances agricoles</c:Description>
+            <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNATIR_AGRNVDEF_N"/></s:Source>
+            <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATIC"/></s:Target>
+          </s:Categorisation>
+          <s:Categorisation agencyID="INSEE" id="COLLECTNATIRCF">
+            <c:Name xml:lang="fr">Le Commerce en France</c:Name>
+            <c:Description xml:lang="fr">"Le commerce en France" offre chaque année des informations mises à jour dans un domaine au centre des échanges économiques</c:Description>
+            <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNATIR_CMRCFR_A"/></s:Source>
+            <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATIC"/></s:Target>
+          </s:Categorisation>
+          <s:Categorisation agencyID="INSEE" id="COLLECTNATIRTF">
+            <c:Name xml:lang="fr">Le Tourisme en France</c:Name>
+            <c:Description xml:lang="fr">Le "tourisme en France" propose un tour d’horizon détaillé des nombreux aspects du tourisme en France</c:Description>
+            <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNATIR_TOURFR_N"/></s:Source>
+            <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATIC"/></s:Target>
+          </s:Categorisation>
+          <s:Categorisation agencyID="INSEE" id="COLLECTNATIREF">
+            <c:Name xml:lang="fr">L'Economie Française</c:Name>
+            <c:Description xml:lang="fr">"L’économie française - Comptes et dossiers" présente chaque année une synthèse des mouvements des économies française et mondiale</c:Description>
+            <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNATIR_ECOFR_A"/></s:Source>
+            <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATIC"/></s:Target>
+          </s:Categorisation>
+          <s:Categorisation agencyID="INSEE" id="COLLECTNATIRENE">
+            <c:Name xml:lang="fr">L'emploi, Nouveaux Enjeux</c:Name>
+            <c:Description xml:lang="fr">"L'emploi, nouveaux enjeux" éclaire, à travers dix dossiers, des questions telles que : le devenir des emplois non qualifiés ; l’arbitrage entre temps professionnel et temps privé;etc..</c:Description>
+            <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNATIR_EMPLNVENJ_N"/></s:Source>
+            <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATIC"/></s:Target>
+          </s:Categorisation>
+          <s:Categorisation agencyID="INSEE" id="COLLECTNATIRIEF">
+            <c:Name xml:lang="fr">Les Immigrés En France</c:Name>
+            <c:Description xml:lang="fr">Recueil de fiches et d'études sur la situation des immigrés en France</c:Description>
+            <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNATIR_IMMIGRFR_N"/></s:Source>
+            <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATIC"/></s:Target>
+          </s:Categorisation>
+          <s:Categorisation agencyID="INSEE" id="COLLECTNATIRPA">
+            <c:Name xml:lang="fr">Les Personnes Agées</c:Name>
+            <c:Description xml:lang="fr">Recueil de fiches thématiques sur les personnes âgées</c:Description>
+            <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNATIR_PERSAGE_N"/></s:Source>
+            <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATIC"/></s:Target>
+          </s:Categorisation>
+          <s:Categorisation agencyID="INSEE" id="COLLECTNATIRRAI">
+            <c:Name xml:lang="fr">Les Revenus d'Activité des Indépendants</c:Name>
+            <c:Description xml:lang="fr">L’ouvrage s’intéresse aux revenus d’activité d’une population de plus de 2 millions, les non-salariés</c:Description>
+            <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNATIR_REVACTIND_N"/></s:Source>
+            <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATIC"/></s:Target>
+          </s:Categorisation>
+          <s:Categorisation agencyID="INSEE" id="COLLECTNATIRRPM">
+            <c:Name xml:lang="fr">Les Revenus et le Patrimoine des Ménages</c:Name>
+            <c:Description xml:lang="fr">Cet ouvrage présente les principaux indicateurs et des analyses spécifiques sur les inégalités monétaires et la pauvreté</c:Description>
+            <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNATIR_REVPATRMEN_A"/></s:Source>
+            <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATIC"/></s:Target>
+          </s:Categorisation>
+          <s:Categorisation agencyID="INSEE" id="COLLECTNATIRSF">
+            <c:Name xml:lang="fr">Les services en France</c:Name>
+            <c:Description xml:lang="fr">Cet ouvrage présente les principaux indicateurs et des analyses spécifiques sur les inégalités monétaires et la pauvreté</c:Description>
+            <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNATIR_SERVFR_A"/></s:Source>
+            <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATIC"/></s:Target>
+          </s:Categorisation>
+          <s:Categorisation agencyID="INSEE" id="COLLECTNATIRIF">
+            <c:Name xml:lang="fr">L'Industrie en France</c:Name>
+            <c:Description xml:lang="fr">Les éditions annuelles présentent un panorama de l’industrie française</c:Description>
+            <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNATIR_INDFR_A"/></s:Source>
+            <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATIC"/></s:Target>
+          </s:Categorisation>
+          <s:Categorisation agencyID="INSEE" id="COLLECTNATIRTEF">
+            <c:Name xml:lang="fr">Tableaux de l'Économie Française</c:Name>
+            <c:Description xml:lang="fr">88 fiches sur l'économie française, regroupées en 5 grands domaines et 20 chapitres</c:Description>
+            <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNATIR_TEF_A"/></s:Source>
+            <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATIC"/></s:Target>
+          </s:Categorisation>
+          <s:Categorisation agencyID="INSEE" id="COLLECTNATECOSTAT">
+            <c:Name xml:lang="fr">Economie et Statistique</c:Name>
+            <c:Description xml:lang="fr">Chaque mois, les analyses économiques qui font référence dans le débat public</c:Description>
+            <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNAT_ECOSTAT_M"/></s:Source>
+            <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATECOSTAT"/></s:Target>
+          </s:Categorisation>
+          <s:Categorisation agencyID="INSEE" id="COLLECTNATIR">
+            <c:Name xml:lang="fr">Insee Résultats</c:Name>
+            <c:Description xml:lang="fr">Résultats les plus récents sous forme de tableaux détaillés, accompagnés des méthodes et des concepts utilisés</c:Description>
+            <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNAT_IR_N"/></s:Source>
+            <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATIR"/></s:Target>
+          </s:Categorisation>
+          <s:Categorisation agencyID="INSEE" id="COLLECTNATIM">
+            <c:Name xml:lang="fr">Insee Méthodes</c:Name>
+            <c:Description xml:lang="fr">Présente de manière détaillée et complète la méthodologie des principaux travaux statistiques de l'Insee</c:Description>
+            <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNAT_IM_N"/></s:Source>
+            <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATIM"/></s:Target>
+          </s:Categorisation>
+          <s:Categorisation agencyID="INSEE" id="COLLECTNATDT">
+            <c:Name xml:lang="fr">Documents de Travail</c:Name>
+            <c:Description xml:lang="fr">Présentent les premiers résultats de travaux à caractère technique</c:Description>
+            <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNAT_DT_N"/></s:Source>
+            <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATDT"/></s:Target>
+          </s:Categorisation>
+          <s:Categorisation agencyID="INSEE" id="COLLECTNATCS">
+            <c:Name xml:lang="fr">Courrier des Statistiques</c:Name>
+            <c:Description xml:lang="fr">Rend compte des faits, évolutions et débats qui marquent la statistique publique, française et internationale</c:Description>
+            <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNAT_CS_M"/></s:Source>
+            <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATCS"/></s:Target>
+          </s:Categorisation>
+          <s:Categorisation agencyID="INSEE" id="COLLECTNATRS">
+            <c:Name xml:lang="fr">Recueil d'études Sociales</c:Name>
+            <c:Description xml:lang="fr">Rassemblent les études publiées par différents organismes publics français d'études et de statistiques</c:Description>
+            <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNAT_RS_N"/></s:Source>
+            <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATRS"/></s:Target>
+          </s:Categorisation>
+          <s:Categorisation agencyID="INSEE" id="COLLECTNATSY">
+            <c:Name xml:lang="fr">Synthèses</c:Name>
+            <c:Description xml:lang="fr">Présentent les résultats commentés des travaux de la Statistique publique. La publication de cette collection s'est achevée au 31 décembre 2004</c:Description>
+            <s:Source><Ref xmlns="" agencyID="INSEE" class="Metadataflow" package="metadatastructure" id="COLLECTNAT_SY_N"/></s:Source>
+            <s:Target><Ref xmlns="" maintainableParentID="INSEE_REFER_SCHEME" agencyID="INSEE" id="COLLECTNATSY"/></s:Target>
+          </s:Categorisation>
+        </s:Categorisations>
+        <s:Concepts>
+    <s:ConceptScheme id="INSEE_CRP" agencyID="INSEE" version="1.0" validFrom="2011-12-29T16:25:54" urn="urn:insee:sdmx.infomodel.conceptscheme.ConceptScheme=INSEE:INSEE_CRP:1.0" isFinal="true">
+      <c:Name xml:lang="fr">Concept du référentiel de produits</c:Name>
+      <c:Description xml:lang="fr">Concepts pour les produits de diffusion de l'INSEE, documentés dans la base DDS "REFER", hors produits de diffusion du Recensement de la Population</c:Description>
+      <s:Concept id="INTITULE_ABREGE">
+        <c:Name xml:lang="fr">Intitulé abrégé</c:Name>
+        <c:Description xml:lang="fr">Le champ "INTITULE ABREGE" correspond au titre abrégé du produit - Titre provisoire (60 caractères).Cet intitulé apparaîtra dans le panneau Liste. Il est utile pour les sélections, pour savoir à quoi correspond la fiche, le nom d'une fiche n'étant pas toujours significatif.</c:Description>
+      </s:Concept>
+      <s:Concept id="INTITULE_CCIAL_DETAIL">
+        <c:Name xml:lang="fr">Intitulé ccial détaillé</c:Name>
+        <c:Description xml:lang="fr">Le champ "Intitulé ccial détaillé" correspond au Titre commercial tel qu'il apparaît sur le produit (Titre définitif du produit).C'est ce titre qui apparaîtra dans les produits de restitution tels que les catalogues et pages intranet/internet. Il est donc important de le renseigner correctement..</c:Description>
+      </s:Concept>
+      <s:Concept id="DATE_DER_MAJ">
+        <c:Name xml:lang="fr">Date de la dernière mise à jour</c:Name>
+        <c:Description xml:lang="en">Le champ "Date dernière MAJ" permet de renseigner le cas échéant la date à laquelle le produit a fait l'objet d'une mise à jour.</c:Description>
+      </s:Concept>
+      <s:Concept id="COMMENT_MAJ">
+        <c:Name xml:lang="fr">Commentaire sur la mise à jour</c:Name>
+        <c:Description xml:lang="en">Le champ "Commentaire MAJ" permet d'indiquer tout commentaire relatif à la date de dernière mise à jour du produit..</c:Description>
+      </s:Concept>
+      <s:Concept id="ORIGINE">
+        <c:Name xml:lang="fr">Origine</c:Name>
+        <c:Description xml:lang="en">Le champ "ORIGINE" est un champ à liste fermée.Pour les produits nationaux, l'origine est égale à DG (y compris pour les produits du pôle EDORE).Pour les produits régionaux, l'origine est égale au code du site de production de la publication :- DRxx pour les départements métropolitains (ex : DR76, DR13, ...);- DR974 pour la Réunion ;- DI971 pour la DIRAG ;- SRxxx pour les départements de la Guadeloupe (971), de la Martinique (972) et de la Guyane (973).Ce champ permettra de faire facilement des sélections (par exemple, sélectionner toutes les fiches DMT- d'un établissement particulier, afin d'éditer la liste des produits accessibles sur le site internet de la région concernée).</c:Description>
+      </s:Concept>
+      <s:Concept id="RESP_EDIT">
+        <c:Name xml:lang="fr">Responsable éditorial</c:Name>
+        <c:Description xml:lang="en">Le champ "RESPONSABLE EDITORIAL"est un champ lien avec le type de fiche RESP EDITORIAL (REM-). Ce champ permet d'indiquer le nom du responsable éditorial dans le cas d'un produit national ou de spécifier le SED responsable éditorial dans le cas d'un produit régional.Un champ lien est un champ qui permet la pose d'un lien spécifique entre 2 types de fiche autre que les liens "ordinaires" prévus dans l'arbre des liens.Pour afficher la liste des responsables éditoriaux, il suffit de cliquer sur la boite de dialogue [...] qui s'affiche lorsqu'on clique dans le champ. Sélectionner ensuite une (des) valeur(s) dans la liste proposée et poser le(s) lien(s).</c:Description>
+      </s:Concept>
+      <s:Concept id="DAT_PREV">
+        <c:Name xml:lang="fr">Date de sortie prévisionnelle</c:Name>
+        <c:Description xml:lang="fr">Le champ "DATE DE SORTIE PREVISIONNELLE" permet de donner une indication sur la période de sortie du produit. Cette date est indicative et ne sera en aucun cas diffusée à l'extérieur de l'Insee.</c:Description>
+      </s:Concept>
+      <s:Concept id="RESUME">
+        <c:Name xml:lang="fr">Résumé</c:Name>
+        <c:Description xml:lang="fr">Le champ "Résumé" permet de renseigner une présentation synthétique et si possible argumentée du produit.</c:Description>
+      </s:Concept>
+      <s:Concept id="TYPE_PROD">
+        <c:Name xml:lang="fr">Type de produits</c:Name>
+        <c:Description xml:lang="fr">Le champ "Type de produit" est un champ à liste fermée qui permet de préciser le classement du produit selon la typologie utilisée sur insee.fr.Les trois modalités disponibles sont :Chiffres-clésDonnées détailléesÉtudes et analyses.</c:Description>
+      </s:Concept>
+      <s:Concept id="AUTEUR">
+        <c:Name xml:lang="fr">Auteur(s)</c:Name>
+        <c:Description xml:lang="fr">Le champ Auteurs(s) permet de saisir les Prénom et NOM du ou des auteur(s) séparés par des virgules.</c:Description>
+      </s:Concept>
+      <s:Concept id="UNIT_RESP">
+        <c:Name xml:lang="fr">Unité responsable du produit</c:Name>
+        <c:Description xml:lang="fr">Le champ "Unité resp.du produit" permet de renseigner le nom de l'unité responsable du produit.</c:Description>
+      </s:Concept>
+      <s:Concept id="ANNEE_EDIT">
+        <c:Name xml:lang="fr">Année d'édition</c:Name>
+        <c:Description xml:lang="fr">Le champ "Année d'édition" permet de mentionner l'année d'édition du produit.</c:Description>
+      </s:Concept>
+      <s:Concept id="SOURCE">
+        <c:Name xml:lang="fr">Source(s)</c:Name>
+        <c:Description xml:lang="fr">Le champ "Source(s)" permet de donner une indication sur la ou les source(s) des données disponibles dans le produit.</c:Description>
+      </s:Concept>
+      <s:Concept id="MILLESIME">
+        <c:Name xml:lang="fr">Millésime</c:Name>
+        <c:Description xml:lang="fr">Le champ "MILLESIME" permet de mentionner le (les) année(s) correspondant au(x) millésime(s) des données disponibles dans le produit.</c:Description>
+      </s:Concept>
+      <s:Concept id="COLLEC">
+        <c:Name xml:lang="fr">Collection ou périodique</c:Name>
+        <c:Description xml:lang="fr">Le champ "Collection ou périodique" permet de mentionner le cas échéant le nom de la collection ou du périodique auquel se rattache le produit.Ce champ concerne essentiellement les collections ou périodiques (nationaux et régionaux) précédemment édités sur papier ou sur cédérom (Références, Nomenclatures, Fichier détail, Bases de données, Tableau, ... ) et qui sont désormais disponibles en ligne sur insee.fr..Pour les autres produits (tableaux sur insee.fr,...), ne rien renseigner dans ce champ.</c:Description>
+      </s:Concept>
+      <s:Concept id="VOLUME">
+        <c:Name xml:lang="fr">Volume en octets</c:Name>
+        <c:Description xml:lang="fr">Le champ "Volume en octets" permet de donner une indication du volume des fichiers proposé au téléchargement.</c:Description>
+      </s:Concept>
+      <s:Concept id="FORMATS">
+        <c:Name xml:lang="en">Format des données</c:Name>
+        <c:Description xml:lang="en">Le champ "Formats des données" permet d'indiquer le format des données proposées dans le produit en ligne.</c:Description>
+      </s:Concept>
+      <s:Concept id="CHAMP_COUV">
+        <c:Name xml:lang="fr">Champ couvert</c:Name>
+        <c:Description xml:lang="fr">Le champ "Champ couvert" sert à indiquer si les données du produit couvre le champ de la métropole et/ou DOM, Union Européenne,etc..</c:Description>
+      </s:Concept>
+      <s:Concept id="NIV_GEO">
+        <c:Name xml:lang="fr">Niveau géographique</c:Name>
+        <c:Description xml:lang="fr">Le champ "Niveau géographique" permet de préciser l'unité de restitution des données.Ex. : Région, Département, Commune, ....</c:Description>
+      </s:Concept>
+      <s:Concept id="COM_NIV_GEO">
+        <c:Name xml:lang="fr">Commentaires niveau géographique</c:Name>
+        <c:Description xml:lang="fr">Le champ "Comment. niveau géographique" permet, le cas échéant, d'apporter un commentaire associé au niveau de restitution de l'information.</c:Description>
+      </s:Concept>
+      <s:Concept id="PUBL_VIS">
+        <c:Name xml:lang="fr">Public visé</c:Name>
+        <c:Description xml:lang="fr">Le champ "Public Visé" permet d'indiquer les éventuelles restrictions concernant la diffusion des données disponibles dans le produit.</c:Description>
+      </s:Concept>
+      <s:Concept id="THEME">
+        <c:Name xml:lang="fr">Thème</c:Name>
+        <c:Description xml:lang="fr">Le champ "Thème" permet l'indexation thématique des produits en ligne.Les thèmes proposés (liste fermée) sont les thèmes d'insee.fr, présentés par ordre alphabétique croissant précédés d'un numéro d'ordre, auxquels s'ajoute le thème Statistique publique..</c:Description>
+      </s:Concept>
+      <s:Concept id="SS_THEME">
+        <c:Name xml:lang="fr">Sous-thème</c:Name>
+        <c:Description xml:lang="fr">Le champ "Sous-thème" permet l'indexation thématique des produits en ligne au niveau du thème détaillé (ou sous-thème).Les thèmes proposés (liste fermée) sont les sous-thèmes d'insee.fr, présentés par ordre alphabétique croissant précédés d'un numéro d'ordre.Ces sous-thèmes sont en général utilisés pour l'indexation Ces sous-thèmes sont en général utilisés pour l'indexation des produits (Chiffes clés, Données détaillées et Etudes/Analyses sur insee.fr</c:Description>
+      </s:Concept>
+      <s:Concept id="PJ">
+        <c:Name xml:lang="fr">Pièces jointes</c:Name>
+        <c:Description xml:lang="fr">Le champ "Document divers" permet d'insérer le fichier d'un document permettant de complémenter la documentation du produit et pour lequel aucun champ n'est prévu explicitement dans la fiche DMT.</c:Description>
+      </s:Concept>
+      <s:Concept id="IDENT">
+        <c:Name xml:lang="fr">Identifiant</c:Name>
+        <c:Description xml:lang="fr">Le champ "Identifiant" permet de renseigner le code SAGE ou l'identifiant attribué au produit en ligne.</c:Description>
+      </s:Concept>
+    </s:ConceptScheme>
+  </s:Concepts>
+        <s:MetadataStructures>
+            <s:MetadataStructure agencyID="INSEE" id="REFER_MSD">
+                <c:Name xml:lang="FR">Définition de la Structure des Métadonnées du référentiel de produits de diffusion</c:Name>
+                <s:MetadataStructureComponents>
+                    <s:MetadataTarget id="INSEE_REFER_SCHEME">
+                        <s:DataSetTarget>
+                            <s:LocalRepresentation>
+                                <s:TextFormat textType="DataSetReference"/>
+                            </s:LocalRepresentation>
+                        </s:DataSetTarget>
+                    </s:MetadataTarget>
+                    <s:MetadataTarget id="PeriodRef">
+                        <s:ReportPeriodTarget>
+                            <s:LocalRepresentation>
+                                <s:TextFormat textType="BasicTimePeriod"/>
+                            </s:LocalRepresentation>
+                        </s:ReportPeriodTarget>
+                    </s:MetadataTarget>
+                    <s:MetadataTarget id="FournisseurDonnees">
+                        <s:IdentifiableObjectTarget objectType="DataProviderScheme" id="PropProdDiff">
+                            <s:LocalRepresentation>
+                                <s:TextFormat textType="IdentifiableReference"/>
+                            </s:LocalRepresentation>
+                        </s:IdentifiableObjectTarget>
+                    </s:MetadataTarget>
+                    <s:ReportStructure id="REFER_RAPPORT_COMPLET">
+                        <s:MetadataAttribute>
+                          <s:ConceptIdentity><Ref xmlns="" maintainableParentID="INSEE_CRP" id="INTITULE_ABREGE" agencyID="INSEE"/></s:ConceptIdentity>
+                          <s:LocalRepresentation> <s:TextFormat textType="String"/></s:LocalRepresentation>
+                        </s:MetadataAttribute>
+                      <s:MetadataAttribute>
+                        <s:ConceptIdentity><Ref xmlns="" maintainableParentID="INSEE_CRP" id="INTITULE_CCIAL_DETAIL" agencyID="INSEE"/></s:ConceptIdentity>
+                        <s:LocalRepresentation> <s:TextFormat textType="String"/></s:LocalRepresentation>
+                      </s:MetadataAttribute>
+                      <s:MetadataAttribute>
+                        <s:ConceptIdentity><Ref xmlns="" maintainableParentID="INSEE_CRP" id="ORIGINE" agencyID="INSEE"/></s:ConceptIdentity>
+                        <s:LocalRepresentation> <s:Enumeration><Ref xmlns="" agencyID="INSEE" id="CL_REFER_ORIGIN"/></s:Enumeration></s:LocalRepresentation>
+                      </s:MetadataAttribute>
+                      <s:MetadataAttribute>
+                        <s:ConceptIdentity><Ref xmlns="" maintainableParentID="INSEE_CRP" id="RESP_EDIT" agencyID="INSEE"/></s:ConceptIdentity>
+                        <s:LocalRepresentation> <s:TextFormat textType="String"/></s:LocalRepresentation>
+                      </s:MetadataAttribute>
+                      <s:MetadataAttribute>
+                        <s:ConceptIdentity><Ref xmlns="" maintainableParentID="INSEE_CRP" id="RESUME" agencyID="INSEE"/></s:ConceptIdentity>
+                        <s:LocalRepresentation> <s:TextFormat textType="String"/></s:LocalRepresentation>
+                      </s:MetadataAttribute>
+                      <s:MetadataAttribute>
+                        <s:ConceptIdentity><Ref xmlns="" maintainableParentID="INSEE_CRP" id="TYPE_PROD" agencyID="INSEE"/></s:ConceptIdentity>
+                        <s:LocalRepresentation> <s:Enumeration><Ref xmlns="" agencyID="INSEE" id="CL_REFER_TYPPROD"/></s:Enumeration></s:LocalRepresentation>
+                      </s:MetadataAttribute>
+                      <s:MetadataAttribute>
+                        <s:ConceptIdentity><Ref xmlns="" maintainableParentID="INSEE_CRP" id="AUTEUR" agencyID="INSEE"/></s:ConceptIdentity>
+                        <s:LocalRepresentation> <s:TextFormat textType="String"/></s:LocalRepresentation>
+                      </s:MetadataAttribute>
+                      <s:MetadataAttribute>
+                        <s:ConceptIdentity><Ref xmlns="" maintainableParentID="INSEE_CRP" id="UNIT_RESP" agencyID="INSEE"/></s:ConceptIdentity>
+                        <s:LocalRepresentation> <s:TextFormat textType="String"/></s:LocalRepresentation>
+                      </s:MetadataAttribute>
+                      <s:MetadataAttribute>
+                        <s:ConceptIdentity><Ref xmlns="" maintainableParentID="INSEE_CRP" id="COMMENT_MAJ" agencyID="INSEE"/></s:ConceptIdentity>
+                        <s:LocalRepresentation> <s:TextFormat textType="String"/></s:LocalRepresentation>
+                      </s:MetadataAttribute>
+            <s:MetadataAttribute>
+              <s:ConceptIdentity>
+                <Ref xmlns="" maintainableParentID="INSEE_CRP" id="DATE_DER_MAJ" agencyID="INSEE"/>
+              </s:ConceptIdentity>
+              <s:LocalRepresentation>
+                <s:TextFormat textType="BasicTimePeriod"/>
+              </s:LocalRepresentation>
+            </s:MetadataAttribute>
+                      <s:MetadataAttribute>
+                        <s:ConceptIdentity><Ref xmlns="" maintainableParentID="INSEE_CRP" id="DAT_PREV" agencyID="INSEE"/></s:ConceptIdentity>
+                        <s:LocalRepresentation><s:TextFormat textType="BasicTimePeriod"/> </s:LocalRepresentation>
+                      </s:MetadataAttribute>
+                      <s:MetadataAttribute>
+                        <s:ConceptIdentity><Ref xmlns="" maintainableParentID="INSEE_CRP" id="ANNEE_EDIT" agencyID="INSEE"/></s:ConceptIdentity>
+                        <s:LocalRepresentation><s:TextFormat textType="GregorianYear"/> </s:LocalRepresentation>
+                      </s:MetadataAttribute>
+                      <s:MetadataAttribute>
+                        <s:ConceptIdentity><Ref xmlns="" maintainableParentID="INSEE_CRP" id="SOURCE" agencyID="INSEE"/></s:ConceptIdentity>
+                        <s:LocalRepresentation><s:TextFormat textType="String"/> </s:LocalRepresentation>
+                      </s:MetadataAttribute>
+                      <s:MetadataAttribute>
+                        <s:ConceptIdentity><Ref xmlns="" maintainableParentID="INSEE_CRP" id="MILLESIME" agencyID="INSEE"/></s:ConceptIdentity>
+                        <s:LocalRepresentation><s:TextFormat textType="ReportingYear" /></s:LocalRepresentation> 
+                        <!-- Je n'ai pas réussi à représenter le fait que des données puissent être millésimées sur plusieurs années.
+                          La seul astuce serait d'utiliser le textType="TimeRange" avec une date de début et une durée -->
+                      </s:MetadataAttribute>
+                      <s:MetadataAttribute>
+                        <s:ConceptIdentity><Ref xmlns="" maintainableParentID="INSEE_CRP" id="COLLEC" agencyID="INSEE"/></s:ConceptIdentity>
+                        <s:LocalRepresentation><s:TextFormat textType="String"/> </s:LocalRepresentation>
+                      </s:MetadataAttribute>
+                      <s:MetadataAttribute>
+                        <s:ConceptIdentity><Ref xmlns="" maintainableParentID="INSEE_CRP" id="VOLUME" agencyID="INSEE"/></s:ConceptIdentity>
+                        <s:LocalRepresentation><s:TextFormat textType="BigInteger"/> </s:LocalRepresentation>
+                      </s:MetadataAttribute>
+                      <s:MetadataAttribute>
+                        <s:ConceptIdentity><Ref xmlns="" maintainableParentID="INSEE_CRP" id="FORMATS" agencyID="INSEE"/></s:ConceptIdentity>
+                        <s:LocalRepresentation><s:TextFormat textType="String"/> </s:LocalRepresentation>
+                        <!-- A raffiner, une liste de codes serait la bienvenue? -->
+                      </s:MetadataAttribute>
+                      <s:MetadataAttribute>
+                        <s:ConceptIdentity><Ref xmlns="" maintainableParentID="INSEE_CRP" id="CHAMP_COUV" agencyID="INSEE"/></s:ConceptIdentity>
+                        <s:LocalRepresentation><s:TextFormat textType="String"/> </s:LocalRepresentation>
+                        <!-- A raffiner, une liste de codes serait la bienvenue? -->
+                      </s:MetadataAttribute>
+                      <s:MetadataAttribute>
+                        <s:ConceptIdentity><Ref xmlns="" maintainableParentID="INSEE_CRP" id="NIV_GEO" agencyID="INSEE"/></s:ConceptIdentity>
+                        <s:LocalRepresentation><s:TextFormat textType="String"/> </s:LocalRepresentation>
+                        <!-- A raffiner, une liste de codes compatifble avec la version RDF du COG serait la bienvenue? -->
+                      </s:MetadataAttribute>
+                      <s:MetadataAttribute>
+                        <s:ConceptIdentity><Ref xmlns="" maintainableParentID="INSEE_CRP" id="COM_NIV_GEO" agencyID="INSEE"/></s:ConceptIdentity>
+                        <s:LocalRepresentation><s:TextFormat textType="String"/> </s:LocalRepresentation>
+                      </s:MetadataAttribute>
+                      <s:MetadataAttribute>
+                        <s:ConceptIdentity><Ref xmlns="" maintainableParentID="INSEE_CRP" id="PUBL_VIS" agencyID="INSEE"/></s:ConceptIdentity>
+                        <s:LocalRepresentation><s:TextFormat textType="String"/> </s:LocalRepresentation>
+                        <!-- A raffiner, une liste de codes serait la bienvenue? -->
+                      </s:MetadataAttribute>
+                      <s:MetadataAttribute>
+                        <s:ConceptIdentity>
+                          <Ref xmlns="" maintainableParentID="INSEE_CRP" id="THEME" agencyID="INSEE"/></s:ConceptIdentity>
+                        <s:LocalRepresentation> <s:Enumeration> <Ref xmlns="" agencyID="INSEE" id="INSEE_THEME_SCHEME" /> </s:Enumeration> </s:LocalRepresentation>
+                      </s:MetadataAttribute>
+                      <s:MetadataAttribute>
+                        <s:ConceptIdentity><Ref xmlns="" maintainableParentID="INSEE_CRP" id="PJ" agencyID="INSEE"/></s:ConceptIdentity>
+                        <s:LocalRepresentation><s:TextFormat textType="URI"/> </s:LocalRepresentation>
+                      </s:MetadataAttribute>
+                        <s:MetadataTarget>
+                          <Ref xmlns="" id="INSEE_REFER_SCHEME"/>
+                        </s:MetadataTarget>
+                      <s:MetadataTarget>
+                        <Ref xmlns="" id="PeriodRef"/>
+                      </s:MetadataTarget>
+                      <s:MetadataTarget>
+                        <Ref xmlns="" id="FournisseurDonnees"/>
+                      </s:MetadataTarget>
+                    </s:ReportStructure>
+                </s:MetadataStructureComponents>
+            </s:MetadataStructure>
+        </s:MetadataStructures>
+        </Structures>       
+</Structure>
+
