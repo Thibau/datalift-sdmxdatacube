@@ -37,5 +37,5 @@ framework
 core
 *~
 
-sdmx-datacube/build
-sdmx-datacube/dist
+sdmxdatacube/build
+sdmxdatacube/dist
