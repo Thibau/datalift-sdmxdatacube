@@ -50,90 +50,94 @@ import javax.ws.rs.core.Response;
 import org.datalift.fwk.project.Project;
 
 /**
- *
+ * 
  * @version 010213
  */
 @Path(SDMXDataCubeController.MODULE_NAME)
 public class SDMXDataCubeController extends ModuleController {
-    //-------------------------------------------------------------------------
-    // Constants
-    //-------------------------------------------------------------------------
+	// -------------------------------------------------------------------------
+	// Constants
+	// -------------------------------------------------------------------------
 
-    /** The module's name. */
-    public static final String MODULE_NAME = "sdmxdatacube";
+	/** The module's name. */
+	public static final String MODULE_NAME = "sdmxdatacube";
 
-    //-------------------------------------------------------------------------
-    // Instance members
-    //-------------------------------------------------------------------------
+	// -------------------------------------------------------------------------
+	// Instance members
+	// -------------------------------------------------------------------------
 
-    //-------------------------------------------------------------------------
-    // Constructors
-    //-------------------------------------------------------------------------
+	// -------------------------------------------------------------------------
+	// Constructors
+	// -------------------------------------------------------------------------
 
-    /**
-     * Creates a new InterconnectionController instance.
-     */
-    public SDMXDataCubeController() {
-        //TODO Switch to the right position.
-        super(MODULE_NAME, 13371337);
+	/**
+	 * Creates a new InterconnectionController instance.
+	 */
+	public SDMXDataCubeController() {
+		// TODO Switch to the right position.
+		super(MODULE_NAME, 13371337);
 
-        label = getTranslatedResource(MODULE_NAME + ".button");
-    }
+		label = getTranslatedResource(MODULE_NAME + ".button");
+	}
 
-    //-------------------------------------------------------------------------
-    // Project management
-    //-------------------------------------------------------------------------
+	// -------------------------------------------------------------------------
+	// Project management
+	// -------------------------------------------------------------------------
 
-    /**
-     * Tells the project manager to add a new button to projects with at least
-     * two sources.
-     * @param p Our current project.
-     * @return The URI to our project's main page.
-     */
-    public final UriDesc canHandle(Project p) {
-        UriDesc uridesc = null;
+	/**
+	 * Tells the project manager to add a new button to projects with at least
+	 * two sources.
+	 * 
+	 * @param p
+	 *            Our current project.
+	 * @return The URI to our project's main page.
+	 */
+	public final UriDesc canHandle(Project p) {
+		UriDesc uridesc = null;
 
-        try {
-            // The project can be handled if it has at least one RDF source.
-            if (true) {
-              // link URL, link label
-                uridesc = new UriDesc(this.getName() + "?project=" + p.getUri(), this.label);
+		try {
+			// The project can be handled if it has at least one RDF source.
+			if (true) {
+				// link URL, link label
+				uridesc = new UriDesc(
+						this.getName() + "?project=" + p.getUri(), this.label);
 
-                if (this.position > 0) {
-                    uridesc.setPosition(this.position);
-                }
-                LOG.debug("Project {} can use SDMXToDataCube", p.getTitle());
-            }
-            else {
-                LOG.debug("Project {} can not use SDMXToDataCube", p.getTitle());
-            }
-        }
-        catch (URISyntaxException e) {
-            LOG.fatal("Uh!", e);
-            throw new RuntimeException(e);
-        }
-        return uridesc;
-    }
+				if (this.position > 0) {
+					uridesc.setPosition(this.position);
+				}
+				LOG.debug("Project {} can use SDMXToDataCube", p.getTitle());
+			} else {
+				LOG.debug("Project {} can not use SDMXToDataCube", p.getTitle());
+			}
+		} catch (URISyntaxException e) {
+			LOG.fatal("Uh!", e);
+			throw new RuntimeException(e);
+		}
+		return uridesc;
+	}
 
-    //-------------------------------------------------------------------------
-    // Web services
-    //-------------------------------------------------------------------------
+	// -------------------------------------------------------------------------
+	// Web services
+	// -------------------------------------------------------------------------
 
-    /**
-     * Index page handler of the SDMXToDataCube module.
-     * @param projectId the project using SDMXToDataCube
-     * @return Our module's interface.
-     * @throws ObjectStreamException
-     */
-    @GET
-    @Produces(MediaType.TEXT_HTML)
-    public Response getIndexPage(@QueryParam("project") URI projectId) throws ObjectStreamException {
-        // Retrieve the current project and its sources.
-        Project proj = this.getProject(projectId);
+	/**
+	 * Index page handler of the SDMXToDataCube module.
+	 * 
+	 * @param projectId
+	 *            the project using SDMXToDataCube
+	 * @return Our module's interface.
+	 * @throws ObjectStreamException
+	 */
+	@GET
+	@Produces(MediaType.TEXT_HTML)
+	public Response getIndexPage(@QueryParam("project") URI projectId)
+			throws ObjectStreamException {
+		// Retrieve the current project and its sources.
+		Project proj = this.getProject(projectId);
 
-        HashMap<String, Object> args = new HashMap<String, Object>();
-        args.put("it", proj);
+		HashMap<String, Object> args = new HashMap<String, Object>();
+		args.put("it", proj);
 
-        return Response.ok(this.newViewable("/convert.vm", args)).build();
-    }
+		return Response.ok(this.newViewable("/convert.vm", args)).build();
+	}
 }
