@@ -2,6 +2,8 @@ package org.datalift.sdmxdatacube.utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Reader;
 
 /**
@@ -20,8 +22,8 @@ public class SdmxFileUtils {
 	 * @return True if i contains SDMX XML, else false
 	 * @throws IOException
 	 */
-	public static boolean isSdmx(Reader i) throws IOException {
-		BufferedReader in = new BufferedReader(i);
+	public static boolean isSdmx(InputStream is) throws IOException {
+		BufferedReader in = new BufferedReader(new InputStreamReader(is));
 		String line = null;
 		boolean comment = false;
 		int max_line = 100;

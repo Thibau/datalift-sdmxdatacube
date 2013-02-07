@@ -38,8 +38,6 @@ import java.io.ObjectStreamException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
-import java.util.LinkedList;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -66,6 +64,8 @@ public class SDMXDataCubeController extends ModuleController {
 	// Instance members
 	// -------------------------------------------------------------------------
 
+	protected SDMXDataCubeModel model;
+
 	// -------------------------------------------------------------------------
 	// Constructors
 	// -------------------------------------------------------------------------
@@ -78,6 +78,7 @@ public class SDMXDataCubeController extends ModuleController {
 		super(MODULE_NAME, 13371337);
 
 		label = getTranslatedResource(MODULE_NAME + ".button");
+		model = new SDMXDataCubeModel(MODULE_NAME);
 	}
 
 	// -------------------------------------------------------------------------
@@ -97,7 +98,7 @@ public class SDMXDataCubeController extends ModuleController {
 
 		try {
 			// The project can be handled if it has at least one RDF source.
-			if (true) {
+			if (model.hasMultipleSDMXSources(p, 1)) {
 				// link URL, link label
 				uridesc = new UriDesc(
 						this.getName() + "?project=" + p.getUri(), this.label);
