@@ -38,7 +38,10 @@ import java.io.ObjectStreamException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
+import java.util.LinkedList;
+
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -138,7 +141,62 @@ public class SDMXDataCubeController extends ModuleController {
 
 		HashMap<String, Object> args = new HashMap<String, Object>();
 		args.put("it", proj);
-
+		args.put("defaultOutputSourceName",
+				model.generateOutputSourceName(proj));
+		args.put("defaultOutputSourceURI", model.generateOutputSourceURI(proj));
 		return Response.ok(this.newViewable("/convert.vm", args)).build();
+	}
+
+	/**
+	 * Form submit handler : launching SDMXDataCube.
+	 * 
+	 * @param projectId
+	 *            the project using SDMXDataCube.
+	 * @param inputSource
+	 *            context of our source (reference) data.
+	 * @param outputSourceName
+	 *            name of the source which will be created.
+	 * @param outputSourceUri
+	 *            URI of the source (graph) which will be created to store the
+	 *            result.
+	 * @return Our module's post-process page.
+	 * @throws ObjectStreamException
+	 */
+	@POST
+	@Path("go")
+	@Produces(MediaType.TEXT_HTML)
+	public Response doSubmit(@QueryParam("projectId") URI projectId,
+			@QueryParam("inputSource") String inputSource,
+			@QueryParam("outputSourceName") String outputSourceName,
+			@QueryParam("outputSourceURI") String outputSourceURI)
+			throws ObjectStreamException {
+		Project proj = this.getProject(projectId);
+
+		inputSource = inputSource.trim();
+		outputSourceName = outputSourceName.trim();
+		outputSourceURI = outputSourceURI.trim();
+
+		String view;
+		HashMap<String, Object> args = new HashMap<String, Object>();
+		args.put("it", proj);
+
+		// We first validate all of the fields.
+		LinkedList<String> errorMessages = model.getErrorMessages(proj,
+				inputSource, outputSourceName, outputSourceURI);
+
+		if (errorMessages.isEmpty()) {
+			args.put("inputSource", inputSource);
+			args.put("outputSourceName", outputSourceName);
+			args.put("outputSourceURI", outputSourceURI);
+			// StringToURI is launched if and only if our values are all valid.
+			args.put("SDMXDataCube", model.launchSDMXDataCube(proj,
+					inputSource, outputSourceName, outputSourceURI));
+			view = "stringtouri-success.vm";
+		} else {
+			args.put("errormessages", errorMessages);
+			view = "stringtouri-error.vm";
+		}
+
+		return Response.ok(this.newViewable("/" + view, args)).build();
 	}
 }

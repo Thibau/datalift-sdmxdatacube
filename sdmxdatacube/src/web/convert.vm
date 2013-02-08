@@ -61,6 +61,10 @@
 
 
         Hello SDMXRDFParser !
+      <ul>
+         <li>defaultOutputSourceName : <strong>$defaultOutputSourceName</strong></li>
+         <li>defaultOutputSourceURI : <strong>$defaultOutputSourceURI</strong></li>
+      </ul>
 
       </div><!-- /row-fluid -->
 
@@ -75,3 +79,4 @@
     <script src="${moduleUri}/static/js/lib/knockout-2.2.1.js" language="javascript"></script>
   </body>
 </html>
+
