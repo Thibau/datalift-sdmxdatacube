@@ -19,7 +19,9 @@
 
     <link rel="stylesheet" href="${moduleUri}/static/css/bootstrap.css">
     <link rel="stylesheet" href="${moduleUri}/static/css/bootstrap-responsive.css">
-    <link rel="stylesheet" href="${moduleUri}/static/css/datalift.css">
+
+    <link rel="stylesheet" href="${moduleUri}/static/css/sdmxdatacube.css">
+    ##<link rel="stylesheet" href="http://localhost:1337/static/css/sdmxdatacube.css">
 
     <!-- fav and touch icons -->
     <link rel="shortcut icon" href="${moduleUri}/static/img/favicon.ico">
@@ -36,14 +38,14 @@
               <span class="icon-bar"></span>
           </a>
           <div class="brand">
-            <img id="datalift-logo" src="${moduleUri}/static/img/datalift-logo.png"/>
-            <a href="#">Datalift</a>
+            <img src="${moduleUri}/static/img/datalift-logo.png"/>
+            <h1><a href="#">#i18n("sdmxdatacube.title") - Datalift</a></h1>
           </div>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
               #i18n("login.label") <a href="#" class="navbar-link">$esc.html(${securityCtx.userPrincipal})</a>
             </p>
-            <ul class="nav">
+            <ul class="nav pull-right">
               <li><a href="${baseUri}/sparql">#i18n("sparql.endpoint.link")</a></li>
               <li><a href="${baseUri}/project">#i18n("project.workspace.link")</a></li>
             </ul>
