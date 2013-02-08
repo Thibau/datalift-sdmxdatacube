@@ -51,7 +51,7 @@ import javax.ws.rs.core.Response;
 import org.datalift.fwk.project.Project;
 
 /**
- * 
+ *
  * @version 010213
  */
 @Path(SDMXDataCubeController.MODULE_NAME)
@@ -91,7 +91,7 @@ public class SDMXDataCubeController extends ModuleController {
 	/**
 	 * Tells the project manager to add a new button to projects with at least
 	 * two sources.
-	 * 
+	 *
 	 * @param p
 	 *            Our current project.
 	 * @return The URI to our project's main page.
@@ -126,7 +126,7 @@ public class SDMXDataCubeController extends ModuleController {
 
 	/**
 	 * Index page handler of the SDMXToDataCube module.
-	 * 
+	 *
 	 * @param projectId
 	 *            the project using SDMXToDataCube
 	 * @return Our module's interface.
@@ -144,12 +144,12 @@ public class SDMXDataCubeController extends ModuleController {
 		args.put("defaultOutputSourceName",
 				model.generateOutputSourceName(proj));
 		args.put("defaultOutputSourceURI", model.generateOutputSourceURI(proj));
-		return Response.ok(this.newViewable("/convert.vm", args)).build();
+		return Response.ok(this.newViewable("/convert-form.vm", args)).build();
 	}
 
 	/**
 	 * Form submit handler : launching SDMXDataCube.
-	 * 
+	 *
 	 * @param projectId
 	 *            the project using SDMXDataCube.
 	 * @param inputSource
