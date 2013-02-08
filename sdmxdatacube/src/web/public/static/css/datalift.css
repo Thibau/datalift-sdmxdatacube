@@ -1,0 +1,30 @@
+/*!
+ * Copyright / Copr. 2010-2013 Atos - Public Sector France -
+ * BS & Innovation for the DataLift project
+ * Licensed under the CeCILL-B license
+ * http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.html
+ */
+
+#datalift-title {
+  font-size:2.5em;
+  font-style:italic;
+  font-weight:bold;
+  display:inline-block;
+  vertical-align:middle;
+}
+
+#datalift-logo {
+  width:48px;
+  height:60px;
+  display:inline-block;
+  vertical-align:top;
+}
+
+#datalift-partenaire {
+  display:inline;
+  height:60px;
+  width:auto;
+  vertical-align:middle;
+  margin-left: 10px;
+}
+
