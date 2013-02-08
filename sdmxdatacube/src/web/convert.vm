@@ -28,6 +28,10 @@
       </h3>
 
       <a href="#" class="button">Hello #i18n('sdmxdatacube.title') !</a>
+      <ul>
+         <li>defaultOutputSourceName : <strong>$defaultOutputSourceName</strong></li>
+         <li>defaultOutputSourceURI : <strong>$defaultOutputSourceURI</strong></li>
+      </ul>
       <br>
 
     </div>

@@ -90,7 +90,6 @@ public class SDMXDataCubeModel extends ModuleModel {
 	 *         {@link SparqlSource}.
 	 */
 	protected boolean isValidSource(Source src) {
-		// TODO
 		if (src.getType().equals(SourceType.XmlSource)) {
 			XmlSource xmlsrc = (XmlSource) src;
 			try {
@@ -101,5 +100,92 @@ public class SDMXDataCubeModel extends ModuleModel {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * SDMXDataCube error checker with message generation
+	 * 
+	 * @param proj
+	 *            the project using SDMXDataCube.
+	 * @param inputSource
+	 *            context of our source (reference) data.
+	 * @param outputSourceName
+	 *            name of the source which will be created.
+	 * @param outputSourceURI
+	 *            URI of the source (graph) which will be created to store the
+	 *            result.
+	 * @return
+	 */
+	public final LinkedList<String> getErrorMessages(Project proj,
+			String inputSource, String outputSourceName, String outputSourceURI) {
+
+		LinkedList<String> errors = new LinkedList<String>();
+
+		// We have to test every value one by one in order to add the right
+		// error message.
+		// TODO Add custom errors for empty values.
+		try {
+			Source s = proj.getSource(inputSource);
+			if (s == null)
+				errors.add(getTranslatedResource("error.inputSourceNotFound"));
+		} catch (IllegalArgumentException e) {
+			errors.add(getTranslatedResource("error.inputSourceNotSpecified"));
+		}
+
+		try {
+			Source s = proj.getSource(outputSourceURI);
+			if (s != null)
+				errors.add(getTranslatedResource("error.outputSourceAlreadyExists"));
+		} catch (IllegalArgumentException e) {
+			errors.add(getTranslatedResource("error.outputSourceURINotSpecified"));
+		}
+
+		if (outputSourceName.isEmpty())
+			errors.add(getTranslatedResource("error.outputSourceNameNotSpecified"));
+
+		return errors;
+	}
+
+	public final LinkedList<LinkedList<String>> launchSDMXDataCube(
+			Project proj, String inputSource, String outputSourceName,
+			String outputSourceURI) {
+		LinkedList<LinkedList<String>> ret = new LinkedList<LinkedList<String>>();
+		LinkedList<String> errors = this.getErrorMessages(proj, inputSource,
+				outputSourceName, outputSourceURI);
+		if (errors.isEmpty()) {
+			LOG.debug("lauching SDMXDataCube !");
+		} else {
+			// Should never happen.
+			LOG.fatal("Oops it should never have happened...");
+			ret = new LinkedList<LinkedList<String>>();
+			ret.add(errors);
+		}
+		return ret;
+	}
+
+	/**
+	 * Generate a default output name for prefill the form, based on the current
+	 * project
+	 * 
+	 * @param proj
+	 *            the current project
+	 * @return the name
+	 */
+	public String generateOutputSourceName(Project proj) {
+		// TODO Generate a good name :)
+		return "TODO générer un nom ici";
+	}
+
+	/**
+	 * Generate a default output URI for prefill the form, based on the current
+	 * project
+	 * 
+	 * @param proj
+	 *            the current project
+	 * @return the URI
+	 */
+	public String generateOutputSourceURI(Project proj) {
+		// TODO generate a good URI :)
+		return "TODO générer une bonne URI ini";
 	}
 }
