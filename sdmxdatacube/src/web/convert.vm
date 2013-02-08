@@ -9,34 +9,69 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>#i18n('sdmxdatacube.title') - Datalift</title>
 
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="#i18n('sdmxdatacube.description')">
 
-    #css_links
-    <link rel="stylesheet" href="${moduleUri}/static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${moduleUri}/static/css/bootstrap-responsive.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="${moduleUri}/static/css/bootstrap.css">
+    <link rel="stylesheet" href="${moduleUri}/static/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="${moduleUri}/static/css/datalift.css">
   </head>
   <body>
-    #banner
-    <div class="ui-widget-content" id="workspace">
+    <div class="navbar navbar-static-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </a>
+          <div class="brand">
+            <img id="datalift-logo" src="${moduleUri}/static/img/datalift-logo.png"/>
+            <a href="#">Datalift</a>
+          </div>
+          <div class="nav-collapse collapse">
+            <p class="navbar-text pull-right">
+              #i18n("login.label") <a href="#" class="navbar-link">$esc.html(${securityCtx.userPrincipal})</a>
+            </p>
+            <ul class="nav">
+              <li><a href="${baseUri}/sparql">#i18n("sparql.endpoint.link")</a></li>
+              <li><a href="${baseUri}/project">#i18n("project.workspace.link")</a></li>
+            </ul>
+          </div><!-- /nav-collapse -->
+        </div>
+      </div>
+    </div><!-- /navbar -->
 
-      <h3 class="ui-widget-header dl-widget-header">
-        #i18n('project.label' ${it.title}) &mdash; #i18n('sdmxdatacube.title')
-      </h3>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <!-- Page title -->
+        <div class="span12 mapping-title">
+          <h1>#i18n("sdmxdatacube.title")</h1>
+        </div><!-- /mapping-title -->
 
-      <a href="#" class="button">Hello #i18n('sdmxdatacube.title') !</a>
+
+        Hello SDMXRDFParser !
       <ul>
          <li>defaultOutputSourceName : <strong>$defaultOutputSourceName</strong></li>
          <li>defaultOutputSourceURI : <strong>$defaultOutputSourceURI</strong></li>
       </ul>
-      <br>
 
-    </div>
-    <script type="text/javascript" language="Javascript" src="${moduleUri}/static/js/jquery-1.9.0.min.js"></script>
-    <script type="text/javascript" language="Javascript" src="${moduleUri}/static/js/bootstrap.min.js"></script>
+      </div><!-- /row-fluid -->
 
+      <hr>
+      <footer>
+        <p>&copy; Datalift 2013 - #i18n("footer.more_info") <a href="http://www.datalift.org/">http://www.datalift.org/</a></p>
+      </footer>
+    </div><!-- /container-fluid -->
+
+    <script src="${moduleUri}/static/js/lib/jquery-1.9.1.min.js" language="javascript"></script>
+    <script src="${moduleUri}/static/js/lib/bootstrap-2.3.0.min.js" language="javascript"></script>
+    <script src="${moduleUri}/static/js/lib/knockout-2.2.1.js" language="javascript"></script>
   </body>
 </html>
+
