@@ -39,3 +39,5 @@ core
 
 sdmxdatacube/build
 sdmxdatacube/dist
+
+reload_module.sh
