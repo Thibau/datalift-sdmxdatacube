@@ -7,16 +7,16 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 
 /**
- * Utility for SDMX filesg
- * 
+ * Utility for SDMX files
+ *
  * @author thibaut
- * 
+ *
  */
 public class SdmxFileUtils {
 
 	/**
 	 * Check if a Reader contains Sdmx XML
-	 * 
+	 *
 	 * @param i
 	 *            the Reader
 	 * @return True if i contains SDMX XML, else false
