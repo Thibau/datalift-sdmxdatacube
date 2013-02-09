@@ -94,7 +94,7 @@
   <property name="app.name"             value="sdmxdatacube"/>
   <property name="app.version"          value="0.1"/>
   <property name="app.path"             value="/${app.name}"/>
-  <property name="app.long.name"        value="Sdmx to Datacube convertor module for DataLift"/>
+  <property name="app.long.name"        value="SDMX to Datacube converter module for DataLift"/>
 
   <property name="build.home"           location="${basedir}/build"/>
   <property name="dist.home"            location="${basedir}/dist"/>
