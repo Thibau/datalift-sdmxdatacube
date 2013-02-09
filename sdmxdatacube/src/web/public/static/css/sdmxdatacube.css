@@ -12,7 +12,15 @@ h1 small {
   text-transform : none;
 }
 
-h1 i {
+h2 {
+  font-size: 160%;
+}
+
+h2 small {
+  font-size: inherit;
+}
+
+h1 i, h2 i {
   position:relative;
   top:5px;
 }
@@ -28,4 +36,19 @@ h1 i {
 
 .nav, .navbar-text {
   display:inline-block;
+}
+
+
+/*
+ * Footer
+ * ---------------------------------------------------------------------
+ */
+
+footer {
+  min-height: 200px;
+}
+
+footer .container {
+  margin-top:10px;
+  text-align:center;
 }
