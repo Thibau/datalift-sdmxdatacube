@@ -41,3 +41,4 @@ sdmxdatacube/build
 sdmxdatacube/dist
 
 reload_module.sh
+live-build.xml
