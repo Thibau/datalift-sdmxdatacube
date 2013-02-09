@@ -4,11 +4,12 @@ h1 {
   vertical-align:middle;
   padding:0;
   margin:0;
-  text-transform: uppercase;
+  text-transform : uppercase;
 }
 
 h1 small {
   font-size : inherit;
+  text-transform : none;
 }
 
 h1 i {
