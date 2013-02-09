@@ -34,8 +34,6 @@
 
 package org.datalift.sdmxdatacube;
 
-import java.io.IOException;
-import java.net.URI;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -43,24 +41,17 @@ import org.datalift.fwk.Configuration;
 import org.datalift.fwk.i18n.PreferredLocales;
 import org.datalift.fwk.log.Logger;
 import org.datalift.fwk.project.Project;
-import org.datalift.fwk.project.ProjectManager;
 import org.datalift.fwk.project.Source;
+import org.datalift.fwk.project.SparqlSource;
 import org.datalift.fwk.project.TransformedRdfSource;
 import org.datalift.fwk.rdf.Repository;
-import org.openrdf.query.MalformedQueryException;
-import org.openrdf.query.QueryEvaluationException;
-import org.openrdf.query.QueryLanguage;
-import org.openrdf.query.TupleQuery;
-import org.openrdf.query.TupleQueryResult;
-import org.openrdf.repository.RepositoryConnection;
-import org.openrdf.repository.RepositoryException;
 
 /**
- * An abstract class for all of the interlinking modules, combining default
- * operations and values.
+ * An abstract class for all of modules, combining default operations and
+ * values.
  * 
- * @author tcolas
- * @version 07102012
+ * @author T. Colas, T. Marmin
+ * @version 090213
  */
 public abstract class ModuleModel {
 
@@ -95,13 +86,13 @@ public abstract class ModuleModel {
 	// -------------------------------------------------------------------------
 
 	/**
-	 * Creates a new InterconnectionModel instance.
+	 * Creates a new ModuleModel instance.
 	 * 
-	 * @param module
+	 * @param name
 	 *            Name of the module.
 	 */
-	public ModuleModel(String module) {
-		this.moduleName = module;
+	public ModuleModel(String name) {
+		this.moduleName = name;
 	}
 
 	/**
@@ -132,24 +123,25 @@ public abstract class ModuleModel {
 	protected abstract boolean isValidSource(Source src);
 
 	/**
-	 * Checks if a {@link Project proj} contains valid RDF sources.
+	 * Checks if a {@link Project proj} contains valid sources for the current
+	 * module.
 	 * 
 	 * @param proj
 	 *            The project to check.
-	 * @param minvalid
-	 *            The number of RDF sources we want to have.
-	 * @return True if there are more than number valid sources.
+	 * @param minValid
+	 *            The number of sources we want to have.
+	 * @return True if there are more than minValid valid sources.
 	 */
-	protected final boolean hasMultipleSDMXSources(Project proj, int minvalid) {
+	protected final boolean hasMultipleValidSources(Project proj, int minValid) {
 		int cpt = 0;
 		Iterator<Source> sources = proj.getSources().iterator();
 
-		while (sources.hasNext() && cpt < minvalid) {
+		while (sources.hasNext() && cpt < minValid) {
 			if (isValidSource(sources.next())) {
 				cpt++;
 			}
 		}
-		return cpt >= minvalid;
+		return cpt >= minValid;
 	}
 
 	/**

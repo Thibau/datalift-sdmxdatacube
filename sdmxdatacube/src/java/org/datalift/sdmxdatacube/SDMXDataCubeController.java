@@ -35,24 +35,28 @@
 package org.datalift.sdmxdatacube;
 
 import java.io.ObjectStreamException;
-import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.HashMap;
-import java.util.LinkedList;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.MediaType;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
+import org.datalift.fwk.MediaTypes;
 import org.datalift.fwk.project.Project;
+import org.datalift.fwk.view.TemplateModel;
 
 /**
- *
- * @version 010213
+ * The SDMX DataCube module's main class which exposes the SDMXRDFParser engine
+ * to the Datalift architecture.
+ * 
+ * @author T. Colas, T. Marmin
+ * @version 090213
  */
 @Path(SDMXDataCubeController.MODULE_NAME)
 public class SDMXDataCubeController extends ModuleController {
@@ -74,13 +78,11 @@ public class SDMXDataCubeController extends ModuleController {
 	// -------------------------------------------------------------------------
 
 	/**
-	 * Creates a new InterconnectionController instance.
+	 * Creates a new SDMXDataCubeController instance, sets its button position.
 	 */
 	public SDMXDataCubeController() {
 		// TODO Switch to the right position.
 		super(MODULE_NAME, 13371337);
-
-		label = getTranslatedResource(MODULE_NAME + ".button");
 		model = new SDMXDataCubeModel(MODULE_NAME);
 	}
 
@@ -91,33 +93,31 @@ public class SDMXDataCubeController extends ModuleController {
 	/**
 	 * Tells the project manager to add a new button to projects with at least
 	 * two sources.
-	 *
+	 * 
 	 * @param p
 	 *            Our current project.
 	 * @return The URI to our project's main page.
 	 */
 	public final UriDesc canHandle(Project p) {
-		UriDesc uridesc = null;
-
+		UriDesc projectPage = null;
 		try {
-			// The project can be handled if it has at least one RDF source.
-			if (true || model.hasMultipleSDMXSources(p, 1)) {
+			// The project can be handled if it has at least one SDMX source.
+			if (true || model.hasMultipleValidSources(p, 1)) {
 				// link URL, link label
-				uridesc = new UriDesc(
-						this.getName() + "?project=" + p.getUri(), this.label);
+				projectPage = new UriDesc(this.getName() + "?project="
+						+ p.getUri(), HttpMethod.GET,
+						getTranslatedResource(MODULE_NAME + ".button"));
+				projectPage.setPosition(this.position);
 
-				if (this.position > 0) {
-					uridesc.setPosition(this.position);
-				}
 				LOG.debug("Project {} can use SDMXToDataCube", p.getTitle());
 			} else {
-				LOG.debug("Project {} can not use SDMXToDataCube", p.getTitle());
+				LOG.debug("Project {} cannot use SDMXToDataCube", p.getTitle());
 			}
 		} catch (URISyntaxException e) {
-			LOG.fatal("Uh!", e);
-			throw new RuntimeException(e);
+			LOG.fatal("Failed to check status of project {}: {}", e,
+					p.getUri(), e.getMessage());
 		}
-		return uridesc;
+		return projectPage;
 	}
 
 	// -------------------------------------------------------------------------
@@ -126,30 +126,35 @@ public class SDMXDataCubeController extends ModuleController {
 
 	/**
 	 * Index page handler of the SDMXToDataCube module.
-	 *
+	 * 
 	 * @param projectId
 	 *            the project using SDMXToDataCube
 	 * @return Our module's interface.
-	 * @throws ObjectStreamException
 	 */
 	@GET
-	@Produces(MediaType.TEXT_HTML)
-	public Response getIndexPage(@QueryParam("project") URI projectId)
-			throws ObjectStreamException {
-		// Retrieve the current project and its sources.
-		Project proj = this.getProject(projectId);
-
-		HashMap<String, Object> args = new HashMap<String, Object>();
-		args.put("it", proj);
-		args.put("defaultOutputSourceName",
-				model.generateOutputSourceName(proj));
-		args.put("defaultOutputSourceURI", model.generateOutputSourceURI(proj));
-		return Response.ok(this.newViewable("/convert-form.vm", args)).build();
+	@Produces({ MediaTypes.TEXT_HTML_UTF8, MediaTypes.APPLICATION_XHTML_XML })
+	public Response getIndexPage(@QueryParam("project") java.net.URI projectId) {
+		Response response = null;
+		try {
+			// Retrieve project.
+			Project p = this.getProject(projectId);
+			// Display conversion configuration page.
+			TemplateModel view = this.newView("convert-form.vm", p);
+			view.put("defaultOutputSourceName",
+					model.generateOutputSourceName(p));
+			view.put("defaultOutputSourceURI", model.generateOutputSourceURI(p));
+			response = Response.ok(view, MediaTypes.TEXT_HTML_UTF8).build();
+		} catch (IllegalArgumentException e) {
+			TechnicalException error = new TechnicalException(
+					"ws.invalid.param.error", "project", projectId);
+			this.sendError(Status.BAD_REQUEST, error.getLocalizedMessage());
+		}
+		return response;
 	}
 
 	/**
 	 * Form submit handler : launching SDMXDataCube.
-	 *
+	 * 
 	 * @param projectId
 	 *            the project using SDMXDataCube.
 	 * @param inputSource
@@ -163,40 +168,42 @@ public class SDMXDataCubeController extends ModuleController {
 	 * @throws ObjectStreamException
 	 */
 	@POST
-	@Path("go")
-	@Produces(MediaType.TEXT_HTML)
-	public Response doSubmit(@QueryParam("projectId") URI projectId,
+	@Consumes(MediaTypes.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaTypes.TEXT_PLAIN)
+	public Response doSubmit(@QueryParam("projectId") java.net.URI projectId,
 			@QueryParam("inputSource") String inputSource,
 			@QueryParam("outputSourceName") String outputSourceName,
 			@QueryParam("outputSourceURI") String outputSourceURI)
-			throws ObjectStreamException {
-		Project proj = this.getProject(projectId);
+			throws WebApplicationException {
 
-		inputSource = inputSource.trim();
-		outputSourceName = outputSourceName.trim();
-		outputSourceURI = outputSourceURI.trim();
+		// TODO : voir le code de OntologyMapper.java
+		// Project proj = this.getProject(projectId);
 
-		String view;
-		HashMap<String, Object> args = new HashMap<String, Object>();
-		args.put("it", proj);
+		// inputSource = inputSource.trim();
+		// outputSourceName = outputSourceName.trim();
+		// outputSourceURI = outputSourceURI.trim();
 
-		// We first validate all of the fields.
-		LinkedList<String> errorMessages = model.getErrorMessages(proj,
-				inputSource, outputSourceName, outputSourceURI);
+		// String view;
+		// HashMap<String, Object> args = new HashMap<String, Object>();
+		// args.put("it", proj);
 
-		if (errorMessages.isEmpty()) {
-			args.put("inputSource", inputSource);
-			args.put("outputSourceName", outputSourceName);
-			args.put("outputSourceURI", outputSourceURI);
-			// StringToURI is launched if and only if our values are all valid.
-			args.put("SDMXDataCube", model.launchSDMXDataCube(proj,
-					inputSource, outputSourceName, outputSourceURI));
-			view = "stringtouri-success.vm";
-		} else {
-			args.put("errormessages", errorMessages);
-			view = "stringtouri-error.vm";
-		}
+		// // We first validate all of the fields.
+		// LinkedList<String> errorMessages = model.getErrorMessages(proj,
+		// inputSource, outputSourceName, outputSourceURI);
 
-		return Response.ok(this.newViewable("/" + view, args)).build();
+		// if (errorMessages.isEmpty()) {
+		// args.put("inputSource", inputSource);
+		// args.put("outputSourceName", outputSourceName);
+		// args.put("outputSourceURI", outputSourceURI);
+		// // StringToURI is launched if and only if our values are all valid.
+		// args.put("SDMXDataCube", model.launchSDMXDataCube(proj,
+		// inputSource, outputSourceName, outputSourceURI));
+		// view = "stringtouri-success.vm";
+		// } else {
+		// args.put("errormessages", errorMessages);
+		// view = "stringtouri-error.vm";
+		// }
+
+		return null; // Response.ok(this.newViewable("/" + view, args)).build();
 	}
 }

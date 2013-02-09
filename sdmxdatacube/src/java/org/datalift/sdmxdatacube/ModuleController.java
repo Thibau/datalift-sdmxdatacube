@@ -36,21 +36,24 @@ package org.datalift.sdmxdatacube;
 
 import static javax.ws.rs.core.HttpHeaders.ACCEPT;
 
-import java.io.ObjectStreamException;
-import java.net.URI;
+import java.io.FileNotFoundException;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
+import javax.ws.rs.core.Response.Status;
 
 import org.datalift.fwk.BaseModule;
 import org.datalift.fwk.Configuration;
+import org.datalift.fwk.MediaTypes;
 import org.datalift.fwk.ResourceResolver;
 import org.datalift.fwk.i18n.PreferredLocales;
 import org.datalift.fwk.log.Logger;
@@ -61,8 +64,11 @@ import org.datalift.fwk.view.TemplateModel;
 import org.datalift.fwk.view.ViewFactory;
 
 /**
+ * A generic base for a Datalift module which wraps Datalift's project
+ * management in a convenient way.
  * 
- * @version 010213
+ * @author T. Colas, T. Marmin
+ * @version 090213
  */
 public abstract class ModuleController extends BaseModule implements
 		ProjectModule {
@@ -86,26 +92,42 @@ public abstract class ModuleController extends BaseModule implements
 	// -------------------------------------------------------------------------
 
 	/** The requested module position in menu. */
-	protected int position;
-	/** The requested module label in menu. */
-	protected String label;
+	protected final int position;
+
+	/** The DataLift project manager. */
+	protected ProjectManager projectManager = null;
 
 	// -------------------------------------------------------------------------
 	// Constructors
 	// -------------------------------------------------------------------------
 
 	/**
-	 * InterlinkingController with default behavior.
+	 * ModuleController with default behavior.
 	 * 
 	 * @param name
 	 *            Name of the module.
 	 * @param pos
 	 *            Position of the module's button.
 	 */
-	public ModuleController(String name, int pos) {
+	public ModuleController(String name, int position) {
 		super(name);
 
-		position = pos;
+		this.position = position;
+	}
+	
+	//-------------------------------------------------------------------------
+	// Module contract support
+	// -------------------------------------------------------------------------
+
+	/** {@inheritDoc} */
+	@Override
+	public void postInit(Configuration configuration) {
+		super.postInit(configuration);
+
+		this.projectManager = configuration.getBean(ProjectManager.class);
+		if (this.projectManager == null) {
+			throw new TechnicalException("project.manager.not.available");
+		}
 	}
 
 	// -------------------------------------------------------------------------
@@ -128,33 +150,19 @@ public abstract class ModuleController extends BaseModule implements
 	/**
 	 * Retrieves a {@link Project} using its URI.
 	 * 
-	 * @param projuri
+	 * @param projectId
 	 *            the project URI.
 	 * 
 	 * @return the project.
-	 * @throws ObjectStreamException
+	 * @throws TechnicalException
 	 *             if the project does not exist.
 	 */
-	protected final Project getProject(URI projuri)
-			throws ObjectStreamException {
-		ProjectManager pm = Configuration.getDefault().getBean(
-				ProjectManager.class);
-		Project p = pm.findProject(projuri);
-
+	protected final Project getProject(java.net.URI projectId) {
+		Project p = this.projectManager.findProject(projectId);
+		if (p == null) {
+			throw new IllegalArgumentException(projectId.toString());
+		}
 		return p;
-	}
-
-	/**
-	 * Handles our Velocity templates.
-	 * 
-	 * @param templateName
-	 *            Name of the template to parse.
-	 * @param it
-	 *            Parameters for the template.
-	 * @return A new viewable in Velocity Template Language
-	 */
-	protected final TemplateModel newViewable(String templateName, Object it) {
-		return ViewFactory.newView("/" + this.getName() + templateName, it);
 	}
 
 	/**
@@ -167,21 +175,41 @@ public abstract class ModuleController extends BaseModule implements
 	 */
 	public abstract UriDesc canHandle(Project p);
 
+	/**
+	 * Return a model for the specified template view, populated with the
+	 * specified model object.
+	 * <p>
+	 * The template name shall be relative to the module, the module name is
+	 * automatically prepended.
+	 * </p>
+	 * 
+	 * @param templateName
+	 *            the relative template name.
+	 * @param it
+	 *            the model object to pass on to the view.
+	 * 
+	 * @return a populated template model.
+	 */
+	protected TemplateModel newView(String templateName, Object it) {
+		return ViewFactory.newView("/" + this.getName() + '/' + templateName,
+				it);
+	}
+
 	// -------------------------------------------------------------------------
 	// Web services
 	// -------------------------------------------------------------------------
 
 	/**
-	 * Index page handler for interlinking modules.
+	 * Index page handler that each module must implement.
 	 * 
 	 * @param projectId
 	 *            the project using our module.
 	 * @return Our module's interface.
-	 * @throws ObjectStreamException
-	 *             A Obscene Reject Mixt Opt.
 	 */
-	public abstract Response getIndexPage(@QueryParam("project") URI projectId)
-			throws ObjectStreamException;
+	@GET
+	@Produces({ MediaTypes.TEXT_HTML_UTF8, MediaTypes.APPLICATION_XHTML_XML })
+	public abstract Response getIndexPage(
+			@QueryParam("project") java.net.URI projectId);
 
 	/**
 	 * Traps accesses to module static resources and redirect them toward the
@@ -210,5 +238,53 @@ public abstract class ModuleController extends BaseModule implements
 				.getBean(ResourceResolver.class)
 				.resolveModuleResource(this.getName(), uriInfo, request,
 						acceptHdr);
+	}
+
+	/**
+	 * Throws a {@link WebApplicationException} with a HTTP status set to 400
+	 * (Bad request) to signal an invalid or missing web service parameter.
+	 * 
+	 * @param name
+	 *            the parameter name in the web service interface.
+	 * @param value
+	 *            the invalid parameter value or <code>null</code> if the
+	 *            parameter was absent.
+	 * 
+	 * @throws WebApplicationException
+	 *             always.
+	 */
+	private void throwInvalidParamError(String name, Object value)
+			throws WebApplicationException {
+		TechnicalException error = (value != null) ? new TechnicalException(
+				"ws.invalid.param.error", name, value)
+				: new TechnicalException("ws.missing.param", name);
+		this.sendError(Status.BAD_REQUEST, error.getLocalizedMessage());
+	}
+
+	/**
+	 * Logs and map an internal processing error onto HTTP status codes.
+	 * 
+	 * @param e
+	 *            the error to map.
+	 * 
+	 * @throws WebApplicationException
+	 *             always.
+	 */
+	private void handleInternalError(Exception e)
+			throws WebApplicationException {
+		TechnicalException error = null;
+		if (e instanceof WebApplicationException) {
+			throw (WebApplicationException) e;
+		} else if (e instanceof FileNotFoundException) {
+			this.sendError(Status.NOT_FOUND, e.getLocalizedMessage());
+		} else if (e instanceof TechnicalException) {
+			error = (TechnicalException) e;
+		} else {
+			error = new TechnicalException("ws.internal.error", e,
+					e.getLocalizedMessage());
+		}
+		LOG.fatal(e.getMessage(), e);
+		this.sendError(Status.INTERNAL_SERVER_ERROR,
+				error.getLocalizedMessage());
 	}
 }

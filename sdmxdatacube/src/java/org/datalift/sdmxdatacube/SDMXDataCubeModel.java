@@ -35,32 +35,22 @@
 package org.datalift.sdmxdatacube;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.LinkedList;
+
 import org.datalift.fwk.project.Project;
-import org.datalift.fwk.project.ProjectModule;
-import org.datalift.fwk.project.RdfFileSource;
 import org.datalift.fwk.project.Source;
-import org.datalift.fwk.project.XmlSource;
 import org.datalift.fwk.project.Source.SourceType;
+import org.datalift.fwk.project.SparqlSource;
 import org.datalift.fwk.project.TransformedRdfSource;
+import org.datalift.fwk.project.XmlSource;
 import org.datalift.sdmxdatacube.utils.SdmxFileUtils;
-import org.openrdf.query.MalformedQueryException;
-import org.openrdf.query.QueryEvaluationException;
-import org.openrdf.query.QueryLanguage;
-import org.openrdf.query.Update;
-import org.openrdf.query.UpdateExecutionException;
-import org.openrdf.repository.RepositoryConnection;
-import org.openrdf.repository.RepositoryException;
 
 /**
- * A {@link ProjectModule project module} that replaces RDF object fields from a
- * {@link RdfFileSource RDF file source} by URIs to RDF entities. This class
- * handles StringToURI's interconnection constraints.
+ * A module to convert SDMX (XML) data to DataCube (RDF). Uses the SDMXRDFParser
+ * library from SDMXSource.
  * 
- * @author tcolas
- * @version 07102012
+ * @author T. Colas, T. Marmin
+ * @version 090213
  */
 public class SDMXDataCubeModel extends ModuleModel {
 	// -------------------------------------------------------------------------
@@ -68,7 +58,7 @@ public class SDMXDataCubeModel extends ModuleModel {
 	// -------------------------------------------------------------------------
 
 	/**
-	 * Creates a new StringToURIModel instance.
+	 * Creates a new SDMXDataCubeModel instance.
 	 * 
 	 * @param name
 	 *            Name of the module.
@@ -82,7 +72,7 @@ public class SDMXDataCubeModel extends ModuleModel {
 	// -------------------------------------------------------------------------
 
 	/**
-	 * Checks if a given {@link Source} contains valid RDF-structured data.
+	 * Checks if a given {@link Source} contains valid SDMX-structured data.
 	 * 
 	 * @param src
 	 *            The source to check.
@@ -93,10 +83,12 @@ public class SDMXDataCubeModel extends ModuleModel {
 		if (src.getType().equals(SourceType.XmlSource)) {
 			XmlSource xmlsrc = (XmlSource) src;
 			try {
-				if (SdmxFileUtils.isSdmx(xmlsrc.getInputStream()))
+				if (SdmxFileUtils.isSdmx(xmlsrc.getInputStream())) {
 					return true;
+				}
 			} catch (IOException e) {
-				LOG.fatal("Hum..", e);
+				LOG.fatal("Failed to check status of source {}: {}", e,
+						src.getUri(), e.getMessage());
 			}
 		}
 		return false;
@@ -119,31 +111,32 @@ public class SDMXDataCubeModel extends ModuleModel {
 	public final LinkedList<String> getErrorMessages(Project proj,
 			String inputSource, String outputSourceName, String outputSourceURI) {
 
-		LinkedList<String> errors = new LinkedList<String>();
+		// TODO : Look at OntologyMapper.java
+		// LinkedList<String> errors = new LinkedList<String>();
 
-		// We have to test every value one by one in order to add the right
-		// error message.
-		// TODO Add custom errors for empty values.
-		try {
-			Source s = proj.getSource(inputSource);
-			if (s == null)
-				errors.add(getTranslatedResource("error.inputSourceNotFound"));
-		} catch (IllegalArgumentException e) {
-			errors.add(getTranslatedResource("error.inputSourceNotSpecified"));
-		}
+		// // We have to test every value one by one in order to add the right
+		// // error message.
+		// // TODO Add custom errors for empty values.
+		// try {
+		// Source s = proj.getSource(inputSource);
+		// if (s == null)
+		// errors.add(getTranslatedResource("error.inputSourceNotFound"));
+		// } catch (IllegalArgumentException e) {
+		// errors.add(getTranslatedResource("error.inputSourceNotSpecified"));
+		// }
 
-		try {
-			Source s = proj.getSource(outputSourceURI);
-			if (s != null)
-				errors.add(getTranslatedResource("error.outputSourceAlreadyExists"));
-		} catch (IllegalArgumentException e) {
-			errors.add(getTranslatedResource("error.outputSourceURINotSpecified"));
-		}
+		// try {
+		// Source s = proj.getSource(outputSourceURI);
+		// if (s != null)
+		// errors.add(getTranslatedResource("error.outputSourceAlreadyExists"));
+		// } catch (IllegalArgumentException e) {
+		// errors.add(getTranslatedResource("error.outputSourceURINotSpecified"));
+		// }
 
-		if (outputSourceName.isEmpty())
-			errors.add(getTranslatedResource("error.outputSourceNameNotSpecified"));
+		// if (outputSourceName.isEmpty())
+		// errors.add(getTranslatedResource("error.outputSourceNameNotSpecified"));
 
-		return errors;
+		return null; // errors;
 	}
 
 	public final LinkedList<LinkedList<String>> launchSDMXDataCube(
@@ -164,7 +157,7 @@ public class SDMXDataCubeModel extends ModuleModel {
 	}
 
 	/**
-	 * Generate a default output name for prefill the form, based on the current
+	 * Generate a default output name to prefill the form, based on the current
 	 * project
 	 * 
 	 * @param proj
