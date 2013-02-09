@@ -101,7 +101,7 @@ public class SDMXDataCubeController extends ModuleController {
 
 		try {
 			// The project can be handled if it has at least one RDF source.
-			if (model.hasMultipleSDMXSources(p, 1)) {
+			if (true || model.hasMultipleSDMXSources(p, 1)) {
 				// link URL, link label
 				uridesc = new UriDesc(
 						this.getName() + "?project=" + p.getUri(), this.label);

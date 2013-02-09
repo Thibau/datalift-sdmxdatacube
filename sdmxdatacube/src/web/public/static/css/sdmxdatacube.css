@@ -1,6 +1,30 @@
 h1 {
+  font-size:100%;
   display:inline-block;
+  vertical-align:middle;
+  padding:0;
+  margin:0;
+  text-transform: uppercase;
+}
+
+h1 small {
+  font-size : inherit;
+}
+
+h1 i {
   position:relative;
   top:5px;
-  vertical-align:middle;
+}
+
+.navbar .brand {
+  margin:0;
+  padding:0;
+}
+
+.nav-collapse {
+  float:right;
+}
+
+.nav, .navbar-text {
+  display:inline-block;
 }
