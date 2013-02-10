@@ -20,8 +20,8 @@
     <link rel="stylesheet" href="${moduleUri}/static/css/bootstrap.css">
     <link rel="stylesheet" href="${moduleUri}/static/css/bootstrap-responsive.css">
 
-    ## <link rel="stylesheet" href="${moduleUri}/static/css/sdmxdatacube.css">
-    <link rel="stylesheet" href="http://localhost:1337/static/css/sdmxdatacube.css">
+    <link rel="stylesheet" href="${moduleUri}/static/css/sdmxdatacube.css">
+    ## <link rel="stylesheet" href="http://localhost:1337/static/css/sdmxdatacube.css">
 
     <!-- fav and touch icons -->
     <link rel="shortcut icon" href="${moduleUri}/static/img/favicon.ico">
