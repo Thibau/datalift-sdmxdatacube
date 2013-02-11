@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project default="launch" name="live-sdmx-datacube" basedir="/Users/Will/Projects/datalift-sdmxdatacube/sdmxdatacube">
+
+	<!-- ================ Property Definitions ============================== -->
+
+	<property name="tomcat.home" value="/Library/Tomcat"/>
+	<property name="tomcat.datalift" value="${tomcat.home}/webapps/datalift/"/>
+	<property name="tomcat.bootstrap" value="${tomcat.home}/bin/bootstrap.jar"/>
+	<property name="tomcat.port" value="8080"/>
+	<property name="tomcat.server" value="localhost"/>
+	<property name="tomcat.url" value="http://${tomcat.server}:${tomcat.port}"/>
+	<property name="tomcat.username" value="tomcat"/>
+	<property name="tomcat.password" value="tomcat"/>
+
+
+	<property name="datalift.home" value="/Library/Datalift/datalift-home"/>
+	<property name="datalift.modules" value="${datalift.home}/modules"/>
+
+	<property name="module.name" value="sdmxdatacube"/>
+	<property name="module.jar" value="${basedir}/dist/${module.name}.jar"/>
+	<property name="module.url" value="${tomcat.url}/datalift/${module.name}"/>
+
+	<property name="tomcat.msg.start" value="Tomcat started"/>
+	<property name="tomcat.msg.stop" value="Tomcat stopped"/>
+	<property name="tomcat.msg.reload" value="Tomcat reloaded"/>
+
+	<!-- ================ Import main build.xml ============================== -->
+	<import file="${basedir}/build.xml"/>
+
+	<!-- ================ Catalina and Ant mix ============================== -->
+	<path id="catalina-ant-classpath">
+    <fileset dir="${tomcat.home}/lib">
+      <include name="catalina-ant.jar"/>
+    </fileset>
+    <!-- This one is enough for Tomcat 6. Tomcat 7 needs more : -->
+    <!-- http://paulgrenyer.blogspot.fr/2011/11/catalina-ant-for-tomcat-7.html -->
+	</path>
+
+	<taskdef name="catalina-reload" classname="org.apache.catalina.ant.ReloadTask" classpathref="catalina-ant-classpath"/>
+
+	<!-- ================ Target Definitions ============================== -->
+	<!--
+		Deploy only reloads part of the HTML rendering (templating or static).
+		It is necessary to reload (approx. 20s) to render Java modifications.
+	 -->
+	<target name="deploy" depends="live-dist, transfer"/>
+	<target name="redeploy" depends="deploy, reload"/>
+	<target name="launch" depends="deploy, start, open"/>
+
+	<!-- ================ Module deployment ============================== -->
+	<!--
+  		We must first compile our new module using its own Ant build file.
+  		Then transfer the resulting JAR to our deployment directory.
+  	-->
+	<target name="live-dist">
+		<antcall target="dist"/>
+	</target>
+
+	<target name="transfer">
+		<copy file="${module.jar}" todir="${datalift.modules}" overwrite="true"/>
+	</target>
+
+	<!-- ================ Tomcat management ============================== -->
+	<!--
+		We have to wait for Tomcat to stop / start before proceeding.
+		Tomcat is launched with a specific JVM arg for Datalift.
+		We add notifications with say and growlnotify.
+	 -->
+	<target name="start">
+		<java jar="${tomcat.bootstrap}" fork="true" spawn="true">
+			<jvmarg value="-Dcatalina.home=${tomcat.home}"/>
+			<jvmarg value="-Ddatalift.home=${datalift.home}"/>
+		</java>
+		<waitfor maxwait="10000" checkevery="1000">
+			<http url="${module.url}"/>
+		</waitfor>
+		<exec executable="say" spawn="yes">
+			<arg line="${tomcat.msg.start}"/>
+		</exec>
+	</target>
+
+	<target name="stop">
+		<java jar="${tomcat.bootstrap}" fork="true" spawn="true">
+			<jvmarg value="-Dcatalina.home=${tomcat.home}"/>
+			<arg line="stop"/>
+		</java>
+		<waitfor maxwait="3000" checkevery="1000">
+			<not>
+				<socket server="${tomcat.server}" port="${tomcat.port}"/>
+			</not>
+		</waitfor>
+		<exec executable="say" spawn="yes">
+			<arg line="${tomcat.msg.stop}"/>
+		</exec>
+	</target>
+
+	<target name="reload">
+		<catalina-reload  url="${tomcat.url}/manager" username="${tomcat.username}" password="${tomcat.password}" path="/datalift"/>
+		<exec executable="say" spawn="yes">
+			<arg line="${tomcat.msg.reload}"/>
+		</exec>
+	</target>
+
+	<!-- ================ URL opener ============================== -->
+	<!--
+		Opens the given URL into the default browser.
+		Useless if using LiveReload (set to  source code).
+	-->
+	<target name="open">
+		<exec executable="open" spawn="yes">
+			<arg line="${module.url}"/>
+		</exec>
+	</target>
+
+</project>
