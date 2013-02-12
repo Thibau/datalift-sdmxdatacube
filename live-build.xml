@@ -45,6 +45,7 @@
 	 -->
 	<target name="deploy" depends="live-dist, transfer"/>
 	<target name="redeploy" depends="deploy, reload"/>
+	<target name="restart" depends="stop, deploy, start"/>
 	<target name="launch" depends="deploy, start, open"/>
 
 	<!-- ================ Module deployment ============================== -->
