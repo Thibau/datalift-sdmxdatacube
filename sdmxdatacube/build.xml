@@ -261,11 +261,21 @@
 		</copy>
 	</target>
 
+  <!-- Copy the application resources -->
 	<target name="prepare-dist" depends="prepare">
 		<!-- Copy web application page templates and resources -->
 		<copy todir="${classes.dir}" includeEmptyDirs="false" preservelastmodified="true">
 			<fileset dir="${web.home}" excludes="**/.*" />
 		</copy>
+    <!-- Copy runtime JARs to embed in distribution -->
+    <copy todir="${classes.dir}" flatten="true" preservelastmodified="true">
+      <fileset dir="${run.lib.home}">
+        <include name="**/*.jar"/>
+      </fileset>
+      <fileset dir="${query.dist.home}">
+        <include name="**/*.jar"/>
+      </fileset>
+    </copy>
 		<!-- Create build directories as needed -->
 		<mkdir dir="${dist.home}" />
 	</target>
