@@ -116,7 +116,13 @@
                     </fieldset>
                     <fieldset>
                       <div class="form-actions well well-small pull-right">
-                        <button type="submit" class="btn btn-primary">#i18n('launch.btn.label')</button>
+
+                        <label class="checkbox inline" for="viewResults">
+                          <input name="viewResults" id="viewResults" data-bind="checked: viewResults" type="checkbox" required>
+                          #i18n('results.check.label')
+                        </label>
+
+                        <button type="submit" class="btn btn-primary" autocomplete="off">#i18n('launch.btn.label')</button>
                         <button type="button" class="btn">#i18n('cancel.btn.label')</button>
                       </div>
                     </fieldset>
@@ -188,12 +194,10 @@
     <script type="text/javascript">
     var projectSources = [
     #foreach($s in $it.sources)
-      #if($s.type == $requiredSourceType)
-        {
-          uri : "$esc.javascript($!{s.uri})",
-          title : "$esc.javascript($!{s.title})"
-        },
-      #end
+      {
+        uri : "$esc.javascript($!{s.uri})",
+        title : "$esc.javascript($!{s.title})"
+      },
     #end
     ];
 
@@ -201,8 +205,8 @@
       var self = this;
 
       self.projectSources = projectSources;
-
       self.selectedSource = ko.observable();
+      self.viewResults = ko.observable(true);
     }
 
     ko.applyBindings(new ConverterViewModel());
