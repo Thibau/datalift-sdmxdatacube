@@ -134,6 +134,15 @@
               </ul>
 
 
+               <form method="post" action="${moduleUri}/go">
+                <input type="hidden" name="projectId" value="$projectId" />
+                <ul>
+                  <li>Input source : <input type="text" name="inputSource" value="" /></li>
+                  <li>Output source name : <input type="text" name="outputSourceName" value="$defaultOutputSourceName" /></li>
+                  <li>Output source URI : <input type="text" name="outputSourceURI" value="$defaultOutputSourceURI" /></li>
+              </ul>
+              <input type="submit" value="Go !" />
+              </form>
             </div>
 
             <!-- Parameters -->

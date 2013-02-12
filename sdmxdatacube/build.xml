@@ -32,9 +32,9 @@
 
 <project name="datalift-sdmxdatacube" default="dist" basedir=".">
 
-  <!-- ================ Property Definitions ============================== -->
+	<!-- ================ Property Definitions ============================== -->
 
-  <!--
+	<!--
     Each of the following properties are used in the build script.
     Values for these properties are set by the first place they are
     defined, from the following list:
@@ -57,18 +57,21 @@
     in the "build.xml" script.
    -->
 
-  <property file="${user.home}/datalift-build.properties"/>
-  <property file="build.properties"/>
+	<property file="${user.home}/datalift-build.properties" />
+	<property file="build.properties" />
 
-  <property name="fwk.home"  location="${basedir}/../framework"/>
-  <property file="${fwk.home}/build.properties"/>
+	<property name="fwk.home" location="${basedir}/../framework" />
+	<property file="${fwk.home}/build.properties" />
 
-  <property name="core.home" location="${basedir}/../core"/>
-  <property file="${core.home}/build.properties"/>
+	<property name="core.home" location="${basedir}/../core" />
+	<property file="${core.home}/build.properties" />
 
-  <!-- ================ File and Directory Names ========================== -->
+	<property name="query.home" location="${basedir}/../incubator/query" />
+	<property file="${query.home}/build.properties" />
 
-  <!--
+	<!-- ================ File and Directory Names ========================== -->
+
+	<!--
     These properties generally define file and directory names (or paths)
     that affect where the build process stores its outputs.
 
@@ -91,42 +94,42 @@
                         Defaults to "dist".
    -->
 
-  <property name="app.name"             value="sdmxdatacube"/>
-  <property name="app.version"          value="0.1"/>
-  <property name="app.path"             value="/${app.name}"/>
-  <property name="app.long.name"        value="SDMX to Datacube converter module for DataLift"/>
+	<property name="app.name" value="sdmxdatacube" />
+	<property name="app.version" value="0.1" />
+	<property name="app.path" value="/${app.name}" />
+	<property name="app.long.name" value="SDMX to Datacube converter module for DataLift" />
 
-  <property name="build.home"           location="${basedir}/build"/>
-  <property name="dist.home"            location="${basedir}/dist"/>
+	<property name="build.home" location="${basedir}/build" />
+	<property name="dist.home" location="${basedir}/dist" />
 
-  <property name="src.home"             location="${basedir}/src/java"/>
-  <property name="web.home"             location="${basedir}/src/web"/>
+	<property name="src.home" location="${basedir}/src/java" />
+	<property name="web.home" location="${basedir}/src/web" />
 
-  <property name="lib.home"             location="${basedir}/lib"/>
-  <property name="run.lib.home"         location="${lib.home}/runtime"/>
+	<property name="lib.home" location="${basedir}/lib" />
+	<property name="run.lib.home" location="${lib.home}/runtime" />
 
-  <property name="fwk.web.home"         location="${fwk.home}/src/web"/>
-  <property name="fwk.lib.home"         location="${fwk.home}/lib"/>
-  <property name="fwk.dist.home"        location="${fwk.home}/dist"/>
-  <property name="fwk.build.libs"       location="${fwk.lib.home}/buildtime"/>
-  <property name="fwk.run.libs"         location="${fwk.lib.home}/runtime"/>
-  <property name="core.run.libs"        location="${core.home}/lib/runtime"/>
+	<property name="fwk.web.home" location="${fwk.home}/src/web" />
+	<property name="fwk.lib.home" location="${fwk.home}/lib" />
+	<property name="fwk.dist.home" location="${fwk.home}/dist" />
+	<property name="fwk.build.libs" location="${fwk.lib.home}/buildtime" />
+	<property name="fwk.run.libs" location="${fwk.lib.home}/runtime" />
+	<property name="core.run.libs" location="${core.home}/lib/runtime" />
+	<property name="query.dist.home" location="${query.home}/dist" />
 
-  <property name="classes.dir"          location="${build.home}/classes"/>
-  <property name="docs.dir"             location="${dist.home}/docs"/>
+	<property name="classes.dir" location="${build.home}/classes" />
+	<property name="docs.dir" location="${dist.home}/docs" />
 
-  <property name="jar.name"             value="${app.name}.jar"/>
-  <property name="jar.path"             location="${dist.home}/${jar.name}"/>
+	<property name="jar.name" value="${app.name}.jar" />
+	<property name="jar.path" location="${dist.home}/${jar.name}" />
 
-  <property name="locale.default"       value="en"/>
-  <property name="locale.default_resources"
-            value="${web.home}/resources_${locale.default}.properties"/>
+	<property name="locale.default" value="en" />
+	<property name="locale.default_resources" value="${web.home}/resources_${locale.default}.properties" />
 
-  <available property="locale.exists" file="${locale.default_resources}"/>
+	<available property="locale.exists" file="${locale.default_resources}" />
 
-  <!-- ================ Compilation Control Options ======================= -->
+	<!-- ================ Compilation Control Options ======================= -->
 
-  <!--
+	<!--
     These properties control option settings on the Javac compiler when it
     is invoked using the <javac>
   task.
@@ -134,13 +137,13 @@
      - compile.deprecation  Should compilation include the deprecation option?
      - compile.optimize     Should compilation include the optimize option?
    -->
-  <property name="compile.debug"        value="true"/>
-  <property name="compile.deprecation"  value="false"/>
-  <property name="compile.optimize"     value="false"/>
+	<property name="compile.debug" value="true" />
+	<property name="compile.deprecation" value="false" />
+	<property name="compile.optimize" value="false" />
 
-  <!-- ================ Compilation Classpath ============================= -->
+	<!-- ================ Compilation Classpath ============================= -->
 
-  <!--
+	<!--
     Rather than relying on the CLASSPATH environment variable, Ant includes
     features that makes it easy to dynamically construct the classpath you
     need for each compilation.  The example below constructs the compile
@@ -149,57 +152,61 @@
     anything that you explicitly added.
    -->
 
-  <path id="runtime.classpath">
-    <!-- Include all JAR files that will be included in webapp WAR -->
-    <fileset dir="${fwk.run.libs}">
-      <include name="**/*.jar"/>
-    </fileset>
-    <fileset dir="${run.lib.home}">
-      <include name="**/*.jar"/>
-    </fileset>
-    <fileset dir="${fwk.dist.home}">
-      <include name="**/*.jar"/>
-    </fileset>
-  </path>
+	<path id="runtime.classpath">
+		<!-- Include all JAR files that will be included in webapp WAR -->
+		<fileset dir="${fwk.run.libs}">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="${run.lib.home}">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="${fwk.dist.home}">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="${query.dist.home}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
 
-  <path id="compile.classpath">
-    <!-- Runtime libraries -->
-    <path refid="runtime.classpath"/>
-    <!-- Buildtime-only libraries -->
-    <fileset dir="${fwk.build.libs}">
-      <include name="**/*.jar"/>
-    </fileset>
-    <fileset dir="${core.run.libs}">
-      <include name="**/*.jar"/>
-    </fileset>
-  </path>
+	<path id="compile.classpath">
+		<!-- Runtime libraries -->
+		<path refid="runtime.classpath" />
+		<!-- Buildtime-only libraries -->
+		<fileset dir="${fwk.build.libs}">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="${core.run.libs}">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="${query.dist.home}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
 
-  <!-- ================ All Target ======================================== -->
+	<!-- ================ All Target ======================================== -->
 
-  <!--
+	<!--
     The "all" target is a shortcut for running the "clean" target followed
     by the "dist" target (to force a complete recompile and packaging).
    -->
 
-  <target name="all" depends="clean,dist"
-   description="Cleans build and dist directories, then rebuilds distribution"/>
+	<target name="all" depends="clean,dist" description="Cleans build and dist directories, then rebuilds distribution" />
 
-  <!-- ================ Clean Target ====================================== -->
+	<!-- ================ Clean Target ====================================== -->
 
-  <!--
+	<!--
     The "clean" target deletes any previous "build" and "dist" directories,
     so that you can be ensured the application can be built from scratch.
    -->
 
-  <target name="clean" depends="init"
-          description="Deletes build and dist directories">
-    <delete dir="${build.home}"/>
-    <delete dir="${dist.home}"/>
-  </target>
+	<target name="clean" depends="init" description="Deletes build and dist directories">
+		<delete dir="${build.home}" />
+		<delete dir="${dist.home}" />
+	</target>
 
-  <!-- ================ Prepare Target ==================================== -->
+	<!-- ================ Prepare Target ==================================== -->
 
-  <!--
+	<!--
     The "prepare" target is used to create the "build" destination directory,
     and copy the static contents of your web application to it.  If you need
     to copy static files from external dependencies, you can customize the
@@ -208,70 +215,62 @@
     Normally, this task is executed indirectly when needed.
    -->
 
-  <target name="init">
-    <tstamp/>
-  </target>
+	<target name="init">
+		<tstamp />
+	</target>
 
-  <target name="prepare" depends="init">
-    <!-- Create build directories as needed -->
-    <mkdir dir="${build.home}"/>
-    <!-- Create compilation target directory -->
-    <mkdir dir="${classes.dir}"/>
-  </target>
+	<target name="prepare" depends="init">
+		<!-- Create build directories as needed -->
+		<mkdir dir="${build.home}" />
+		<!-- Create compilation target directory -->
+		<mkdir dir="${classes.dir}" />
+	</target>
 
-  <!-- ================ Compile Target ==================================== -->
+	<!-- ================ Compile Target ==================================== -->
 
-  <!--
+	<!--
     The "compile" target transforms source files (from your "src" directory)
     into object files in the appropriate location in the build directory.
     This example assumes that you will be including your classes in an
     unpacked directory hierarchy under "/WEB-INF/classes".
    -->
 
-  <target name="compile" depends="prepare"
-                         description="Compiles Java sources">
-    <!-- Compile Java classes as necessary -->
-    <javac srcdir="${src.home}"
-          destdir="${classes.dir}"
-            debug="${compile.debug}"
-      deprecation="${compile.deprecation}"
-         optimize="${compile.optimize}">
-      <classpath refid="compile.classpath"/>
-    </javac>
-    <!-- Copy application resources -->
-    <copy todir="${classes.dir}" includeEmptyDirs="false"
-                                 preservelastmodified="true">
-      <fileset dir="${src.home}" excludes="**/*.java,**/*.html,**/.*"/>
-    </copy>
-  </target>
+	<target name="compile" depends="prepare" description="Compiles Java sources">
+		<!-- Compile Java classes as necessary -->
+		<javac srcdir="${src.home}" destdir="${classes.dir}" debug="${compile.debug}" deprecation="${compile.deprecation}" optimize="${compile.optimize}">
+			<classpath refid="compile.classpath" />
+		</javac>
+		<!-- Copy application resources -->
+		<copy todir="${classes.dir}" includeEmptyDirs="false" preservelastmodified="true">
+			<fileset dir="${src.home}" excludes="**/*.java,**/*.html,**/.*" />
+		</copy>
+	</target>
 
-  <!-- ================ Dist Target ======================================= -->
+	<!-- ================ Dist Target ======================================= -->
 
-  <!--
+	<!--
     The "dist" target creates the web application configuration files
     and makes then ready for deployment.
    -->
 
-  <!-- Copy default locale resource file -->
-  <target name="resource-copy" if="locale.exists">
-    <copy todir="${classes.dir}">
-      <fileset dir="${web.home}" includes="*_${locale.default}.properties"/>
-      <mapper type="glob"
-              from="*_${locale.default}.properties" to="*.properties"/>
-    </copy>
-  </target>
+	<!-- Copy default locale resource file -->
+	<target name="resource-copy" if="locale.exists">
+		<copy todir="${classes.dir}">
+			<fileset dir="${web.home}" includes="*_${locale.default}.properties" />
+			<mapper type="glob" from="*_${locale.default}.properties" to="*.properties" />
+		</copy>
+	</target>
 
-  <target name="prepare-dist" depends="prepare">
-    <!-- Copy web application page templates and resources -->
-    <copy todir="${classes.dir}" includeEmptyDirs="false"
-                                 preservelastmodified="true">
-      <fileset dir="${web.home}" excludes="**/.*"/>
-    </copy>
-    <!-- Create build directories as needed -->
-    <mkdir dir="${dist.home}"/>
-  </target>
+	<target name="prepare-dist" depends="prepare">
+		<!-- Copy web application page templates and resources -->
+		<copy todir="${classes.dir}" includeEmptyDirs="false" preservelastmodified="true">
+			<fileset dir="${web.home}" excludes="**/.*" />
+		</copy>
+		<!-- Create build directories as needed -->
+		<mkdir dir="${dist.home}" />
+	</target>
 
-  <!--
+	<!--
     The "dist" target creates a binary distribution of your application
     in a directory structure ready to be archived in a tar.gz or zip file.
     Note that this target depends on two other targets:
@@ -281,49 +280,47 @@
         deployement.
    -->
 
-  <target name="dist" depends="compile,prepare-dist,resource-copy"
-                      description="Create binary distribution">
-    <!-- Create module JAR file -->
-    <!--
+	<target name="dist" depends="compile,prepare-dist,resource-copy" description="Create binary distribution">
+		<!-- Create module JAR file -->
+		<!--
     <copy file="${stringtouri.jar}" tofile="${jar.path}"/>
     -->
-    <jar jarfile="${jar.path}" update="true">
-      <fileset dir="${classes.dir}"/>
-      <service type="org.datalift.fwk.Module">
-        <provider classname="org.datalift.sdmxdatacube.SDMXDataCubeController"/>
-      </service>
-    </jar>
-  </target>
+		<jar jarfile="${jar.path}" update="true">
+			<fileset dir="${classes.dir}" />
+			<service type="org.datalift.fwk.Module">
+				<provider classname="org.datalift.sdmxdatacube.SDMXDataCubeController" />
+			</service>
+		</jar>
+	</target>
 
-  <!-- ================ Helper Targets ==================================== -->
+	<!-- ================ Helper Targets ==================================== -->
 
-  <!--
+	<!--
     The "debug" target lists the build configuration.
    -->
 
-  <target name="debug" depends="init"
-                       description="Lists the build configuration">
+	<target name="debug" depends="init" description="Lists the build configuration">
 
-    <echo message="Build properties:"/>
-    <echo message=""/>
-    <echo message=" - Application configuration:"/>
-    <echo message="   - app.name            = ${app.name}"/>
-    <echo message="   - app.long.name       = ${app.long.name}"/>
-    <echo message="   - app.version         = ${app.version}"/>
-    <echo message="   - jar.name            = ${jar.name}"/>
-    <echo message=""/>
-    <echo message=" - Generation options:"/>
-    <echo message="   - compile.debug       = ${compile.debug}"/>
-    <echo message="   - compile.deprecation = ${compile.deprecation}"/>
-    <echo message="   - compile.optimize    = ${compile.optimize}"/>
-    <echo message=""/>
-    <echo message=" - Build environment:"/>
-    <echo message="   - basedir             = ${basedir}"/>
-    <echo message="   - build.home          = ${build.home}"/>
-    <echo message="   - dist.home           = ${dist.home}"/>
-    <echo message="   - user.home           = ${user.home}"/>
-    <echo message=""/>
+		<echo message="Build properties:" />
+		<echo message="" />
+		<echo message=" - Application configuration:" />
+		<echo message="   - app.name            = ${app.name}" />
+		<echo message="   - app.long.name       = ${app.long.name}" />
+		<echo message="   - app.version         = ${app.version}" />
+		<echo message="   - jar.name            = ${jar.name}" />
+		<echo message="" />
+		<echo message=" - Generation options:" />
+		<echo message="   - compile.debug       = ${compile.debug}" />
+		<echo message="   - compile.deprecation = ${compile.deprecation}" />
+		<echo message="   - compile.optimize    = ${compile.optimize}" />
+		<echo message="" />
+		<echo message=" - Build environment:" />
+		<echo message="   - basedir             = ${basedir}" />
+		<echo message="   - build.home          = ${build.home}" />
+		<echo message="   - dist.home           = ${dist.home}" />
+		<echo message="   - user.home           = ${user.home}" />
+		<echo message="" />
 
-  </target>
+	</target>
 
 </project>

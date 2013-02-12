@@ -37,6 +37,7 @@ package org.datalift.sdmxdatacube;
 import static javax.ws.rs.core.HttpHeaders.ACCEPT;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
@@ -60,8 +61,12 @@ import org.datalift.fwk.log.Logger;
 import org.datalift.fwk.project.Project;
 import org.datalift.fwk.project.ProjectManager;
 import org.datalift.fwk.project.ProjectModule;
+import org.datalift.fwk.project.Source;
+import org.datalift.fwk.project.TransformedRdfSource;
+import org.datalift.fwk.project.XmlSource;
 import org.datalift.fwk.view.TemplateModel;
 import org.datalift.fwk.view.ViewFactory;
+import org.openrdf.model.URI;
 
 /**
  * A generic base for a Datalift module which wraps Datalift's project
@@ -114,8 +119,8 @@ public abstract class ModuleController extends BaseModule implements
 
 		this.position = position;
 	}
-	
-	//-------------------------------------------------------------------------
+
+	// -------------------------------------------------------------------------
 	// Module contract support
 	// -------------------------------------------------------------------------
 
@@ -253,7 +258,7 @@ public abstract class ModuleController extends BaseModule implements
 	 * @throws WebApplicationException
 	 *             always.
 	 */
-	private void throwInvalidParamError(String name, Object value)
+	protected void throwInvalidParamError(String name, Object value)
 			throws WebApplicationException {
 		TechnicalException error = (value != null) ? new TechnicalException(
 				"ws.invalid.param.error", name, value)
@@ -270,7 +275,7 @@ public abstract class ModuleController extends BaseModule implements
 	 * @throws WebApplicationException
 	 *             always.
 	 */
-	private void handleInternalError(Exception e)
+	protected void handleInternalError(Exception e)
 			throws WebApplicationException {
 		TechnicalException error = null;
 		if (e instanceof WebApplicationException) {
@@ -287,4 +292,35 @@ public abstract class ModuleController extends BaseModule implements
 		this.sendError(Status.INTERNAL_SERVER_ERROR,
 				error.getLocalizedMessage());
 	}
+
+	/**
+	 * Creates a new transformed RDF source and attach it to the specified
+	 * project.
+	 * 
+	 * @param p
+	 *            the owning project.
+	 * @param parent
+	 *            the parent source object.
+	 * @param name
+	 *            the new source name.
+	 * @param uri
+	 *            the new source URI.
+	 * 
+	 * @return the newly created transformed RDF source.
+	 * @throws IOException
+	 *             if any error occurred creating the source.
+	 */
+	protected TransformedRdfSource addResultSource(Project p, Source parent,
+			String name, URI uri) throws IOException {
+
+		java.net.URI id = java.net.URI.create(uri.toString());
+
+		TransformedRdfSource newSrc = this.projectManager
+				.newTransformedRdfSource(p, id, name, null, id, parent);
+
+		this.projectManager.saveProject(p);
+
+		return newSrc;
+	}
+
 }
