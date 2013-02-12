@@ -97,7 +97,7 @@ public abstract class ModuleController extends BaseModule implements
 	// -------------------------------------------------------------------------
 
 	/** The requested module position in menu. */
-	protected final int position;
+	protected final int MODULE_POSITION;
 
 	/** The DataLift project manager. */
 	protected ProjectManager projectManager = null;
@@ -117,7 +117,7 @@ public abstract class ModuleController extends BaseModule implements
 	public ModuleController(String name, int position) {
 		super(name);
 
-		this.position = position;
+		this.MODULE_POSITION = position;
 	}
 
 	// -------------------------------------------------------------------------
@@ -291,36 +291,6 @@ public abstract class ModuleController extends BaseModule implements
 		LOG.fatal(e.getMessage(), e);
 		this.sendError(Status.INTERNAL_SERVER_ERROR,
 				error.getLocalizedMessage());
-	}
-
-	/**
-	 * Creates a new transformed RDF source and attach it to the specified
-	 * project.
-	 * 
-	 * @param p
-	 *            the owning project.
-	 * @param parent
-	 *            the parent source object.
-	 * @param name
-	 *            the new source name.
-	 * @param uri
-	 *            the new source URI.
-	 * 
-	 * @return the newly created transformed RDF source.
-	 * @throws IOException
-	 *             if any error occurred creating the source.
-	 */
-	protected TransformedRdfSource addResultSource(Project p, Source parent,
-			String name, URI uri) throws IOException {
-
-		java.net.URI id = java.net.URI.create(uri.toString());
-
-		TransformedRdfSource newSrc = this.projectManager
-				.newTransformedRdfSource(p, id, name, null, id, parent);
-
-		this.projectManager.saveProject(p);
-
-		return newSrc;
 	}
 
 }

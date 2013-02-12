@@ -37,6 +37,8 @@ package org.datalift.sdmxdatacube;
 import java.io.ObjectStreamException;
 import java.net.URISyntaxException;
 import java.util.Arrays;
+import java.util.HashMap;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -45,6 +47,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.Response.Status;
 
 import org.datalift.fwk.Configuration;
@@ -59,6 +62,8 @@ import org.datalift.sparql.query.ConstructQuery;
 import org.datalift.sparql.query.UpdateQuery;
 import org.openrdf.model.URI;
 import org.openrdf.model.impl.URIImpl;
+
+import com.sun.tracing.dtrace.ArgsAttributes;
 
 /**
  * The SDMX DataCube module's main class which exposes the SDMXRDFParser engine
@@ -75,6 +80,7 @@ public class SDMXDataCubeController extends ModuleController {
 
 	/** The module's name. */
 	public static final String MODULE_NAME = "sdmxdatacube";
+	public final static int MODULE_POSITION = 6000;
 
 	// -------------------------------------------------------------------------
 	// Instance members
@@ -91,7 +97,7 @@ public class SDMXDataCubeController extends ModuleController {
 	 */
 	public SDMXDataCubeController() {
 		// TODO Switch to the right position.
-		super(MODULE_NAME, 13371337);
+		super(MODULE_NAME, MODULE_POSITION);
 		model = new SDMXDataCubeModel(MODULE_NAME);
 	}
 
@@ -107,7 +113,8 @@ public class SDMXDataCubeController extends ModuleController {
 	 *            Our current project.
 	 * @return The URI to our project's main page.
 	 */
-	public final UriDesc canHandle(Project p) {
+	@Override
+	public UriDesc canHandle(Project p) {
 		UriDesc projectPage = null;
 		try {
 			// The project can be handled if it has at least one SDMX source.
@@ -116,7 +123,7 @@ public class SDMXDataCubeController extends ModuleController {
 				projectPage = new UriDesc(this.getName() + "?project="
 						+ p.getUri(), HttpMethod.GET,
 						getTranslatedResource(MODULE_NAME + ".button"));
-				projectPage.setPosition(this.position);
+				projectPage.setPosition(this.MODULE_POSITION);
 
 				LOG.debug("Project {} can use SDMXToDataCube", p.getTitle());
 			} else {
@@ -167,74 +174,62 @@ public class SDMXDataCubeController extends ModuleController {
 	 * 
 	 * @param projectId
 	 *            the project using SDMXDataCube.
-	 * @param srcId
+	 * @param inputSourceURI
 	 *            context of our source (reference) data.
 	 * @param outputSourceName
 	 *            name of the source which will be created.
 	 * @param outputSourceUri
 	 *            URI of the source (graph) which will be created to store the
 	 *            result.
+	 * @param vizualisation
 	 * @return Our module's post-process page.
 	 * @throws ObjectStreamException
 	 */
 	@POST
-	@Path("/go")
+	@Path("/")
 	@Consumes(MediaTypes.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaTypes.TEXT_PLAIN)
 	public Response doSubmit(@QueryParam("projectId") java.net.URI projectId,
-			@QueryParam("inputSource") String srcId,
+			@QueryParam("inputSource") String inputSourceURI,
 			@QueryParam("outputSourceName") String outputSourceName,
-			@QueryParam("outputSourceURI") String outputSourceURI)
+			@QueryParam("outputSourceURI") String outputSourceURI,
+			@QueryParam("vizualisation") boolean vizualisation)
 			throws WebApplicationException {
 
 		// TODO : voir le code de OntologyMapper.java
 
-		try {
-			srcId = srcId.trim();
-			outputSourceName = outputSourceName.trim();
-			outputSourceURI = outputSourceURI.trim();
+		return null;
+	}
 
-			// String view;
-			// HashMap<String, Object> args = new HashMap<String, Object>();
-			// args.put("it", proj);
+	/**
+	 * Form validation handler : validate de form.
+	 * 
+	 * @param projectId
+	 *            the project using SDMXDataCube.
+	 * @param inputSourceURI
+	 *            context of our source (reference) data.
+	 * @param outputSourceName
+	 *            name of the source which will be created.
+	 * @param outputSourceUri
+	 *            URI of the source (graph) which will be created to store the
+	 *            result.
+	 * @param vizualisation
+	 * @return Our module's post-process page.
+	 * @throws ObjectStreamException
+	 */
+	@POST
+	@Path("/validate")
+	@Consumes(MediaTypes.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaTypes.APPLICATION_JSON)
+	public Response doValidate(@QueryParam("projectId") java.net.URI projectId,
+			@QueryParam("inputSource") String inputSourceURI,
+			@QueryParam("outputSourceName") String outputSourceName,
+			@QueryParam("outputSourceURI") String outputSourceURI,
+			@QueryParam("vizualisation") boolean vizualisation)
+			throws WebApplicationException {
 
-			// Retrieve input source (to check they exist!).
-			Project proj = null;
-			Source inputSource = null;
-			try {
-				proj = this.getProject(projectId);
-				inputSource = (XmlSource) (proj.getSource(srcId));
-			} catch (Exception e) {
-				this.throwInvalidParamError("inputSource", srcId);
-			}
+		// TODO : voir le code de OntologyMapper.java
 
-			// Check if the outputURI is valid and if it is not already exists
-			URI outputSource = null;
-			try {
-				outputSource = new URIImpl(outputSourceURI);
-				if (proj.getSource(outputSource.toString()) != null)
-					throw new Exception("outputURI already exists");
-			} catch (Exception e) {
-				this.throwInvalidParamError("outputSourceURI", outputSourceURI);
-			}
-
-			// Execute SPARQL Construct queries.
-			java.net.URI ctx = java.net.URI.create(outputSource.toString());
-			Repository internal = Configuration.getDefault()
-					.getInternalRepository();
-			UpdateQuery query = new ConstructQuery();
-			String construct = query.toString();
-			LOG.debug("Applying SDMX convertion from {} to {}, query:\n{}",
-					srcId, outputSource.toString(), construct);
-			RdfUtils.convert(internal, Arrays.asList(construct), internal, ctx,
-					true);
-
-			this.addResultSource(proj, inputSource, outputSourceName,
-					outputSource);
-
-		} catch (Exception e) {
-			// ???
-		}
-		return Response.ok("yahou.vm", MediaTypes.TEXT_HTML_UTF8).build();
+		return null;
 	}
 }
