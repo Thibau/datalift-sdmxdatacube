@@ -1,51 +1,58 @@
 package org.datalift.sdmxdatacube.jsontransporter;
 
+/**
+ * Storage class. It will be parsed to json and send to the client.
+ * 
+ * @author thibaut
+ * 
+ */
 public class MessageTransporter {
 
-	public String projectId = null;
-	public String inputSourceURI = null;
-	public String outputSourceURI = null;
-	public String outputSourceName = null;
-	public String global = null;
+	private String projectId = null;
+	private String inputSourceUri = null;
+	private String outputSourceUri = null;
+	private String outputSourceName = null;
+	private String global = null;
+	private boolean valid = true;
+
+	public void setError(String paramName, String value) {
+
+		// TODO Pourquoi les varibles ne sont pas affectées ?!?!?!
+		valid = false;
+
+		if (paramName == "projectId")
+			this.projectId = value;
+		else if (paramName == "inputSourceUri")
+			this.inputSourceUri = value;
+		else if (paramName == "outputSourceUri")
+			this.outputSourceUri = value;
+		else if (paramName == "outputSourceName")
+			this.outputSourceName = value;
+		else if (paramName == "global")
+			this.global = value;
+	}
+
+	public boolean isValid() {
+		return valid;
+	}
 
 	public String getProjectId() {
 		return projectId;
 	}
 
-	public void setProjectId(String projectId) {
-		this.projectId = projectId;
+	public String getInputSourceUri() {
+		return inputSourceUri;
 	}
 
-	public String getInputSourceURI() {
-		return inputSourceURI;
-	}
-
-	public void setInputSourceURI(String inputSourceURI) {
-		this.inputSourceURI = inputSourceURI;
-	}
-
-	public String getOutputSourceURI() {
-		return outputSourceURI;
-	}
-
-	public void setOutputSourceURI(String outputSourceURI) {
-		this.outputSourceURI = outputSourceURI;
+	public String getOutputSourceUri() {
+		return outputSourceUri;
 	}
 
 	public String getOutputSourceName() {
 		return outputSourceName;
 	}
 
-	public void setOutputSourceName(String outputSourceName) {
-		this.outputSourceName = outputSourceName;
-	}
-
 	public String getGlobal() {
 		return global;
 	}
-
-	public void setGlobal(String global) {
-		this.global = global;
-	}
-
 }
