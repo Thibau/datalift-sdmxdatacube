@@ -40,9 +40,6 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.net.URISyntaxException;
-import java.util.Arrays;
-import java.util.HashMap;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -52,30 +49,18 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.StreamingOutput;
 
 
-import org.datalift.fwk.Configuration;
 import org.datalift.fwk.MediaTypes;
 import org.datalift.fwk.project.Project;
 import org.datalift.fwk.project.Source;
-import org.datalift.fwk.project.XmlSource;
-import org.datalift.fwk.rdf.RdfUtils;
-import org.datalift.fwk.rdf.Repository;
 import org.datalift.fwk.util.web.Charsets;
 import org.datalift.fwk.view.TemplateModel;
 import org.datalift.sdmxdatacube.jsontransporter.MessageTransporter;
-import org.datalift.sparql.query.ConstructQuery;
-import org.datalift.sparql.query.UpdateQuery;
-import org.openrdf.model.URI;
-import org.openrdf.model.impl.URIImpl;
-import org.springframework.http.MediaType;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.sun.tracing.dtrace.ArgsAttributes;
 
 /**
  * The SDMX DataCube module's main class which exposes the SDMXRDFParser engine

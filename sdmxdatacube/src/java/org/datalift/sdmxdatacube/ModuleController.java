@@ -37,8 +37,6 @@ package org.datalift.sdmxdatacube;
 import static javax.ws.rs.core.HttpHeaders.ACCEPT;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
@@ -61,12 +59,8 @@ import org.datalift.fwk.log.Logger;
 import org.datalift.fwk.project.Project;
 import org.datalift.fwk.project.ProjectManager;
 import org.datalift.fwk.project.ProjectModule;
-import org.datalift.fwk.project.Source;
-import org.datalift.fwk.project.TransformedRdfSource;
-import org.datalift.fwk.project.XmlSource;
 import org.datalift.fwk.view.TemplateModel;
 import org.datalift.fwk.view.ViewFactory;
-import org.openrdf.model.URI;
 
 /**
  * A generic base for a Datalift module which wraps Datalift's project
