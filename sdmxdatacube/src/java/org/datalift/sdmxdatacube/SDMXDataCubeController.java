@@ -55,6 +55,7 @@ import org.datalift.fwk.MediaTypes;
 import org.datalift.fwk.project.Project;
 import org.datalift.fwk.project.Source;
 import org.datalift.fwk.project.XmlSource;
+import org.datalift.fwk.project.Source.SourceType;
 import org.datalift.fwk.rdf.RdfUtils;
 import org.datalift.fwk.rdf.Repository;
 import org.datalift.fwk.view.TemplateModel;
@@ -63,7 +64,6 @@ import org.datalift.sparql.query.UpdateQuery;
 import org.openrdf.model.URI;
 import org.openrdf.model.impl.URIImpl;
 
-import com.sun.tracing.dtrace.ArgsAttributes;
 
 /**
  * The SDMX DataCube module's main class which exposes the SDMXRDFParser engine
@@ -160,6 +160,9 @@ public class SDMXDataCubeController extends ModuleController {
 					model.generateOutputSourceName(p));
 			view.put("defaultOutputSourceURI", model.generateOutputSourceURI(p));
 			view.put("projectId", projectId);
+			
+			view.put("requiredSourceType", SourceType.XmlSource);
+			
 			response = Response.ok(view, MediaTypes.TEXT_HTML_UTF8).build();
 		} catch (IllegalArgumentException e) {
 			TechnicalException error = new TechnicalException(
