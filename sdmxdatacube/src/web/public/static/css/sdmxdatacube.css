@@ -1,3 +1,8 @@
+/*
+ * Navbar & header.
+ * ---------------------------------------------------------------------
+ */
+
 h1 {
   font-size:100%;
   display:inline-block;
@@ -45,7 +50,7 @@ i {
 
 
 /*
- * Footer
+ * Footer.
  * ---------------------------------------------------------------------
  */
 
@@ -57,3 +62,16 @@ footer .container {
   margin-top:10px;
   text-align:center;
 }
+
+/*
+ * Converter form.
+ * ---------------------------------------------------------------------
+ */
+
+label.checkbox {
+  background-color: white;
+  padding: 4px 5px 4px 24px;
+  border-radius: 4px;
+  border:1px solid #ddd;
+}
+
