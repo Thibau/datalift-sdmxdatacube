@@ -35,6 +35,7 @@ sdmxdatacube/build/**
 
 framework
 core
+incubator
 *~
 
 sdmxdatacube/build
