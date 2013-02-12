@@ -80,10 +80,10 @@
 
           <!-- Nav tabs -->
           <ul class="nav nav-tabs">
-            <li class="active"><a href="#converter" data-toggle="tab"><i class="icon-cog"></i> #i18n('converter.tab.label')</a></li>
+            <li class="active"><a href="#converter" data-toggle="tab"><i class="icon-briefcase"></i> #i18n('converter.tab.label')</a></li>
             <li><a href="#parameters" data-toggle="tab"><i class="icon-cog"></i> #i18n('parameters.tab.label')</a></li>
-            <li><a href="#history" data-toggle="tab"><i class="icon-cog"></i> #i18n('history.tab.label')</a></li>
-            <li><a href="#documentation" data-toggle="tab"><i class="icon-cog"></i> #i18n('documentation.tab.label')</a></li>
+            <li><a href="#history" data-toggle="tab"><i class="icon-calendar"></i> #i18n('history.tab.label')</a></li>
+            <li><a href="#documentation" data-toggle="tab"><i class="icon-book"></i> #i18n('documentation.tab.label')</a></li>
           </ul>
 
           <div class="tab-content">
@@ -96,29 +96,31 @@
                     <fieldset>
 
                       <label for="inputSource">#i18n('source.select.label')</label>
-                      <select name="inputSource" id="inputSource" data-bind="options: $root.projectSources, value: selectedSource, optionsValue: 'uri', optionsText: function(src) { return src.title + ' &#9670; ' + src.uri; }" class="input-block-level" autofocus required>
+                      <select name="inputSource" id="inputSource" data-bind="options: $root.projectSources, value: inputSource, optionsValue: 'uri', optionsText: function(src) { return src.title + ' &#9670; ' + src.uri; }" class="input-block-level" autofocus required>
                       </select>
+
+                      <hr>
 
                       <div class="row-fluid">
                         <div class="span4">
-                          <label for="">Field</label>
-                          <input type="text" class="input-block-level" required>
+                          <label for="outputSourceName">#i18n('name.input.label')</label>
+                          <input name="outputSourceName" id="outputSourceName" type="text" class="input-block-level" required>
                         </div>
                         <div class="span8">
-                          <label for="">Field</label>
-                          <input type="text" class="input-block-level" required>
+                          <label for="outputSourceURI">#i18n('uri.input.label')</label>
+                          <input name="outputSourceURI" id="outputSourceURI" type="text" class="input-block-level" required>
                         </div>
                       </div>
 
-                      <label for="">Field</label>
-                      <input type="text" class="input-block-level" required>
+                      <label for="">#i18n('format.input.label')</label>
+                      <input name="" id="" type="text" class="input-block-level" required>
 
                     </fieldset>
                     <fieldset>
                       <div class="form-actions well well-small pull-right">
 
                         <label class="checkbox inline" for="viewResults">
-                          <input name="viewResults" id="viewResults" data-bind="checked: viewResults" type="checkbox" required>
+                          <input name="viewResults" id="viewResults" data-bind="checked: viewResults" type="checkbox">
                           #i18n('results.check.label')
                         </label>
 
@@ -191,25 +193,24 @@
     <script src="${moduleUri}/static/js/lib/bootstrap-2.3.0.min.js" language="javascript"></script>
     <script src="${moduleUri}/static/js/lib/knockout-2.2.1.js" language="javascript"></script>
 
+    <script src="${moduleUri}/static/js/converter.js" language="javascript"></script>
+    ## <script src="http://localhost:1337/static/js/converter.js" language="javascript"></script>
+
     <script type="text/javascript">
-    var projectSources = [
-    #foreach($s in $it.sources)
-      {
-        uri : "$esc.javascript($!{s.uri})",
-        title : "$esc.javascript($!{s.title})"
-      },
-    #end
-    ];
+    $(function() {
+      var projectSources = [
+      #foreach($s in $it.sources)
+        {
+          uri : "$esc.javascript($!{s.uri})",
+          title : "$esc.javascript($!{s.title})"
+        },
+      #end
+      ];
 
-    function ConverterViewModel() {
-      var self = this;
+      var viewResults = true;
 
-      self.projectSources = projectSources;
-      self.selectedSource = ko.observable();
-      self.viewResults = ko.observable(true);
-    }
-
-    ko.applyBindings(new ConverterViewModel());
+      ko.applyBindings(new ConverterViewModel(projectSources, viewResults));
+    });
   </script>
   </body>
 </html>
