@@ -1,0 +1,38 @@
+#load_core_resources
+#load("sdmxdatacube/resources")
+##
+## Hello Velocity !
+#set( $moduleUri = "$baseUri/sdmxdatacube")
+##
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>#i18n('sdmxdatacube.title') - Datalift</title>
+
+    <meta name="description" content="#i18n('sdmxdatacube.description')">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="${moduleUri}/static/css/bootstrap.css">
+    <link rel="stylesheet" href="${moduleUri}/static/css/bootstrap-responsive.css">
+
+    ## <link rel="stylesheet" href="${moduleUri}/static/css/sdmxdatacube.css">
+    <link rel="stylesheet" href="http://localhost:1337/static/css/sdmxdatacube.css">
+
+    <!-- fav and touch icons -->
+    <link rel="shortcut icon" href="${moduleUri}/static/img/favicon.ico">
+    <link rel="apple-touch-icon" href="${moduleUri}/static/img/datalift.png">
+
+  </head>
+  <body>
+yeah !
+    <script src="${moduleUri}/static/js/lib/jquery-1.9.1.min.js" language="javascript"></script>
+    <script src="${moduleUri}/static/js/lib/bootstrap-2.3.0.min.js" language="javascript"></script>
+    <script src="${moduleUri}/static/js/lib/knockout-2.2.1.js" language="javascript"></script>
+  </body>
+</html>
+

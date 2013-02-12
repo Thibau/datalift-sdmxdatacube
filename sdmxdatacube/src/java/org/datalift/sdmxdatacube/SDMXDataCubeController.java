@@ -36,7 +36,7 @@ package org.datalift.sdmxdatacube;
 
 import java.io.ObjectStreamException;
 import java.net.URISyntaxException;
-
+import java.util.Arrays;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -47,9 +47,18 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import org.datalift.fwk.Configuration;
 import org.datalift.fwk.MediaTypes;
 import org.datalift.fwk.project.Project;
+import org.datalift.fwk.project.Source;
+import org.datalift.fwk.project.XmlSource;
+import org.datalift.fwk.rdf.RdfUtils;
+import org.datalift.fwk.rdf.Repository;
 import org.datalift.fwk.view.TemplateModel;
+import org.datalift.sparql.query.ConstructQuery;
+import org.datalift.sparql.query.UpdateQuery;
+import org.openrdf.model.URI;
+import org.openrdf.model.impl.URIImpl;
 
 /**
  * The SDMX DataCube module's main class which exposes the SDMXRDFParser engine
@@ -143,6 +152,7 @@ public class SDMXDataCubeController extends ModuleController {
 			view.put("defaultOutputSourceName",
 					model.generateOutputSourceName(p));
 			view.put("defaultOutputSourceURI", model.generateOutputSourceURI(p));
+			view.put("projectId", projectId);
 			response = Response.ok(view, MediaTypes.TEXT_HTML_UTF8).build();
 		} catch (IllegalArgumentException e) {
 			TechnicalException error = new TechnicalException(
@@ -157,7 +167,7 @@ public class SDMXDataCubeController extends ModuleController {
 	 * 
 	 * @param projectId
 	 *            the project using SDMXDataCube.
-	 * @param inputSource
+	 * @param srcId
 	 *            context of our source (reference) data.
 	 * @param outputSourceName
 	 *            name of the source which will be created.
@@ -168,42 +178,63 @@ public class SDMXDataCubeController extends ModuleController {
 	 * @throws ObjectStreamException
 	 */
 	@POST
+	@Path("/go")
 	@Consumes(MediaTypes.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaTypes.TEXT_PLAIN)
 	public Response doSubmit(@QueryParam("projectId") java.net.URI projectId,
-			@QueryParam("inputSource") String inputSource,
+			@QueryParam("inputSource") String srcId,
 			@QueryParam("outputSourceName") String outputSourceName,
 			@QueryParam("outputSourceURI") String outputSourceURI)
 			throws WebApplicationException {
 
 		// TODO : voir le code de OntologyMapper.java
-		// Project proj = this.getProject(projectId);
 
-		// inputSource = inputSource.trim();
-		// outputSourceName = outputSourceName.trim();
-		// outputSourceURI = outputSourceURI.trim();
+		try {
+			srcId = srcId.trim();
+			outputSourceName = outputSourceName.trim();
+			outputSourceURI = outputSourceURI.trim();
 
-		// String view;
-		// HashMap<String, Object> args = new HashMap<String, Object>();
-		// args.put("it", proj);
+			// String view;
+			// HashMap<String, Object> args = new HashMap<String, Object>();
+			// args.put("it", proj);
 
-		// // We first validate all of the fields.
-		// LinkedList<String> errorMessages = model.getErrorMessages(proj,
-		// inputSource, outputSourceName, outputSourceURI);
+			// Retrieve input source (to check they exist!).
+			Project proj = null;
+			Source inputSource = null;
+			try {
+				proj = this.getProject(projectId);
+				inputSource = (XmlSource) (proj.getSource(srcId));
+			} catch (Exception e) {
+				this.throwInvalidParamError("inputSource", srcId);
+			}
 
-		// if (errorMessages.isEmpty()) {
-		// args.put("inputSource", inputSource);
-		// args.put("outputSourceName", outputSourceName);
-		// args.put("outputSourceURI", outputSourceURI);
-		// // StringToURI is launched if and only if our values are all valid.
-		// args.put("SDMXDataCube", model.launchSDMXDataCube(proj,
-		// inputSource, outputSourceName, outputSourceURI));
-		// view = "stringtouri-success.vm";
-		// } else {
-		// args.put("errormessages", errorMessages);
-		// view = "stringtouri-error.vm";
-		// }
+			// Check if the outputURI is valid and if it is not already exists
+			URI outputSource = null;
+			try {
+				outputSource = new URIImpl(outputSourceURI);
+				if (proj.getSource(outputSource.toString()) != null)
+					throw new Exception("outputURI already exists");
+			} catch (Exception e) {
+				this.throwInvalidParamError("outputSourceURI", outputSourceURI);
+			}
 
-		return null; // Response.ok(this.newViewable("/" + view, args)).build();
+			// Execute SPARQL Construct queries.
+			java.net.URI ctx = java.net.URI.create(outputSource.toString());
+			Repository internal = Configuration.getDefault()
+					.getInternalRepository();
+			UpdateQuery query = new ConstructQuery();
+			String construct = query.toString();
+			LOG.debug("Applying SDMX convertion from {} to {}, query:\n{}",
+					srcId, outputSource.toString(), construct);
+			RdfUtils.convert(internal, Arrays.asList(construct), internal, ctx,
+					true);
+
+			this.addResultSource(proj, inputSource, outputSourceName,
+					outputSource);
+
+		} catch (Exception e) {
+			// ???
+		}
+		return Response.ok("yahou.vm", MediaTypes.TEXT_HTML_UTF8).build();
 	}
 }
