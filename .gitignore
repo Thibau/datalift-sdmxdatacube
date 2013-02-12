@@ -5,6 +5,8 @@
 *.war
 *.ear
 
+!sdmxdatacube/lib/**
+
 *.pydevproject
 .project
 .metadata
