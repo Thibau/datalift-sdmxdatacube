@@ -34,12 +34,17 @@
 
 package org.datalift.sdmxdatacube;
 
+import java.io.IOException;
 import java.io.ObjectStreamException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.HashMap;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -49,6 +54,8 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.core.StreamingOutput;
+
 
 import org.datalift.fwk.Configuration;
 import org.datalift.fwk.MediaTypes;
@@ -57,12 +64,17 @@ import org.datalift.fwk.project.Source;
 import org.datalift.fwk.project.XmlSource;
 import org.datalift.fwk.rdf.RdfUtils;
 import org.datalift.fwk.rdf.Repository;
+import org.datalift.fwk.util.web.Charsets;
 import org.datalift.fwk.view.TemplateModel;
+import org.datalift.sdmxdatacube.jsontransporter.MessageTransporter;
 import org.datalift.sparql.query.ConstructQuery;
 import org.datalift.sparql.query.UpdateQuery;
 import org.openrdf.model.URI;
 import org.openrdf.model.impl.URIImpl;
+import org.springframework.http.MediaType;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.sun.tracing.dtrace.ArgsAttributes;
 
 /**
@@ -221,15 +233,87 @@ public class SDMXDataCubeController extends ModuleController {
 	@Path("/validate")
 	@Consumes(MediaTypes.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaTypes.APPLICATION_JSON)
-	public Response doValidate(@QueryParam("projectId") java.net.URI projectId,
-			@QueryParam("inputSource") String inputSourceURI,
-			@QueryParam("outputSourceName") String outputSourceName,
-			@QueryParam("outputSourceURI") String outputSourceURI,
-			@QueryParam("vizualisation") boolean vizualisation)
+	public Response doValidate(@FormParam("projectId") String projectId,
+			@FormParam("inputSourceURI") String inputSourceURI,
+			@FormParam("outputSourceName") String outputSourceName,
+			@FormParam("outputSourceURI") String outputSourceURI,
+			@FormParam("vizualisation") boolean vizualisation)
 			throws WebApplicationException {
 
-		// TODO : voir le code de OntologyMapper.java
+		MessageTransporter transporter = new MessageTransporter();
 
-		return null;
+		transporter.global = projectId + " | " + inputSourceURI + " | "
+				+ outputSourceURI + " | " + outputSourceName;
+
+		if (projectId != null) {
+			Project project = null;
+			try {
+				project = this.getProject(new java.net.URI(projectId));
+			} catch (Exception e) {
+				transporter.projectId = getTranslatedResource("error.projectId.unidentifiable")
+						+ " (" + projectId + ")";
+			}
+
+			if (project != null) {
+
+				// Check inputSourceURI
+				if (!(inputSourceURI == null && inputSourceURI.isEmpty())) {
+					Source s = null;
+					try {
+						s = project.getSource(inputSourceURI);
+					} catch (Exception e) {
+						transporter.inputSourceURI = getTranslatedResource("error.inputSource.unknown")
+								+ " (" + inputSourceURI + ")";
+					}
+
+					if (s == null)
+						transporter.inputSourceURI = getTranslatedResource("error.inputSource.unknown")
+								+ " (" + inputSourceURI + ")";
+					else if (!model.isValidSource(project
+							.getSource(inputSourceURI)))
+						transporter.inputSourceURI = getTranslatedResource("error.inputSource.notsdmx")
+								+ " (" + inputSourceURI + ")";
+
+				} else {
+					transporter.inputSourceURI = getTranslatedResource("error.inputSource.empty");
+				}
+
+				// Check outputSourceURI
+				if (outputSourceURI == null || outputSourceName.isEmpty())
+					transporter.outputSourceURI = getTranslatedResource("error.outputSourceURI.empty");
+				if (project.getSource(outputSourceURI) != null)
+					transporter.outputSourceURI = getTranslatedResource("error.outputSourceURI.alreadyexists")
+							+ " (" + outputSourceURI + ")";
+
+				// Check outputSourceName
+				if (outputSourceName == null || outputSourceName.isEmpty())
+					transporter.outputSourceURI = getTranslatedResource("error.outputSourceName.empty");
+			}
+		} else {
+			transporter.projectId = getTranslatedResource("error.projectId.empty");
+		}
+
+		return Response.ok(new RequestValidatorJsonStreamingOutput(transporter),
+				MediaTypes.APPLICATION_JSON_UTF8).build();
+	}
+
+	private final static class RequestValidatorJsonStreamingOutput implements
+			StreamingOutput {
+		private final MessageTransporter v;
+
+		public RequestValidatorJsonStreamingOutput(MessageTransporter v) {
+			this.v = v;
+		}
+
+		/** {@inheritDoc} */
+		@Override
+		public void write(OutputStream output) throws IOException,
+				WebApplicationException {
+			Gson gson = new GsonBuilder().create();
+
+			Writer w = new OutputStreamWriter(output, Charsets.UTF_8);
+			gson.toJson(this.v, w);
+			w.flush();
+		}
 	}
 }
