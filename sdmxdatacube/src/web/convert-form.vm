@@ -96,12 +96,27 @@
                 <div class="span8">
                   <form action="">
                     <fieldset>
-                      <!-- Select block-level -->
-                      <!-- controls row half half -->
-                      <!-- input block level -->
+
+                      <label for="">Field</label>
+                      <select class="input-block-level"></select>
+
+                      <div class="row-fluid">
+                        <div class="span4">
+                          <label for="">Field</label>
+                          <input type="text" class="input-block-level">
+                        </div>
+                        <div class="span8">
+                          <label for="">Field</label>
+                          <input type="text" class="input-block-level">
+                        </div>
+                      </div>
+
+                      <label for="">Field</label>
+                      <input type="text" class="input-block-level">
+
                     </fieldset>
                     <fieldset>
-                      <div class="form-actions well pull-right">
+                      <div class="form-actions well well-small pull-right">
                         <button type="submit" class="btn btn-primary">#i18n('launch.btn.label')</button>
                         <button type="button" class="btn">#i18n('cancel.btn.label')</button>
                       </div>
@@ -109,7 +124,7 @@
                   </form>
                 </div>
                 <div class="span4">
-
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus sequi laudantium ipsa nam est molestiae aspernatur et facere quisquam maxime in asperiores ullam unde voluptas sapiente aperiam quidem. At quia ullam esse quidem sunt ea voluptas quos numquam nostrum animi voluptatum natus alias ab maiores odio necessitatibus commodi voluptate laudantium nemo iure veniam reprehenderit cupiditate facere sint porro modi doloribus. At consequuntur molestias adipisci totam rerum deserunt perferendis blanditiis doloremque non dolor cupiditate eius hic dicta debitis possimus quidem porro reiciendis corporis optio quibusdam aspernatur tempore officiis placeat voluptatibus expedita facere accusamus assumenda est vero nemo! Iste doloribus culpa asperiores. </p>
                 </div>
               </div>
 

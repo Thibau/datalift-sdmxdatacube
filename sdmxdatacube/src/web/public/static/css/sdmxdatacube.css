@@ -25,6 +25,11 @@ h1 i, h2 i {
   top:5px;
 }
 
+i {
+  position:relative;
+  top:1px;
+}
+
 .navbar .brand {
   margin:0;
   padding:0;
