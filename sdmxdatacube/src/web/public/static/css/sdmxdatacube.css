@@ -78,3 +78,7 @@ label.checkbox {
 .row-fluid .control-label {
   min-height: 20px;
 }
+
+.form-actions {
+  display: inline-block;
+}

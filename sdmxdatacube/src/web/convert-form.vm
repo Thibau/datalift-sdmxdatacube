@@ -93,18 +93,22 @@
               <div class="row-fluid">
                 <div class="span12">
                   <form action="${moduleUri}" method="post" enctype="application/x-www-form-urlencoded">
-                    <fieldset>
 
+                    <!-- Old source — select its name / URI -->
+                    <fieldset>
                       <div class="control-group">
-                        <label for="inputSource" class="control-label">#i18n('source.select.label')</label>
+                        <label for="inputSource" class="control-label">#i18n('input.select.label')</label>
                         <div class="controls">
                           <select name="inputSource" id="inputSource" data-bind="options: $root.projectSources, value: inputSource, optionsValue: 'uri', optionsText: function(src) { return src.title + ' &#9670; ' + src.uri; }" class="span8" autofocus required></select>
                           <span class="help-inline">Inline help text</span>
                         </div>
                       </div>
+                    </fieldset>
 
-
+                    <!-- New source — input its name and graph URI, URI pattern -->
+                    <fieldset>
                       <div class="control-group">
+                        <legend>#i18n('output.fieldset.label')</legend>
                         <div class="row-fluid">
                           <label for="outputSourceName" class="control-label span2">#i18n('name.input.label')</label>
                           <label for="outputSourceURI" class="control-label span6">#i18n('uri.input.label')</label>
@@ -116,6 +120,7 @@
                         </div>
                       </div>
 
+                      <!-- URI pattern -->
                       <div class="control-group">
                         <label for="" class="control-label">#i18n('format.input.label')</label>
                         <div class="controls">
@@ -123,23 +128,22 @@
                           <span class="help-inline">Inline help text</span>
                         </div>
                       </div>
-
                     </fieldset>
 
-                    <div class="row-fluid">
-                      <fieldset class="offset2" style="display:inline-block;">
-                        <div class="form-actions well well-small">
+                    <!-- Action buttons -->
+                    <fieldset class="row-fluid">
+                      <div class="span4 pull-right"></div>
+                      <div class="form-actions well well-small pull-right">
 
-                          <label class="checkbox inline" for="viewResults">
-                            <input name="viewResults" id="viewResults" data-bind="checked: viewResults" type="checkbox">
-                            #i18n('results.check.label')
-                          </label>
+                        <label class="checkbox inline" for="viewResults">
+                          <input name="viewResults" id="viewResults" data-bind="checked: viewResults" type="checkbox">
+                          #i18n('results.check.label')
+                        </label>
 
-                          <button type="submit" class="btn btn-primary" autocomplete="off">#i18n('launch.btn.label')</button>
-                          <button type="button" class="btn">#i18n('cancel.btn.label')</button>
-                        </div>
-                      </fieldset>
-                    </div>
+                        <button type="submit" class="btn btn-primary" autocomplete="off">#i18n('launch.btn.label')</button>
+                        <button type="button" class="btn">#i18n('cancel.btn.label')</button>
+                      </div>
+                    </fieldset>
 
                   </form>
                 </div>
