@@ -37,7 +37,6 @@ package org.datalift.sdmxdatacube;
 import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
 
 import java.net.URISyntaxException;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -52,9 +51,15 @@ import javax.ws.rs.core.Response.Status;
 import org.datalift.fwk.MediaTypes;
 import org.datalift.fwk.project.Project;
 import org.datalift.fwk.project.Source;
+import org.datalift.fwk.project.XmlSource;
 import org.datalift.fwk.view.TemplateModel;
 import org.datalift.sdmxdatacube.jsontransporter.MessageTransporter;
 import org.datalift.sdmxdatacube.utils.ControllerHelper;
+import org.openrdf.rio.RDFFormat;
+import org.sdmxsource.rdf.model.RDFStructureOutputFormat;
+import org.sdmxsource.sdmx.api.model.StructureFormat;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -84,6 +89,9 @@ public class SDMXDataCubeController extends ModuleController {
 
 	protected SDMXDataCubeModel model;
 
+	StructureFormat structureFormat;
+	SDMXDataCubeTransformer rdfDataTransformer;
+
 	// -------------------------------------------------------------------------
 	// Constructors
 	// -------------------------------------------------------------------------
@@ -95,6 +103,15 @@ public class SDMXDataCubeController extends ModuleController {
 		// TODO Switch to the right position.
 		super(MODULE_NAME, MODULE_POSITION);
 		model = new SDMXDataCubeModel(MODULE_NAME);
+
+		ApplicationContext applicationContext = new ClassPathXmlApplicationContext(
+				"spring-beans.xml");
+
+		rdfDataTransformer = applicationContext
+				.getBean(SDMXDataCubeTransformer.class);
+
+		structureFormat = new RDFStructureOutputFormat(RDFFormat.TURTLE);
+
 	}
 
 	// -------------------------------------------------------------------------
@@ -167,36 +184,67 @@ public class SDMXDataCubeController extends ModuleController {
 	/**
 	 * Form submit handler : launching SDMXDataCube.
 	 * 
-	 * @param projectId
+	 * @param project
 	 *            the project using SDMXDataCube.
 	 * @param inputSourceURI
 	 *            context of our source (reference) data.
-	 * @param outputSourceName
+	 * @param dest_title
 	 *            name of the source which will be created.
-	 * @param outputSourceUri
+	 * @param dest_graph_uri
 	 *            URI of the source (graph) which will be created to store the
 	 *            result.
 	 * @param vizualisation
-	 * @return An empty HTTP response (code 200) if OK else an error.
+	 * @return An empty HTTP response (code 201) if OK else an error.
 	 * @throws WebApplicationException
 	 */
 	@POST
 	@Path("/")
 	@Consumes(MediaTypes.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaTypes.TEXT_PLAIN)
-	public Response doSubmit(@FormParam("projectId") String projectId,
-			@FormParam("inputSourceUri") String inputSourceUri,
-			@FormParam("outputSourceName") String outputSourceName,
-			@FormParam("outputSourceUri") String outputSourceUri,
+	public Response doSubmit(@FormParam("project") String project,
+			@FormParam("source") String source,
+			@FormParam("dest_title") String dest_title,
+			@FormParam("dest_graph_uri") String dest_graph_uri,
 			@FormParam("vizualisation") boolean vizualisation)
 			throws WebApplicationException {
 
-		MessageTransporter transporter = this.validate(projectId,
-				inputSourceUri, outputSourceUri, outputSourceName,
-				vizualisation);
+		LOG.debug("soSubmit : validate");
+		MessageTransporter transporter = this.validate(project, source,
+				dest_graph_uri, dest_title, vizualisation);
 
 		if (!transporter.isValid()) {
 			this.sendError(BAD_REQUEST, transporter.getGlobal());
+		}
+
+		LOG.debug("soSubmit : validation ok");
+		// Lauch SDMX to Datacube process
+		try {
+			Project p = this.getProject(new java.net.URI(project));
+			LOG.debug("soSubmit : get project ok");
+			XmlSource s = (XmlSource) p.getSource(source);
+			LOG.debug("soSubmit : get source ok");
+			// StructureFormat structureFormat = new RDFStructureOutputFormat(
+			// RDFFormat.TURTLE);
+			// LOG.debug("soSubmit : get sourceFormat ok");
+			//
+			// // Output Structures, and then data
+			// SdmxBeans beans = outputStructures(structureFormat, s);
+			// LOG.debug("soSubmit : get sdmxBeans ok");
+			//
+			// DataFormat dataFormat = new RDFDataOutputFormat(
+			// (DataflowBean) beans.getDataflows().toArray()[0],
+			// RDFFormat.TURTLE);
+			// LOG.debug("soSubmit : get dataFormat ok");
+			//
+			// outputData(beans, dataFormat, s);
+			// LOG.debug("soSubmit : get outputData ok");
+
+		} catch (URISyntaxException e) {
+			LOG.fatal(e);
+			this.sendError(Status.BAD_REQUEST, e.getMessage());
+		} catch (Exception e) {
+			LOG.fatal(e);
+			this.sendError(Status.INTERNAL_SERVER_ERROR, e.getMessage());
 		}
 
 		return Response.created(null).build();
@@ -205,13 +253,13 @@ public class SDMXDataCubeController extends ModuleController {
 	/**
 	 * Form validation handler : validate de form.
 	 * 
-	 * @param projectId
+	 * @param project
 	 *            the project using SDMXDataCube.
 	 * @param inputSourceURI
 	 *            context of our source (reference) data.
-	 * @param outputSourceName
+	 * @param dest_title
 	 *            name of the source which will be created.
-	 * @param outputSourceUri
+	 * @param dest_graph_uri
 	 *            URI of the source (graph) which will be created to store the
 	 *            result.
 	 * @param vizualisation
@@ -222,18 +270,17 @@ public class SDMXDataCubeController extends ModuleController {
 	@Path("/validate")
 	@Consumes(MediaTypes.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaTypes.APPLICATION_JSON)
-	public Response doValidate(@FormParam("projectId") String projectId,
-			@FormParam("inputSourceUri") String inputSourceUri,
-			@FormParam("outputSourceName") String outputSourceName,
-			@FormParam("outputSourceUri") String outputSourceUri,
+	public Response doValidate(@FormParam("project") String project,
+			@FormParam("source") String source,
+			@FormParam("dest_title") String dest_title,
+			@FormParam("dest_graph_uri") String dest_graph_uri,
 			@FormParam("vizualisation") boolean vizualisation)
 			throws WebApplicationException {
 
 		Gson gson = new GsonBuilder().create();
 
-		MessageTransporter transporter = this.validate(projectId,
-				inputSourceUri, outputSourceUri, outputSourceName,
-				vizualisation);
+		MessageTransporter transporter = this.validate(project, source,
+				dest_graph_uri, dest_title, vizualisation);
 
 		int statusCode = 200;
 		if (!transporter.isValid())
@@ -243,87 +290,85 @@ public class SDMXDataCubeController extends ModuleController {
 				.build();
 	}
 
-	private MessageTransporter validate(String projectId,
-			String inputSourceUri, String outputSourceUri,
-			String outputSourceName, boolean vizualisation) {
+	private MessageTransporter validate(String project, String source,
+			String dest_graph_uri, String dest_title, boolean vizualisation) {
 
 		MessageTransporter transporter = new MessageTransporter();
 
-		if (projectId != null) {
-			Project project = null;
+		if (project != null) {
+			Project p = null;
 			try {
-				project = this.getProject(new java.net.URI(projectId));
+				p = this.getProject(new java.net.URI(project));
 			} catch (Exception e) {
-				transporter.setError("projectId",
+				transporter.setError("project",
 						getTranslatedResource("error.projectId.unidentifiable")
-								+ " (" + projectId + ")");
+								+ " (" + project + ")");
 			}
 
-			if (project != null) {
+			if (p != null) {
 
 				// Check inputSourceURI
-				if (!(inputSourceUri == null) && !inputSourceUri.isEmpty()) {
+				if (!(source == null) && !source.isEmpty()) {
 					Source s = null;
 					try {
-						s = project.getSource(inputSourceUri);
+						s = p.getSource(source);
 					} catch (Exception e) {
 						transporter
 								.setError(
-										"inputSourceUri",
+										"source",
 										getTranslatedResource("error.inputSource.unknown")
-												+ " (" + inputSourceUri + ")");
+												+ " (" + source + ")");
 					}
 
 					if (s == null)
 						transporter
 								.setError(
-										"inputSourceUri",
+										"source",
 										getTranslatedResource("error.inputSource.unknown")
-												+ " (" + inputSourceUri + ")");
-					else if (!model.isValidSource(project
-							.getSource(inputSourceUri)))
+												+ " (" + source + ")");
+					else if (!model.isValidSource(p.getSource(source)))
 						transporter
 								.setError(
-										"inputSourceUri",
+										"source",
 										getTranslatedResource("error.inputSource.notsdmx")
-												+ " (" + inputSourceUri + ")");
+												+ " (" + source + ")");
 
 				} else {
-					transporter.setError("inputSourceUri",
+					transporter.setError("source",
 							getTranslatedResource("error.inputSource.empty"));
 				}
 
 				// Check outputSourceURI
-				if (outputSourceUri == null || outputSourceName.isEmpty())
+				if (dest_graph_uri == null || dest_title.isEmpty())
 					transporter
 							.setError(
-									"outputSourceUri",
+									"dest_graph_uri",
 									getTranslatedResource("error.outputSourceURI.empty"));
 
 				try {
-					if (project.getSource(outputSourceUri) != null)
+					if (p.getSource(dest_graph_uri) != null)
 						transporter
 								.setError(
-										"outputSourceUri",
+										"dest_graph_uri",
 										getTranslatedResource("error.outputSourceURI.alreadyexists")
-												+ " (" + outputSourceUri + ")");
+												+ " (" + dest_graph_uri + ")");
 				} catch (Exception e) {
 					transporter
 							.setError(
-									"outputSourceUri",
+									"dest_graph_uri",
 									getTranslatedResource("error.outputSourceURI.malformed")
-											+ " (" + outputSourceUri + ")");
+											+ " (" + dest_graph_uri + ")");
 				}
 
 				// Check outputSourceName
-				if (outputSourceName == null || outputSourceName.isEmpty())
+				if (dest_title == null || dest_title.isEmpty())
 					transporter
 							.setError(
-									"outputSourceUri",
+									"dest_graph_title",
 									getTranslatedResource("error.outputSourceName.empty"));
 			}
 		} else {
-			transporter.setError("projectId",
+			transporter.setError("project",
 					getTranslatedResource("error.projectId.empty"));
 		}
 

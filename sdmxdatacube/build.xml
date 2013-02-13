@@ -104,6 +104,7 @@
 
 	<property name="src.home" location="${basedir}/src/java" />
 	<property name="web.home" location="${basedir}/src/web" />
+	<property name="resources.home" location="${basedir}/src/resources" />
 
 	<property name="lib.home" location="${basedir}/lib" />
 	<property name="run.lib.home" location="${lib.home}/runtime" />
@@ -267,15 +268,20 @@
 		<copy todir="${classes.dir}" includeEmptyDirs="false" preservelastmodified="true">
 			<fileset dir="${web.home}" excludes="**/.*" />
 		</copy>
+		<!-- Copy SdmxRdfParser resources application and Spring conf -->
+		<copy todir="${classes.dir}" includeEmptyDirs="false" preservelastmodified="true">
+			<fileset dir="${resources.home}" />
+			<fileset dir="${resources.home}/spring" />
+		</copy>
     <!-- Copy runtime JARs to embed in distribution -->
-    <copy todir="${classes.dir}" flatten="true" preservelastmodified="true">
-      <fileset dir="${run.lib.home}">
-        <include name="**/*.jar"/>
-      </fileset>
-      <fileset dir="${query.dist.home}">
-        <include name="**/*.jar"/>
-      </fileset>
-    </copy>
+		<copy todir="${classes.dir}" flatten="true" preservelastmodified="true">
+			<fileset dir="${run.lib.home}">
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${query.dist.home}">
+				<include name="**/*.jar"/>
+			</fileset>
+		</copy>
 		<!-- Create build directories as needed -->
 		<mkdir dir="${dist.home}" />
 	</target>
