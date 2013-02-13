@@ -16,6 +16,7 @@ public class ControllerHelper {
 	private SDMXDataCubeModel model;
 	
 	private static final String SDMX_SUFFIX = "sdmx";
+	private static final String XML_SUFFIX = "xml";
 	private static final String DATACUBE_SUFFIX = "qb";
 
 	public ControllerHelper(SDMXDataCubeModel model) {
@@ -58,9 +59,12 @@ public class ControllerHelper {
 	public String generateSourceURI(Source parent) {
 		String oldURI = parent.getUri();
 		String newURI;
+		// Reuse the previous pattern.
 		if (oldURI.contains(SDMX_SUFFIX)) {
-			// Reuse the previous formatting if it differs from the "content-format" pattern.
 			newURI = oldURI.replace(SDMX_SUFFIX, DATACUBE_SUFFIX);
+		}
+		else if (oldURI.contains(XML_SUFFIX)) {
+			newURI = oldURI.replace('.', '-').replace(XML_SUFFIX, DATACUBE_SUFFIX);
 		}
 		else {
 			newURI = oldURI + "-" + DATACUBE_SUFFIX;
