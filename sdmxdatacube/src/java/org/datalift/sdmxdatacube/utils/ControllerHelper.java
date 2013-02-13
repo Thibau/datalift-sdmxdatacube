@@ -38,17 +38,7 @@ public class ControllerHelper {
 	 * @return A title which is not guaranteed to be unique.
 	 */
 	public String generateSourceTitle(Source parent) {
-		String oldTitle = parent.getTitle();
-		String newTitle;
-		if (oldTitle.contains(SDMX_SUFFIX)) {
-			// Reuse the previous formatting if it differs from the "content-format" pattern.
-			newTitle = oldTitle.replace(SDMX_SUFFIX, DATACUBE_SUFFIX);
-		}
-		else {
-			newTitle = oldTitle + "-" + DATACUBE_SUFFIX;
-		}
-		
-		return newTitle;
+		return datacubizeString(parent.getTitle());
 	}
 	
 	/**
@@ -58,17 +48,7 @@ public class ControllerHelper {
 	 */
 	public String generateSourceURI(Source parent) {
 		String oldURI = parent.getUri();
-		String newURI;
-		// Reuse the previous pattern.
-		if (oldURI.contains(SDMX_SUFFIX)) {
-			newURI = oldURI.replace(SDMX_SUFFIX, DATACUBE_SUFFIX);
-		}
-		else if (oldURI.contains(XML_SUFFIX)) {
-			newURI = oldURI.replace('.', '-').replace(XML_SUFFIX, DATACUBE_SUFFIX);
-		}
-		else {
-			newURI = oldURI + "-" + DATACUBE_SUFFIX;
-		}
+		String newURI = datacubizeString(oldURI);
 		
 		// If this URI already exists, we'll add a number at its end.
 		if (parent.getProject().getSource(newURI) != null) {
@@ -76,6 +56,22 @@ public class ControllerHelper {
 		}
 		
 		return newURI;
+	}
+	
+	private static String datacubizeString(String sdmxString) {
+		String datacubeString;
+		
+		if (sdmxString.contains(SDMX_SUFFIX)) {
+			datacubeString = sdmxString.replace(SDMX_SUFFIX, DATACUBE_SUFFIX);
+		}
+		else if (sdmxString.contains(XML_SUFFIX)) {
+			datacubeString = sdmxString.replace('.', '-').replace(XML_SUFFIX, DATACUBE_SUFFIX);
+		}
+		else {
+			datacubeString = sdmxString + "-" + DATACUBE_SUFFIX;
+		}
+		
+		return datacubeString;
 	}
 	
 	/**
