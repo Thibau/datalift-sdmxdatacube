@@ -34,9 +34,10 @@
 
 package org.datalift.sdmxdatacube;
 
-import java.io.ObjectStreamException;
-import java.net.URI;
+import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
+
 import java.net.URISyntaxException;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -47,12 +48,13 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-import static javax.ws.rs.core.Response.Status.*;
+
 import org.datalift.fwk.MediaTypes;
 import org.datalift.fwk.project.Project;
 import org.datalift.fwk.project.Source;
 import org.datalift.fwk.view.TemplateModel;
 import org.datalift.sdmxdatacube.jsontransporter.MessageTransporter;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
