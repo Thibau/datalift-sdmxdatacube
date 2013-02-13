@@ -100,7 +100,7 @@
                         <label for="inputSource" class="control-label">#i18n('input.select.label')</label>
                         <div class="controls">
                           <select name="inputSource" id="inputSource" data-bind="options: $root.projectSources, value: inputSource, optionsValue: 'uri', optionsText: function(src) { return src.title + ' &#9670; ' + src.uri; }" class="span8" autofocus required></select>
-                          <span class="help-inline">Inline help text</span>
+                          <span class="help-inline">#i18n('input.help.label')</span>
                         </div>
                       </div>
                     </fieldset>
@@ -110,22 +110,22 @@
                       <div class="control-group">
                         <legend>#i18n('output.fieldset.label')</legend>
                         <div class="row-fluid">
-                          <label for="outputSourceName" class="control-label span2">#i18n('name.input.label')</label>
+                          <label for="outputSourceName" class="control-label span2">#i18n('title.input.label')</label>
                           <label for="outputSourceURI" class="control-label span6">#i18n('uri.input.label')</label>
                         </div>
                         <div class="controls controls-row">
-                          <input name="outputSourceName" id="outputSourceName" type="text" class="span2" required>
-                          <input name="outputSourceURI" id="outputSourceURI" type="text" class="span6" required>
-                          <span class="help-inline">Inline help text</span>
+                          <input name="outputSourceName" id="outputSourceName" data-bind="value: outputSourceTitle" type="text" class="span2" required>
+                          <input name="outputSourceURI" id="outputSourceURI" data-bind="value: outputSourceURI" type="text" class="span6" required>
+                          <span class="help-inline">#i18n('titleuri.help.label')</span>
                         </div>
                       </div>
 
                       <!-- URI pattern -->
                       <div class="control-group">
-                        <label for="" class="control-label">#i18n('format.input.label')</label>
+                        <label for="uriPattern" class="control-label">#i18n('pattern.input.label')</label>
                         <div class="controls">
-                          <input name="" id="" type="text" class="span8" required>
-                          <span class="help-inline">Inline help text</span>
+                          <input name="uriPattern" id="uriPattern" data-bind="value: uriPattern" type="text" class="span8" required>
+                          <span class="help-inline">#i18n('uripattern.help.label')</span>
                         </div>
                       </div>
                     </fieldset>
@@ -195,8 +195,8 @@
     <script src="${moduleUri}/static/js/lib/bootstrap-2.3.0.min.js" language="javascript"></script>
     <script src="${moduleUri}/static/js/lib/knockout-2.2.1.js" language="javascript"></script>
 
-    <script src="${moduleUri}/static/js/converter.js" language="javascript"></script>
-    ## <script src="http://localhost:1337/static/js/converter.js" language="javascript"></script>
+    ## <script src="${moduleUri}/static/js/converter.js" language="javascript"></script>
+    <script src="http://localhost:1337/static/js/converter.js" language="javascript"></script>
 
     <script type="text/javascript">
     $(function() {
@@ -207,7 +207,8 @@
             title : "$esc.javascript($!{s.title})",
             uri : "$esc.javascript($!{s.uri})",
             outputTitle : "$esc.javascript($helper.generateSourceTitle($s))",
-            outputURI : "$esc.javascript($helper.generateSourceURI($s))"
+            outputURI : "$esc.javascript($helper.generateSourceURI($s))",
+            uriPattern : "http://www.ecb.int/rdf/{0}/{3}({4})/{1}-{5}"
           },
         #end
       #end
