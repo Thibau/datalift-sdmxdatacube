@@ -79,7 +79,7 @@ public class SDMXDataCubeModel extends ModuleModel {
 	 * @return True if src is {@link TransformedRdfSource} or
 	 *         {@link SparqlSource}.
 	 */
-	protected boolean isValidSource(Source src) {
+	public boolean isValidSource(Source src) {
 		if (src.getType().equals(SourceType.XmlSource)) {
 			XmlSource xmlsrc = (XmlSource) src;
 			try {
