@@ -8,26 +8,24 @@ package org.datalift.sdmxdatacube.jsontransporter;
  */
 public class MessageTransporter {
 
-	private String projectId = null;
-	private String inputSourceUri = null;
-	private String outputSourceUri = null;
-	private String outputSourceName = null;
+	private String project = null;
+	private String source = null;
+	private String dest_graph_uri = null;
+	private String dest_title = null;
 	private String global = null;
 	private boolean valid = true;
 
 	public void setError(String paramName, String value) {
-
-		// TODO Pourquoi les varibles ne sont pas affectées ?!?!?!
 		valid = false;
 
-		if (paramName == "projectId")
-			this.projectId = value;
-		else if (paramName == "inputSourceUri")
-			this.inputSourceUri = value;
-		else if (paramName == "outputSourceUri")
-			this.outputSourceUri = value;
-		else if (paramName == "outputSourceName")
-			this.outputSourceName = value;
+		if (paramName == "project")
+			this.project = value;
+		else if (paramName == "source")
+			this.source = value;
+		else if (paramName == "dest_graph_uri")
+			this.dest_graph_uri = value;
+		else if (paramName == "dest_title")
+			this.dest_title = value;
 		else if (paramName == "global")
 			this.global = value;
 	}
@@ -37,19 +35,19 @@ public class MessageTransporter {
 	}
 
 	public String getProjectId() {
-		return projectId;
+		return project;
 	}
 
 	public String getInputSourceUri() {
-		return inputSourceUri;
+		return source;
 	}
 
 	public String getOutputSourceUri() {
-		return outputSourceUri;
+		return dest_graph_uri;
 	}
 
 	public String getOutputSourceName() {
-		return outputSourceName;
+		return dest_title;
 	}
 
 	public String getGlobal() {
