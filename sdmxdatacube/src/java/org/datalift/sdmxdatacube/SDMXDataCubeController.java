@@ -75,7 +75,7 @@ public class SDMXDataCubeController extends ModuleController {
 	/** The module's name. */
 	public static final String MODULE_NAME = "sdmxdatacube";
 	public final static int MODULE_POSITION = 6000;
-	
+
 	public final static boolean VIEW_RESULTS_DEFAULT = true;
 
 	// -------------------------------------------------------------------------
@@ -154,7 +154,7 @@ public class SDMXDataCubeController extends ModuleController {
 			TemplateModel view = this.newView("convert-form.vm", p);
 			view.put("helper", new ControllerHelper(model));
 			view.put("viewResults", VIEW_RESULTS_DEFAULT);
-			
+
 			response = Response.ok(view, MediaTypes.TEXT_HTML_UTF8).build();
 		} catch (IllegalArgumentException e) {
 			TechnicalException error = new TechnicalException(
@@ -183,15 +183,13 @@ public class SDMXDataCubeController extends ModuleController {
 	@POST
 	@Path("/")
 	@Consumes(MediaTypes.APPLICATION_FORM_URLENCODED)
-	@Produces(MediaTypes.APPLICATION_JSON_UTF8)
-	public Response doSubmit(@QueryParam("projectId") String projectId,
+	@Produces(MediaTypes.TEXT_PLAIN)
+	public Response doSubmit(@FormParam("projectId") String projectId,
 			@FormParam("inputSourceUri") String inputSourceUri,
 			@FormParam("outputSourceName") String outputSourceName,
 			@FormParam("outputSourceUri") String outputSourceUri,
 			@FormParam("vizualisation") boolean vizualisation)
 			throws WebApplicationException {
-
-		// TODO : voir le code de OntologyMapper.java
 
 		MessageTransporter transporter = this.validate(projectId,
 				inputSourceUri, outputSourceUri, outputSourceName,
