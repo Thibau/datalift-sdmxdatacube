@@ -75,3 +75,6 @@ label.checkbox {
   border:1px solid #ddd;
 }
 
+.row-fluid .control-label {
+  min-height: 20px;
+}
