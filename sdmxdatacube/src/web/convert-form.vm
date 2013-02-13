@@ -202,10 +202,14 @@
     $(function() {
       var projectSources = [
       #foreach($s in $it.sources)
-        {
-          uri : "$esc.javascript($!{s.uri})",
-          title : "$esc.javascript($!{s.title})"
-        },
+        #if($helper.isValidSource($s))
+          {
+            title : "$esc.javascript($!{s.title})",
+            uri : "$esc.javascript($!{s.uri})",
+            outputTitle : "$esc.javascript($helper.generateSourceTitle($s))",
+            outputURI : "$esc.javascript($helper.generateSourceURI($s))"
+          },
+        #end
       #end
       ];
 

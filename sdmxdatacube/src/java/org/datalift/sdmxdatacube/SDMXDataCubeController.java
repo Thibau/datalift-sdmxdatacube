@@ -54,6 +54,7 @@ import org.datalift.fwk.project.Project;
 import org.datalift.fwk.project.Source;
 import org.datalift.fwk.view.TemplateModel;
 import org.datalift.sdmxdatacube.jsontransporter.MessageTransporter;
+import org.datalift.sdmxdatacube.utils.ControllerHelper;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -149,10 +150,8 @@ public class SDMXDataCubeController extends ModuleController {
 			Project p = this.getProject(projectId);
 			// Display conversion configuration page.
 			TemplateModel view = this.newView("convert-form.vm", p);
-			view.put("defaultOutputSourceName",
-					model.generateOutputSourceName(p));
-			view.put("defaultOutputSourceURI", model.generateOutputSourceURI(p));
-			view.put("projectId", projectId);
+			view.put("helper", new ControllerHelper(model));
+			
 			response = Response.ok(view, MediaTypes.TEXT_HTML_UTF8).build();
 		} catch (IllegalArgumentException e) {
 			TechnicalException error = new TechnicalException(
