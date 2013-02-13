@@ -213,7 +213,7 @@
       #end
       ];
 
-      var viewResults = true;
+      var viewResults = $esc.javascript($!{viewResults});
 
       ko.applyBindings(new ConverterViewModel(projectSources, viewResults));
     });

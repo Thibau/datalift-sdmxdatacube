@@ -75,6 +75,8 @@ public class SDMXDataCubeController extends ModuleController {
 	/** The module's name. */
 	public static final String MODULE_NAME = "sdmxdatacube";
 	public final static int MODULE_POSITION = 6000;
+	
+	public final static boolean VIEW_RESULTS_DEFAULT = true;
 
 	// -------------------------------------------------------------------------
 	// Instance members
@@ -151,6 +153,7 @@ public class SDMXDataCubeController extends ModuleController {
 			// Display conversion configuration page.
 			TemplateModel view = this.newView("convert-form.vm", p);
 			view.put("helper", new ControllerHelper(model));
+			view.put("viewResults", VIEW_RESULTS_DEFAULT);
 			
 			response = Response.ok(view, MediaTypes.TEXT_HTML_UTF8).build();
 		} catch (IllegalArgumentException e) {
