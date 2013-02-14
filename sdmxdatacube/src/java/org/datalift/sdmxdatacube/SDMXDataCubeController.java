@@ -96,6 +96,10 @@ public class SDMXDataCubeController extends ModuleController {
 
 	protected SDMXDataCubeModel model;
 
+	StructureFormat structureFormat;
+
+	// SDMXDataCubeTransformer rdfDataTransformer;
+
 	// -------------------------------------------------------------------------
 	// Constructors
 	// -------------------------------------------------------------------------
@@ -116,7 +120,7 @@ public class SDMXDataCubeController extends ModuleController {
 		ctx.setConfigLocation("spring/spring-beans.xml");
 		ctx.refresh();
 
-		rdfDataTransformer = ctx.getBean(SDMXDataCubeTransformer.class);
+		// rdfDataTransformer = ctx.getBean(SDMXDataCubeTransformer.class);
 
 		structureFormat = new RDFStructureOutputFormat(RDFFormat.TURTLE);
 	}
