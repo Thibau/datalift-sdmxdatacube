@@ -269,10 +269,12 @@
 			<fileset dir="${web.home}" excludes="**/.*" />
 		</copy>
 		<!-- Copy SdmxRdfParser resources application and Spring conf -->
+		<!--
 		<copy todir="${classes.dir}" includeEmptyDirs="false" preservelastmodified="true">
 			<fileset dir="${resources.home}" />
 			<fileset dir="${resources.home}/spring" />
 		</copy>
+		-->
     <!-- Copy runtime JARs to embed in distribution -->
 		<copy todir="${classes.dir}" flatten="true" preservelastmodified="true">
 			<fileset dir="${run.lib.home}">
