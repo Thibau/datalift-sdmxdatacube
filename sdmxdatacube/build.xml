@@ -104,7 +104,7 @@
 
 	<property name="src.home" location="${basedir}/src/java" />
 	<property name="web.home" location="${basedir}/src/web" />
-	<property name="resources.home" location="${basedir}/src/resources" />
+	<property name="rsc.home" location="${basedir}/src/resources"/>
 
 	<property name="lib.home" location="${basedir}/lib" />
 	<property name="run.lib.home" location="${lib.home}/runtime" />
@@ -183,6 +183,10 @@
 			<include name="**/*.jar" />
 		</fileset>
 	</path>
+	<path id="resources.classpath">  
+		<pathelement location="${rsc.home}/"/>  
+		<pathelement location="${rsc.home}/spring/"/>  
+	</path> 
 
 	<!-- ================ All Target ======================================== -->
 
@@ -240,6 +244,7 @@
 		<!-- Compile Java classes as necessary -->
 		<javac srcdir="${src.home}" destdir="${classes.dir}" debug="${compile.debug}" deprecation="${compile.deprecation}" optimize="${compile.optimize}">
 			<classpath refid="compile.classpath" />
+			<classpath refid="resources.classpath" />
 		</javac>
 		<!-- Copy application resources -->
 		<copy todir="${classes.dir}" includeEmptyDirs="false" preservelastmodified="true">
@@ -267,14 +272,8 @@
 		<!-- Copy web application page templates and resources -->
 		<copy todir="${classes.dir}" includeEmptyDirs="false" preservelastmodified="true">
 			<fileset dir="${web.home}" excludes="**/.*" />
+			<fileset dir="${rsc.home}" excludes="**/.*"/>
 		</copy>
-		<!-- Copy SdmxRdfParser resources application and Spring conf -->
-		<!--
-		<copy todir="${classes.dir}" includeEmptyDirs="false" preservelastmodified="true">
-			<fileset dir="${resources.home}" />
-			<fileset dir="${resources.home}/spring" />
-		</copy>
-		-->
     <!-- Copy runtime JARs to embed in distribution -->
 		<copy todir="${classes.dir}" flatten="true" preservelastmodified="true">
 			<fileset dir="${run.lib.home}">
