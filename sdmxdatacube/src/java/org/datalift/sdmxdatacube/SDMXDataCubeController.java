@@ -60,9 +60,11 @@ import org.sdmxsource.rdf.model.RDFStructureOutputFormat;
 import org.sdmxsource.sdmx.api.model.StructureFormat;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.DefaultResourceLoader;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.sun.jersey.api.core.DefaultResourceConfig;
 
 /**
  * The SDMX DataCube module's main class which exposes the SDMXRDFParser engine
@@ -104,11 +106,15 @@ public class SDMXDataCubeController extends ModuleController {
 		super(MODULE_NAME, MODULE_POSITION);
 		model = new SDMXDataCubeModel(MODULE_NAME);
 
-		ApplicationContext applicationContext = new ClassPathXmlApplicationContext(
-				"spring-beans.xml");
+		LOG.debug("Current classpath: {}",
+				System.getProperties().getProperty("java.class.path", null));
 
-		rdfDataTransformer = applicationContext
-				.getBean(SDMXDataCubeTransformer.class);
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext();
+		ctx.setClassLoader(this.getClass().getClassLoader());
+		ctx.setConfigLocation("spring/spring-beans.xml");
+		ctx.refresh();
+
+		rdfDataTransformer = ctx.getBean(SDMXDataCubeTransformer.class);
 
 		structureFormat = new RDFStructureOutputFormat(RDFFormat.TURTLE);
 
