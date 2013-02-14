@@ -60,19 +60,21 @@ import org.datalift.fwk.view.TemplateModel;
 import org.datalift.sdmxdatacube.jsontransporter.MessageTransporter;
 import org.datalift.sdmxdatacube.utils.ControllerHelper;
 import org.openrdf.rio.RDFFormat;
-//import org.sdmxsource.rdf.model.RDFStructureOutputFormat;
-//import org.sdmxsource.sdmx.api.model.StructureFormat;
-//import org.springframework.context.ApplicationContext;
-//import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.sdmxsource.rdf.model.RDFStructureOutputFormat;
+import org.sdmxsource.sdmx.api.model.StructureFormat;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.DefaultResourceLoader;
 import static org.datalift.fwk.util.StringUtils.*;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.sun.jersey.api.core.DefaultResourceConfig;
 
 /**
  * The SDMX DataCube module's main class which exposes the SDMXRDFParser engine
  * to the Datalift architecture.
- * 
+ *
  * @author T. Colas, T. Marmin
  * @version 090213
  */
@@ -105,6 +107,18 @@ public class SDMXDataCubeController extends ModuleController {
 		// TODO Switch to the right position.
 		super(MODULE_NAME, MODULE_POSITION);
 		model = new SDMXDataCubeModel(MODULE_NAME);
+
+		LOG.debug("Current classpath: {}",
+				System.getProperties().getProperty("java.class.path", null));
+
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext();
+		ctx.setClassLoader(this.getClass().getClassLoader());
+		ctx.setConfigLocation("spring/spring-beans.xml");
+		ctx.refresh();
+
+		rdfDataTransformer = ctx.getBean(SDMXDataCubeTransformer.class);
+
+		structureFormat = new RDFStructureOutputFormat(RDFFormat.TURTLE);
 	}
 
 	// -------------------------------------------------------------------------
@@ -114,7 +128,7 @@ public class SDMXDataCubeController extends ModuleController {
 	/**
 	 * Tells the project manager to add a new button to projects with at least
 	 * two sources.
-	 * 
+	 *
 	 * @param p
 	 *            Our current project.
 	 * @return The URI to our project's main page.
@@ -149,7 +163,7 @@ public class SDMXDataCubeController extends ModuleController {
 
 	/**
 	 * Index page handler of the SDMXToDataCube module.
-	 * 
+	 *
 	 * @param projectId
 	 *            the project using SDMXToDataCube
 	 * @return Our module's interface.
@@ -177,7 +191,7 @@ public class SDMXDataCubeController extends ModuleController {
 
 	/**
 	 * Form submit handler : launching SDMXDataCube.
-	 * 
+	 *
 	 * @param project
 	 *            the project using SDMXDataCube.
 	 * @param inputSourceURI
@@ -255,7 +269,7 @@ public class SDMXDataCubeController extends ModuleController {
 
 	/**
 	 * Form validation handler : validate de form.
-	 * 
+	 *
 	 * @param project
 	 *            the project using SDMXDataCube.
 	 * @param inputSourceURI
