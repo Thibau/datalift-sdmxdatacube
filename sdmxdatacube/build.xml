@@ -237,7 +237,7 @@
 
 	<target name="compile" depends="prepare" description="Compiles Java sources">
 		<!-- Compile Java classes as necessary -->
-		<javac srcdir="${src.home}" destdir="${classes.dir}" debug="${compile.debug}" deprecation="${compile.deprecation}" optimize="${compile.optimize}">
+		<javac srcdir="${src.home}" destdir="${classes.dir}" debug="${compile.debug}" deprecation="${compile.deprecation}" optimize="${compile.optimize}" includeantruntime="false">
 			<classpath refid="compile.classpath" />
 		</javac>
 		<!-- Copy application resources -->
