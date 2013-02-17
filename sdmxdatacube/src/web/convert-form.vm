@@ -191,34 +191,28 @@
       </footer>
     </div><!-- /container-fluid -->
 
-    <script src="${moduleUri}/static/js/libs/jquery-1.9.1.min.js" language="javascript"></script>
-    <script src="${moduleUri}/static/js/libs/bootstrap-2.3.0.min.js" language="javascript"></script>
-    <script src="${moduleUri}/static/js/libs/knockout-2.2.1.min.js" language="javascript"></script>
+    <script type="text/javascript" language="javascript">
+      var inlineDefaults = {
+        sources : [
+          #foreach($s in $it.sources)
+            #if($helper.isValidSource($s))
+              {
+                title : "$esc.javascript($!{s.title})",
+                uri : "$esc.javascript($!{s.uri})",
+                outputTitle : "$esc.javascript($helper.generateSourceTitle($s))",
+                outputURI : "$esc.javascript($helper.generateSourceURI($s))",
+                uriPattern : "http://www.ecb.int/rdf/{0}/{3}({4})/{1}-{5}"
+              },
+            #end
+          #end
+        ],
+        viewResults : $esc.javascript($!{viewResults})
+      };
+    </script>
 
-    ## <script src="${moduleUri}/static/js/converter.js" language="javascript"></script>
-    <script src="http://localhost:1337/static/js/converter.js" language="javascript"></script>
+    ## <script data-main="public/static/js/main" src="${moduleUri}/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
+    <script data-main="http://localhost:1337/static/js/main.js" src="http://localhost:1337/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
 
-    <script type="text/javascript">
-    $(function() {
-      var projectSources = [
-      #foreach($s in $it.sources)
-        #if($helper.isValidSource($s))
-          {
-            title : "$esc.javascript($!{s.title})",
-            uri : "$esc.javascript($!{s.uri})",
-            outputTitle : "$esc.javascript($helper.generateSourceTitle($s))",
-            outputURI : "$esc.javascript($helper.generateSourceURI($s))",
-            uriPattern : "http://www.ecb.int/rdf/{0}/{3}({4})/{1}-{5}"
-          },
-        #end
-      #end
-      ];
-
-      var viewResults = $esc.javascript($!{viewResults});
-
-      ko.applyBindings(new ConverterViewModel(projectSources, viewResults));
-    });
-  </script>
   </body>
 </html>
 
