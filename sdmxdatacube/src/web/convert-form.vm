@@ -191,9 +191,9 @@
       </footer>
     </div><!-- /container-fluid -->
 
-    <script src="${moduleUri}/static/js/lib/jquery-1.9.1.min.js" language="javascript"></script>
-    <script src="${moduleUri}/static/js/lib/bootstrap-2.3.0.min.js" language="javascript"></script>
-    <script src="${moduleUri}/static/js/lib/knockout-2.2.1.js" language="javascript"></script>
+    <script src="${moduleUri}/static/js/libs/jquery-1.9.1.min.js" language="javascript"></script>
+    <script src="${moduleUri}/static/js/libs/bootstrap-2.3.0.min.js" language="javascript"></script>
+    <script src="${moduleUri}/static/js/libs/knockout-2.2.1.min.js" language="javascript"></script>
 
     ## <script src="${moduleUri}/static/js/converter.js" language="javascript"></script>
     <script src="http://localhost:1337/static/js/converter.js" language="javascript"></script>
