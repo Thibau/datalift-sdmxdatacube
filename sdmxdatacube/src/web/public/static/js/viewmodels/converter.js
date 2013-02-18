@@ -2,8 +2,9 @@ define([
   'jquery',
   'knockout',
   'config/global',
-  'models/Source'
-], function($, ko, g, Source){
+  'models/Source',
+  'models/SourceTransporter'
+], function($, ko, g, Source, SourceTransporter){
   'use strict';
 
   var ViewModel = function(defaultSources, currentSource, viewResults) {
@@ -26,7 +27,7 @@ define([
       $.ajax({
          type: "POST",
          url: '/',
-         data: parameters,
+         data: new SourceTransporter(self.currentSource(), self.viewResults()),
          success: function(result) {
             window.console.log('launch success');
 

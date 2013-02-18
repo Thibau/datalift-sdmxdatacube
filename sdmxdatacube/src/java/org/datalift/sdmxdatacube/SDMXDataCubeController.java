@@ -188,12 +188,12 @@ public class SDMXDataCubeController extends ModuleController {
 			@FormParam("inputSourceUri") String inputSourceUri,
 			@FormParam("outputSourceName") String outputSourceName,
 			@FormParam("outputSourceUri") String outputSourceUri,
-			@FormParam("vizualisation") boolean vizualisation)
+			@FormParam("viewResults") boolean viewResults)
 			throws WebApplicationException {
 
 		MessageTransporter transporter = this.validate(projectId,
 				inputSourceUri, outputSourceUri, outputSourceName,
-				vizualisation);
+				viewResults);
 
 		if (!transporter.isValid()) {
 			this.sendError(BAD_REQUEST, transporter.getGlobal());
@@ -226,14 +226,14 @@ public class SDMXDataCubeController extends ModuleController {
 			@FormParam("inputSourceUri") String inputSourceUri,
 			@FormParam("outputSourceName") String outputSourceName,
 			@FormParam("outputSourceUri") String outputSourceUri,
-			@FormParam("vizualisation") boolean vizualisation)
+			@FormParam("viewResults") boolean viewResults)
 			throws WebApplicationException {
 
 		Gson gson = new GsonBuilder().create();
 
 		MessageTransporter transporter = this.validate(projectId,
 				inputSourceUri, outputSourceUri, outputSourceName,
-				vizualisation);
+				viewResults);
 
 		int statusCode = 200;
 		if (!transporter.isValid())
@@ -245,7 +245,7 @@ public class SDMXDataCubeController extends ModuleController {
 
 	private MessageTransporter validate(String projectId,
 			String inputSourceUri, String outputSourceUri,
-			String outputSourceName, boolean vizualisation) {
+			String outputSourceName, boolean viewResults) {
 
 		MessageTransporter transporter = new MessageTransporter();
 
