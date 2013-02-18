@@ -36,5 +36,5 @@ require([
   var currentSource = ko.utils.parseJson(localStorage.getItem(g.localStorageCurrentSource));
 
   // Bind a new instance of our view model to the page.
-  ko.applyBindings( new ConverterViewModel(defaults.sources, currentSource, defaults.viewResults));
+  ko.applyBindings( new ConverterViewModel(defaults.sources, currentSource || null, defaults.viewResults));
 });

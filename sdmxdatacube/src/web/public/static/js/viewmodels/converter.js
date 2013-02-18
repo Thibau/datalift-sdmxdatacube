@@ -22,7 +22,7 @@ define([
 
     // Transform our array of Objects to an array of Sources.
     self.defaultSources = ko.observableArray(defaultSources.map(function (elt) {
-      return new Source(elt.parent, elt.title, elt.uri, elt.uriPattern, elt.creator);
+      return new Source(elt.parent, elt.title, elt.uri, elt.uriPattern, elt.creator, elt.project);
     }));
 
     self.currentSource = ko.observable(currentSource);
@@ -37,6 +37,31 @@ define([
        // Save at most twice per second.
       throttle: 500
     });
+
+    self.resetValues = function() {
+      window.console.log('reset');
+      localStorage.removeItem(g.localStorageCurrentSource);
+    };
+
+    self.launchConverter = function(data, event) {
+      window.console.log('launch');
+
+      var parameters = {};
+
+      $.ajax({
+         type: "POST",
+         url: '/',
+         data: parameters,
+         success: function(result) {
+            window.console.log('launch success');
+
+            localStorage.removeItem(g.localStorageCurrentSource);
+         },
+         error: function(req, status, error) {
+            window.console.log('launch error');
+         }
+      });
+    };
 
   };
   return ViewModel;
