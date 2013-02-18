@@ -19,14 +19,12 @@ define([
 
     self.viewResults = ko.observable(viewResults);
 
-    self.launchConverter = function(data, event) {
-      window.console.log('launch');
-
-      var parameters = {};
+    self.launchConverter = function(form) {
+      window.console.log('launch to ' + form.action);
 
       $.ajax({
-         type: "POST",
-         url: '/',
+         type: form.method,
+         url: form.action,
          data: new SourceTransporter(self.currentSource(), self.viewResults()),
          success: function(result) {
             window.console.log('launch success');
