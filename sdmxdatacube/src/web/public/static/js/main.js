@@ -32,9 +32,9 @@ require([
   //'use strict';
   var defaults = inlineDefaults;
 
-  // check local storage for hist
-  //var hist = ko.utils.parseJson(localStorage.getItem(g.localStorageItem));
+  // Check local storage for values.
+  var currentSource = ko.utils.parseJson(localStorage.getItem(g.localStorageCurrentSource));
 
-  // bind a new instance of our view model to the page
-  ko.applyBindings( new ConverterViewModel(defaults.sources, defaults.viewResults));
+  // Bind a new instance of our view model to the page.
+  ko.applyBindings( new ConverterViewModel(defaults.sources, currentSource, defaults.viewResults));
 });

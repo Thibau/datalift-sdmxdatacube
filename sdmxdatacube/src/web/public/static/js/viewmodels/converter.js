@@ -17,7 +17,7 @@ define([
   //   return found ? array[i - 1][property] : '';
   // }
 
-  var ViewModel = function(defaultSources, viewResults) {
+  var ViewModel = function(defaultSources, currentSource, viewResults) {
     var self = this;
 
     // Transform our array of Objects to an array of Sources.
@@ -25,17 +25,14 @@ define([
       return new Source(elt.parent, elt.title, elt.uri, elt.uriPattern, elt.creator);
     }));
 
-    console.log(defaultSources[0].parent.title);
-    console.log(defaultSources[0].parent.uri);
-
-    self.currentSource = ko.observable();
+    self.currentSource = ko.observable(currentSource);
 
     self.viewResults = ko.observable(viewResults);
 
     // Internal computed observable that fires whenever anything changes.
     ko.computed(function() {
       // Store a clean copy to local storage.
-      //localStorage.setItem(g.localStorageItem, ko.toJSON(projectSources));
+      localStorage.setItem(g.localStorageCurrentSource, ko.toJSON(self.currentSource()));
     }).extend({
        // Save at most twice per second.
       throttle: 500
