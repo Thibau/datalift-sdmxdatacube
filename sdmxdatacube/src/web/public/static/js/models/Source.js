@@ -3,13 +3,15 @@ define([
 ], function(ko){
   'use strict';
 
-  var Source = function() {
-    var parent = ko.observable();
+  var Source = function(parent, title, uri, uriPattern, creator) {
+    var self = this;
 
-    var title = ko.observable();
-    var uri = ko.observable();
-
-    var uriPattern = ko.observable();
+    // Parent is a JS object with properties title and uri.
+    self.parent     = ko.observable(parent);
+    self.title      = ko.observable(title);
+    self.uri        = ko.observable(uri);
+    self.uriPattern = ko.observable(uriPattern);
+    self.creator    = ko.observable(creator);
   };
 
   return Source;

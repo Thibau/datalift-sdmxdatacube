@@ -6,43 +6,38 @@ define([
 ], function($, ko, g, Source){
   'use strict';
 
-  function findValue(array, uri, property) {
-    var i = 0;
-    var found = false;
-    while (!found && i < array.length) {
-      found = array[i]['uri'] === uri;
-      i++;
-    }
+  // function findValue(array, uri, property) {
+  //   var i = 0;
+  //   var found = false;
+  //   while (!found && i < array.length) {
+  //     found = array[i]['uri'] === uri;
+  //     i++;
+  //   }
 
-    return found ? array[i - 1][property] : '';
-  }
+  //   return found ? array[i - 1][property] : '';
+  // }
 
-  // our main view model
-  var ViewModel = function(projectSources, viewResults) {
+  var ViewModel = function(defaultSources, viewResults) {
     var self = this;
 
-    self.projectSources = projectSources;
+    // Transform our array of Objects to an array of Sources.
+    self.defaultSources = ko.observableArray(defaultSources.map(function (elt) {
+      return new Source(elt.parent, elt.title, elt.uri, elt.uriPattern, elt.creator);
+    }));
 
-    self.inputSource = ko.observable(self.projectSources[0]['uri']);
+    console.log(defaultSources[0].parent.title);
+    console.log(defaultSources[0].parent.uri);
 
-    self.outputSourceTitle = ko.computed(function() {
-      return findValue(self.projectSources, self.inputSource(), 'outputTitle');
-    });
-
-    self.outputSourceURI = ko.computed(function() {
-      return findValue(self.projectSources, self.inputSource(), 'outputURI');
-    });
-
-    self.uriPattern = ko.observable(self.projectSources[0]['uriPattern']);
+    self.currentSource = ko.observable();
 
     self.viewResults = ko.observable(viewResults);
 
-    // internal computed observable that fires whenever anything changes in our todos
+    // Internal computed observable that fires whenever anything changes.
     ko.computed(function() {
-      // store a clean copy to local storage, which also creates a dependency on the observableArray and all observables in each item
+      // Store a clean copy to local storage.
       //localStorage.setItem(g.localStorageItem, ko.toJSON(projectSources));
     }).extend({
-       // save at most twice per second
+       // Save at most twice per second.
       throttle: 500
     });
 

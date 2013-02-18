@@ -99,7 +99,7 @@
                       <div class="control-group">
                         <label for="inputSource" class="control-label">#i18n('input.select.label')</label>
                         <div class="controls">
-                          <select name="inputSource" id="inputSource" data-bind="options: $root.projectSources, value: inputSource, optionsValue: 'uri', optionsText: function(src) { return src.title + ' &#9670; ' + src.uri; }" class="span8" autofocus required></select>
+                          <select name="inputSource" id="inputSource" data-bind="options: defaultSources, value: currentSource, optionsText: function(elt) { return elt.parent().title + ' &#9670; ' + elt.parent().uri; }" class="span8" autofocus></select>
                           <span class="help-inline">#i18n('input.help.label')</span>
                         </div>
                       </div>
@@ -114,8 +114,8 @@
                           <label for="outputSourceURI" class="control-label span6">#i18n('uri.input.label')</label>
                         </div>
                         <div class="controls controls-row">
-                          <input name="outputSourceName" id="outputSourceName" data-bind="value: outputSourceTitle" type="text" class="span2" required>
-                          <input name="outputSourceURI" id="outputSourceURI" data-bind="value: outputSourceURI" type="text" class="span6" required>
+                          <input name="outputSourceName" id="outputSourceName" data-bind="value: currentSource().title" type="text" class="span2" required>
+                          <input name="outputSourceURI" id="outputSourceURI" data-bind="value: currentSource().uri" type="text" class="span6" required>
                           <span class="help-inline">#i18n('titleuri.help.label')</span>
                         </div>
                       </div>
@@ -124,7 +124,7 @@
                       <div class="control-group">
                         <label for="uriPattern" class="control-label">#i18n('pattern.input.label')</label>
                         <div class="controls">
-                          <input name="uriPattern" id="uriPattern" data-bind="value: uriPattern" type="text" class="span8" required>
+                          <input name="uriPattern" id="uriPattern" data-bind="value: currentSource().uriPattern" type="text" class="span8" required>
                           <span class="help-inline">#i18n('uripattern.help.label')</span>
                         </div>
                       </div>
@@ -136,7 +136,7 @@
                       <div class="form-actions well well-small pull-right">
 
                         <label class="checkbox inline" for="viewResults">
-                          <input name="viewResults" id="viewResults" data-bind="checked: viewResults" type="checkbox">
+                          <input name="viewResults" id="viewResults" data-bind="checked: viewResults()" type="checkbox">
                           #i18n('results.check.label')
                         </label>
 
@@ -197,11 +197,14 @@
           #foreach($s in $it.sources)
             #if($helper.isValidSource($s))
               {
-                title : "$esc.javascript($!{s.title})",
-                uri : "$esc.javascript($!{s.uri})",
-                outputTitle : "$esc.javascript($helper.generateSourceTitle($s))",
-                outputURI : "$esc.javascript($helper.generateSourceURI($s))",
-                uriPattern : "http://www.ecb.int/rdf/{0}/{3}({4})/{1}-{5}"
+                parent : {
+                  title : "$esc.javascript($!{s.title})",
+                  uri : "$esc.javascript($!{s.uri})"
+                },
+                title : "$esc.javascript($helper.generateSourceTitle($s))",
+                uri : "$esc.javascript($helper.generateSourceURI($s))",
+                uriPattern : "http://www.ecb.int/rdf/{0}/{3}({4})/{1}-{5}",
+                creator : "$esc.javascript(${securityCtx.userPrincipal})"
               },
             #end
           #end
