@@ -6,17 +6,6 @@ define([
 ], function($, ko, g, Source){
   'use strict';
 
-  // function findValue(array, uri, property) {
-  //   var i = 0;
-  //   var found = false;
-  //   while (!found && i < array.length) {
-  //     found = array[i]['uri'] === uri;
-  //     i++;
-  //   }
-
-  //   return found ? array[i - 1][property] : '';
-  // }
-
   var ViewModel = function(defaultSources, currentSource, viewResults) {
     var self = this;
 
