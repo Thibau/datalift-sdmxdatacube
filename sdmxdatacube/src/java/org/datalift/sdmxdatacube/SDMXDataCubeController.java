@@ -36,6 +36,7 @@ package org.datalift.sdmxdatacube;
 
 import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
 
+import java.net.URI;
 import java.net.URISyntaxException;
 
 import javax.ws.rs.Consumes;
@@ -52,6 +53,7 @@ import javax.ws.rs.core.Response.Status;
 import org.datalift.fwk.MediaTypes;
 import org.datalift.fwk.project.Project;
 import org.datalift.fwk.project.Source;
+import org.datalift.fwk.project.TransformedRdfSource;
 import org.datalift.fwk.project.XmlSource;
 import org.datalift.fwk.view.TemplateModel;
 import org.datalift.sdmxdatacube.jsontransporter.MessageTransporter;
@@ -61,6 +63,7 @@ import org.sdmxsource.rdf.model.RDFStructureOutputFormat;
 import org.sdmxsource.sdmx.api.model.StructureFormat;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import static org.datalift.fwk.util.StringUtils.*;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -209,9 +212,9 @@ public class SDMXDataCubeController extends ModuleController {
 		// Lauch SDMX to Datacube process
 		try {
 			Project p = this.getProject(new java.net.URI(project));
-			LOG.debug("soSubmit : get project ok");
+			LOG.debug("doSubmit : get project ok");
 			XmlSource s = (XmlSource) p.getSource(source);
-			LOG.debug("soSubmit : get source ok");
+			LOG.debug("doSubmit : get source ok");
 			// StructureFormat structureFormat = new RDFStructureOutputFormat(
 			// RDFFormat.TURTLE);
 			// LOG.debug("soSubmit : get sourceFormat ok");
@@ -228,6 +231,26 @@ public class SDMXDataCubeController extends ModuleController {
 			// outputData(beans, dataFormat, s);
 			// LOG.debug("soSubmit : get outputData ok");
 
+			// Build object URIs from request path.
+			URI projectUri = new URI(p.getUri());
+			URI destUri = new URI(projectUri.getScheme(), null,
+					projectUri.getHost(), projectUri.getPort(),
+					this.getSourceId(projectUri, dest_title), null, null);
+
+			TransformedRdfSource destSource = this.projectManager
+					.newTransformedRdfSource(p, destUri, dest_title, null,
+							new URI(dest_graph_uri), null);
+
+			LOG.debug("Destination source URI {}", destSource.getUri());
+
+			try {
+				model.lauchSdmxToDatacubeProcess(p, s, destSource);
+			} catch (Exception e) {
+				p.remove(destSource);
+				throw e;
+			}
+
+			this.projectManager.saveProject(p);
 		} catch (URISyntaxException e) {
 			LOG.fatal(e);
 			this.sendError(Status.BAD_REQUEST, e.getMessage());
@@ -237,6 +260,10 @@ public class SDMXDataCubeController extends ModuleController {
 		}
 
 		return Response.created(null).build();
+	}
+
+	private String getSourceId(URI projectUri, String sourceName) {
+		return projectUri.getPath() + "/source/" + urlify(sourceName);
 	}
 
 	/**

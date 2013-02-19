@@ -34,16 +34,28 @@
 
 package org.datalift.sdmxdatacube;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.LinkedList;
 
 import org.datalift.fwk.project.Project;
+import org.datalift.fwk.project.ProjectManager;
 import org.datalift.fwk.project.Source;
 import org.datalift.fwk.project.Source.SourceType;
 import org.datalift.fwk.project.SparqlSource;
 import org.datalift.fwk.project.TransformedRdfSource;
 import org.datalift.fwk.project.XmlSource;
+import org.datalift.fwk.rdf.Repository;
 import org.datalift.sdmxdatacube.utils.SdmxFileUtils;
+import org.openrdf.repository.RepositoryConnection;
+import org.openrdf.repository.RepositoryException;
+import org.openrdf.repository.config.RepositoryFactory;
+import org.openrdf.repository.http.HTTPRepository;
+import org.openrdf.rio.RDFFormat;
+import org.openrdf.rio.RDFParseException;
+
+import com.google.common.primitives.Bytes;
 
 /**
  * A module to convert SDMX (XML) data to DataCube (RDF). Uses the SDMXRDFParser
@@ -180,5 +192,34 @@ public class SDMXDataCubeModel extends ModuleModel {
 	public String generateOutputSourceURI(Project proj) {
 		// TODO generate a good URI :)
 		return "TODO générer une bonne URI ini";
+	}
+
+	public void lauchSdmxToDatacubeProcess(Project project, XmlSource source,
+			TransformedRdfSource destination) throws Exception {
+
+		LOG.debug("Lauching process to convert the SDMX source {} to RDF {}",
+				source.getFilePath(), destination.getUri());
+		try {
+			TransformedRdfSource d = (TransformedRdfSource) destination;
+			HTTPRepository repo = new HTTPRepository(d.getTargetGraph());
+			repo.initialize();
+			LOG.debug("Repo initialized");
+			RepositoryConnection cnt = repo.getConnection();
+			LOG.debug("Connection ok");
+			// TODO resolve exception authorization next ligne
+			// cnt.add(convert(source), null, RDFFormat.RDFXML);
+			// LOG.debug("Connection add ok");
+			cnt.close();
+			LOG.debug("Connection closed");
+			// Source datalift_source =
+		} catch (RepositoryException e) {// | RDFParseException | IOException e)
+											// {
+			throw e;
+		}
+	}
+
+	private InputStream convert(XmlSource source) {
+		// TODO Use the SdmxSource library
+		return new ByteArrayInputStream("".getBytes());
 	}
 }
