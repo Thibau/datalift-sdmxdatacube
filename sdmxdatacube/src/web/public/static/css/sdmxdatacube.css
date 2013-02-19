@@ -83,9 +83,24 @@ label.checkbox {
   display: inline-block;
 }
 
-.validation-message:before {
-  content : '\26A0';
+/*
+ * Form validation.
+ * ---------------------------------------------------------------------
+ */
+
+.help-block:before, .validation-message:before {
   font-size: 120%;
   padding:0 5px;
+}
 
+.success .help-block:before {
+  content : '\2713';
+}
+
+.error .help-block:before {
+  content : '\2717';
+}
+
+.error .validation-message:before {
+  content : '\26A0';
 }

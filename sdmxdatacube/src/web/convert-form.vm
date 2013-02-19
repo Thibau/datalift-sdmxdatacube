@@ -112,7 +112,7 @@
                       <!-- Name and URI are on the same row. -->
                       <div class="row-fluid">
                         <div class="span2">
-                          <div class="control-group" data-bind="validationElement: title">
+                          <div class="control-group" data-bind="validationElement: title, css : {success : title.isModified() && title.isValid()}">
                             <label for="outputSourceName" class="control-label">#i18n('title.input.label')</label>
                             <div class="controls">
                               <input name="outputSourceName" id="outputSourceName" data-bind="value: title" type="text" class="input-block-level" required>
@@ -124,7 +124,7 @@
                           </div>
                         </div>
                         <div class="span6">
-                          <div class="control-group" data-bind="validationElement: uri">
+                          <div class="control-group" data-bind="validationElement: uri, css : {success : uri.isModified() && uri.isValid()}">
                             <label for="outputSourceURI" class="control-label">#i18n('uri.input.label')</label>
                             <div class="controls">
                               <input name="outputSourceURI" id="outputSourceURI" data-bind="value: uri" type="text" class="input-block-level" required>
@@ -141,15 +141,27 @@
                       </div>
 
                       <!-- URI pattern -->
-                      <div class="control-group" data-bind="validationElement: uriPattern">
-                        <label for="uriPattern" class="control-label">#i18n('pattern.input.label')</label>
-                        <div class="controls">
-                          <input name="uriPattern" id="uriPattern" data-bind="value: uriPattern" type="text" class="span8" required>
-                          <p class="help-block span4 pull-right">#i18n('uripattern.help.label')</p>
-                          <span class="help-inline validation-message" data-bind="validationMessage: uriPattern"></span>
+                      <div class="row-fluid">
+                        <div class="span8">
+                          <div class="control-group" data-bind="validationElement: uriPattern, css : {success : uriPattern.isModified() && uriPattern.isValid()}">
+                            <label for="uriPattern" class="control-label">#i18n('pattern.input.label')</label>
+                            <div class="controls">
+                              <input name="uriPattern" id="uriPattern" data-bind="value: uriPattern" type="text" class="input-block-level" required>
+                              <p class="help-block">
+                                #i18n('uripattern.help.label')
+                                <span class="validation-message" data-bind="validationMessage: uriPattern"></span>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="span4">
+                          <p class="help-block">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique odit dolores deserunt dolore odio asperiores quisquam cupiditate libero eum consequuntur.</p>
                         </div>
                       </div>
                     </fieldset>
+
+                    <div class="clearfix"></div>
 
                     <!-- Action buttons -->
                     <fieldset class="row-fluid">
@@ -239,8 +251,8 @@
       };
     </script>
 
-    <script data-main="${moduleUri}/static/js/main" src="${moduleUri}/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
-    ## <script data-main="http://localhost:1337/static/js/main.js" src="http://localhost:1337/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
+    ## <script data-main="${moduleUri}/static/js/main" src="${moduleUri}/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
+    <script data-main="http://localhost:1337/static/js/main.js" src="http://localhost:1337/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
 
   </body>
 </html>
