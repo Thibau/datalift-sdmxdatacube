@@ -99,7 +99,7 @@
                       <div class="control-group">
                         <label for="inputSource" class="control-label">#i18n('input.select.label')</label>
                         <div class="controls">
-                          <select name="inputSource" id="inputSource" data-bind="options: defaultSources, value: currentSource, optionsText: function(elt) { return elt.parent().title + ' &#9670; ' + elt.parent().uri; }" class="span8" autofocus></select>
+                          <select name="inputSource" id="inputSource" data-bind="options: defaultSources, value: currentSource, optionsText: function(elt) { return elt.parent.title + ' &#9670; ' + elt.parent.uri; }" class="span8" autofocus></select>
                           <span class="help-inline">#i18n('input.help.label')</span>
                         </div>
                       </div>

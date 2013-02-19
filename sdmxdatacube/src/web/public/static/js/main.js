@@ -1,14 +1,16 @@
 // Require.js allows us to configure shortcut alias
 require.config({
   baseUrl : 'http://localhost:1337/static/js',
-  paths: {
-    jquery: 'libs/jquery-1.9.1.min',
-    bootstrap: 'libs/bootstrap-2.3.0.min',
-    knockout: 'libs/knockout-2.2.1.min'
+  paths : {
+    jquery : 'libs/jquery-1.9.1.min',
+    bootstrap : 'libs/bootstrap-2.3.0.min',
+    knockout : 'libs/knockout-2.2.1.min',
+    validation : 'libs/knockout.validation-1.0.2.min'
   },
-  shim: {
-      // Set bootstrap dependencies
-      'bootstrap' : ['jquery']
+  shim : {
+    // Set dependencies.
+    'bootstrap' : ['jquery'],
+    'validation' : ['knockout']
   }
 });
 

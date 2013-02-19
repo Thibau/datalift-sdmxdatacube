@@ -24,11 +24,11 @@ define([
 
       $.ajax({
          type: form.method,
-         url: form.action,
+         url: form.action + '/validate',
          data: new SourceTransporter(self.currentSource(), self.viewResults()),
          success: function(result) {
             window.console.log('launch success');
-
+            window.console.log(result.valid);
             localStorage.removeItem(g.localStorageCurrentSource);
          },
          error: function(req, status, error) {
