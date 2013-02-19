@@ -14,11 +14,11 @@ define([
     var source = ko.toJS(koSource);
 
     var message = {
-      projectId        : source.project,
-      inputSourceUri   : source.parent.uri,
-      outputSourceName : source.title,
-      outputSourceUri  : source.uri,
-      viewResults      : viewResults
+      project        : source.project,
+      source         : source.parent.uri,
+      dest_title     : source.title,
+      dest_graph_uri : source.uri,
+      vizualisation  : viewResults
     };
 
     /*
