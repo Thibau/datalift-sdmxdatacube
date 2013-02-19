@@ -106,25 +106,25 @@
                     </fieldset>
 
                     <!-- New source — input its name and graph URI, URI pattern -->
-                    <fieldset>
-                      <div class="control-group">
+                    <fieldset data-bind="with: currentSource">
+                      <div class="control-group" data-bind="validationElement: uri">
                         <legend>#i18n('output.fieldset.label')</legend>
                         <div class="row-fluid">
                           <label for="outputSourceName" class="control-label span2">#i18n('title.input.label')</label>
                           <label for="outputSourceURI" class="control-label span6">#i18n('uri.input.label')</label>
                         </div>
                         <div class="controls controls-row">
-                          <input name="outputSourceName" id="outputSourceName" data-bind="value: currentSource().title" type="text" class="span2" required>
-                          <input name="outputSourceURI" id="outputSourceURI" data-bind="value: currentSource().uri" type="text" class="span6" required>
+                          <input name="outputSourceName" id="outputSourceName" data-bind="value: title" type="text" class="span2" required>
+                          <input name="outputSourceURI" id="outputSourceURI" data-bind="value: uri" type="text" class="span6" required>
                           <span class="help-inline">#i18n('titleuri.help.label')</span>
                         </div>
                       </div>
 
                       <!-- URI pattern -->
-                      <div class="control-group">
+                      <div class="control-group" data-bind="validationElement: uriPattern">
                         <label for="uriPattern" class="control-label">#i18n('pattern.input.label')</label>
                         <div class="controls">
-                          <input name="uriPattern" id="uriPattern" data-bind="value: currentSource().uriPattern" type="text" class="span8" required>
+                          <input name="uriPattern" id="uriPattern" data-bind="value: uriPattern" type="text" class="span8" required>
                           <span class="help-inline">#i18n('uripattern.help.label')</span>
                         </div>
                       </div>

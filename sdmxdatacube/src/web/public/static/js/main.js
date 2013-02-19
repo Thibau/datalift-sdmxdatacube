@@ -20,8 +20,9 @@ require([
   'config/global',
   'viewmodels/converter',
   'extends/handlers',
-  'extends/native'
-], function(ko, g, ConverterViewModel){
+  'extends/native',
+  'validation'
+], function(ko, g, ConverterViewModel, validation){
   /*
     Here it is time for some explanation.
     RequireJS modules define their dependencies explicitly,
@@ -34,6 +35,9 @@ require([
    */
   //'use strict';
   var defaults = inlineDefaults;
+
+  // Configure the validation to use parameters defined in global.
+  ko.validation.configure(g.validationParameters);
 
   // Check local storage for values.
   var currentSource = ko.utils.parseJson(localStorage.getItem(g.localStorageCurrentSource));

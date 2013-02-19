@@ -42,7 +42,7 @@ define([
       }
       return validate === (ko.validation.group(obj)().length === 0);
     },
-    message : "Every property of the object must validate to '{0}'"
+    message : 'Every field must be valid.'
   };
 
   ko.validation.rules['remote'] = {
