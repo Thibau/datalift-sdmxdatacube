@@ -41,7 +41,7 @@ require([
   ko.validation.configure(g.validationParameters);
 
   // Translate validation to current language.
-  if (parameters.language === 'fr') {
+  if (parameters.language === 'fr' || parameters.language === 'it' || parameters.language === 'es') {
     ko.validation.localize(i18n.validation[parameters.language]);
   }
 
