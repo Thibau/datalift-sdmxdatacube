@@ -56,11 +56,6 @@ import org.datalift.fwk.project.XmlSource;
 import org.datalift.fwk.view.TemplateModel;
 import org.datalift.sdmxdatacube.jsontransporter.MessageTransporter;
 import org.datalift.sdmxdatacube.utils.ControllerHelper;
-import org.openrdf.rio.RDFFormat;
-import org.sdmxsource.rdf.model.RDFStructureOutputFormat;
-import org.sdmxsource.sdmx.api.model.StructureFormat;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
