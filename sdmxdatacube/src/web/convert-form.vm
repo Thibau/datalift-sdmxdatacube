@@ -192,25 +192,28 @@
     </div><!-- /container-fluid -->
 
     <script type="text/javascript" language="javascript">
-      var inlineDefaults = {
-        sources : [
-          #foreach($s in $it.sources)
-            #if($helper.isValidSource($s))
-              {
-                parent : {
-                  title : "$esc.javascript($!{s.title})",
-                  uri : "$esc.javascript($!{s.uri})"
+      var inlineParameters = {
+        defaults : {
+          sources : [
+            #foreach($s in $it.sources)
+              #if($helper.isValidSource($s))
+                {
+                  parent : {
+                    title : "$esc.javascript($!{s.title})",
+                    uri : "$esc.javascript($!{s.uri})"
+                  },
+                  title : "$esc.javascript($helper.generateSourceTitle($s))",
+                  uri : "$esc.javascript($helper.generateSourceURI($s))",
+                  uriPattern : "http://www.ecb.int/rdf/{0}/{3}({4})/{1}-{5}",
+                  creator : "$esc.javascript(${securityCtx.userPrincipal})",
+                  project : "$esc.javascript(${it.uri})"
                 },
-                title : "$esc.javascript($helper.generateSourceTitle($s))",
-                uri : "$esc.javascript($helper.generateSourceURI($s))",
-                uriPattern : "http://www.ecb.int/rdf/{0}/{3}({4})/{1}-{5}",
-                creator : "$esc.javascript(${securityCtx.userPrincipal})",
-                project : "$esc.javascript(${it.uri})"
-              },
+              #end
             #end
-          #end
-        ],
-        viewResults : $esc.javascript($!{viewResults})
+          ],
+          viewResults : $esc.javascript($!{viewResults})
+        },
+        language : "#i18n('page.lang')"
       };
     </script>
 
