@@ -6,8 +6,8 @@ define([
   return {
     source : {
       title : {
-      required: true,
-      minLength: 3
+        required: true,
+        minLength: 3
       },
       uri : {
         required: true,
