@@ -95,7 +95,7 @@
    -->
 
 	<property name="app.name" value="sdmxdatacube" />
-	<property name="app.version" value="0.3" />
+	<property name="app.version" value="0.4" />
 	<property name="app.path" value="/${app.name}" />
 	<property name="app.long.name" value="SDMX to Datacube converter module for DataLift" />
 
