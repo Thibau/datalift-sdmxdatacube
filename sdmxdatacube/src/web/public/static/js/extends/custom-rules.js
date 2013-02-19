@@ -45,5 +45,22 @@ define([
     message : "Every property of the object must validate to '{0}'"
   };
 
+  ko.validation.rules['remote'] = {
+    async : true,
+    validator : function (val, params, callback) {
+      var defaults = {
+          url : 'http://localhost:8080/datalift/sdmxdatacube/validate',
+          type : 'POST',
+          success : callback,
+          error : callback
+      };
+
+      var options = $.extend(defaults, params);
+
+      $.ajax(options);
+    },
+    message : 'Server validation : false'
+  };
+
   ko.validation.registerExtenders();
 });
