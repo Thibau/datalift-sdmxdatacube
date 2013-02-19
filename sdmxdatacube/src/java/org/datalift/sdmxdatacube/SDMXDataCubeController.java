@@ -37,6 +37,7 @@ package org.datalift.sdmxdatacube;
 import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
 
 import java.net.URISyntaxException;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -89,9 +90,6 @@ public class SDMXDataCubeController extends ModuleController {
 
 	protected SDMXDataCubeModel model;
 
-	StructureFormat structureFormat;
-	SDMXDataCubeTransformer rdfDataTransformer;
-
 	// -------------------------------------------------------------------------
 	// Constructors
 	// -------------------------------------------------------------------------
@@ -103,15 +101,6 @@ public class SDMXDataCubeController extends ModuleController {
 		// TODO Switch to the right position.
 		super(MODULE_NAME, MODULE_POSITION);
 		model = new SDMXDataCubeModel(MODULE_NAME);
-
-		ApplicationContext applicationContext = new ClassPathXmlApplicationContext(
-				"spring-beans.xml");
-
-		rdfDataTransformer = applicationContext
-				.getBean(SDMXDataCubeTransformer.class);
-
-		structureFormat = new RDFStructureOutputFormat(RDFFormat.TURTLE);
-
 	}
 
 	// -------------------------------------------------------------------------

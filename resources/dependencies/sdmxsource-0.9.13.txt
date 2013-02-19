@@ -1,0 +1,8 @@
+http://www.metadatatechnology.com/nexus/content/repositories/releases/org/sdmxsource/SdmxApi/0.9.13/SdmxApi-0.9.13.pom
+http://www.metadatatechnology.com/nexus/content/repositories/releases/org/sdmxsource/SdmxBeans/0.9.13/SdmxBeans-0.9.13.pom
+http://www.metadatatechnology.com/nexus/content/repositories/releases/org/sdmxsource/SdmxDataParser/0.9.13/SdmxDataParser-0.9.13.pom
+http://www.metadatatechnology.com/nexus/content/repositories/releases/org/sdmxsource/SdmxEdiParser/0.9.13/SdmxEdiParser-0.9.13.pom
+http://www.metadatatechnology.com/nexus/content/repositories/releases/org/sdmxsource/SdmxRdfParser/0.9.13/SdmxRdfParser-0.9.13.pom
+http://www.metadatatechnology.com/nexus/content/repositories/releases/org/sdmxsource/SdmxSourceUtil/0.9.13/SdmxSourceUtil-0.9.13.pom
+http://www.metadatatechnology.com/nexus/content/repositories/releases/org/sdmxsource/SdmxStructureParser/0.9.13/SdmxStructureParser-0.9.13.pom
+http://www.metadatatechnology.com/nexus/content/repositories/releases/org/sdmxsource/SdmxStructureRetrieval/0.9.13/SdmxStructureRetrieval-0.9.13.pom
