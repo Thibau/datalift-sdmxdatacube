@@ -938,6 +938,7 @@
                <c:Description xml:lang="en">Not applicable or Real zero or Zero by default</c:Description>
                <c:Description xml:lang="fr">Non applicable ou Zéro réel ou Zéro par défaut</c:Description>
             </s:Code>
+         </s:Codelist>
       </s:Codelists>
       
       <s:Concepts>
