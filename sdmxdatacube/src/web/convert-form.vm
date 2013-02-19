@@ -107,16 +107,27 @@
 
                     <!-- New source — input its name and graph URI, URI pattern -->
                     <fieldset data-bind="with: currentSource">
-                      <div class="control-group" data-bind="validationElement: uri">
-                        <legend>#i18n('output.fieldset.label')</legend>
-                        <div class="row-fluid">
-                          <label for="outputSourceName" class="control-label span2">#i18n('title.input.label')</label>
-                          <label for="outputSourceURI" class="control-label span6">#i18n('uri.input.label')</label>
+                      <legend>#i18n('output.fieldset.label')</legend>
+
+                      <!-- Name and URI are on the same row. -->
+                      <div class="row-fluid">
+                        <div class="span2">
+                          <div class="control-group" data-bind="validationElement: title">
+                            <label for="outputSourceName" class="control-label">#i18n('title.input.label')</label>
+                            <div class="controls">
+                              <input name="outputSourceName" id="outputSourceName" data-bind="value: title" type="text" class="input-block-level" required>
+                              <span class="help-inline">#i18n('title.help.label')</span>
+                            </div>
+                          </div>
                         </div>
-                        <div class="controls controls-row">
-                          <input name="outputSourceName" id="outputSourceName" data-bind="value: title" type="text" class="span2" required>
-                          <input name="outputSourceURI" id="outputSourceURI" data-bind="value: uri" type="text" class="span6" required>
-                          <span class="help-inline">#i18n('titleuri.help.label')</span>
+                        <div class="span6">
+                          <div class="control-group" data-bind="validationElement: uri">
+                            <label for="outputSourceURI" class="control-label">#i18n('uri.input.label')</label>
+                            <div class="controls">
+                              <input name="outputSourceURI" id="outputSourceURI" data-bind="value: uri" type="text" class="input-block-level" required>
+                              <span class="help-inline">#i18n('uri.help.label')</span>
+                            </div>
+                          </div>
                         </div>
                       </div>
 
@@ -218,8 +229,8 @@
       };
     </script>
 
-    <script data-main="${moduleUri}/static/js/main" src="${moduleUri}/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
-    ## <script data-main="http://localhost:1337/static/js/main.js" src="http://localhost:1337/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
+    ## <script data-main="${moduleUri}/static/js/main" src="${moduleUri}/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
+    <script data-main="http://localhost:1337/static/js/main.js" src="http://localhost:1337/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
 
   </body>
 </html>
