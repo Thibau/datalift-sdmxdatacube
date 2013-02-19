@@ -10,7 +10,8 @@ require.config({
   shim : {
     // Set dependencies.
     'bootstrap' : ['jquery'],
-    'validation' : ['knockout']
+    'validation' : ['knockout'],
+    'extends/custom-rules' : ['validation']
   }
 });
 

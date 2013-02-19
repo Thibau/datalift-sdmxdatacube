@@ -25,7 +25,7 @@ define([
     self.title      = ko.observable(title).extend(rules.source.title);
     self.uri        = ko.observable(uri).extend(rules.source.uri);
     self.uriPattern = ko.observable(uriPattern).extend(rules.source.uriPattern);
-    self.creator    = ko.observable(creator).extend(rules.source.creator);
+    self.creator    = ko.observable(creator);
     self.project    = ko.observable(project).extend(rules.source.project);
   };
 
