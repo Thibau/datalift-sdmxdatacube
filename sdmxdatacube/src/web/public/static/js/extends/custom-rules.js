@@ -36,11 +36,11 @@ define([
    * }
   */
   ko.validation.rules["validObject"] = {
-    validator : function (obj, bool) {
+    validator : function (obj, validate) {
       if (!obj || typeof obj !== "object") {
         throw "[validObject] Parameter must be an object";
       }
-      return bool === (ko.validation.group(obj)().length === 0);
+      return validate === (ko.validation.group(obj)().length === 0);
     },
     message : "Every property of the object must validate to '{0}'"
   };

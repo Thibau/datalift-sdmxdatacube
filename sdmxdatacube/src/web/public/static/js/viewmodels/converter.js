@@ -8,7 +8,7 @@ define([
 ], function($, ko, g, Source, SourceTransporter, validation){
   'use strict';
 
-  var ViewModel = function(defaultSources, currentgSource, viewResults) {
+  var ViewModel = function(defaultSources, currentSource, viewResults) {
     var self = this;
 
     // Transform our array of Objects to an array of Sources.
@@ -16,9 +16,15 @@ define([
       return new Source(elt.parent, elt.title, elt.uri, elt.uriPattern, elt.creator, elt.project);
     });
 
-    self.currentSource = ko.observable(currentSource);
-
     self.viewResults = ko.observable(viewResults);
+
+    self.currentSource = ko.observable(currentSource);
+    self.currentSource.extend({
+      validObject : true,
+      remote : {
+        data : new SourceTransporter(self.currentSource(), self.viewResults())
+      }
+    });
 
     self.launchConverter = function(form) {
       window.console.log('launch to ' + form.action);
