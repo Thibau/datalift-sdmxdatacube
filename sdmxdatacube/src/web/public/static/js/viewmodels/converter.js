@@ -8,7 +8,7 @@ define([
 ], function($, ko, g, Source, SourceTransporter, validation){
   'use strict';
 
-  var ViewModel = function(defaultSources, currentSource, viewResults) {
+  var ViewModel = function(defaultSources, currentgSource, viewResults) {
     var self = this;
 
     // Transform our array of Objects to an array of Sources.
