@@ -18,7 +18,8 @@ define([
 
     self.viewResults = ko.observable(viewResults);
 
-    self.currentSource = ko.observable(currentSource);
+    self.currentSource = ko.observable(currentSource || self.defaultSources[0]);
+
     self.currentSource.extend({
       validObject : true,
       remote : {
@@ -27,7 +28,7 @@ define([
     });
 
     self.launchConverter = function(form) {
-      window.console.log('launch to ' + form.action);
+      window.console.log('launch');
 
       $.ajax({
          type: form.method,
@@ -46,7 +47,7 @@ define([
 
     self.resetValues = function() {
       window.console.log('reset');
-      //TODO self.currentSource(self.defaultSources[0]);
+      // TODO self.currentSource(self.defaultSources[0]);
       localStorage.removeItem(g.localStorageCurrentSource);
     };
 
