@@ -82,3 +82,10 @@ label.checkbox {
 .form-actions {
   display: inline-block;
 }
+
+.validation-message:before {
+  content : '\26A0';
+  font-size: 120%;
+  padding:0 5px;
+
+}

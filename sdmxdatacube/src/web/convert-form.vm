@@ -20,8 +20,8 @@
     <link rel="stylesheet" href="${moduleUri}/static/css/bootstrap.css">
     <link rel="stylesheet" href="${moduleUri}/static/css/bootstrap-responsive.css">
 
-    <link rel="stylesheet" href="${moduleUri}/static/css/sdmxdatacube.css">
-    ## <link rel="stylesheet" href="http://localhost:1337/static/css/sdmxdatacube.css">
+    ## <link rel="stylesheet" href="${moduleUri}/static/css/sdmxdatacube.css">
+    <link rel="stylesheet" href="http://localhost:1337/static/css/sdmxdatacube.css">
 
     <!-- fav and touch icons -->
     <link rel="shortcut icon" href="${moduleUri}/static/img/favicon.ico">
@@ -100,7 +100,7 @@
                         <label for="inputSource" class="control-label">#i18n('input.select.label')</label>
                         <div class="controls">
                           <select name="inputSource" id="inputSource" data-bind="options: defaultSources, value: currentSource, optionsText: function(elt) { return elt.parent.title + ' &#9670; ' + elt.parent.uri; }" class="span8" autofocus></select>
-                          <span class="help-inline">#i18n('input.help.label')</span>
+                          <p class="help-block span4 pull-right">#i18n('input.help.label')</p>
                         </div>
                       </div>
                     </fieldset>
@@ -116,7 +116,10 @@
                             <label for="outputSourceName" class="control-label">#i18n('title.input.label')</label>
                             <div class="controls">
                               <input name="outputSourceName" id="outputSourceName" data-bind="value: title" type="text" class="input-block-level" required>
-                              <span class="help-inline">#i18n('title.help.label')</span>
+                              <p class="help-block">
+                                #i18n('title.help.label')
+                                <span class="validation-message" data-bind="validationMessage: title"></span>
+                              </p>
                             </div>
                           </div>
                         </div>
@@ -125,9 +128,15 @@
                             <label for="outputSourceURI" class="control-label">#i18n('uri.input.label')</label>
                             <div class="controls">
                               <input name="outputSourceURI" id="outputSourceURI" data-bind="value: uri" type="text" class="input-block-level" required>
-                              <span class="help-inline">#i18n('uri.help.label')</span>
+                              <p class="help-block">
+                                #i18n('uri.help.label')
+                                <span class="validation-message" data-bind="validationMessage: uri"></span>
+                              </p>
                             </div>
                           </div>
+                        </div>
+                        <div class="span4">
+                          <p class="help-block">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique odit dolores deserunt dolore odio asperiores quisquam cupiditate libero eum consequuntur.</p>
                         </div>
                       </div>
 
@@ -136,7 +145,8 @@
                         <label for="uriPattern" class="control-label">#i18n('pattern.input.label')</label>
                         <div class="controls">
                           <input name="uriPattern" id="uriPattern" data-bind="value: uriPattern" type="text" class="span8" required>
-                          <span class="help-inline">#i18n('uripattern.help.label')</span>
+                          <p class="help-block span4 pull-right">#i18n('uripattern.help.label')</p>
+                          <span class="help-inline validation-message" data-bind="validationMessage: uriPattern"></span>
                         </div>
                       </div>
                     </fieldset>
