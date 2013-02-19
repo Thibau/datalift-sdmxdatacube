@@ -239,7 +239,7 @@ public class SDMXDataCubeController extends ModuleController {
 
 			TransformedRdfSource destSource = this.projectManager
 					.newTransformedRdfSource(p, destUri, dest_title, null,
-							new URI(dest_graph_uri), null);
+							new URI(dest_graph_uri), s);
 
 			LOG.debug("Destination source URI {}", destSource.getUri());
 
