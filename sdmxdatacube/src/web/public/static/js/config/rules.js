@@ -11,7 +11,8 @@ define([
       },
       uri : {
         required: true,
-        minLength: 3
+        minLength: 5,
+        uri : true
       },
       uriPattern : {
         required: true,
