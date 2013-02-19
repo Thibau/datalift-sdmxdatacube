@@ -3,8 +3,9 @@ define([
   'knockout',
   'config/global',
   'models/Source',
-  'models/SourceTransporter'
-], function($, ko, g, Source, SourceTransporter){
+  'models/SourceTransporter',
+  'validation'
+], function($, ko, g, Source, SourceTransporter, validation){
   'use strict';
 
   var ViewModel = function(defaultSources, currentSource, viewResults) {

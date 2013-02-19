@@ -1,7 +1,8 @@
 define([
+  'jquery',
   'knockout',
   'validation'
-], function(ko, validation){
+], function($, ko, validation){
   'use strict';
 
   var regex = {};
@@ -16,10 +17,32 @@ define([
    * validator returns true if no validation, if val is empty or if val validates the regex.
    */
   ko.validation.rules['uri'] = {
-    validator: function (val, validate) {
+    validator : function (val, validate) {
       return !validate || !val || regex.uri.test(val);
     },
-    message: 'Please enter a proper URI'
+    message : 'Please enter a proper URI'
+  };
+
+  /*
+   * Aggregate validation of all the validated properties within an object
+   * Parameter: true|false
+   * Example:
+   *
+   * viewModel = {
+   *    person: ko.observable({
+   *       name: ko.observable().extend({ required: true }),
+   *       age: ko.observable().extend({ min: 0, max: 120 })
+   *    }.extend({ validObject: true })
+   * }
+  */
+  ko.validation.rules["validObject"] = {
+    validator : function (obj, bool) {
+      if (!obj || typeof obj !== "object") {
+        throw "[validObject] Parameter must be an object";
+      }
+      return bool === (ko.validation.group(obj)().length === 0);
+    },
+    message : "Every property of the object must validate to '{0}'"
   };
 
   ko.validation.registerExtenders();
