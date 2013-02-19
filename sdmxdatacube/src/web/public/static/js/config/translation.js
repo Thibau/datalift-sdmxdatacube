@@ -1,4 +1,5 @@
 define({
+  // Translations from https://github.com/ericmbarnard/Knockout-Validation
   validation : {
     fr : {
       required: 'Ce champ est obligatoire.',

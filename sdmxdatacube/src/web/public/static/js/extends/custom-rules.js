@@ -23,18 +23,11 @@ define([
     message : 'Please enter a proper URI'
   };
 
-  /*
+  /**
    * Aggregate validation of all the validated properties within an object
    * Parameter: true|false
-   * Example:
    *
-   * viewModel = {
-   *    person: ko.observable({
-   *       name: ko.observable().extend({ required: true }),
-   *       age: ko.observable().extend({ min: 0, max: 120 })
-   *    }.extend({ validObject: true })
-   * }
-  */
+   */
   ko.validation.rules["validObject"] = {
     validator : function (obj, validate) {
       if (!obj || typeof obj !== "object") {
@@ -45,6 +38,9 @@ define([
     message : 'Every field must be valid.'
   };
 
+  /**
+   * Remote validation rule, TODO.
+   */
   ko.validation.rules['remote'] = {
     async : true,
     validator : function (val, params, callback) {

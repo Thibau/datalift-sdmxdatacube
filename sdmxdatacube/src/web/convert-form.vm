@@ -192,6 +192,7 @@
     </div><!-- /container-fluid -->
 
     <script type="text/javascript" language="javascript">
+      // Inline parameters used to transmit default values to the client.
       var inlineParameters = {
         defaults : {
           sources : [
