@@ -25,15 +25,15 @@ h2 small {
   font-size: inherit;
 }
 
-h1 i, h2 i {
-  position:relative;
-  top:5px;
-}
-
 i {
   position:relative;
   top:1px;
 }
+
+h1 i, h2 i, h3 i, h4 i {
+  top:5px;
+}
+
 
 .navbar .brand {
   margin:0;
@@ -103,4 +103,18 @@ label.checkbox {
 
 .error .validation-message:before {
   content : '\26A0';
+}
+
+/*
+ * Documentation.
+ * ---------------------------------------------------------------------
+ */
+
+pre {
+  min-height: 400px;
+}
+
+blockquote p {
+  padding-top: 10px;
+  min-height: 180px;
 }
