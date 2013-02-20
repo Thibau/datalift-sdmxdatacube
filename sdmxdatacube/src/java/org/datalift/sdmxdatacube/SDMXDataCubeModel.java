@@ -34,9 +34,12 @@
 
 package org.datalift.sdmxdatacube;
 
+import info.aduna.app.config.Configuration;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
 import java.util.LinkedList;
 
 import org.datalift.fwk.project.Project;
@@ -46,7 +49,10 @@ import org.datalift.fwk.project.Source.SourceType;
 import org.datalift.fwk.project.SparqlSource;
 import org.datalift.fwk.project.TransformedRdfSource;
 import org.datalift.fwk.project.XmlSource;
+import org.datalift.fwk.rdf.RdfUtils;
 import org.datalift.fwk.rdf.Repository;
+import org.datalift.fwk.util.PrefixUriMapper;
+import org.datalift.fwk.util.UriMapper;
 import org.datalift.sdmxdatacube.utils.SdmxFileUtils;
 import org.openrdf.repository.RepositoryConnection;
 import org.openrdf.repository.RepositoryException;
@@ -55,6 +61,7 @@ import org.openrdf.repository.http.HTTPRepository;
 import org.openrdf.rio.RDFFormat;
 import org.openrdf.rio.RDFParseException;
 
+import com.google.common.net.MediaType;
 import com.google.common.primitives.Bytes;
 
 /**
@@ -199,27 +206,40 @@ public class SDMXDataCubeModel extends ModuleModel {
 
 		LOG.debug("Lauching process to convert the SDMX source {} to RDF {}",
 				source.getFilePath(), destination.getUri());
-		try {
-			TransformedRdfSource d = (TransformedRdfSource) destination;
-			HTTPRepository repo = new HTTPRepository(d.getTargetGraph());
-			repo.initialize();
-			LOG.debug("Repo initialized");
-			RepositoryConnection cnt = repo.getConnection();
-			LOG.debug("Connection ok");
-			// TODO resolve exception authorization next ligne
-			// cnt.add(convert(source), null, RDFFormat.RDFXML);
-			// LOG.debug("Connection add ok");
-			cnt.close();
-			LOG.debug("Connection closed");
-			// Source datalift_source =
-		} catch (RepositoryException e) {// | RDFParseException | IOException e)
-											// {
-			throw e;
-		}
+		TransformedRdfSource d = (TransformedRdfSource) destination;
+		// HTTPRepository repo = new HTTPRepository(d.getTargetGraph());
+		Repository repo = org.datalift.fwk.Configuration.getDefault()
+				.getInternalRepository();
+
+		// repo.initialize();
+		LOG.debug("Repo initialized");
+
+		RdfUtils.upload(convert(source),
+				javax.ws.rs.core.MediaType.APPLICATION_XML_TYPE, repo, new URI(
+						d.getTargetGraph()), null);
+
 	}
 
 	private InputStream convert(XmlSource source) {
 		// TODO Use the SdmxSource library
-		return new ByteArrayInputStream("".getBytes());
+
+		String rdfxml = "<?xml version=\"1.0\"?>\n"
+				+ "<rdf:RDF\n"
+				+ "xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"\n"
+				+ "xmlns:cd=\"http://www.recshop.fake/cd#\">\n"
+				+ "<rdf:Description\n"
+				+ "rdf:about=\"http://www.recshop.fake/cd/Empire Burlesque\">\n"
+				+ "<cd:artist>Bob Dylan</cd:artist>\n"
+				+ "<cd:country>USA</cd:country>\n"
+				+ "<cd:company>Columbia</cd:company>\n"
+				+ "<cd:price>10.90</cd:price>\n" + "<cd:year>1985</cd:year>\n"
+				+ "</rdf:Description>\n" + "<rdf:Description\n"
+				+ "rdf:about=\"http://www.recshop.fake/cd/Hide your heart\">\n"
+				+ "<cd:artist>Bonnie Tyler</cd:artist>\n"
+				+ "<cd:country>UK</cd:country>\n"
+				+ "<cd:company>CBS Records</cd:company>\n"
+				+ "<cd:price>9.90</cd:price>\n" + "<cd:year>1988</cd:year>\n"
+				+ "</rdf:Description>\n" + "</rdf:RDF>\n";
+		return new ByteArrayInputStream(rdfxml.getBytes());
 	}
 }

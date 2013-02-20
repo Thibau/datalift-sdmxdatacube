@@ -123,6 +123,7 @@ public class SDMXDataCubeController extends ModuleController {
 		UriDesc projectPage = null;
 		try {
 			// The project can be handled if it has at least one SDMX source.
+			// TODO enlever pseudo condition here
 			if (true || model.hasMultipleValidSources(p, 1)) {
 				// link URL, link label
 				projectPage = new UriDesc(this.getName() + "?project="
