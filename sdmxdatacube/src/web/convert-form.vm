@@ -195,18 +195,28 @@
 
             <!-- Documentation -->
             <div class="tab-pane" id="documentation">
-              <p>#i18n('documentation.tab.label')</p>
-
               <div class="row-fluid">
+                <!-- SDMX -->
                 <div class="span6">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem repellat cupiditate corporis pariatur molestias ex laborum doloremque non maxime facere eaque accusamus commodi eligendi! Id quod dignissimos fugit quaerat quidem aspernatur totam animi nam quasi dolore odit error numquam quam labore in impedit excepturi voluptates velit tenetur nulla eos recusandae deserunt rem vitae suscipit praesentium consequuntur voluptatum doloremque vel soluta at maiores repellendus incidunt laborum nemo dicta ducimus dolor laudantium harum esse sapiente molestias exercitationem eveniet voluptatibus consequatur ratione? Modi sint voluptate possimus deleniti odit id assumenda unde illum rem in mollitia ad soluta adipisci recusandae nobis quis autem accusamus.
-                  </p>
+                  <h3>#i18n('sdmx.doc.title')</h3>
+                  <p>#i18n('sdmx.doc.overview')</p>
+                  <h4>#i18n('resources.doc.title') :</h4>
+                  <ul>
+                    <li>#i18n('reference.doc.label') : <a href="#i18n('sdmx.ref.link')">#i18n('sdmx.ref.link')</a></li>
+                    <li>#i18n('datasets.doc.label') : <a href="#i18n('sdmx.datasets.link')">#i18n('sdmx.datasets.link')</a></li>
+                    <li>#i18n('moreinfo.doc.label') : <a href="#i18n('sdmx.moreinfo.link')">#i18n('sdmx.moreinfo.link')</a></li>
+                  </ul>
                 </div>
+                <!-- DataCube -->
                 <div class="span6">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque aut aliquid veritatis doloribus facere optio voluptatem aperiam dicta. Rerum tempora earum harum animi laboriosam voluptates porro debitis nesciunt cumque fuga ab asperiores excepturi aliquid voluptatibus quibusdam est distinctio autem recusandae ratione perferendis temporibus modi assumenda saepe ex amet beatae architecto dignissimos magnam accusantium corrupti possimus mollitia pariatur delectus sequi magni veritatis aliquam enim exercitationem officia nobis sit ad. Fuga voluptatum corporis sunt harum sapiente reiciendis quod itaque qui consequatur accusantium! Vitae odio accusamus atque numquam dolores et impedit asperiores illum omnis aliquid. Magni delectus earum deserunt dolorem cupiditate velit ducimus.
-                  </p>
+                  <h3>#i18n('datacube.doc.title')</h3>
+                  <p>#i18n('datacube.doc.overview')</p>
+                  <h4>#i18n('resources.doc.title') :</h4>
+                  <ul>
+                    <li>#i18n('reference.doc.label') : <a href="#i18n('datacube.ref.link')">#i18n('datacube.ref.link')</a></li>
+                    <li>#i18n('datasets.doc.label') : <a href="#i18n('datacube.datasets.link')">#i18n('datacube.datasets.link')</a></li>
+                    <li>#i18n('moreinfo.doc.label') : <a href="#i18n('datacube.moreinfo.link')">#i18n('datacube.moreinfo.link')</a></li>
+                  </ul>
                 </div>
               </div>
 
