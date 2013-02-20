@@ -8,17 +8,24 @@ define([
 ], function($, ko, g, Source, SourceTransporter, validation){
   'use strict';
 
-  var ViewModel = function(defaultSources, currentSource, viewResults) {
+  var ViewModel = function(rawSources, currentSource, viewResults) {
     var self = this;
 
-    // Transform our array of Objects to an array of Sources.
-    self.defaultSources = defaultSources.map(function (elt) {
-      return new Source(elt.parent, elt.title, elt.uri, elt.uriPattern, elt.creator, elt.project);
-    });
+    self.rawSources = rawSources;
+    self.sources = [];
+    self.currentSource = ko.observable();
 
     self.viewResults = ko.observable(viewResults);
 
-    self.currentSource = ko.observable(currentSource || self.defaultSources[0]);
+    self.initialize = function(currentSource) {
+      // Transform our array of Objects to an array of Sources.
+      self.sources = self.rawSources.map(function (elt) {
+        return new Source(elt.parent, elt.title, elt.uri, elt.uriPattern, elt.creator, elt.project);
+      });
+
+      self.currentSource(currentSource || self.sources[0]);
+    };
+    self.initialize(currentSource);
 
     self.currentSource.extend({
       validObject : true,
@@ -27,7 +34,7 @@ define([
       }
     });
 
-    self.launchConverter = function(form) {
+    self.launch = function(form) {
       window.console.log('launch');
 
       $.ajax({
@@ -45,10 +52,13 @@ define([
       });
     };
 
-    self.resetValues = function() {
-      window.console.log('reset');
-      // TODO self.currentSource(self.defaultSources[0]);
-      localStorage.removeItem(g.localStorageCurrentSource);
+    /**
+     * Resets the values of our sources by calling the initialization function again.
+     * @return nothing.
+     */
+    self.reset = function() {
+      self.initialize(null);
+      localStorage.setItem(g.localStorageCurrentSource, ko.toJSON(self.currentSource()));
     };
 
     // Internal computed observable that fires whenever anything changes.
