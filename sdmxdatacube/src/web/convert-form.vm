@@ -185,7 +185,14 @@
 
             <!-- Parameters -->
             <div class="tab-pane" id="parameters">
-              <p>#i18n('parameters.tab.label')</p>
+              <div class="row-fluid">
+                <div class="span6">
+
+                </div>
+                <div class="span6">
+
+                </div>
+              </div>
             </div>
 
             <!-- History -->
@@ -281,6 +288,7 @@
                   uri : "$esc.javascript($helper.generateSourceURI($s))",
                   uriPattern : "http://www.ecb.int/rdf/{0}/{3}({4})/{1}-{5}",
                   creator : "$esc.javascript(${securityCtx.userPrincipal})",
+                  created : new Date(),
                   project : "$esc.javascript(${it.uri})"
                 },
               #end

@@ -15,9 +15,10 @@ define([
    * @param {String} uri        URI to identify the source and its graph. Unique.
    * @param {String} uriPattern A pattern to be used by the URIs inside the source.
    * @param {String} creator    Who created the source.
+   * @param {Date} created      When this source was created.
    * @param {String} project    Which project is the source attached to.
    */
-  var Source = function(parent, title, uri, uriPattern, creator, project) {
+  var Source = function(parent, title, uri, uriPattern, creator, created, project) {
     var self = this;
 
     // Parent is a JS object with properties title and uri.
@@ -26,6 +27,7 @@ define([
     self.uri        = ko.observable(uri).extend(rules.source.uri);
     self.uriPattern = ko.observable(uriPattern).extend(rules.source.uriPattern);
     self.creator    = ko.observable(creator);
+    self.created    = ko.observable(created);
     self.project    = ko.observable(project).extend(rules.source.project);
   };
 

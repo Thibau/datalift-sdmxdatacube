@@ -20,7 +20,7 @@ define([
     self.initialize = function(currentSource) {
       // Transform our array of Objects to an array of Sources.
       self.sources = self.rawSources.map(function (elt) {
-        return new Source(elt.parent, elt.title, elt.uri, elt.uriPattern, elt.creator, elt.project);
+        return new Source(elt.parent, elt.title, elt.uri, elt.uriPattern, elt.creator, elt.created, elt.project);
       });
 
       self.currentSource(currentSource || self.sources[0]);
