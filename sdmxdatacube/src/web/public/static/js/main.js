@@ -23,6 +23,7 @@ require([
   'viewmodels/converter',
   'extends/handlers',
   'extends/native',
+  'bootstrap',
   'validation'
 ], function(ko, g, i18n, ConverterViewModel, validation){
   /*
