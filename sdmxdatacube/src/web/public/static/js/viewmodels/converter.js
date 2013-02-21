@@ -22,6 +22,15 @@ define([
       isConfirming : ko.observable(false)
     };
 
+    /*
+    TODO :
+    - Add comments for state
+    - Add comments for launch
+    - Divide source.project into title, uri
+    - Remove observable on project
+    - Add comments to ViewModel
+     */
+
     /**
      * Initializes the converter from the raw sources.
      * @param  {Object} currentSource A POJO which represents a source.

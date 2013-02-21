@@ -340,8 +340,8 @@
       };
     </script>
 
-    ## <script data-main="${moduleUri}/static/js/main" src="${moduleUri}/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
-    <script data-main="http://localhost:1337/static/js/main.js" src="http://localhost:1337/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
+    <script data-main="${moduleUri}/static/js/main" src="${moduleUri}/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
+    ## Prod/Dev : <script data-main="http://localhost:1337/static/js/main.js" src="http://localhost:1337/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
 
   </body>
 </html>
