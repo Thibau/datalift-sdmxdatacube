@@ -178,7 +178,7 @@
                       </div>
                     </fieldset>
 
-                    <!-- Modal to confirm form submit. -->
+                    <!-- Modal to confirm form submit. Uses custom binding modal. -->
                     <div id="submit-confirm" data-bind="modal: state.isConfirming" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="confirm-label" aria-hidden="true">
                       <div class="modal-header">
                         <button type="button" data-bind="click: function(data, event){state.isConfirming(false);}" class="close" aria-hidden="true">×</button>
