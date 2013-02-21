@@ -18,6 +18,8 @@ public class MessageTransporter {
 	public void setError(String paramName, String value) {
 		valid = false;
 
+		this.global = paramName + ": " + value;
+
 		if (paramName == "project")
 			this.project = value;
 		else if (paramName == "source")
