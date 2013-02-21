@@ -20,8 +20,10 @@ define([
     self.state = {
       isProcessing     : ko.observable(false),
       isConfirming     : ko.observable(false),
-      isViewingErrors  : ko.observable(false),
-      errors           : ko.observableArray()
+      isError          : ko.observable(false),
+      isSuccess        : ko.observable(false),
+      globalError      : ko.observable(),
+      globalResult     : ko.observable()
     };
 
     /*
@@ -67,25 +69,24 @@ define([
 
       self.state.isProcessing(true);
       self.state.isConfirming(false);
-      self.state.errors.removeAll();
+      self.state.globalError(null);
+      self.state.globalResult(null);
 
       $.ajax({
          type: form.method,
-         url: form.action, // + '/validate',
+         url: form.action,
          data: new SourceTransporter(self.currentSource(), self.viewResults()),
          success: function(data, status, jqxhr) {
-            window.console.log('launch success');
-            window.console.log(data);
+            self.state.isProcessing(false);
+            self.state.isSuccess(true);
+            self.state.globalResult(data);
+
             localStorage.removeItem(g.localStorageCurrentSource);
          },
          error: function(jqxhr, status, error) {
             self.state.isProcessing(false);
-            self.state.isViewingErrors(true);
-            self.state.errors.push(jqxhr.responseText);
-
-            window.console.log('launch error');
-            window.console.log(jqxhr.responseText);
-            window.console.log(JSON.parse(jqxhr.responseText));
+            self.state.isError(true);
+            self.state.globalError(jqxhr.responseText);
          },
          complete: function () {
 

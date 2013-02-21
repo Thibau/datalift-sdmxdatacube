@@ -186,6 +186,10 @@
                       </div>
                     </fieldset>
 
+
+                    <!-- Modals -->
+
+
                     <!-- Modal to confirm form submit. Uses custom binding modal. -->
                     <div data-bind="modal: state.isConfirming" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="confirm-label" aria-hidden="true">
                       <div class="modal-header">
@@ -209,20 +213,35 @@
                       </div>
                     </div>
 
-                    <!-- Modal to display errors after form submit. -->
-                    <div data-bind="modal: state.isViewingErrors" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="error-label" aria-hidden="true">
+                    <!-- Modal to display results after form submit. -->
+                    <div data-bind="modal: state.isSuccess" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="result-label" aria-hidden="true">
                       <div class="modal-header">
-                        <button type="button" data-bind="click: function(data, event){state.isViewingErrors(false);}" class="close" aria-hidden="true">×</button>
+                        <button type="button" data-bind="click: function(data, event){state.isSuccess(false);}" class="close" aria-hidden="true">×</button>
+                        <h3 id="result-label" class="text-success">#i18n('header.success.text')</h3>
+                      </div>
+                      <div class="modal-body">
+                        <p>#i18n('body.success.text') <span class="text-info" data-bind="text: state.globalResult"></span>.</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button data-bind="click: function(data, event){state.isSuccess(false);}" class="btn" aria-hidden="true">#i18n('redirect.success.label')</button>
+                        <!-- Show a cancel button if we are going to change page, a back if we stay here. -->
+                        <button data-bind="visible: !viewResults, click: function(data, event){state.isSuccess(false);}" class="btn" aria-hidden="true">#i18n('cancel.label')</button>
+                        <button data-bind="visible: viewResults, click: function(data, event){state.isSuccess(false);}" class="btn" aria-hidden="true">#i18n('back.label')</button>
+                      </div>
+                    </div>
+
+                    <!-- Modal to display errors after form submit. -->
+                    <div data-bind="modal: state.isError" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="error-label" aria-hidden="true">
+                      <div class="modal-header">
+                        <button type="button" data-bind="click: function(data, event){state.isError(false);}" class="close" aria-hidden="true">×</button>
                         <h3 id="error-label" class="text-error">#i18n('header.error.text')</h3>
                       </div>
                       <div class="modal-body">
                         <p>#i18n('body.error.text')</p>
-                        <ul data-bind="foreach : state.errors">
-                          <li data-bind="text: $data"></li>
-                        </ul>
+                        <p class="text-error" data-bind="text: state.globalError"></p>
                       </div>
                       <div class="modal-footer">
-                        <button data-bind="click: function(data, event){state.isViewingErrors(false);}" class="btn" aria-hidden="true">#i18n('back.label')</button>
+                        <button data-bind="click: function(data, event){state.isError(false);}" class="btn" aria-hidden="true">#i18n('back.label')</button>
                       </div>
                     </div>
 

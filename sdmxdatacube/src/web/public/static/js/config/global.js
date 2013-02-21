@@ -5,5 +5,6 @@ define({
     insertMessages: false,
     decorateElement: true,
     errorElementClass: 'error'
-  }
+  },
+  timeBeforeRedirect : 3000
 });
