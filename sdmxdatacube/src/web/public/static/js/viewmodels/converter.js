@@ -39,15 +39,17 @@ define([
 
       $.ajax({
          type: form.method,
-         url: form.action + '/validate',
+         url: form.action, // + '/validate',
          data: new SourceTransporter(self.currentSource(), self.viewResults()),
          success: function(result) {
             window.console.log('launch success');
-            window.console.log(result.valid);
+            window.console.log(result);
             localStorage.removeItem(g.localStorageCurrentSource);
          },
          error: function(req, status, error) {
             window.console.log('launch error');
+            window.console.log(status);
+            window.console.log(error);
          }
       });
     };
