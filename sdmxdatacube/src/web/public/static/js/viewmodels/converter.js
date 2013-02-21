@@ -15,17 +15,12 @@ define([
     self.rawSources = rawSources;
     self.sources = [];
     self.currentSource = ko.observable();
-
-    self.initialize(currentSource);
-
-    self.currentSource.extend({
-      validObject : true,
-      remote : {
-        data : new SourceTransporter(self.currentSource(), self.viewResults())
-      }
-    });
-
     self.viewResults = ko.observable(viewResults);
+
+    self.state = {
+      isProcessing : ko.observable(false),
+      isConfirming : ko.observable(false)
+    };
 
     /**
      * Initializes the converter from the raw sources.
@@ -40,20 +35,36 @@ define([
       self.currentSource(currentSource || self.sources[0]);
     };
 
+    self.initialize(currentSource);
+
+    self.currentSource.extend({
+      validObject : true,
+      remote : {
+        data : new SourceTransporter(self.currentSource(), self.viewResults())
+      }
+    });
+
 
     self.launch = function(form) {
       window.console.log('launch');
+
+      self.state.isProcessing(true);
+      self.state.isConfirming(false);
 
       $.ajax({
          type: form.method,
          url: form.action, // + '/validate',
          data: new SourceTransporter(self.currentSource(), self.viewResults()),
          success: function(result) {
+            self.state.isProcessing(false);
+
             window.console.log('launch success');
             window.console.log(result);
             localStorage.removeItem(g.localStorageCurrentSource);
          },
          error: function(req, status, error) {
+            self.state.isProcessing(false);
+
             window.console.log('launch error');
             window.console.log(status);
             window.console.log(error);

@@ -173,20 +173,20 @@
                           #i18n('results.check.label')
                         </label>
 
-                        <button data-toggle="modal" data-target="#submit-confirm" class="btn btn-primary" autocomplete="off" type="button">#i18n('launch.btn.label')</button>
+                        <button data-bind="disable: $root.state.isProcessing, click: function(data, event){$root.state.isConfirming(true);}" class="btn btn-primary" autocomplete="off" type="button">#i18n('launch.btn.label')</button>
                         <button data-bind="click: reset" class="btn" type="button">#i18n('reset.btn.label')</button>
                       </div>
                     </fieldset>
 
                     <!-- Modal to confirm form submit. -->
-                    <div id="submit-confirm" data-bind="with: currentSource" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="confirm-label" aria-hidden="true">
+                    <div id="submit-confirm" data-bind="modal: state.isConfirming" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="confirm-label" aria-hidden="true">
                       <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h3 id="confirm-label">#i18n('header.confirm.text') <span data-bind="text: parent.title" class="text-info"></span> ?</h3>
+                        <button type="button" data-bind="click: function(data, event){state.isConfirming(false);}" class="close" aria-hidden="true">×</button>
+                        <h3 id="confirm-label">#i18n('header.confirm.text') <span data-bind="text: currentSource().parent.title" class="text-info"></span> ?</h3>
                       </div>
                       <div class="modal-body">
-                        <p><strong>#i18n('reminder.confirm.title') :</strong> #i18n('body.confirm.text') <span data-bind="text : project" class="text-info"></span></p>
-                        <dl>
+                        <p><strong>#i18n('reminder.confirm.title') :</strong> #i18n('body.confirm.text') <span data-bind="text : currentSource().project" class="text-info"></span></p>
+                        <dl data-bind="with: currentSource">
                           <dt>#i18n('output.confirm.title')</dt>
                           <dd data-bind="text: title" class="text-info"></dd>
                           <dt>#i18n('graph.confirm.title')</dt>
@@ -196,8 +196,8 @@
                         </dl>
                       </div>
                       <div class="modal-footer">
-                        <button class="btn" data-dismiss="modal" aria-hidden="true">#i18n('cancel.label')</button>
-                        <button type="submit" class="btn btn-primary" autocomplete="off">#i18n('launch.btn.label')</button>
+                        <button data-bind="click: function(data, event){state.isConfirming(false);}" class="btn" aria-hidden="true">#i18n('cancel.label')</button>
+                        <button data-bind="disable: state.isProcessing" type="submit" class="btn btn-primary" autocomplete="off">#i18n('launch.btn.label')</button>
                       </div>
                     </div>
 
@@ -340,8 +340,8 @@
       };
     </script>
 
-    <script data-main="${moduleUri}/static/js/main" src="${moduleUri}/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
-    ## <script data-main="http://localhost:1337/static/js/main.js" src="http://localhost:1337/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
+    ## <script data-main="${moduleUri}/static/js/main" src="${moduleUri}/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
+    <script data-main="http://localhost:1337/static/js/main.js" src="http://localhost:1337/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
 
   </body>
 </html>
