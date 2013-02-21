@@ -163,23 +163,31 @@
 
                     <div class="clearfix"></div>
 
-                    <!-- Action buttons -->
+                    <!-- Action buttons and progress bars -->
                     <fieldset class="row-fluid">
-                      <div class="span4 pull-right"></div>
-                      <div class="form-actions well well-small pull-right">
+                      <div class="span8">
+                        <div class="form-actions well well-small pull-right">
+                          <label class="checkbox inline" for="viewResults">
+                            <input name="viewResults" id="viewResults" data-bind="checked: viewResults()" type="checkbox">
+                            #i18n('results.check.label')
+                          </label>
 
-                        <label class="checkbox inline" for="viewResults">
-                          <input name="viewResults" id="viewResults" data-bind="checked: viewResults()" type="checkbox">
-                          #i18n('results.check.label')
-                        </label>
+                          <button data-bind="disable: $root.state.isProcessing, click: function(data, event){$root.state.isConfirming(true);}" class="btn btn-primary" autocomplete="off" type="button">#i18n('launch.btn.label')</button>
+                          <button data-bind="click: reset" class="btn" type="button">#i18n('reset.btn.label')</button>
+                        </div>
+                      </div>
 
-                        <button data-bind="disable: $root.state.isProcessing, click: function(data, event){$root.state.isConfirming(true);}" class="btn btn-primary" autocomplete="off" type="button">#i18n('launch.btn.label')</button>
-                        <button data-bind="click: reset" class="btn" type="button">#i18n('reset.btn.label')</button>
+                      <div class="span4">
+                        <div class="well well-small progress-indicator" data-bind="visible: state.isProcessing">
+                          <div class="progress" data-bind="css: {'progress-striped active' : state.isProcessing}">
+                            <div class="bar" style="width: 100%;"></div>
+                          </div>
+                        </div>
                       </div>
                     </fieldset>
 
                     <!-- Modal to confirm form submit. Uses custom binding modal. -->
-                    <div id="submit-confirm" data-bind="modal: state.isConfirming" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="confirm-label" aria-hidden="true">
+                    <div data-bind="modal: state.isConfirming" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="confirm-label" aria-hidden="true">
                       <div class="modal-header">
                         <button type="button" data-bind="click: function(data, event){state.isConfirming(false);}" class="close" aria-hidden="true">×</button>
                         <h3 id="confirm-label">#i18n('header.confirm.text') <span data-bind="text: currentSource().parent.title" class="text-info"></span> ?</h3>
@@ -201,6 +209,23 @@
                       </div>
                     </div>
 
+                    <!-- Modal to display errors after form submit. -->
+                    <div data-bind="modal: state.isViewingErrors" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="error-label" aria-hidden="true">
+                      <div class="modal-header">
+                        <button type="button" data-bind="click: function(data, event){state.isViewingErrors(false);}" class="close" aria-hidden="true">×</button>
+                        <h3 id="error-label" class="text-error">#i18n('header.error.text')</h3>
+                      </div>
+                      <div class="modal-body">
+                        <p>#i18n('body.error.text')</p>
+                        <ul data-bind="foreach : state.errors">
+                          <li data-bind="text: $data"></li>
+                        </ul>
+                      </div>
+                      <div class="modal-footer">
+                        <button data-bind="click: function(data, event){state.isViewingErrors(false);}" class="btn" aria-hidden="true">#i18n('back.label')</button>
+                      </div>
+                    </div>
+
                   </form>
                 </div>
               </div>
@@ -208,7 +233,7 @@
 
             <!-- Parameters -->
             <div class="tab-pane" id="parameters">
-              <p class="offset5 span1 text-warning" style="font-size: 500%, margin:20px">&empty;</p>
+              <p class="offset5 span1 text-warning" style="font-size: 500%; margin:20px">&empty;</p>
             </div>
 
             <!-- History -->
@@ -340,8 +365,8 @@
       };
     </script>
 
-    <script data-main="${moduleUri}/static/js/main" src="${moduleUri}/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
-    ## Prod/Dev : <script data-main="http://localhost:1337/static/js/main.js" src="http://localhost:1337/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
+    ## Prod/Dev : <script data-main="${moduleUri}/static/js/main" src="${moduleUri}/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
+    <script data-main="http://localhost:1337/static/js/main.js" src="http://localhost:1337/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
 
   </body>
 </html>

@@ -83,6 +83,15 @@ label.checkbox {
   display: inline-block;
 }
 
+.progress-indicator {
+  margin: 20px;
+}
+
+.progress-indicator .progress {
+  height:30px;
+  margin-bottom:0;
+}
+
 /*
  * Form validation.
  * ---------------------------------------------------------------------

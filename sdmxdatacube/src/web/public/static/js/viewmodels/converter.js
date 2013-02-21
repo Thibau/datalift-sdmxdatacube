@@ -12,23 +12,29 @@ define([
     var self = this;
 
 
-    self.rawSources = rawSources;
-    self.sources = [];
+    self.rawSources    = rawSources;
+    self.sources       = [];
     self.currentSource = ko.observable();
-    self.viewResults = ko.observable(viewResults);
+    self.viewResults   = ko.observable(viewResults);
 
     self.state = {
-      isProcessing : ko.observable(false),
-      isConfirming : ko.observable(false)
+      isProcessing     : ko.observable(false),
+      isConfirming     : ko.observable(false),
+      isViewingErrors  : ko.observable(false),
+      errors           : ko.observableArray()
     };
 
     /*
     TODO :
     - Add comments for state
     - Add comments for launch
+    - Add restoring state with localStorage
     - Divide source.project into title, uri
+    - Write and use tooltip and popover bindings
     - Remove observable on project
     - Add comments to ViewModel
+    - Verify how localStorage is kept updated
+    - Handle progress bar
      */
 
     /**
@@ -49,6 +55,7 @@ define([
     self.currentSource.extend({
       validObject : true,
       remote : {
+        // TODO Update data with value of currentSource at call time.
         data : new SourceTransporter(self.currentSource(), self.viewResults())
       }
     });
@@ -59,24 +66,28 @@ define([
 
       self.state.isProcessing(true);
       self.state.isConfirming(false);
+      self.state.errors.removeAll();
 
       $.ajax({
          type: form.method,
          url: form.action, // + '/validate',
          data: new SourceTransporter(self.currentSource(), self.viewResults()),
-         success: function(result) {
-            self.state.isProcessing(false);
-
+         success: function(data, status, jqxhr) {
             window.console.log('launch success');
-            window.console.log(result);
+            window.console.log(data);
             localStorage.removeItem(g.localStorageCurrentSource);
          },
-         error: function(req, status, error) {
+         error: function(jqxhr, status, error) {
             self.state.isProcessing(false);
+            self.state.isViewingErrors(true);
+            self.state.errors.push(jqxhr.responseText);
 
             window.console.log('launch error');
-            window.console.log(status);
-            window.console.log(error);
+            window.console.log(jqxhr.responseText);
+            window.console.log(JSON.parse(jqxhr.responseText));
+         },
+         complete: function () {
+
          }
       });
     };
