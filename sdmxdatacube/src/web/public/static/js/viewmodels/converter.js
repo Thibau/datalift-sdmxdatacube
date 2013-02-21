@@ -11,20 +11,11 @@ define([
   var ViewModel = function(rawSources, currentSource, viewResults) {
     var self = this;
 
+
     self.rawSources = rawSources;
     self.sources = [];
     self.currentSource = ko.observable();
 
-    self.viewResults = ko.observable(viewResults);
-
-    self.initialize = function(currentSource) {
-      // Transform our array of Objects to an array of Sources.
-      self.sources = self.rawSources.map(function (elt) {
-        return new Source(elt.parent, elt.title, elt.uri, elt.uriPattern, elt.creator, elt.created, elt.project);
-      });
-
-      self.currentSource(currentSource || self.sources[0]);
-    };
     self.initialize(currentSource);
 
     self.currentSource.extend({
@@ -33,6 +24,22 @@ define([
         data : new SourceTransporter(self.currentSource(), self.viewResults())
       }
     });
+
+    self.viewResults = ko.observable(viewResults);
+
+    /**
+     * Initializes the converter from the raw sources.
+     * @param  {Object} currentSource A POJO which represents a source.
+     */
+    self.initialize = function(currentSource) {
+      // Transform our array of Objects to an array of Sources.
+      self.sources = self.rawSources.map(function (elt) {
+        return new Source(elt.parent, elt.title, elt.uri, elt.uriPattern, elt.creator, elt.created, elt.project);
+      });
+
+      self.currentSource(currentSource || self.sources[0]);
+    };
+
 
     self.launch = function(form) {
       window.console.log('launch');
