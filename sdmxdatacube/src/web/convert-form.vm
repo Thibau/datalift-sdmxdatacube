@@ -187,11 +187,11 @@
                       <div class="modal-body">
                         <p><strong>#i18n('reminder.confirm.title') :</strong> #i18n('body.confirm.text') <span data-bind="text : project" class="text-info"></span></p>
                         <dl>
-                          <dt>Va créer la source DataCube</dt>
+                          <dt>#i18n('output.confirm.title')</dt>
                           <dd data-bind="text: title" class="text-info"></dd>
-                          <dt>Dans le graphe</dt>
+                          <dt>#i18n('graph.confirm.title')</dt>
                           <dd data-bind="text: uri" class="text-info"></dd>
-                          <dt>Avec le format d'URIs</dt>
+                          <dt>#i18n('uripattern.confirm.title')</dt>
                           <dd data-bind="text: uriPattern" class="text-info"></dd>
                         </dl>
                       </div>
