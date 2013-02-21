@@ -10,7 +10,7 @@ define([
    * @param  {Bool}   viewResults Parameter for our form.
    * @return {Object}             An object using the server format.
    */
-  var SourceTransporter =  function(koSource, viewResults) {
+  var SourceTransporter = function(koSource, viewResults) {
     var source = ko.toJS(koSource);
 
     var message = {

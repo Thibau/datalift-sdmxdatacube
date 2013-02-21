@@ -238,7 +238,7 @@
                       </div>
                       <div class="modal-body">
                         <p>#i18n('body.error.text')</p>
-                        <p class="text-error" data-bind="text: state.globalError"></p>
+                        <p data-bind="text: state.globalError"></p>
                       </div>
                       <div class="modal-footer">
                         <button data-bind="click: function(data, event){state.isError(false);}" class="btn" aria-hidden="true">#i18n('back.label')</button>
