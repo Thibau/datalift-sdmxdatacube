@@ -209,6 +209,8 @@ public class SDMXDataCubeController extends ModuleController {
 			this.sendError(BAD_REQUEST, transporter.getGlobal());
 		}
 
+		URI destUri = null;
+
 		LOG.debug("soSubmit : validation ok");
 		// Lauch SDMX to Datacube process
 		try {
@@ -216,25 +218,8 @@ public class SDMXDataCubeController extends ModuleController {
 			LOG.debug("doSubmit : get project ok");
 			XmlSource s = (XmlSource) p.getSource(source);
 			LOG.debug("doSubmit : get source ok");
-			// StructureFormat structureFormat = new RDFStructureOutputFormat(
-			// RDFFormat.TURTLE);
-			// LOG.debug("soSubmit : get sourceFormat ok");
-			//
-			// // Output Structures, and then data
-			// SdmxBeans beans = outputStructures(structureFormat, s);
-			// LOG.debug("soSubmit : get sdmxBeans ok");
-			//
-			// DataFormat dataFormat = new RDFDataOutputFormat(
-			// (DataflowBean) beans.getDataflows().toArray()[0],
-			// RDFFormat.TURTLE);
-			// LOG.debug("soSubmit : get dataFormat ok");
-			//
-			// outputData(beans, dataFormat, s);
-			// LOG.debug("soSubmit : get outputData ok");
-
-			// Build object URIs from request path.
 			URI projectUri = new URI(p.getUri());
-			URI destUri = new URI(projectUri.getScheme(), null,
+			destUri = new URI(projectUri.getScheme(), null,
 					projectUri.getHost(), projectUri.getPort(),
 					this.getSourceId(projectUri, dest_title), null, null);
 
@@ -260,7 +245,7 @@ public class SDMXDataCubeController extends ModuleController {
 			this.sendError(Status.INTERNAL_SERVER_ERROR, e.getMessage());
 		}
 
-		return Response.created(null).build();
+		return Response.created(destUri).build();
 	}
 
 	private String getSourceId(URI projectUri, String sourceName) {
