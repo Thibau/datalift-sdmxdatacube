@@ -1,10 +1,12 @@
 define([
+  'jquery',
   'knockout',
-  'config/global'
-], function(ko, g){
+  'config/global',
+  'bootstrap'
+], function($, ko, g){
   'use strict';
 
-  // a custom binding to handle the enter key (could go in a separate library)
+  // A custom binding to handle the enter key (could go in a separate library)
   ko.bindingHandlers.enterKey = {
     init: function( element, valueAccessor, allBindingsAccessor, data ) {
       var wrappedHandler, newValueAccessor;
@@ -28,7 +30,7 @@ define([
     }
   };
 
-  // wrapper to hasfocus that also selects text and applies focus async
+  // Wrapper to hasfocus that also selects text and applies focus async
   ko.bindingHandlers.selectAndFocus = {
     init: function( element, valueAccessor, allBindingsAccessor ) {
       ko.bindingHandlers.hasfocus.init( element, valueAccessor, allBindingsAccessor );
@@ -42,6 +44,26 @@ define([
       setTimeout(function() {
         ko.bindingHandlers.hasfocus.update( element, valueAccessor );
       }, 0 );
+    }
+  };
+
+  // Custom binding to trigger modals.
+  ko.bindingHandlers['modal'] = {
+    init: function(element) {
+      $(element).modal('init');
+      return ko.bindingHandlers['with'].init.apply(this, arguments);
+    },
+    update: function(element, valueAccessor) {
+      var value = ko.utils.unwrapObservable(valueAccessor());
+      var returnValue = ko.bindingHandlers['with'].update.apply(this, arguments);
+
+      if (value) {
+          $(element).modal('show');
+      } else {
+          $(element).modal('hide');
+      }
+
+      return returnValue;
     }
   };
 });
