@@ -173,10 +173,33 @@
                           #i18n('results.check.label')
                         </label>
 
-                        <button type="submit" class="btn btn-primary" autocomplete="off">#i18n('launch.btn.label')</button>
-                        <button type="button" data-bind="click: reset" class="btn">#i18n('cancel.btn.label')</button>
+                        <button data-toggle="modal" data-target="#submit-confirm" class="btn btn-primary" autocomplete="off" type="button">#i18n('launch.btn.label')</button>
+                        <button data-bind="click: reset" class="btn" type="button">#i18n('reset.btn.label')</button>
                       </div>
                     </fieldset>
+
+                    <!-- Modal to confirm form submit. -->
+                    <div id="submit-confirm" data-bind="with: currentSource" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="confirm-label" aria-hidden="true">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h3 id="confirm-label">#i18n('header.confirm.text') <span data-bind="text: parent.title" class="text-info"></span> ?</h3>
+                      </div>
+                      <div class="modal-body">
+                        <p><strong>#i18n('reminder.confirm.title') :</strong> #i18n('body.confirm.text') <span data-bind="text : project" class="text-info"></span></p>
+                        <dl>
+                          <dt>Va créer la source DataCube</dt>
+                          <dd data-bind="text: title" class="text-info"></dd>
+                          <dt>Dans le graphe</dt>
+                          <dd data-bind="text: uri" class="text-info"></dd>
+                          <dt>Avec le format d'URIs</dt>
+                          <dd data-bind="text: uriPattern" class="text-info"></dd>
+                        </dl>
+                      </div>
+                      <div class="modal-footer">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">#i18n('cancel.label')</button>
+                        <button type="submit" class="btn btn-primary" autocomplete="off">#i18n('launch.btn.label')</button>
+                      </div>
+                    </div>
 
                   </form>
                 </div>
