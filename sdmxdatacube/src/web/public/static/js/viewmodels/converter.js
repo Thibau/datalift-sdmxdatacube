@@ -36,6 +36,7 @@ define([
     - Verify how localStorage is kept updated
     - Handle progress bar
      */
+    // http://localhost:8080/datalift/sparql/describe?uri=http%3A%2F%2Flocalhost%3A8080%2Fdatalift%2Fproject%2Ftest1%2Fsource%2Fagequinquennal6809-donnees-21-qb&type=Graph&default-graph=internal&max=500
 
     /**
      * Initializes the converter from the raw sources.

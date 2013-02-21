@@ -1,7 +1,7 @@
-// Require.js allows us to configure shortcut alias
 require.config({
-  // Prod/Dev : baseUrl : 'http://localhost:1337/static/js',
-  baseUrl : 'sdmxdatacube/static/js',
+  baseUrl : 'http://localhost:1337/static/js',
+  // Prod/Dev : baseUrl : 'sdmxdatacube/static/js',
+  // Require.js allows us to configure shortcut alias
   paths : {
     jquery : 'libs/jquery-1.9.1.min',
     bootstrap : 'libs/bootstrap-2.3.0.min',
