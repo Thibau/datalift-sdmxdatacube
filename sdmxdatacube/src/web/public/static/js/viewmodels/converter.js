@@ -4,8 +4,9 @@ define([
   'config/global',
   'models/Source',
   'models/SourceTransporter',
+  'models/State',
   'validation'
-], function($, ko, g, Source, SourceTransporter, validation){
+], function($, ko, g, Source, SourceTransporter, State, validation){
   'use strict';
 
   /**
@@ -23,24 +24,14 @@ define([
     self.sources       = [];
     self.currentSource = ko.observable();
     self.viewResults   = ko.observable(viewResults);
-
-    self.state = {
-      isProcessing     : ko.observable(false),
-      isConfirming     : ko.observable(false),
-      isError          : ko.observable(false),
-      isSuccess        : ko.observable(false),
-      globalError      : ko.observable(),
-      globalResult     : ko.observable()
-    };
+    self.state = new State();
 
     /*
     TODO :
-    - Add comments for state
     - Add restoring state with localStorage
     - Remote validation rule must be enforced
     - Add numbered source titles
     - Handle progress bar
-    - Extract state with its own class
      */
 
     /**
@@ -72,31 +63,19 @@ define([
      * @param  {Object} form The form which was submitted.
      */
     self.launch = function(form) {
-      window.console.log('launch');
-
-      self.state.isProcessing(true);
-      self.state.isConfirming(false);
-      self.state.globalError(null);
-      self.state.globalResult(null);
+      self.state.launchingStart();
 
       $.ajax({
          type: form.method,
          url: form.action,
          data: new SourceTransporter(self.currentSource(), self.viewResults()),
          success: function(data, status, jqxhr) {
-            self.state.isProcessing(false);
-            self.state.isSuccess(true);
-            self.state.globalResult(data);
+            self.state.launchingSuccess(data);
 
             localStorage.removeItem(g.localStorageCurrentSource);
          },
          error: function(jqxhr, status, error) {
-            self.state.isProcessing(false);
-            self.state.isError(true);
-            self.state.globalError(jqxhr.responseText);
-         },
-         complete: function () {
-
+            self.state.launchingError(jqxhr.responseText);
          }
       });
     };
