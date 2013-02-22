@@ -8,6 +8,13 @@ define([
 ], function($, ko, g, Source, SourceTransporter, validation){
   'use strict';
 
+  /**
+   * A view model which describes how our converter works,
+   * what values it manages.
+   * @param {Array} rawSources     An array which contains POJOs describing sources.
+   * @param {Object} currentSource The value of the currentSource, could be null.
+   * @param {Bool} viewResults     Tells whether or not the user wants to view results.
+   */
   var ViewModel = function(rawSources, currentSource, viewResults) {
     var self = this;
 
@@ -29,12 +36,10 @@ define([
     /*
     TODO :
     - Add comments for state
-    - Add comments for launch
     - Add restoring state with localStorage
     - Divide source.project into title, uri
     - Write and use tooltip and popover bindings
     - Remove observable on project
-    - Add comments to ViewModel
     - Remote validation rule must be enforced
     - Add numbered source titles
     - Handle progress bar
@@ -65,6 +70,10 @@ define([
     });
 
 
+    /**
+     * Executes an AJAJ call to send a source to the server.
+     * @param  {Object} form The form which was submitted.
+     */
     self.launch = function(form) {
       window.console.log('launch');
 
