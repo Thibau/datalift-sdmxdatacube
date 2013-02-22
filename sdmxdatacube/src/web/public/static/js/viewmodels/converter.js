@@ -35,12 +35,11 @@ define([
     - Write and use tooltip and popover bindings
     - Remove observable on project
     - Add comments to ViewModel
+    - Remote validation rule must be enforced
     - Add numbered source titles
-    - Verify how localStorage is kept updated
     - Handle progress bar
     - Extract state with its own class
      */
-    // http://localhost:8080/datalift/sparql/describe?uri=http%3A%2F%2Flocalhost%3A8080%2Fdatalift%2Fproject%2Ftest1%2Fsource%2Fagequinquennal6809-donnees-21-qb&type=Graph&default-graph=internal&max=500
 
     /**
      * Initializes the converter from the raw sources.

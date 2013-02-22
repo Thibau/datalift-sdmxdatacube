@@ -173,7 +173,7 @@
                           </label>
 
                           <button data-bind="disable: $root.state.isProcessing, click: function(data, event){$root.state.isConfirming(true);}" class="btn btn-primary" autocomplete="off" type="button">#i18n('launch.btn.label')</button>
-                          <button data-bind="click: reset" class="btn" type="button">#i18n('reset.btn.label')</button>
+                          <button data-bind="click: reset" class="btn" type="button"><i class="icon-refresh"></i> #i18n('reset.btn.label')</button>
                         </div>
                       </div>
 
@@ -208,7 +208,7 @@
                         </dl>
                       </div>
                       <div class="modal-footer">
-                        <button data-bind="click: function(data, event){state.isConfirming(false);}" class="btn" aria-hidden="true">#i18n('cancel.label')</button>
+                        <button data-bind="click: function(data, event){state.isConfirming(false);}" class="btn" aria-hidden="true"><i class="icon-remove"></i> #i18n('cancel.label')</button>
                         <button data-bind="disable: state.isProcessing" type="submit" class="btn btn-primary" autocomplete="off">#i18n('launch.btn.label')</button>
                       </div>
                     </div>
@@ -223,10 +223,10 @@
                         <p>#i18n('body.success.text') <span class="text-info" data-bind="text: state.globalResult"></span>.</p>
                       </div>
                       <div class="modal-footer">
-                        <button data-bind="click: function(data, event){state.isSuccess(false);}" class="btn" aria-hidden="true">#i18n('redirect.success.label')</button>
+                        <button data-bind="click: function(data, event){state.isSuccess(false);}" class="btn btn-primary" aria-hidden="true"><i class="icon-share-alt icon-white"></i> #i18n('redirect.success.label')</button>
                         <!-- Show a cancel button if we are going to change page, a back if we stay here. -->
-                        <button data-bind="visible: !viewResults, click: function(data, event){state.isSuccess(false);}" class="btn" aria-hidden="true">#i18n('cancel.label')</button>
-                        <button data-bind="visible: viewResults, click: function(data, event){state.isSuccess(false);}" class="btn" aria-hidden="true">#i18n('back.label')</button>
+                        <button data-bind="visible: !viewResults, click: function(data, event){state.isSuccess(false);}" class="btn" aria-hidden="true"><i class="icon-remove"></i> #i18n('cancel.label')</button>
+                        <button data-bind="visible: viewResults, click: function(data, event){state.isSuccess(false);}" class="btn" aria-hidden="true"><i class="icon-arrow-left"></i> #i18n('back.label')</button>
                       </div>
                     </div>
 
@@ -238,10 +238,12 @@
                       </div>
                       <div class="modal-body">
                         <p>#i18n('body.error.text')</p>
-                        <p data-bind="text: state.globalError"></p>
+                        <blockquote>
+                          <p data-bind="text: state.globalError"></p>
+                        </blockquote>
                       </div>
                       <div class="modal-footer">
-                        <button data-bind="click: function(data, event){state.isError(false);}" class="btn" aria-hidden="true">#i18n('back.label')</button>
+                        <button data-bind="click: function(data, event){state.isError(false);}" class="btn" aria-hidden="true"><i class="icon-arrow-left"></i> #i18n('back.label')</button>
                       </div>
                     </div>
 
