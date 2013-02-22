@@ -102,7 +102,7 @@ label.checkbox {
   padding:0 5px;
 }
 
-.success .help-block:before {
+.success .help-block:before, h3 .text-success:before {
   content : '\2713';
 }
 
@@ -110,7 +110,7 @@ label.checkbox {
   content : '\2717';
 }
 
-.error .validation-message:before {
+.error .validation-message:before, h3 .text-error:before {
   content : '\26A0';
 }
 

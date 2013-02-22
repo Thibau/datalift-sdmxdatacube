@@ -14,7 +14,7 @@ define([
     var source = ko.toJS(koSource);
 
     var message = {
-      project        : source.project,
+      project        : source.project.uri,
       source         : source.parent.uri,
       dest_title     : source.title,
       dest_graph_uri : source.uri,

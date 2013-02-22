@@ -17,9 +17,6 @@ define([
       uriPattern : {
         required: true,
         minLength: 3
-      },
-      project : {
-        required: true
       }
     }
   };

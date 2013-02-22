@@ -37,9 +37,7 @@ define([
     TODO :
     - Add comments for state
     - Add restoring state with localStorage
-    - Divide source.project into title, uri
     - Write and use tooltip and popover bindings
-    - Remove observable on project
     - Remote validation rule must be enforced
     - Add numbered source titles
     - Handle progress bar
@@ -53,7 +51,7 @@ define([
     self.initialize = function(currentSource) {
       // Transform our array of Objects to an array of Sources.
       self.sources = self.rawSources.map(function (elt) {
-        return new Source(elt.parent, elt.title, elt.uri, elt.uriPattern, elt.creator, elt.created, elt.project);
+        return new Source(elt.parent, elt.project, elt.title, elt.uri, elt.uriPattern, elt.creator, elt.created);
       });
 
       self.currentSource(currentSource || self.sources[0]);
@@ -110,7 +108,7 @@ define([
      */
     self.reset = function() {
       self.initialize(null);
-      localStorage.setItem(g.localStorageCurrentSource, ko.toJSON(self.currentSource()));
+      localStorage.removeItem(g.localStorageCurrentSource);
     };
 
     // Internal computed observable that fires whenever anything changes.
