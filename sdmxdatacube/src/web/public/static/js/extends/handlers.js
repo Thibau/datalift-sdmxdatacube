@@ -56,10 +56,26 @@ define([
       var value = ko.utils.unwrapObservable(valueAccessor());
 
       if (value) {
-          $(element).modal('show');
+        $(element).modal('show');
       } else {
-          $(element).modal('hide');
+        $(element).modal('hide');
       }
+    }
+  };
+
+  // Custom binding to trigger tooltips.
+  ko.bindingHandlers['tooltip'] = {
+    init: function(element, valueAccessor) {
+      var value = ko.utils.unwrapObservable(valueAccessor());
+      $(element).tooltip({
+        title: value
+      });
+    },
+    update: function(element, valueAccessor) {
+      var value = ko.utils.unwrapObservable(valueAccessor());
+      $(element).tooltip({
+        title: value
+      });
     }
   };
 });
