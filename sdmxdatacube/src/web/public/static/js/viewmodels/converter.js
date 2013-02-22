@@ -57,6 +57,11 @@ define([
       }
     });
 
+    self.formatParameters = function() {
+      var parameters = new SourceTransporter(self.currentSource(), self.viewResults());
+      window.console.log(parameters);
+      return parameters;
+    };
 
     /**
      * Executes an AJAJ call to send a source to the server.
@@ -68,7 +73,7 @@ define([
       $.ajax({
          type: form.method,
          url: form.action,
-         data: new SourceTransporter(self.currentSource(), self.viewResults()),
+         data: self.formatParameters(),
          success: function(data, status, jqxhr) {
             self.state.launchingSuccess(data);
 

@@ -197,7 +197,7 @@
                         <h3 id="confirm-label">#i18n('header.confirm.text') <a data-bind="text : currentSource().parent.title, tooltip: currentSource().parent.uri, attr: {href: currentSource().parent.uri}"></a> ?</h3>
                       </div>
                       <div class="modal-body">
-                        <p><strong>#i18n('reminder.confirm.title') :</strong> #i18n('body.confirm.text') <a data-bind="text : currentSource().project.title, attr: {href: currentSource().project.uri}"></a></p>
+                        <p><strong>#i18n('reminder.confirm.title') :</strong> #i18n('body.confirm.text') <a data-bind="text : currentSource().project.title, attr: {href: currentSource().project.uri}"></a>.</p>
                         <dl data-bind="with: currentSource">
                           <dt>#i18n('output.confirm.title')</dt>
                           <dd data-bind="text: title" class="text-info"></dd>

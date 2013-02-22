@@ -1,5 +1,7 @@
 package org.datalift.sdmxdatacube.utils;
 
+import java.util.Iterator;
+
 import org.datalift.fwk.project.Project;
 import org.datalift.fwk.project.Source;
 import org.datalift.sdmxdatacube.SDMXDataCubeModel;
@@ -35,10 +37,18 @@ public class ControllerHelper {
 	/**
 	 * Generates a new source title from an existing one.
 	 * @param parent The parent source for this potential one.
-	 * @return A title which is not guaranteed to be unique.
+	 * @return A title which is guaranteed to be unique.
 	 */
 	public String generateSourceTitle(Source parent) {
-		return datacubizeString(parent.getTitle());
+		String oldTitle = parent.getTitle();
+		String newTitle = datacubizeString(oldTitle);
+		
+		// If this title already exists, we'll add a number at its end.
+		if (titleAlreadyExists(parent.getProject(), newTitle)) {
+			newTitle = generateNumberedTitle(parent.getProject(), newTitle);
+		}
+		
+		return newTitle;
 	}
 	
 	/**
@@ -58,6 +68,11 @@ public class ControllerHelper {
 		return newURI;
 	}
 	
+	/**
+	 * Uses XML, SDMX and DataCube suffixes to generate compact strings.
+	 * @param sdmxString A string which contains SDMX or XML suffixes.
+	 * @return A string where all SDMX/XML suffixes were replaced by DataCube suffixes.
+	 */
 	private static String datacubizeString(String sdmxString) {
 		String datacubeString;
 		
@@ -85,6 +100,7 @@ public class ControllerHelper {
 		int cpt = 1;
 		boolean alreadyExists;
 		String numberedURI;
+		
 		do {
 			cpt++;
 			numberedURI = newURI + "-" + cpt;
@@ -92,5 +108,43 @@ public class ControllerHelper {
 		} while (alreadyExists && cpt < 100);
 		
 		return numberedURI;
+	}
+	
+	/**
+	 * Adds a number at the end of a title if the unnumbered version already exists.
+	 * Assumes that there will never be more than 100 "same" titles.
+	 * @param parentProject Parent project of the sources.
+	 * @param newTitle The unnumbered title.
+	 * @return A title with a number at the end.
+	 */
+	private static String generateNumberedTitle(Project parentProject, String newTitle) {
+		int cpt = 1;
+		boolean alreadyExists;
+		String numberedTitle;
+		
+		do {
+			cpt++;
+			numberedTitle = newTitle + "-" + cpt;
+			alreadyExists = titleAlreadyExists(parentProject, numberedTitle);
+		} while (alreadyExists && cpt < 100);
+		
+		return numberedTitle;
+	}
+	
+	/**
+	 * Searches for sources in the given project with the given title.
+	 * @param parentProject The project where we want to search for sources.
+	 * @param title A title which might not be unique yet.
+	 * @return True if title isn't unique, false if it is.
+	 */
+	private static boolean titleAlreadyExists(Project parentProject, String title) {
+		Iterator<Source> sources = parentProject.getSources().iterator();
+		boolean alreadyExists = false;
+		
+		while (sources.hasNext() && !alreadyExists) {
+			alreadyExists = title.equals(sources.next().getTitle());
+		}
+		
+		return alreadyExists;
 	}
 }
