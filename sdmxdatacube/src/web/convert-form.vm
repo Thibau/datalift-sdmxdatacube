@@ -95,7 +95,7 @@
                   <form data-bind="submit: launch" action="${moduleUri}" method="post" enctype="application/x-www-form-urlencoded">
 
                     <!-- Old source — select its name / URI -->
-                    <fieldset>
+                    <fieldset data-bind="disable: $root.state.isProcessing">
                       <div class="control-group">
                         <label for="inputSource" class="control-label">#i18n('input.select.label')</label>
                         <div class="controls">
@@ -106,7 +106,7 @@
                     </fieldset>
 
                     <!-- New source — input its name and graph URI, URI pattern -->
-                    <fieldset data-bind="with: currentSource">
+                    <fieldset data-bind="with: currentSource, disable: $root.state.isProcessing">
                       <legend>#i18n('output.fieldset.label')</legend>
 
                       <!-- Name and URI are on the same row. -->
@@ -164,7 +164,7 @@
                     <div class="clearfix"></div>
 
                     <!-- Action buttons and progress bars -->
-                    <fieldset class="row-fluid">
+                    <fieldset class="row-fluid" data-bind="disable: $root.state.isProcessing">
                       <div class="span8">
                         <div class="form-actions well well-small pull-right">
                           <label class="checkbox inline" for="viewResults">
@@ -172,8 +172,8 @@
                             #i18n('results.check.label')
                           </label>
 
-                          <button data-bind="disable: $root.state.isProcessing, click: function(data, event){$root.state.isConfirming(true);}" class="btn btn-primary" autocomplete="off" type="button"><i class="icon-play icon-white"></i> #i18n('launch.btn.label')</button>
-                          <button data-bind="click: reset" class="btn" type="button"><i class="icon-fast-backward"></i> #i18n('reset.btn.label')</button>
+                          <button data-bind="click: function(data, event){$root.state.isConfirming(true);}, disable: $root.state.isProcessing" class="btn btn-primary" autocomplete="off" type="button"><i class="icon-play icon-white"></i> #i18n('launch.btn.label')</button>
+                          <button data-bind="click: reset, disable: $root.state.isProcessing" class="btn" type="button"><i class="icon-fast-backward"></i> #i18n('reset.btn.label')</button>
                         </div>
                       </div>
 
@@ -220,10 +220,10 @@
                         <h3 id="result-label" class="text-success">#i18n('header.success.text')</h3>
                       </div>
                       <div class="modal-body">
-                        <p>#i18n('body.success.text') <span class="text-info" data-bind="text: state.globalResult"></span>.</p>
+                        <p>#i18n('body.success.text') <a data-bind="text: state.globalResult, attr: {href : state.globalResult}"></a>.</p>
                       </div>
                       <div class="modal-footer">
-                        <button data-bind="click: function(data, event){state.isSuccess(false);}" class="btn btn-primary" aria-hidden="true"><i class="icon-share-alt icon-white"></i> #i18n('redirect.success.label')</button>
+                        <a data-bind="attr: {href : state.globalResult}" class="btn btn-primary" aria-hidden="true"><i class="icon-share-alt icon-white"></i> #i18n('redirect.success.label')</a>
                         <!-- Show a cancel button if we are going to change page, a back if we stay here. -->
                         <button data-bind="visible: !viewResults, click: function(data, event){state.isSuccess(false);}" class="btn" aria-hidden="true"><i class="icon-remove"></i> #i18n('cancel.label')</button>
                         <button data-bind="visible: viewResults, click: function(data, event){state.isSuccess(false);}" class="btn" aria-hidden="true"><i class="icon-arrow-left"></i> #i18n('back.label')</button>
@@ -389,8 +389,8 @@
       };
     </script>
 
-    <script data-main="${moduleUri}/static/js/main" src="${moduleUri}/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
-    ## Prod/Dev : <script data-main="http://localhost:1337/static/js/main.js" src="http://localhost:1337/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
+    ## Prod/Dev : <script data-main="${moduleUri}/static/js/main" src="${moduleUri}/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
+    <script data-main="http://localhost:1337/static/js/main.js" src="http://localhost:1337/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
 
   </body>
 </html>

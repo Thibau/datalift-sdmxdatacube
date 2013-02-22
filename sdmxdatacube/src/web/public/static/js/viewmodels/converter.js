@@ -30,8 +30,8 @@ define([
     TODO :
     - Add restoring state with localStorage
     - Remote validation rule must be enforced
-    - Add numbered source titles
     - Handle progress bar
+    - Add text overlay on progress bar ("Processing", "Traitement en cours")
      */
 
     /**
@@ -57,12 +57,6 @@ define([
       }
     });
 
-    self.formatParameters = function() {
-      var parameters = new SourceTransporter(self.currentSource(), self.viewResults());
-      window.console.log(parameters);
-      return parameters;
-    };
-
     /**
      * Executes an AJAJ call to send a source to the server.
      * @param  {Object} form The form which was submitted.
@@ -73,9 +67,9 @@ define([
       $.ajax({
          type: form.method,
          url: form.action,
-         data: self.formatParameters(),
+         data: new SourceTransporter(self.currentSource(), self.viewResults()),
          success: function(data, status, jqxhr) {
-            self.state.launchingSuccess(data);
+            self.state.launchingSuccess(jqxhr.getResponseHeader('Location'));
 
             localStorage.removeItem(g.localStorageCurrentSource);
          },
