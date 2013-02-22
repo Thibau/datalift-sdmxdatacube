@@ -32,6 +32,9 @@ define([
     - Remote validation rule must be enforced
     - Handle progress bar
     - Add text overlay on progress bar ("Processing", "Traitement en cours")
+    - Rename state.global without global
+    - Add extract display when viewResult is false
+    - Correct bug with viewResults and isRedirecting
      */
 
     /**
