@@ -38,6 +38,7 @@ import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Collection;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
@@ -363,11 +364,30 @@ public class SDMXDataCubeController extends ModuleController {
 				}
 
 				// Check outputSourceName
+
 				if (dest_title == null || dest_title.isEmpty())
 					transporter
 							.setError(
 									"dest_graph_title",
 									getTranslatedResource("error.outputSourceName.empty"));
+				else {
+
+					Collection<Source> sources = p.getSources();
+					boolean already_exists = false;
+
+					for (Source s : sources) {
+						if (s.getTitle().equals(dest_title)) {
+							already_exists = true;
+							break;
+						}
+					}
+
+					if (already_exists)
+						transporter
+								.setError(
+										"dest_graph_title",
+										getTranslatedResource("error.outputSourceName.alreadyexists"));
+				}
 			}
 		} else {
 			transporter.setError("project",
