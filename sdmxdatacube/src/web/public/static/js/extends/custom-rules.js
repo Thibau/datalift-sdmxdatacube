@@ -39,7 +39,8 @@ define([
   };
 
   /**
-   * Remote validation rule, TODO.
+   * Remote validation rule, allowing the server to seamlessly participate
+   * in validating the values.
    */
   ko.validation.rules['remote'] = {
     async : true,
@@ -47,12 +48,12 @@ define([
       var defaults = {
           url : 'http://localhost:8080/datalift/sdmxdatacube/validate',
           type : 'POST',
-          success : callback,
-          error : callback
+          acecpt : 'application/json',
+          // The data needs to be set at execution time with beforeSend.
+          data : {}
       };
 
       var options = $.extend(defaults, params);
-
       $.ajax(options);
     },
     message : 'Server validation : false'
