@@ -172,8 +172,8 @@
                             #i18n('results.check.label')
                           </label>
 
-                          <button data-bind="disable: $root.state.isProcessing, click: function(data, event){$root.state.isConfirming(true);}" class="btn btn-primary" autocomplete="off" type="button">#i18n('launch.btn.label')</button>
-                          <button data-bind="click: reset" class="btn" type="button"><i class="icon-refresh"></i> #i18n('reset.btn.label')</button>
+                          <button data-bind="disable: $root.state.isProcessing, click: function(data, event){$root.state.isConfirming(true);}" class="btn btn-primary" autocomplete="off" type="button"><i class="icon-play icon-white"></i> #i18n('launch.btn.label')</button>
+                          <button data-bind="click: reset" class="btn" type="button"><i class="icon-fast-backward"></i> #i18n('reset.btn.label')</button>
                         </div>
                       </div>
 
@@ -209,7 +209,7 @@
                       </div>
                       <div class="modal-footer">
                         <button data-bind="click: function(data, event){state.isConfirming(false);}" class="btn" aria-hidden="true"><i class="icon-remove"></i> #i18n('cancel.label')</button>
-                        <button data-bind="disable: state.isProcessing" type="submit" class="btn btn-primary" autocomplete="off">#i18n('launch.btn.label')</button>
+                        <button data-bind="disable: state.isProcessing" type="submit" class="btn btn-primary" autocomplete="off"><i class="icon-play icon-white"></i> #i18n('launch.btn.label')</button>
                       </div>
                     </div>
 
