@@ -6,5 +6,5 @@ define({
     decorateElement: true,
     errorElementClass: 'error'
   },
-  timeBeforeRedirect : 3000
+  timeBeforeRedirect : 3
 });

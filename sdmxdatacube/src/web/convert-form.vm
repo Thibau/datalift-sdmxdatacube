@@ -221,12 +221,15 @@
                       </div>
                       <div class="modal-body">
                         <p>#i18n('body.success.text') <a data-bind="text: state.globalResult, attr: {href : state.globalResult}"></a>.</p>
+                        <!-- Only display a timer if we are going to redirect to the new source. -->
+                        <p data-bind="visible: state.isRedirecting">#i18n('timer.success.text') <span class="badge badge-success" data-bind="text: state.timeLeft"></span></p>
+
                       </div>
                       <div class="modal-footer">
                         <a data-bind="attr: {href : state.globalResult}" class="btn btn-primary" aria-hidden="true"><i class="icon-share-alt icon-white"></i> #i18n('redirect.success.label')</a>
                         <!-- Show a cancel button if we are going to change page, a back if we stay here. -->
-                        <button data-bind="visible: !viewResults, click: function(data, event){state.isSuccess(false);}" class="btn" aria-hidden="true"><i class="icon-remove"></i> #i18n('cancel.label')</button>
-                        <button data-bind="visible: viewResults, click: function(data, event){state.isSuccess(false);}" class="btn" aria-hidden="true"><i class="icon-arrow-left"></i> #i18n('back.label')</button>
+                        <button data-bind="visible: state.isRedirecting, click: function(data, event){state.isSuccess(false); state.isRedirecting(false)}" class="btn" aria-hidden="true"><i class="icon-remove"></i> #i18n('cancel.label')</button>
+                        <button data-bind="visible: !state.isRedirecting, click: function(data, event){state.isSuccess(false);}" class="btn" aria-hidden="true"><i class="icon-arrow-left"></i> #i18n('back.label')</button>
                       </div>
                     </div>
 

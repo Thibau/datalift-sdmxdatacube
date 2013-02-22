@@ -69,7 +69,7 @@ define([
          url: form.action,
          data: new SourceTransporter(self.currentSource(), self.viewResults()),
          success: function(data, status, jqxhr) {
-            self.state.launchingSuccess(jqxhr.getResponseHeader('Location'));
+            self.state.launchingSuccess(jqxhr.getResponseHeader('Location'), self.viewResults());
 
             localStorage.removeItem(g.localStorageCurrentSource);
          },
