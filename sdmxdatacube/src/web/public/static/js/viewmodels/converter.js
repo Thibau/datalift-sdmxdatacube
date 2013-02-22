@@ -37,7 +37,6 @@ define([
     TODO :
     - Add comments for state
     - Add restoring state with localStorage
-    - Write and use tooltip and popover bindings
     - Remote validation rule must be enforced
     - Add numbered source titles
     - Handle progress bar
