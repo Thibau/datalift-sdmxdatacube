@@ -20,8 +20,8 @@
     <link rel="stylesheet" href="${moduleUri}/static/css/bootstrap.css">
     <link rel="stylesheet" href="${moduleUri}/static/css/bootstrap-responsive.css">
 
-    <link rel="stylesheet" href="${moduleUri}/static/css/sdmxdatacube.css">
-    ## Prod/Dev : <link rel="stylesheet" href="http://localhost:1337/static/css/sdmxdatacube.css">
+    ## Prod/Dev : <link rel="stylesheet" href="${moduleUri}/static/css/sdmxdatacube.css">
+    <link rel="stylesheet" href="http://localhost:1337/static/css/sdmxdatacube.css">
 
     <!-- fav and touch icons -->
     <link rel="shortcut icon" href="${moduleUri}/static/img/favicon.ico">
@@ -164,7 +164,7 @@
                     <div class="clearfix"></div>
 
                     <!-- Action buttons and progress bars -->
-                    <fieldset class="row-fluid" data-bind="disable: $root.state.isProcessing">
+                    <fieldset class="row-fluid" data-bind="disable: state.isProcessing">
                       <div class="span8">
                         <div class="form-actions well well-small pull-right">
                           <label class="checkbox inline" for="viewResults">
@@ -172,15 +172,16 @@
                             #i18n('results.check.label')
                           </label>
 
-                          <button data-bind="click: function(data, event){$root.state.isConfirming(true);}, disable: $root.state.isProcessing" class="btn btn-primary" autocomplete="off" type="button"><i class="icon-play icon-white"></i> #i18n('launch.btn.label')</button>
-                          <button data-bind="click: reset, disable: $root.state.isProcessing" class="btn" type="button"><i class="icon-fast-backward"></i> #i18n('reset.btn.label')</button>
+                          <!-- Knockout is full of gotchas : state.isProcessing works alone, but to use a || or &&, you need to append (). -->
+                          <button data-bind="click: function(data, event){state.isConfirming(true);}, disable: state.isProcessing() || !currentSource.isValid()" class="btn btn-primary" autocomplete="off" type="button"><i class="icon-play icon-white"></i> #i18n('launch.btn.label')</button>
+                          <button data-bind="click: reset, disable: state.isProcessing" class="btn" type="button"><i class="icon-fast-backward"></i> #i18n('reset.btn.label')</button>
                         </div>
                       </div>
 
                       <div class="span4">
-                        <div class="well well-small progress-indicator" data-bind="visible: state.isProcessing">
-                          <div class="progress" data-bind="css: {'progress-striped active' : state.isProcessing}">
-                            <div class="bar" style="width: 100%;"></div>
+                        <div class="well well-small progress-indicator" data-bind="visible: state.isProcessing() || !currentSource.isValid()">
+                          <div class="progress progress-striped" data-bind="css: {'active' : state.isProcessing}">
+                            <div class="bar" data-bind="css: {'bar-danger' : !currentSource.isValid()}" style="width: 100%;"></div>
                           </div>
                         </div>
                       </div>
@@ -392,8 +393,8 @@
       };
     </script>
 
-    <script data-main="${moduleUri}/static/js/main" src="${moduleUri}/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
-    ## Prod/Dev : <script data-main="http://localhost:1337/static/js/main.js" src="http://localhost:1337/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
+    ## Prod/Dev : <script data-main="${moduleUri}/static/js/main" src="${moduleUri}/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
+    <script data-main="http://localhost:1337/static/js/main.js" src="http://localhost:1337/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
 
   </body>
 </html>

@@ -33,6 +33,7 @@ define([
       if (!obj || typeof obj !== "object") {
         throw "[validObject] Parameter must be an object";
       }
+      console.log("validObject called : " + (ko.validation.group(obj)().length === 0));
       return validate === (ko.validation.group(obj)().length === 0);
     },
     message : 'Every field must be valid.'
@@ -54,7 +55,10 @@ define([
       };
 
       var options = $.extend(defaults, params);
+
+      // Callbacks will be called.
       $.ajax(options);
+
     },
     message : 'Server validation : false'
   };
