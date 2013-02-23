@@ -1,5 +1,7 @@
 define({
   ENTER_KEY: 13,
+  // Better than replace location.search, handles hashes too.
+  remoteValidatorURL : window.location.href.substring(0, window.location.href.indexOf('?')) + '/validate',
   localStorageCurrentSource: 'lsCurrentSource',
   validationParameters : {
     insertMessages: false,

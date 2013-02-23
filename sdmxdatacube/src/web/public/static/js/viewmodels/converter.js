@@ -30,7 +30,6 @@ define([
     TODO :
     - Add restoring state with localStorage
     - Remote validation rule must be enforced
-    - Add text overlay on progress bar ("Processing", "Traitement en cours")
     - Rename state.global without global
     - Add extract display from SPARQL query when viewResult is false
     - Correct bug with viewResults and isRedirecting
@@ -52,18 +51,22 @@ define([
     self.initialize(currentSource);
 
     self.currentSource.extend({
-      //validObject : true,
+      validObject : true,
+      //validRemoteObject : {},
       remote : {
-        beforeSend : function(jqxhr, settings) {
-          var parameterString = '';
-          // Here, settings.data is already 'application/x-www-form-urlencoded'
-          // Thus we need to append our URL encoded values to the string.
-          $.each(new SourceTransporter(self.currentSource(), self.viewResults()), function(key, val) {
-            parameterString += '&' + key + '=' + encodeURIComponent(val);
-          });
-          settings.data = parameterString.substring(1);
-          // If not explicitely overriden here, content-type will be set to text/plain.
-          jqxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded; charset=UTF-8');
+        onlyIf : function() {return self.currentSource.isModified() && self.currentSource.isValid();},
+        params : {
+          beforeSend : function(jqxhr, settings) {
+            var parameterString = '';
+            // Here, settings.data is already 'application/x-www-form-urlencoded'
+            // Thus we need to append our URL encoded values to the string.
+            $.each(new SourceTransporter(self.currentSource(), self.viewResults()), function(key, val) {
+              parameterString += '&' + key + '=' + encodeURIComponent(val);
+            });
+            settings.data = parameterString.substring(1);
+            // If not explicitely overriden here, content-type will be set to text/plain.
+            jqxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded; charset=UTF-8');
+          }
         }
       }
     });

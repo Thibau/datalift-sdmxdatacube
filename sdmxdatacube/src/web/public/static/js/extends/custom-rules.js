@@ -1,8 +1,9 @@
 define([
   'jquery',
   'knockout',
-  'validation'
-], function($, ko, validation){
+  'validation',
+  'config/global'
+], function($, ko, validation, g){
   'use strict';
 
   var regex = {};
@@ -39,6 +40,18 @@ define([
     message : 'Every field must be valid.'
   };
 
+  ko.validation.rules["validRemoteObject"] = {
+    async : true,
+    validator : function (obj, params, callback) {
+      if (!obj || typeof obj !== "object") {
+        throw "[validRemoteObject] Parameter must be an object";
+      }
+
+      callback(ko.validation.group(obj)().length === 0);
+    },
+    message : 'Every remote field must be valid.'
+  };
+
   /**
    * Remote validation rule, allowing the server to seamlessly participate
    * in validating the values.
@@ -48,8 +61,9 @@ define([
   ko.validation.rules['remote'] = {
     async : true,
     validator : function (val, params, callback) {
+
       var defaults = {
-          url : 'http://localhost:8080/datalift/sdmxdatacube/validate',
+          url : g.remoteValidatorURL,
           type : 'POST',
           accept : 'application/json',
           // The data needs to be set at execution time with beforeSend.
@@ -59,6 +73,7 @@ define([
           },
           error : function(jqxhr, status, error) {
             var result = JSON.parse(jqxhr.responseText);
+
             callback({
               isValid: result.isValid,
               message: result.global
@@ -68,7 +83,6 @@ define([
 
       var options = $.extend(defaults, params);
 
-      // Callbacks will be called.
       $.ajax(options);
 
     },

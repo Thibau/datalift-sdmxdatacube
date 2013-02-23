@@ -1,8 +1,10 @@
 define([
+  'jquery',
   'knockout',
   'validation',
-  'config/rules'
-], function(ko, validation, rules){
+  'config/rules',
+  'models/SourceTransporter'
+], function($, ko, validation, rules, SourceTransporter){
   'use strict';
 
   /**
@@ -26,6 +28,24 @@ define([
     // Project is also a JS object with properties title and uri.
     self.project    = project;
     self.title      = ko.observable(title).extend(rules.source.title);
+    // self.title.extend({
+    //   remote : {
+    //     onlyIf : function() {return self.title.isModified();},
+    //     params : {
+    //       beforeSend : function(jqxhr, settings) {
+    //         var parameterString = '';
+    //         // Here, settings.data is already 'application/x-www-form-urlencoded'
+    //         // Thus we need to append our URL encoded values to the string.
+    //         $.each(new SourceTransporter(ko.toJS(self), true), function(key, val) {
+    //           parameterString += '&' + key + '=' + encodeURIComponent(val);
+    //         });
+    //         settings.data = parameterString.substring(1);
+    //         // If not explicitely overriden here, content-type will be set to text/plain.
+    //         jqxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded; charset=UTF-8');
+    //       }
+    //     }
+    //   }
+    // });
     self.uri        = ko.observable(uri).extend(rules.source.uri);
     self.uriPattern = ko.observable(uriPattern).extend(rules.source.uriPattern);
     self.creator    = ko.observable(creator);
