@@ -30,7 +30,6 @@ define([
     TODO :
     - Add restoring state with localStorage
     - Remote validation rule must be enforced
-    - Handle progress bar
     - Add text overlay on progress bar ("Processing", "Traitement en cours")
     - Rename state.global without global
     - Add extract display from SPARQL query when viewResult is false
@@ -102,8 +101,6 @@ define([
 
     // Internal computed observable that fires whenever anything changes.
     ko.computed(function() {
-      window.console.log("v:" + self.currentSource.isValid());
-      window.console.log("ving:" + self.currentSource.isValidating());
       // Store a clean copy to local storage.
       localStorage.setItem(g.localStorageCurrentSource, ko.toJSON(self.currentSource()));
     }).extend({

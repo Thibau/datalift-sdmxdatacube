@@ -92,6 +92,11 @@ label.checkbox {
   margin-bottom:0;
 }
 
+.bar p {
+  padding-top: 5px;
+  font-size: 150%;
+}
+
 /*
  * Form validation.
  * ---------------------------------------------------------------------

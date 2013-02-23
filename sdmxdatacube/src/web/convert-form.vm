@@ -182,9 +182,17 @@
                         <!-- data-bind="visible: state.isProcessing() || !currentSource.isValid()" -->
                         <div class="well well-small progress-indicator">
                           <div class="progress" data-bind="css: {'progress-striped active' : state.isProcessing() || currentSource.isValidating()}">
-                            <div class="bar" data-bind="css: {'bar-danger' : !currentSource.isValid() && !currentSource.isValidating(), 'bar-success' : currentSource.isValid() && !currentSource.isValidating()}" style="width: 100%;"></div>
+                            <div class="bar" data-bind="css: {'bar-danger' : !currentSource.isValid() && !currentSource.isValidating(), 'bar-success' : currentSource.isValid() && !currentSource.isValidating()}" style="width: 100%;">
+                              <!-- It would be better to have translated JS strings, but it mixes things :( -->
+                              <p data-bind="visible: currentSource.isValidating()">&hellip; #i18n('processing.progress.label')</p>
+                              <p data-bind="visible: !currentSource.isValid()">&#x2717; #i18n('error.progress.label')</p>
+                              <p data-bind="visible: currentSource.isValid()">&#x2713; #i18n('valid.progress.label')</p>
+                            </div>
                           </div>
                         </div>
+
+                        <!-- TODO -->
+                        <p class="help-block validation-message" data-bind="validationMessage: currentSource"></p>
                       </div>
                     </fieldset>
 
