@@ -53,26 +53,20 @@ define([
     self.initialize(currentSource);
 
     self.currentSource.extend({
-      validObject : true
-      // remote : {
-      //   beforeSend : function(jqxhr, settings) {
-      //     var parameterString = '';
-      //     // Here, settings.data is already 'application/x-www-form-urlencoded'
-      //     // Thus we need to append our URL encoded values to the string.
-      //     $.each(new SourceTransporter(self.currentSource(), self.viewResults()), function(key, val) {
-      //       parameterString += '&' + key + '=' + encodeURIComponent(val);
-      //     });
-      //     settings.data = parameterString.substring(1);
-      //     // If not explicitely overriden here, content-type will be set to text/plain.
-      //     jqxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded; charset=UTF-8');
-      //   },
-      //   success : function(data, status, jqxhr) {
-      //     window.console.log(data);
-      //   },
-      //   error : function(jqxhr, status, error) {
-      //     window.console.log(jqxhr.responseText);
-      //   }
-      // }
+      //validObject : true,
+      remote : {
+        beforeSend : function(jqxhr, settings) {
+          var parameterString = '';
+          // Here, settings.data is already 'application/x-www-form-urlencoded'
+          // Thus we need to append our URL encoded values to the string.
+          $.each(new SourceTransporter(self.currentSource(), self.viewResults()), function(key, val) {
+            parameterString += '&' + key + '=' + encodeURIComponent(val);
+          });
+          settings.data = parameterString.substring(1);
+          // If not explicitely overriden here, content-type will be set to text/plain.
+          jqxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded; charset=UTF-8');
+        }
+      }
     });
 
     /**
@@ -108,7 +102,8 @@ define([
 
     // Internal computed observable that fires whenever anything changes.
     ko.computed(function() {
-      console.log("v:" + self.currentSource.isValid());
+      window.console.log("v:" + self.currentSource.isValid());
+      window.console.log("ving:" + self.currentSource.isValidating());
       // Store a clean copy to local storage.
       localStorage.setItem(g.localStorageCurrentSource, ko.toJSON(self.currentSource()));
     }).extend({

@@ -33,7 +33,7 @@ define([
       if (!obj || typeof obj !== "object") {
         throw "[validObject] Parameter must be an object";
       }
-      console.log("validObject called : " + (ko.validation.group(obj)().length === 0));
+
       return validate === (ko.validation.group(obj)().length === 0);
     },
     message : 'Every field must be valid.'
@@ -42,6 +42,8 @@ define([
   /**
    * Remote validation rule, allowing the server to seamlessly participate
    * in validating the values.
+   *
+   * Might come in handy : https://github.com/ericmbarnard/Knockout-Validation/pull/192
    */
   ko.validation.rules['remote'] = {
     async : true,
@@ -49,9 +51,19 @@ define([
       var defaults = {
           url : 'http://localhost:8080/datalift/sdmxdatacube/validate',
           type : 'POST',
-          acecpt : 'application/json',
+          accept : 'application/json',
           // The data needs to be set at execution time with beforeSend.
-          data : {}
+          data : {},
+          success : function(data, status, jqxhr) {
+            callback(data.valid);
+          },
+          error : function(jqxhr, status, error) {
+            var result = JSON.parse(jqxhr.responseText);
+            callback({
+              isValid: result.isValid,
+              message: result.global
+            });
+          }
       };
 
       var options = $.extend(defaults, params);
@@ -60,7 +72,7 @@ define([
       $.ajax(options);
 
     },
-    message : 'Server validation : false'
+    message : 'Remote validation failed'
   };
 
   ko.validation.registerExtenders();
