@@ -33,6 +33,7 @@ define([
     - Rename state.global without global
     - Add extract display from SPARQL query when viewResult is false
     - Correct bug with viewResults and isRedirecting
+    - Add history management
      */
 
     /**
