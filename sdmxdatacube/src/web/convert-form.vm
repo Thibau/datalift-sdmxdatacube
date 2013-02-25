@@ -20,8 +20,8 @@
     <link rel="stylesheet" href="${moduleUri}/static/css/bootstrap.css">
     <link rel="stylesheet" href="${moduleUri}/static/css/bootstrap-responsive.css">
 
-    ## Prod/Dev : <link rel="stylesheet" href="${moduleUri}/static/css/sdmxdatacube.css">
-    <link rel="stylesheet" href="http://localhost:1337/static/css/sdmxdatacube.css">
+    <link rel="stylesheet" href="${moduleUri}/static/css/sdmxdatacube.css">
+    ## Prod/Dev : <link rel="stylesheet" href="http://localhost:1337/static/css/sdmxdatacube.css">
 
     <!-- fav and touch icons -->
     <link rel="shortcut icon" href="${moduleUri}/static/img/favicon.ico">
@@ -95,7 +95,7 @@
                   <form data-bind="submit: launch" action="${moduleUri}" method="post" enctype="application/x-www-form-urlencoded">
 
                     <!-- Old source — select its name / URI -->
-                    <fieldset data-bind="disable: $root.state.isProcessing">
+                    <fieldset data-bind="disable: $root.state.isProcessing()">
                       <div class="control-group">
                         <label for="inputSource" class="control-label">#i18n('input.select.label')</label>
                         <div class="controls">
@@ -106,7 +106,7 @@
                     </fieldset>
 
                     <!-- New source — input its name and graph URI, URI pattern -->
-                    <fieldset data-bind="with: currentSource, disable: $root.state.isProcessing">
+                    <fieldset data-bind="with: currentSource, disable: $root.state.isProcessing()">
                       <legend>#i18n('output.fieldset.label')</legend>
 
                       <!-- Name and URI are on the same row. -->
@@ -164,7 +164,7 @@
                     <div class="clearfix"></div>
 
                     <!-- Action buttons and progress bars -->
-                    <fieldset class="row-fluid" data-bind="disable: state.isProcessing">
+                    <fieldset class="row-fluid" data-bind="disable: state.isProcessing()">
                       <div class="span8">
                         <div class="form-actions well well-small pull-right">
                           <label class="checkbox inline" for="viewResults">
@@ -182,25 +182,14 @@
                         <!-- data-bind="visible: state.isProcessing() || !currentSource().isValid()" -->
                         <div class="well well-small progress-indicator">
                           <div class="progress" data-bind="css: {'progress-striped active' : state.isProcessing() || currentSource().isValidating()}">
-                            <div class="bar" data-bind="css: {'bar-danger' : !currentSource().isValid() && !currentSource().isValidating(), 'bar-success' : currentSource().isValid() && !currentSource().isValidating()}" style="width: 100%;">
+                            <div class="bar" data-bind="css: {'bar-danger' : !currentSource().isValid() && !currentSource().isValidating(), 'bar-success' : currentSource().isValid() && !currentSource().isValidating(), 'bar-info' : state.isProcessing()}" style="width: 100%;">
                               <!-- It would be better to have translated JS strings, but it mixes things :( -->
-                              <p data-bind="visible: currentSource().isValidating()">#i18n('processing.progress.label') &hellip;</p>
+                              <p data-bind="visible: currentSource().isValidating() || state.isProcessing()">#i18n('processing.progress.label') &hellip;</p>
                               <p data-bind="visible: !currentSource().isValid()">&#x2717; #i18n('error.progress.label')</p>
                               <p data-bind="visible: currentSource().isValid()">&#x2713; #i18n('valid.progress.label')</p>
                             </div>
                           </div>
                         </div>
-
-                        <!-- TODO -->
-                        <!-- TODO -->
-                        <!-- TODO -->
-                        <!-- TODO -->
-                        <!-- TODO -->
-                        <!-- TODO -->
-                        <!-- TODO -->
-                        <!-- TODO -->
-                        <!-- TODO -->
-                        <p class="help-block validation-message" data-bind="validationMessage: currentSource"></p>
                       </div>
                     </fieldset>
 
@@ -209,7 +198,7 @@
 
 
                     <!-- Modal to confirm form submit. Uses custom binding modal. -->
-                    <div data-bind="modal: state.isConfirming" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="confirm-label" aria-hidden="true">
+                    <div data-bind="modal: state.isConfirming()" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="confirm-label" aria-hidden="true">
                       <div class="modal-header">
                         <button type="button" data-bind="click: function(data, event){state.isConfirming(false);}" class="close" aria-hidden="true">×</button>
                         <h3 id="confirm-label">#i18n('header.confirm.text') <a data-bind="text : currentSource().parent.title, tooltip: currentSource().parent.uri, attr: {href: currentSource().parent.uri}"></a> ?</h3>
@@ -227,32 +216,32 @@
                       </div>
                       <div class="modal-footer">
                         <button data-bind="click: function(data, event){state.isConfirming(false);}" class="btn" aria-hidden="true"><i class="icon-remove"></i> #i18n('cancel.label')</button>
-                        <button data-bind="disable: state.isProcessing" type="submit" class="btn btn-primary" autocomplete="off"><i class="icon-play icon-white"></i> #i18n('launch.btn.label')</button>
+                        <button data-bind="disable: state.isProcessing()" type="submit" class="btn btn-primary" autocomplete="off"><i class="icon-play icon-white"></i> #i18n('launch.btn.label')</button>
                       </div>
                     </div>
 
                     <!-- Modal to display results after form submit. -->
-                    <div data-bind="modal: state.isSuccess" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="result-label" aria-hidden="true">
+                    <div data-bind="modal: state.isSuccess()" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="result-label" aria-hidden="true">
                       <div class="modal-header">
                         <button type="button" data-bind="click: function(data, event){state.isSuccess(false);}" class="close" aria-hidden="true">×</button>
                         <h3 id="result-label" class="text-success">#i18n('header.success.text')</h3>
                       </div>
                       <div class="modal-body">
-                        <p>#i18n('body.success.text') <a data-bind="text: state.globalResult, attr: {href : state.globalResult}"></a>.</p>
+                        <p>#i18n('body.success.text') <a data-bind="text: state.result, attr: {href : state.result}"></a>.</p>
                         <!-- Only display a timer if we are going to redirect to the new source. -->
-                        <p data-bind="visible: state.isRedirecting">#i18n('timer.success.text') <span class="badge badge-success" data-bind="text: state.timeLeft"></span></p>
+                        <p data-bind="visible: state.isRedirecting()">#i18n('timer.success.text') <span class="badge badge-success" data-bind="text: state.timeLeft"></span></p>
 
                       </div>
                       <div class="modal-footer">
-                        <a data-bind="attr: {href : state.globalResult}" class="btn btn-primary" aria-hidden="true"><i class="icon-share-alt icon-white"></i> #i18n('redirect.success.label')</a>
+                        <a data-bind="attr: {href : state.result}" class="btn btn-primary" aria-hidden="true"><i class="icon-share-alt icon-white"></i> #i18n('redirect.success.label')</a>
                         <!-- Show a cancel button if we are going to change page, a back if we stay here. -->
-                        <button data-bind="visible: state.isRedirecting, click: function(data, event){state.isSuccess(false); state.isRedirecting(false)}" class="btn" aria-hidden="true"><i class="icon-remove"></i> #i18n('cancel.label')</button>
-                        <button data-bind="visible: !state.isRedirecting, click: function(data, event){state.isSuccess(false);}" class="btn" aria-hidden="true"><i class="icon-arrow-left"></i> #i18n('back.label')</button>
+                        <button data-bind="visible: state.isRedirecting(), click: function(data, event){state.isSuccess(false); state.isRedirecting(false)}" class="btn" aria-hidden="true"><i class="icon-remove"></i> #i18n('cancel.label')</button>
+                        <button data-bind="visible: !state.isRedirecting(), click: function(data, event){state.isSuccess(false);}" class="btn" aria-hidden="true"><i class="icon-arrow-left"></i> #i18n('back.label')</button>
                       </div>
                     </div>
 
                     <!-- Modal to display errors after form submit. -->
-                    <div data-bind="modal: state.isError" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="error-label" aria-hidden="true">
+                    <div data-bind="modal: state.isError()" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="error-label" aria-hidden="true">
                       <div class="modal-header">
                         <button type="button" data-bind="click: function(data, event){state.isError(false);}" class="close" aria-hidden="true">×</button>
                         <h3 id="error-label" class="text-error">#i18n('header.error.text')</h3>
@@ -260,7 +249,7 @@
                       <div class="modal-body">
                         <p>#i18n('body.error.text')</p>
                         <blockquote>
-                          <p data-bind="text: state.globalError"></p>
+                          <p data-bind="text: state.error"></p>
                         </blockquote>
                       </div>
                       <div class="modal-footer">
@@ -410,8 +399,8 @@
       };
     </script>
 
-    ## Prod/Dev : <script data-main="${moduleUri}/static/js/main" src="${moduleUri}/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
-    <script data-main="http://localhost:1337/static/js/main.js" src="http://localhost:1337/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
+    <script data-main="${moduleUri}/static/js/main" src="${moduleUri}/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
+    ## Prod/Dev : <script data-main="http://localhost:1337/static/js/main.js" src="http://localhost:1337/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
 
   </body>
 </html>

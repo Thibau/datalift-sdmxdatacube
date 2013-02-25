@@ -20,33 +20,33 @@ define([
     self.timeLeft      = ko.observable(0);
     self.isError       = ko.observable(false);
     self.isSuccess     = ko.observable(false);
-    self.globalError   = ko.observable();
-    self.globalResult  = ko.observable();
-    self.globalExtract = ko.observable();
+    self.error         = ko.observable();
+    self.result        = ko.observable();
+    self.extract       = ko.observable();
 
     self.launchingStart = function() {
       self.isProcessing(true);
       self.isConfirming(false);
-      self.globalError(null);
-      self.globalResult(null);
+      self.error(null);
+      self.result(null);
     };
 
     self.launchingSuccess = function(location, viewResults) {
       self.isProcessing(false);
       self.isSuccess(true);
-      self.globalResult(location);
+      self.result(location);
       if (viewResults) {
-        self.redirectingStart(location);
+        self.retrieveExtract(location);
       }
       else {
-        self.retrieveExtract(location);
+        self.redirectingStart(location);
       }
     };
 
     self.launchingError = function(error) {
       self.isProcessing(false);
       self.isError(true);
-      self.globalError(error);
+      self.error(error);
     };
 
     // Redirect to location after timeBeforeRedirect milliseconds.
@@ -65,8 +65,13 @@ define([
       1000);
     };
 
+    // TODO.
     self.retrieveExtract = function(location) {
-
+      // $.getJSON('http://localhost:8080/datalift/sparql?default-graph-uri=internal&query=SELECT%20*%20FROM%20%3Chttp%3A%2F%2Flocalhost%3A8080%2Fdatalift%2Fproject%2Ftest1%2Fsource%2Fagequinquennal6809-donnees-21-qb%3E%20WHERE%20{%20%20%20%3Fs%20%3Fp%20%3Fo%20.%20}%20LIMIT%2010&format=json&grid=true',
+      // function(data) {
+      //   self.extract(data);
+      //   console.log(self.extract().head);
+      // });
     };
 
   };

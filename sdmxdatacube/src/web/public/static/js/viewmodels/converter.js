@@ -29,11 +29,8 @@ define([
     /*
     TODO :
     - Add restoring state with localStorage
-    - Remote validation rule must be enforced
-    - Rename state.global without global
-    - Add extract display from SPARQL query when viewResult is false
-    - Correct bug with viewResults and isRedirecting
-    - Add history management
+    - Add extract display from SPARQL query when viewResult is true
+    - Add history managementg
      */
 
     /**
