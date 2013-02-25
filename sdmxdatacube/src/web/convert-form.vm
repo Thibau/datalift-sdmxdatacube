@@ -112,7 +112,7 @@
                       <!-- Name and URI are on the same row. -->
                       <div class="row-fluid">
                         <div class="span2">
-                          <div class="control-group" data-bind="validationElement: title, css : {success : title.isModified() && title.isValid()}">
+                          <div class="control-group" data-bind="validationElement: title, css : {success : title.isModified() && title.isValid() && !title.isValidating(), info : title.isValidating()}">
                             <label for="outputSourceName" class="control-label">#i18n('title.input.label')</label>
                             <div class="controls">
                               <input name="outputSourceName" id="outputSourceName" data-bind="value: title" type="text" class="input-block-level" required>
@@ -124,7 +124,7 @@
                           </div>
                         </div>
                         <div class="span6">
-                          <div class="control-group" data-bind="validationElement: uri, css : {success : uri.isModified() && uri.isValid()}">
+                          <div class="control-group" data-bind="validationElement: uri, css : {success : uri.isModified() && uri.isValid() && !uri.isValidating(), info : uri.isValidating()}">
                             <label for="outputSourceURI" class="control-label">#i18n('uri.input.label')</label>
                             <div class="controls">
                               <input name="outputSourceURI" id="outputSourceURI" data-bind="value: uri" type="text" class="input-block-level" required>
@@ -143,7 +143,7 @@
                       <!-- URI pattern -->
                       <div class="row-fluid">
                         <div class="span8">
-                          <div class="control-group" data-bind="validationElement: uriPattern, css : {success : uriPattern.isModified() && uriPattern.isValid()}">
+                          <div class="control-group" data-bind="validationElement: uriPattern, css : {success : uriPattern.isModified() && uriPattern.isValid() && !uriPattern.isValidating(), info : uriPattern.isValidating()}">
                             <label for="uriPattern" class="control-label">#i18n('pattern.input.label')</label>
                             <div class="controls">
                               <input name="uriPattern" id="uriPattern" data-bind="value: uriPattern" type="text" class="input-block-level" required>
@@ -173,20 +173,20 @@
                           </label>
 
                           <!-- Knockout is full of gotchas : state.isProcessing works alone, but to use a || or &&, you need to append (). -->
-                          <button data-bind="click: function(data, event){state.isConfirming(true);}, disable: state.isProcessing() || !currentSource.isValid() || currentSource.isValidating()" class="btn btn-primary" autocomplete="off" type="button"><i class="icon-play icon-white"></i> #i18n('launch.btn.label')</button>
+                          <button data-bind="click: function(data, event){state.isConfirming(true);}, disable: state.isProcessing() || !currentSource().isValid() || currentSource().isValidating()" class="btn btn-primary" autocomplete="off" type="button"><i class="icon-play icon-white"></i> #i18n('launch.btn.label')</button>
                           <button data-bind="click: reset, disable: state.isProcessing" class="btn" type="button"><i class="icon-fast-backward"></i> #i18n('reset.btn.label')</button>
                         </div>
                       </div>
 
                       <div class="span4">
-                        <!-- data-bind="visible: state.isProcessing() || !currentSource.isValid()" -->
+                        <!-- data-bind="visible: state.isProcessing() || !currentSource().isValid()" -->
                         <div class="well well-small progress-indicator">
-                          <div class="progress" data-bind="css: {'progress-striped active' : state.isProcessing() || currentSource.isValidating()}">
-                            <div class="bar" data-bind="css: {'bar-danger' : !currentSource.isValid() && !currentSource.isValidating(), 'bar-success' : currentSource.isValid() && !currentSource.isValidating()}" style="width: 100%;">
+                          <div class="progress" data-bind="css: {'progress-striped active' : state.isProcessing() || currentSource().isValidating()}">
+                            <div class="bar" data-bind="css: {'bar-danger' : !currentSource().isValid() && !currentSource().isValidating(), 'bar-success' : currentSource().isValid() && !currentSource().isValidating()}" style="width: 100%;">
                               <!-- It would be better to have translated JS strings, but it mixes things :( -->
-                              <p data-bind="visible: currentSource.isValidating()">#i18n('processing.progress.label') &hellip;</p>
-                              <p data-bind="visible: !currentSource.isValid()">&#x2717; #i18n('error.progress.label')</p>
-                              <p data-bind="visible: currentSource.isValid()">&#x2713; #i18n('valid.progress.label')</p>
+                              <p data-bind="visible: currentSource().isValidating()">#i18n('processing.progress.label') &hellip;</p>
+                              <p data-bind="visible: !currentSource().isValid()">&#x2717; #i18n('error.progress.label')</p>
+                              <p data-bind="visible: currentSource().isValid()">&#x2713; #i18n('valid.progress.label')</p>
                             </div>
                           </div>
                         </div>

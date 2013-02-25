@@ -3,8 +3,9 @@ define([
   'knockout',
   'validation',
   'config/rules',
+  'config/global',
   'models/SourceTransporter'
-], function($, ko, validation, rules, SourceTransporter){
+], function($, ko, validation, rules, g, SourceTransporter){
   'use strict';
 
   /**
@@ -28,28 +29,54 @@ define([
     // Project is also a JS object with properties title and uri.
     self.project    = project;
     self.title      = ko.observable(title).extend(rules.source.title);
-    // self.title.extend({
-    //   remote : {
-    //     onlyIf : function() {return self.title.isModified();},
-    //     params : {
-    //       beforeSend : function(jqxhr, settings) {
-    //         var parameterString = '';
-    //         // Here, settings.data is already 'application/x-www-form-urlencoded'
-    //         // Thus we need to append our URL encoded values to the string.
-    //         $.each(new SourceTransporter(ko.toJS(self), true), function(key, val) {
-    //           parameterString += '&' + key + '=' + encodeURIComponent(val);
-    //         });
-    //         settings.data = parameterString.substring(1);
-    //         // If not explicitely overriden here, content-type will be set to text/plain.
-    //         jqxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded; charset=UTF-8');
-    //       }
-    //     }
-    //   }
-    // });
     self.uri        = ko.observable(uri).extend(rules.source.uri);
     self.uriPattern = ko.observable(uriPattern).extend(rules.source.uriPattern);
     self.creator    = ko.observable(creator);
     self.created    = ko.observable(created);
+
+    /*
+      Those function are all kind of stubs for a knockout validation object.
+      This is a bit hacky, but still seems the best way to remotely validate each field.
+      To perform it the right way, one would have to extend self with validObject,
+      thus meaning that each validatable inside self must be valid.
+      But this only works for sync rules, whereas remote validation is async by nature.
+     */
+
+    var generateRemoteRule = function(field) {
+      return {
+        remote : {
+          // Only remote validate if all fields are completed here and at least one of them has been modified.
+          // TODO Beware the end of this line.
+          // The problem is : isModified returns the status of the item since its initialization value, not since its last value.
+          onlyIf : function() {return self[field]() && self[field].isModified() && (self[field]() !== JSON.parse(localStorage.getItem(g.localStorageCurrentSource))[field]);},
+          params: {
+            beforeSend : function(jqxhr, settings) {
+              var parameterString = '';
+              // Here, settings.data is already 'application/x-www-form-urlencoded'
+              // Thus we need to append our URL encoded values to the string.
+              $.each(new SourceTransporter(ko.toJS(self), true), function(key, val) {
+                parameterString += '&' + key + '=' + encodeURIComponent(val);
+              });
+              settings.data = parameterString.substring(1);
+              // If not explicitely overriden here, content-type will be set to text/plain.
+              jqxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded; charset=UTF-8');
+            }
+          }
+        }
+      };
+    };
+
+    self.title.extend(generateRemoteRule('title'));
+    self.uri.extend(generateRemoteRule('uri'));
+    self.uriPattern.extend(generateRemoteRule('uriPattern'));
+
+    self.isValid = function() {
+      return self.title.isValid() && self.uri.isValid() && self.uriPattern.isValid();
+    };
+
+    self.isValidating = function() {
+      return self.title.isValidating() || self.uri.isValidating() || self.uriPattern.isValidating();
+    };
   };
 
   return Source;

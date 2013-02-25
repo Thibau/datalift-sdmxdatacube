@@ -40,14 +40,25 @@ define([
     message : 'Every field must be valid.'
   };
 
+  ko.validation.rules["empty"] = {
+    validator : function (obj, validate) {
+      return true;
+    },
+    message : 'Empty'
+  };
+
   ko.validation.rules["validRemoteObject"] = {
-    async : true,
     validator : function (obj, params, callback) {
       if (!obj || typeof obj !== "object") {
         throw "[validRemoteObject] Parameter must be an object";
       }
+      var result = true;
+      $.each(obj, function(key, val) {
+        //result = result && ((typeof val.isValidating == "undefined") || (!val.isValidating() && val.isValid()));
+      });
 
-      callback(ko.validation.group(obj)().length === 0);
+      console.log("vro:" + result);
+      return result;
     },
     message : 'Every remote field must be valid.'
   };

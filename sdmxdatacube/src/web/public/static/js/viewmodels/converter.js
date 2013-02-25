@@ -51,27 +51,6 @@ define([
 
     self.initialize(currentSource);
 
-    self.currentSource.extend({
-      validObject : true,
-      //validRemoteObject : {},
-      remote : {
-        onlyIf : function() {return self.currentSource.isModified() && self.currentSource.isValid();},
-        params : {
-          beforeSend : function(jqxhr, settings) {
-            var parameterString = '';
-            // Here, settings.data is already 'application/x-www-form-urlencoded'
-            // Thus we need to append our URL encoded values to the string.
-            $.each(new SourceTransporter(self.currentSource(), self.viewResults()), function(key, val) {
-              parameterString += '&' + key + '=' + encodeURIComponent(val);
-            });
-            settings.data = parameterString.substring(1);
-            // If not explicitely overriden here, content-type will be set to text/plain.
-            jqxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded; charset=UTF-8');
-          }
-        }
-      }
-    });
-
     /**
      * Executes an AJAJ call to send a source to the server.
      * @param  {Object} form The form which was submitted.
