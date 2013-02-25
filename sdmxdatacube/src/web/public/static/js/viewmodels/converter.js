@@ -5,8 +5,9 @@ define([
   'models/Source',
   'models/SourceTransporter',
   'models/State',
+  'models/Record',
   'validation'
-], function($, ko, g, Source, SourceTransporter, State, validation){
+], function($, ko, g, Source, SourceTransporter, State, Record, validation){
   'use strict';
 
   /**
@@ -15,7 +16,7 @@ define([
    * @param {Array} rawSources     An array which contains POJOs describing sources.
    * @param {Bool} viewResults     Tells whether or not the user wants to view results.
    */
-  var ViewModel = function(rawSources, viewResults) {
+  var ConverterViewModel = function(rawSources, viewResults) {
     var self = this;
 
 
@@ -24,12 +25,12 @@ define([
     self.currentSource = ko.observable();
     self.viewResults   = ko.observable(viewResults);
     self.state         = new State();
+    //self.record        = new Record();
 
     /*
     TODO :
     - Add extract display from SPARQL query when viewResult is true
     - Add history management
-    - Handle source description
      */
 
     /**
@@ -61,6 +62,7 @@ define([
          data: new SourceTransporter(self.currentSource(), self.viewResults()),
          success: function(data, status, jqxhr) {
             self.state.launchingSuccess(jqxhr.getResponseHeader('Location'), self.viewResults());
+
             localStorage.removeItem(g.localStorageCurrentSource);
          },
          error: function(jqxhr, status, error) {
@@ -71,7 +73,6 @@ define([
 
     /**
      * Resets the values of our sources by calling the initialization function again.
-     * @return nothing.
      */
     self.reset = function() {
       self.initialize(false);
@@ -87,5 +88,6 @@ define([
       throttle: 500
     });
   };
-  return ViewModel;
+
+  return ConverterViewModel;
 });

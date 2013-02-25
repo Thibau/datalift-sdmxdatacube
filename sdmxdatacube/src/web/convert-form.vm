@@ -20,8 +20,8 @@
     <link rel="stylesheet" href="${moduleUri}/static/css/bootstrap.css">
     <link rel="stylesheet" href="${moduleUri}/static/css/bootstrap-responsive.css">
 
-    ## Prod/Dev : <link rel="stylesheet" href="${moduleUri}/static/css/sdmxdatacube.css">
-    <link rel="stylesheet" href="http://localhost:1337/static/css/sdmxdatacube.css">
+    <link rel="stylesheet" href="${moduleUri}/static/css/sdmxdatacube.css">
+    ## Prod/Dev : <link rel="stylesheet" href="http://localhost:1337/static/css/sdmxdatacube.css">
 
     <!-- fav and touch icons -->
     <link rel="shortcut icon" href="${moduleUri}/static/img/favicon.ico">
@@ -81,7 +81,7 @@
           <!-- Nav tabs -->
           <ul class="nav nav-tabs">
             <li class="active"><a href="#converter" data-toggle="tab"><i class="icon-briefcase"></i> #i18n('converter.tab.label')</a></li>
-            <li><a href="#parameters" data-toggle="tab"><i class="icon-cog"></i> #i18n('parameters.tab.label')</a></li>
+            <!-- <li><a href="#parameters" data-toggle="tab"><i class="icon-cog"></i> #i18n('parameters.tab.label')</a></li> -->
             <li><a href="#history" data-toggle="tab"><i class="icon-calendar"></i> #i18n('history.tab.label')</a></li>
             <li><a href="#documentation" data-toggle="tab"><i class="icon-book"></i> #i18n('documentation.tab.label')</a></li>
           </ul>
@@ -400,8 +400,8 @@
       };
     </script>
 
-    ## Prod/Dev : <script data-main="${moduleUri}/static/js/main" src="${moduleUri}/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
-    <script data-main="http://localhost:1337/static/js/main.js" src="http://localhost:1337/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
+    <script data-main="${moduleUri}/static/js/main" src="${moduleUri}/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
+    ## Prod/Dev : <script data-main="http://localhost:1337/static/js/main.js" src="http://localhost:1337/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
 
   </body>
 </html>
