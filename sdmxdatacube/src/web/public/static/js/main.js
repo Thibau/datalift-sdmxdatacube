@@ -1,6 +1,6 @@
 require.config({
-  // Prod/Dev : baseUrl : 'http://localhost:1337/static/js',
-  baseUrl : 'sdmxdatacube/static/js',
+  baseUrl : 'http://localhost:1337/static/js',
+  // Prod/Dev : baseUrl : 'sdmxdatacube/static/js',
   // Require.js allows us to configure shortcut alias
   paths : {
     jquery : 'libs/jquery-1.9.1.min',
@@ -47,9 +47,6 @@ require([
     ko.validation.localize(i18n.validation[parameters.language]);
   }
 
-  // Check local storage for values.
-  var currentSource = ko.utils.parseJson(localStorage.getItem(g.localStorageCurrentSource));
-
   // Bind a new instance of our view model to the page.
-  ko.applyBindings( new ConverterViewModel(parameters.defaults.sources, currentSource || null, parameters.defaults.viewResults));
+  ko.applyBindings( new ConverterViewModel(parameters.defaults.sources, parameters.defaults.viewResults));
 });

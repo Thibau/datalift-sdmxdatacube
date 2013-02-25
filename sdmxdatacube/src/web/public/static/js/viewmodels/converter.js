@@ -13,10 +13,9 @@ define([
    * A view model which describes how our converter works,
    * what values it manages.
    * @param {Array} rawSources     An array which contains POJOs describing sources.
-   * @param {Object} currentSource The value of the currentSource, could be null.
    * @param {Bool} viewResults     Tells whether or not the user wants to view results.
    */
-  var ViewModel = function(rawSources, currentSource, viewResults) {
+  var ViewModel = function(rawSources, viewResults) {
     var self = this;
 
 
@@ -24,29 +23,30 @@ define([
     self.sources       = [];
     self.currentSource = ko.observable();
     self.viewResults   = ko.observable(viewResults);
-    self.state = new State();
+    self.state         = new State();
 
     /*
     TODO :
-    - Add restoring state with localStorage
     - Add extract display from SPARQL query when viewResult is true
-    - Add history managementg
+    - Add history management
+    - Handle source description
      */
 
     /**
      * Initializes the converter from the raw sources.
      * @param  {Object} currentSource A POJO which represents a source.
      */
-    self.initialize = function(currentSource) {
+    self.initialize = function(fromLocal) {
       // Transform our array of Objects to an array of Sources.
       self.sources = self.rawSources.map(function (elt) {
         return new Source(elt.parent, elt.project, elt.title, elt.uri, elt.uriPattern, elt.creator, elt.created);
       });
 
-      self.currentSource(currentSource || self.sources[0]);
+      var localCurrentSource = fromLocal && ko.utils.parseJson(localStorage.getItem(g.localStorageCurrentSource));
+      self.currentSource(localCurrentSource || self.sources[0]);
     };
 
-    self.initialize(currentSource);
+    self.initialize(true);
 
     /**
      * Executes an AJAJ call to send a source to the server.
@@ -61,7 +61,6 @@ define([
          data: new SourceTransporter(self.currentSource(), self.viewResults()),
          success: function(data, status, jqxhr) {
             self.state.launchingSuccess(jqxhr.getResponseHeader('Location'), self.viewResults());
-
             localStorage.removeItem(g.localStorageCurrentSource);
          },
          error: function(jqxhr, status, error) {
@@ -75,7 +74,7 @@ define([
      * @return nothing.
      */
     self.reset = function() {
-      self.initialize(null);
+      self.initialize(false);
       localStorage.removeItem(g.localStorageCurrentSource);
     };
 
