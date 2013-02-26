@@ -195,20 +195,4 @@ public class SDMXDataCubeTransformer {
 			
 		}
 	}
-	
-	public ByteArrayOutputStream outputDataCube(RDFFormat format) {
-		ByteArrayOutputStream result = null;
-		try {
-			StructureFormat structureFormat = new RDFStructureOutputFormat(format);
-			SdmxBeans beans = outputStructures(structureFormat);
-			DataFormat dataFormat = new RDFDataOutputFormat((DataflowBean)beans.getDataflows().toArray()[0], format);
-			
-			result = outputData(beans, dataFormat);
-		}
-		catch (Exception e) {
-			
-		}
-		
-		return result;
-	}
 }

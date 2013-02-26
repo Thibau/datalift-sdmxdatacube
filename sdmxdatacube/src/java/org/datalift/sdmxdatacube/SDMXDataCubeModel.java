@@ -39,6 +39,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
+import java.net.URISyntaxException;
 
 import javax.ws.rs.core.MediaType;
 
@@ -48,6 +49,7 @@ import org.datalift.fwk.project.Source.SourceType;
 import org.datalift.fwk.project.SparqlSource;
 import org.datalift.fwk.project.TransformedRdfSource;
 import org.datalift.fwk.project.XmlSource;
+import org.datalift.fwk.rdf.RdfException;
 import org.datalift.fwk.rdf.RdfUtils;
 import org.datalift.fwk.rdf.Repository;
 import org.datalift.sdmxdatacube.utils.SdmxFileUtils;
@@ -120,8 +122,19 @@ public class SDMXDataCubeModel extends ModuleModel {
 		return false;
 	}
 
+	/**
+	 * Launches a conversion process on a given project, using a given source.
+	 * 
+	 * @param project
+	 *            The project where a new DataCube source will be created.
+	 * @param source
+	 *            The source which will be converted.
+	 * @param destination
+	 *            Where the new source will be.
+	 * @throws Exception
+	 */
 	public void lauchSdmxToDatacubeProcess(Project project, XmlSource source,
-			TransformedRdfSource destination) throws Exception {
+			TransformedRdfSource destination) {
 
 		LOG.debug("Lauching process to convert the SDMX source {} to RDF {}",
 				source.getFilePath(), destination.getUri());
@@ -130,20 +143,29 @@ public class SDMXDataCubeModel extends ModuleModel {
 		Repository repo = org.datalift.fwk.Configuration.getDefault()
 				.getInternalRepository();
 
-		RdfUtils.upload(convert(source, RDFFormat.RDFXML),
-				MediaType.APPLICATION_XML_TYPE, repo,
-				new URI(d.getTargetGraph()), null);
+		try {
+			RdfUtils.upload(convert(source, RDFFormat.RDFXML),
+					MediaType.APPLICATION_XML_TYPE, repo,
+					new URI(d.getTargetGraph()), null);
+		} catch (RdfException e) {
+			LOG.fatal("Failed to upload RDF to source {}: {}", e,
+					d.getTargetGraph(), e.getMessage());
+		} catch (URISyntaxException e) {
+			LOG.fatal("Failed to upload RDF to source {}: {}", e,
+					d.getTargetGraph(), e.getMessage());
+		}
 
 	}
 
+	// TODO Use Turtle instead of RDFXML.
+	// TODO Find a way to define URI templates elsewhere.
 	private InputStream convert(XmlSource source, RDFFormat rdfFormat) {
 		ByteArrayOutputStream convertedStream = null;
 
 		try {
 			convertedStream = sdmxDataCubeTransformer.convertSDMXToDataCube(
 					source.getInputStream(), rdfFormat);
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			LOG.fatal("Failed to load stream of source {}: {}", e,
 					source.getUri(), e.getMessage());
 		}
