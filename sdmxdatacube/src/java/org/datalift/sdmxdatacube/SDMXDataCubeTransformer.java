@@ -3,6 +3,10 @@ package org.datalift.sdmxdatacube;
 import java.io.ByteArrayOutputStream;
 import java.net.URL;
 
+import org.datalift.fwk.log.Logger;
+import org.openrdf.rio.RDFFormat;
+import org.sdmxsource.rdf.model.RDFDataOutputFormat;
+import org.sdmxsource.rdf.model.RDFStructureOutputFormat;
 import org.sdmxsource.sdmx.api.engine.DataReaderEngine;
 import org.sdmxsource.sdmx.api.engine.DataWriterEngine;
 import org.sdmxsource.sdmx.api.factory.ReadableDataLocationFactory;
@@ -10,6 +14,7 @@ import org.sdmxsource.sdmx.api.manager.output.StructureWritingManager;
 import org.sdmxsource.sdmx.api.manager.parse.StructureParsingManager;
 import org.sdmxsource.sdmx.api.model.StructureFormat;
 import org.sdmxsource.sdmx.api.model.beans.SdmxBeans;
+import org.sdmxsource.sdmx.api.model.beans.datastructure.DataflowBean;
 import org.sdmxsource.sdmx.api.model.data.DataFormat;
 import org.sdmxsource.sdmx.api.util.ReadableDataLocation;
 import org.sdmxsource.sdmx.dataparser.manager.DataReaderManager;
@@ -58,6 +63,9 @@ public class SDMXDataCubeTransformer {
 
 	@Autowired
 	private InMemoryRetrievalManager inMemoryRetrievalManager;
+	
+	/** Datalift's logger. */
+	protected static final Logger LOG = Logger.getLogger();
 
 	// May need a javaagent on the path to ensure weaving works, example
 	// -javaagent:C:/JavaAgent/aspectjweaver-1.6.9.jar
@@ -103,5 +111,24 @@ public class SDMXDataCubeTransformer {
 				true);
 
 		System.out.println(new String(out.toByteArray()));
+		LOG.debug(new String(out.toByteArray()));
+	}
+	
+	public void hello() {
+		try {
+			LOG.debug("Inside SDMXDataCubeTransformer");
+			
+			StructureFormat structureFormat = new RDFStructureOutputFormat(RDFFormat.RDFXML);
+			//Output Structures, and then data
+			SdmxBeans beans = outputStructures(structureFormat);
+			
+			LOG.debug("Inside SDMXDataCubeTransformer after outputStructures");
+
+			DataFormat dataFormat = new RDFDataOutputFormat((DataflowBean)beans.getDataflows().toArray()[0], RDFFormat.RDFXML);
+			outputData(beans, dataFormat);
+		}
+		catch (Exception e) {
+			
+		}
 	}
 }

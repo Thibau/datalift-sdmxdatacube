@@ -115,6 +115,8 @@ public class SDMXDataCubeController extends ModuleController {
 		ctx.refresh();
 
 		rdfDataTransformer = ctx.getBean(SDMXDataCubeTransformer.class);
+		
+		rdfDataTransformer.hello();
 	}
 
 	// -------------------------------------------------------------------------
