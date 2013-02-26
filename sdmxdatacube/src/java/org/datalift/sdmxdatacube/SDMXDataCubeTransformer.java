@@ -62,6 +62,9 @@ import org.springframework.stereotype.Service;
  * A Spring Bean which uses SDMXRDFParser from Metadata Technologies' SdmxSource
  * to convert SDMX 2.1 datasets / structures to DataCube.
  * 
+ * This code is mainly from the example of usage provided by Matt Nelson
+ * (org.sdmxsource.demo.rdf.main.RDFDataTransformer, rev 11 on SVN).
+ * 
  * @author T. Colas, T. Marmin, Matt Nelson (Metadata Tech)
  * @version 260213
  */
@@ -114,12 +117,11 @@ public class SDMXDataCubeTransformer {
 
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		structureWritingManager.writeStructures(beans, structureFormat, out);
-		System.out.println(new String(out.toByteArray()));
 
 		return beans;
 	}
 
-	public void outputData(SdmxBeans beans, DataFormat dataFormat)
+	public ByteArrayOutputStream outputData(SdmxBeans beans, DataFormat dataFormat)
 			throws Exception {
 		ReadableDataLocation data = readableDataLocationFactory
 				.getReadableDataLocation(new URL(
@@ -138,16 +140,12 @@ public class SDMXDataCubeTransformer {
 		dataReaderWriterTransform.copyToWriter(dataReader, dataWriter, true,
 				true);
 
-		
-		LOG.debug(new String(out.toByteArray()));
+		return out;
 	}
 	
 	public void hello() {
 		try {
-			LOG.debug("Inside SDMXDataCubeTransformer hello");
-			
 			StructureFormat structureFormat = new RDFStructureOutputFormat(RDFFormat.RDFXML);
-			//Output Structures, and then data
 			SdmxBeans beans = outputStructures(structureFormat);
 
 			DataFormat dataFormat = new RDFDataOutputFormat((DataflowBean)beans.getDataflows().toArray()[0], RDFFormat.RDFXML);
@@ -156,5 +154,21 @@ public class SDMXDataCubeTransformer {
 		catch (Exception e) {
 			
 		}
+	}
+	
+	public ByteArrayOutputStream outputDataCube(RDFFormat format) {
+		ByteArrayOutputStream result = null;
+		try {
+			StructureFormat structureFormat = new RDFStructureOutputFormat(format);
+			SdmxBeans beans = outputStructures(structureFormat);
+			DataFormat dataFormat = new RDFDataOutputFormat((DataflowBean)beans.getDataflows().toArray()[0], format);
+			
+			result = outputData(beans, dataFormat);
+		}
+		catch (Exception e) {
+			
+		}
+		
+		return result;
 	}
 }

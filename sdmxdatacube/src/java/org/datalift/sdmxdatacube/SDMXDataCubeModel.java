@@ -48,6 +48,7 @@ import org.datalift.fwk.project.XmlSource;
 import org.datalift.fwk.rdf.RdfUtils;
 import org.datalift.fwk.rdf.Repository;
 import org.datalift.sdmxdatacube.utils.SdmxFileUtils;
+import org.openrdf.rio.RDFFormat;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -136,7 +137,7 @@ public class SDMXDataCubeModel extends ModuleModel {
 		// TODO Use the SdmxSource library
 		
 		// Test function
-		sdmxDataCubeTransformer.hello();
+		//sdmxDataCubeTransformer.hello();
 
 		String rdfxml = "<?xml version=\"1.0\"?>\n"
 				+ "<rdf:RDF\n"
@@ -155,6 +156,8 @@ public class SDMXDataCubeModel extends ModuleModel {
 				+ "<cd:company>CBS Records</cd:company>\n"
 				+ "<cd:price>9.90</cd:price>\n" + "<cd:year>1988</cd:year>\n"
 				+ "</rdf:Description>\n" + "</rdf:RDF>\n";
-		return new ByteArrayInputStream(rdfxml.getBytes());
+		//return new ByteArrayInputStream(rdfxml.getBytes());
+		
+		return new ByteArrayInputStream(sdmxDataCubeTransformer.outputDataCube(RDFFormat.RDFXML).toByteArray());
 	}
 }
