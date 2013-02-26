@@ -28,10 +28,6 @@
   <context:spring-configured />
   <context:annotation-config />
 
-  <!-- ************************************ -->
-  <!-- Modifications ! -->
-  <!-- http://www.mkyong.com/spring/spring-auto-scanning-components/ -->
-  <!-- ************************************ -->
   <context:component-scan base-package="org.sdmxsource" />
 
   <bean id="readableDataLocationFactory" class="org.sdmxsource.util.factory.SdmxSourceReadableDataLocationFactory" />

@@ -35,6 +35,7 @@
 package org.datalift.sdmxdatacube;
 
 import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
+import static org.datalift.fwk.util.StringUtils.urlify;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -59,17 +60,11 @@ import org.datalift.fwk.project.XmlSource;
 import org.datalift.fwk.view.TemplateModel;
 import org.datalift.sdmxdatacube.jsontransporter.MessageTransporter;
 import org.datalift.sdmxdatacube.utils.ControllerHelper;
-import org.openrdf.rio.RDFFormat;
-import org.sdmxsource.rdf.model.RDFStructureOutputFormat;
 import org.sdmxsource.sdmx.api.model.StructureFormat;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.core.io.DefaultResourceLoader;
-import static org.datalift.fwk.util.StringUtils.*;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.sun.jersey.api.core.DefaultResourceConfig;
 
 /**
  * The SDMX DataCube module's main class which exposes the SDMXRDFParser engine
@@ -96,9 +91,7 @@ public class SDMXDataCubeController extends ModuleController {
 
 	protected SDMXDataCubeModel model;
 
-	StructureFormat structureFormat;
-
-	// SDMXDataCubeTransformer rdfDataTransformer;
+	private SDMXDataCubeTransformer rdfDataTransformer;
 
 	// -------------------------------------------------------------------------
 	// Constructors
@@ -121,9 +114,7 @@ public class SDMXDataCubeController extends ModuleController {
 		ctx.setConfigLocation("spring/spring-beans.xml");
 		ctx.refresh();
 
-		// rdfDataTransformer = ctx.getBean(SDMXDataCubeTransformer.class);
-
-		structureFormat = new RDFStructureOutputFormat(RDFFormat.TURTLE);
+		rdfDataTransformer = ctx.getBean(SDMXDataCubeTransformer.class);
 	}
 
 	// -------------------------------------------------------------------------
