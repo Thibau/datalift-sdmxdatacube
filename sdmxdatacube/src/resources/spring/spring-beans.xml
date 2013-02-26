@@ -32,7 +32,7 @@
   <!-- Modifications ! -->
   <!-- http://www.mkyong.com/spring/spring-auto-scanning-components/ -->
   <!-- ************************************ -->
-  <!--   <context:component-scan base-package="org.sdmxsource" /> -->
+  <context:component-scan base-package="org.sdmxsource" />
 
   <bean id="readableDataLocationFactory" class="org.sdmxsource.util.factory.SdmxSourceReadableDataLocationFactory" />
   <bean id="writeableDataLocationFactory" class="org.sdmxsource.util.factory.SdmxSourceWriteableDataLocationFactory" />

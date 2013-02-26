@@ -115,8 +115,9 @@ public class SDMXDataCubeController extends ModuleController {
 		LOG.debug("Current classpath: {}",
 				System.getProperties().getProperty("java.class.path", null));
 
+		Thread.currentThread().setContextClassLoader(this.getClass().getClassLoader());
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext();
-		ctx.setClassLoader(this.getClass().getClassLoader());
+		//ctx.setClassLoader(this.getClass().getClassLoader());
 		ctx.setConfigLocation("spring/spring-beans.xml");
 		ctx.refresh();
 
