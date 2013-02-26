@@ -5,9 +5,8 @@ define([
   'models/Source',
   'models/SourceTransporter',
   'models/State',
-  'models/Record',
   'validation'
-], function($, ko, g, Source, SourceTransporter, State, Record, validation){
+], function($, ko, g, Source, SourceTransporter, State, validation){
   'use strict';
 
   /**
@@ -25,13 +24,12 @@ define([
     self.currentSource = ko.observable();
     self.viewResults   = ko.observable(viewResults);
     self.state         = new State();
-    //self.record        = new Record();
 
     /*
     TODO :
-    - Add extract display from SPARQL query when viewResult is true
-    - Add history management
-     */
+    - Add extract display from SPARQL query when viewResult is true (models/State.js/extract)
+    - Add history management (models/Record.js)
+    */
 
     /**
      * Initializes the converter from the raw sources.
