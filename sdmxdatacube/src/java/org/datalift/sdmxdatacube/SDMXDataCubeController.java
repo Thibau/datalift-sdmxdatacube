@@ -60,8 +60,6 @@ import org.datalift.fwk.project.XmlSource;
 import org.datalift.fwk.view.TemplateModel;
 import org.datalift.sdmxdatacube.jsontransporter.MessageTransporter;
 import org.datalift.sdmxdatacube.utils.ControllerHelper;
-import org.sdmxsource.sdmx.api.model.StructureFormat;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -71,7 +69,7 @@ import com.google.gson.GsonBuilder;
  * to the Datalift architecture.
  *
  * @author T. Colas, T. Marmin
- * @version 090213
+ * @version 260213
  */
 @Path(SDMXDataCubeController.MODULE_NAME)
 public class SDMXDataCubeController extends ModuleController {
@@ -91,8 +89,6 @@ public class SDMXDataCubeController extends ModuleController {
 
 	protected SDMXDataCubeModel model;
 
-	private SDMXDataCubeTransformer rdfDataTransformer;
-
 	// -------------------------------------------------------------------------
 	// Constructors
 	// -------------------------------------------------------------------------
@@ -104,19 +100,6 @@ public class SDMXDataCubeController extends ModuleController {
 		// TODO Switch to the right position.
 		super(MODULE_NAME, MODULE_POSITION);
 		model = new SDMXDataCubeModel(MODULE_NAME);
-
-		LOG.debug("Current classpath: {}",
-				System.getProperties().getProperty("java.class.path", null));
-
-		Thread.currentThread().setContextClassLoader(this.getClass().getClassLoader());
-		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext();
-		//ctx.setClassLoader(this.getClass().getClassLoader());
-		ctx.setConfigLocation("spring/spring-beans.xml");
-		ctx.refresh();
-
-		rdfDataTransformer = ctx.getBean(SDMXDataCubeTransformer.class);
-		
-		rdfDataTransformer.hello();
 	}
 
 	// -------------------------------------------------------------------------
@@ -408,24 +391,4 @@ public class SDMXDataCubeController extends ModuleController {
 
 		return transporter;
 	}
-
-	// private final static class RequestValidatorJsonStreamingOutput implements
-	// StreamingOutput {
-	// private final MessageTransporter v;
-	//
-	// public RequestValidatorJsonStreamingOutput(MessageTransporter v) {
-	// this.v = v;
-	// }
-	//
-	// /** {@inheritDoc} */
-	// @Override
-	// public void write(OutputStream output) throws IOException,
-	// WebApplicationException {
-	// Gson gson = new GsonBuilder().create();
-	//
-	// Writer w = new OutputStreamWriter(output, Charsets.UTF_8);
-	// gson.toJson(this.v, w);
-	// w.flush();
-	// }
-	// }
 }

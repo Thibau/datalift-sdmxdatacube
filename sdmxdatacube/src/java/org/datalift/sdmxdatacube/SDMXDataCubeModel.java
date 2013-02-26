@@ -34,16 +34,12 @@
 
 package org.datalift.sdmxdatacube;
 
-import info.aduna.app.config.Configuration;
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
-import java.util.LinkedList;
 
 import org.datalift.fwk.project.Project;
-import org.datalift.fwk.project.ProjectManager;
 import org.datalift.fwk.project.Source;
 import org.datalift.fwk.project.Source.SourceType;
 import org.datalift.fwk.project.SparqlSource;
@@ -51,27 +47,24 @@ import org.datalift.fwk.project.TransformedRdfSource;
 import org.datalift.fwk.project.XmlSource;
 import org.datalift.fwk.rdf.RdfUtils;
 import org.datalift.fwk.rdf.Repository;
-import org.datalift.fwk.util.PrefixUriMapper;
-import org.datalift.fwk.util.UriMapper;
 import org.datalift.sdmxdatacube.utils.SdmxFileUtils;
-import org.openrdf.repository.RepositoryConnection;
-import org.openrdf.repository.RepositoryException;
-import org.openrdf.repository.config.RepositoryFactory;
-import org.openrdf.repository.http.HTTPRepository;
-import org.openrdf.rio.RDFFormat;
-import org.openrdf.rio.RDFParseException;
-
-import com.google.common.net.MediaType;
-import com.google.common.primitives.Bytes;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * A module to convert SDMX (XML) data to DataCube (RDF). Uses the SDMXRDFParser
  * library from SDMXSource.
  * 
  * @author T. Colas, T. Marmin
- * @version 090213
+ * @version 260213
  */
 public class SDMXDataCubeModel extends ModuleModel {
+
+	// -------------------------------------------------------------------------
+	// Instance members
+	// -------------------------------------------------------------------------
+
+	private SDMXDataCubeTransformer sdmxDataCubeTransformer;
+
 	// -------------------------------------------------------------------------
 	// Constructors
 	// -------------------------------------------------------------------------
@@ -84,6 +77,16 @@ public class SDMXDataCubeModel extends ModuleModel {
 	 */
 	public SDMXDataCubeModel(String name) {
 		super(name);
+
+		// Initialize the sdmxDataCubeTransformer, which is a Spring bean.
+		// It is also referenced in spring-beans.xml.
+		Thread.currentThread().setContextClassLoader(
+				this.getClass().getClassLoader());
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext();
+		ctx.setConfigLocation("spring/spring-beans.xml");
+		ctx.refresh();
+
+		sdmxDataCubeTransformer = ctx.getBean(SDMXDataCubeTransformer.class);
 	}
 
 	// -------------------------------------------------------------------------
@@ -131,6 +134,9 @@ public class SDMXDataCubeModel extends ModuleModel {
 
 	private InputStream convert(XmlSource source) {
 		// TODO Use the SdmxSource library
+		
+		// Test function
+		sdmxDataCubeTransformer.hello();
 
 		String rdfxml = "<?xml version=\"1.0\"?>\n"
 				+ "<rdf:RDF\n"
