@@ -30,6 +30,8 @@
 
   <context:component-scan base-package="org.sdmxsource" />
 
+  <bean id="rdfDataTransformer" class="org.datalift.sdmxdatacube.SDMXDataCubeTransformer" />
+
   <bean id="readableDataLocationFactory" class="org.sdmxsource.util.factory.SdmxSourceReadableDataLocationFactory" />
   <bean id="writeableDataLocationFactory" class="org.sdmxsource.util.factory.SdmxSourceWriteableDataLocationFactory" />
 
