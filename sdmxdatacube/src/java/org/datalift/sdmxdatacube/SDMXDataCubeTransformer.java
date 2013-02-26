@@ -1,3 +1,37 @@
+/*
+ * Copyright / LIRMM 2013
+ * Contributor(s) : T. Colas, T. Marmin
+ *
+ * Contact: thibaut.marmin@etud.univ-montp2.fr
+ * Contact: thibaud.colas@etud.univ-montp2.fr
+ *
+ * This software is governed by the CeCILL license under French law and
+ * abiding by the rules of distribution of free software. You can use,
+ * modify and/or redistribute the software under the terms of the CeCILL
+ * license as circulated by CEA, CNRS and INRIA at the following URL
+ * "http://www.cecill.info".
+ *
+ * As a counterpart to the access to the source code and rights to copy,
+ * modify and redistribute granted by the license, users are provided only
+ * with a limited warranty and the software's author, the holder of the
+ * economic rights, and the successive licensors have only limited
+ * liability.
+ *
+ * In this respect, the user's attention is drawn to the risks associated
+ * with loading, using, modifying and/or developing or reproducing the
+ * software by the user in light of its specific status of free software,
+ * that may mean that it is complicated to manipulate, and that also
+ * therefore means that it is reserved for developers and experienced
+ * professionals having in-depth computer knowledge. Users are therefore
+ * encouraged to load and test the software's suitability as regards their
+ * requirements in conditions enabling the security of their systems and/or
+ * data to be ensured and, more generally, to use and operate it in the
+ * same conditions as regards security.
+ *
+ * The fact that you are presently reading this means that you have had
+ * knowledge of the CeCILL license and that you accept its terms.
+ */
+
 package org.datalift.sdmxdatacube;
 
 import java.io.ByteArrayOutputStream;
@@ -24,51 +58,45 @@ import org.sdmxsource.sdmx.structureretrieval.manager.InMemoryRetrievalManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * A Spring Bean which uses SDMXRDFParser from Metadata Technologies' SdmxSource
+ * to convert SDMX 2.1 datasets / structures to DataCube.
+ * 
+ * @author T. Colas, T. Marmin, Matt Nelson (Metadata Tech)
+ * @version 260213
+ */
 @Service
 public class SDMXDataCubeTransformer {
 
+	/** Required to Build SdmxBeans from a SDMX/EDI source. */
 	@Autowired
-	private StructureParsingManager structureParsingManager; // Required to
-																// Build
-																// SdmxBeans
-																// from a
-																// SDMX/EDI
-																// source
+	private StructureParsingManager structureParsingManager;
 
+	/** Required for StructureWriterEngine. */
 	@Autowired
-	private StructureWritingManager structureWritingManager; // Required to
-																// StructureWriterEngine
+	private StructureWritingManager structureWritingManager;
 
+	/** Required to get the required DataWriterEngine. */
 	@Autowired
-	private DataWriterManager dataWriterManager; // Required to get the required
-													// DataWriterEngine
+	private DataWriterManager dataWriterManager;
 
+	/** Required to get the DataReaderEngine capable of reading the datasource. */
 	@Autowired
-	private DataReaderManager dataReaderManager; // Required to get the
-													// DataReaderEngine capable
-													// of reading the datasource
+	private DataReaderManager dataReaderManager;
 
+	 /** Required to read from the data source, and write to the target source. */
 	@Autowired
-	private DataReaderWriterTransform dataReaderWriterTransform; // required to
-																	// read from
-																	// the data
-																	// source,
-																	// and write
-																	// to the
-																	// target
-																	// source
+	private DataReaderWriterTransform dataReaderWriterTransform;
 
 	@Autowired
 	private ReadableDataLocationFactory readableDataLocationFactory;
 
 	@Autowired
 	private InMemoryRetrievalManager inMemoryRetrievalManager;
-	
+
 	/** Datalift's logger. */
 	protected static final Logger LOG = Logger.getLogger();
 
-	// May need a javaagent on the path to ensure weaving works, example
-	// -javaagent:C:/JavaAgent/aspectjweaver-1.6.9.jar
 
 	public SdmxBeans outputStructures(StructureFormat structureFormat)
 			throws Exception {
@@ -110,19 +138,17 @@ public class SDMXDataCubeTransformer {
 		dataReaderWriterTransform.copyToWriter(dataReader, dataWriter, true,
 				true);
 
-		System.out.println(new String(out.toByteArray()));
+		
 		LOG.debug(new String(out.toByteArray()));
 	}
 	
 	public void hello() {
 		try {
-			LOG.debug("Inside SDMXDataCubeTransformer");
+			LOG.debug("Inside SDMXDataCubeTransformer hello");
 			
 			StructureFormat structureFormat = new RDFStructureOutputFormat(RDFFormat.RDFXML);
 			//Output Structures, and then data
 			SdmxBeans beans = outputStructures(structureFormat);
-			
-			LOG.debug("Inside SDMXDataCubeTransformer after outputStructures");
 
 			DataFormat dataFormat = new RDFDataOutputFormat((DataflowBean)beans.getDataflows().toArray()[0], RDFFormat.RDFXML);
 			outputData(beans, dataFormat);
