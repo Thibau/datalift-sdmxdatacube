@@ -35,9 +35,12 @@
 package org.datalift.sdmxdatacube;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
+
+import javax.ws.rs.core.MediaType;
 
 import org.datalift.fwk.project.Project;
 import org.datalift.fwk.project.Source;
@@ -127,37 +130,24 @@ public class SDMXDataCubeModel extends ModuleModel {
 		Repository repo = org.datalift.fwk.Configuration.getDefault()
 				.getInternalRepository();
 
-		RdfUtils.upload(convert(source),
-				javax.ws.rs.core.MediaType.APPLICATION_XML_TYPE, repo, new URI(
-						d.getTargetGraph()), null);
+		RdfUtils.upload(convert(source, RDFFormat.RDFXML),
+				MediaType.APPLICATION_XML_TYPE, repo,
+				new URI(d.getTargetGraph()), null);
 
 	}
 
-	private InputStream convert(XmlSource source) {
-		// TODO Use the SdmxSource library
-		
-		// Test function
-		//sdmxDataCubeTransformer.hello();
+	private InputStream convert(XmlSource source, RDFFormat rdfFormat) {
+		ByteArrayOutputStream convertedStream = null;
 
-		String rdfxml = "<?xml version=\"1.0\"?>\n"
-				+ "<rdf:RDF\n"
-				+ "xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"\n"
-				+ "xmlns:cd=\"http://www.recshop.fake/cd#\">\n"
-				+ "<rdf:Description\n"
-				+ "rdf:about=\"http://www.recshop.fake/cd/Empire Burlesque\">\n"
-				+ "<cd:artist>Bob Dylan</cd:artist>\n"
-				+ "<cd:country>USA</cd:country>\n"
-				+ "<cd:company>Columbia</cd:company>\n"
-				+ "<cd:price>10.90</cd:price>\n" + "<cd:year>1985</cd:year>\n"
-				+ "</rdf:Description>\n" + "<rdf:Description\n"
-				+ "rdf:about=\"http://www.recshop.fake/cd/Hide your heart\">\n"
-				+ "<cd:artist>Bonnie Tyler</cd:artist>\n"
-				+ "<cd:country>UK</cd:country>\n"
-				+ "<cd:company>CBS Records</cd:company>\n"
-				+ "<cd:price>9.90</cd:price>\n" + "<cd:year>1988</cd:year>\n"
-				+ "</rdf:Description>\n" + "</rdf:RDF>\n";
-		//return new ByteArrayInputStream(rdfxml.getBytes());
-		
-		return new ByteArrayInputStream(sdmxDataCubeTransformer.outputDataCube(RDFFormat.RDFXML).toByteArray());
+		try {
+			convertedStream = sdmxDataCubeTransformer.convertSDMXToDataCube(
+					source.getInputStream(), rdfFormat);
+		}
+		catch (IOException e) {
+			LOG.fatal("Failed to load stream of source {}: {}", e,
+					source.getUri(), e.getMessage());
+		}
+
+		return new ByteArrayInputStream(convertedStream.toByteArray());
 	}
 }

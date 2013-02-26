@@ -35,6 +35,8 @@
 package org.datalift.sdmxdatacube;
 
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.datalift.fwk.log.Logger;
@@ -141,6 +143,44 @@ public class SDMXDataCubeTransformer {
 				true);
 
 		return out;
+	}
+	
+	public ByteArrayOutputStream convertSDMXToDataCube(InputStream sourceStream, RDFFormat rdfFormat) {
+		// TODO replace structures and data with dataset.
+		ReadableDataLocation dataset = readableDataLocationFactory.getReadableDataLocation(sourceStream);
+		ReadableDataLocation structures = null;
+		ReadableDataLocation data = null;
+		try {
+			structures = readableDataLocationFactory.getReadableDataLocation(new URL("http://imf.sdmxregistry.org/ws/restInterfaceV2_1/dataflow/ALL/ALL/LATEST/?detail=full&references=descendants"));
+			data = readableDataLocationFactory.getReadableDataLocation(new URL("http://imf.sdmxregistry.org/ws/restInterfaceV2_1/Data/IMF,PGI,1.0/193+223+156.BCA+BGS...?lastNObservations=12"));
+
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		/* Working on structure */
+		
+		// Build an object representation of the SDMX.
+		SdmxBeans beans = structureParsingManager.parseStructures(structures).getStructureBeans(false);
+		
+		// Write to the in memory manager, this is used to resolve cross-referenced structures later
+		inMemoryRetrievalManager.saveStructures(beans);
+
+		structureWritingManager.writeStructures(beans, new RDFStructureOutputFormat(rdfFormat), new ByteArrayOutputStream());
+		
+		/* Working on data */
+		
+		// Create a reader, we either need the datastructure at this point, or access to get the datastructure.
+		DataReaderEngine dataReader = dataReaderManager.getDataReaderEngine(data, new InMemoryRetrievalManager(beans));
+		
+		ByteArrayOutputStream convertedStream = new ByteArrayOutputStream();
+		DataWriterEngine dataWriter = dataWriterManager.getDataWriterEngine(new RDFDataOutputFormat((DataflowBean)beans.getDataflows().toArray()[0], rdfFormat), convertedStream);
+
+		// Copy to writer, copyheader=true, closewriter on completion=true
+		dataReaderWriterTransform.copyToWriter(dataReader, dataWriter, true, true);
+		
+		return convertedStream;
 	}
 	
 	public void hello() {
