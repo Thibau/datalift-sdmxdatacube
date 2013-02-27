@@ -35,6 +35,7 @@
 package org.datalift.sdmxdatacube;
 
 import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
+import static org.datalift.fwk.util.StringUtils.urlify;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -59,12 +60,6 @@ import org.datalift.fwk.project.XmlSource;
 import org.datalift.fwk.view.TemplateModel;
 import org.datalift.sdmxdatacube.jsontransporter.MessageTransporter;
 import org.datalift.sdmxdatacube.utils.ControllerHelper;
-import org.openrdf.rio.RDFFormat;
-//import org.sdmxsource.rdf.model.RDFStructureOutputFormat;
-//import org.sdmxsource.sdmx.api.model.StructureFormat;
-//import org.springframework.context.ApplicationContext;
-//import org.springframework.context.support.ClassPathXmlApplicationContext;
-import static org.datalift.fwk.util.StringUtils.*;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -72,9 +67,9 @@ import com.google.gson.GsonBuilder;
 /**
  * The SDMX DataCube module's main class which exposes the SDMXRDFParser engine
  * to the Datalift architecture.
- * 
+ *
  * @author T. Colas, T. Marmin
- * @version 090213
+ * @version 260213
  */
 @Path(SDMXDataCubeController.MODULE_NAME)
 public class SDMXDataCubeController extends ModuleController {
@@ -114,7 +109,7 @@ public class SDMXDataCubeController extends ModuleController {
 	/**
 	 * Tells the project manager to add a new button to projects with at least
 	 * two sources.
-	 * 
+	 *
 	 * @param p
 	 *            Our current project.
 	 * @return The URI to our project's main page.
@@ -149,7 +144,7 @@ public class SDMXDataCubeController extends ModuleController {
 
 	/**
 	 * Index page handler of the SDMXToDataCube module.
-	 * 
+	 *
 	 * @param projectId
 	 *            the project using SDMXToDataCube
 	 * @return Our module's interface.
@@ -177,7 +172,7 @@ public class SDMXDataCubeController extends ModuleController {
 
 	/**
 	 * Form submit handler : launching SDMXDataCube.
-	 * 
+	 *
 	 * @param project
 	 *            the project using SDMXDataCube.
 	 * @param inputSourceURI
@@ -255,7 +250,7 @@ public class SDMXDataCubeController extends ModuleController {
 
 	/**
 	 * Form validation handler : validate de form.
-	 * 
+	 *
 	 * @param project
 	 *            the project using SDMXDataCube.
 	 * @param inputSourceURI
@@ -342,7 +337,7 @@ public class SDMXDataCubeController extends ModuleController {
 				}
 
 				// Check outputSourceURI
-				if (dest_graph_uri == null || dest_title.isEmpty())
+				if (dest_graph_uri == null || dest_graph_uri.isEmpty())
 					transporter
 							.setError(
 									"dest_graph_uri",
@@ -368,7 +363,7 @@ public class SDMXDataCubeController extends ModuleController {
 				if (dest_title == null || dest_title.isEmpty())
 					transporter
 							.setError(
-									"dest_graph_title",
+									"dest_title",
 									getTranslatedResource("error.outputSourceName.empty"));
 				else {
 
@@ -385,7 +380,7 @@ public class SDMXDataCubeController extends ModuleController {
 					if (already_exists)
 						transporter
 								.setError(
-										"dest_graph_title",
+										"dest_title",
 										getTranslatedResource("error.outputSourceName.alreadyexists"));
 				}
 			}
@@ -396,24 +391,4 @@ public class SDMXDataCubeController extends ModuleController {
 
 		return transporter;
 	}
-
-	// private final static class RequestValidatorJsonStreamingOutput implements
-	// StreamingOutput {
-	// private final MessageTransporter v;
-	//
-	// public RequestValidatorJsonStreamingOutput(MessageTransporter v) {
-	// this.v = v;
-	// }
-	//
-	// /** {@inheritDoc} */
-	// @Override
-	// public void write(OutputStream output) throws IOException,
-	// WebApplicationException {
-	// Gson gson = new GsonBuilder().create();
-	//
-	// Writer w = new OutputStreamWriter(output, Charsets.UTF_8);
-	// gson.toJson(this.v, w);
-	// w.flush();
-	// }
-	// }
 }

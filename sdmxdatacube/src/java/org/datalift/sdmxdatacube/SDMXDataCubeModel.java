@@ -34,44 +34,42 @@
 
 package org.datalift.sdmxdatacube;
 
-import info.aduna.app.config.Configuration;
-
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
-import java.util.LinkedList;
+import java.net.URISyntaxException;
 
+import org.datalift.fwk.MediaTypes;
 import org.datalift.fwk.project.Project;
-import org.datalift.fwk.project.ProjectManager;
 import org.datalift.fwk.project.Source;
 import org.datalift.fwk.project.Source.SourceType;
 import org.datalift.fwk.project.SparqlSource;
 import org.datalift.fwk.project.TransformedRdfSource;
 import org.datalift.fwk.project.XmlSource;
+import org.datalift.fwk.rdf.RdfException;
 import org.datalift.fwk.rdf.RdfUtils;
 import org.datalift.fwk.rdf.Repository;
-import org.datalift.fwk.util.PrefixUriMapper;
-import org.datalift.fwk.util.UriMapper;
 import org.datalift.sdmxdatacube.utils.SdmxFileUtils;
-import org.openrdf.repository.RepositoryConnection;
-import org.openrdf.repository.RepositoryException;
-import org.openrdf.repository.config.RepositoryFactory;
-import org.openrdf.repository.http.HTTPRepository;
 import org.openrdf.rio.RDFFormat;
-import org.openrdf.rio.RDFParseException;
-
-import com.google.common.net.MediaType;
-import com.google.common.primitives.Bytes;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * A module to convert SDMX (XML) data to DataCube (RDF). Uses the SDMXRDFParser
  * library from SDMXSource.
  * 
  * @author T. Colas, T. Marmin
- * @version 090213
+ * @version 260213
  */
 public class SDMXDataCubeModel extends ModuleModel {
+
+	// -------------------------------------------------------------------------
+	// Instance members
+	// -------------------------------------------------------------------------
+
+	private SDMXDataCubeTransformer sdmxDataCubeTransformer;
+
 	// -------------------------------------------------------------------------
 	// Constructors
 	// -------------------------------------------------------------------------
@@ -84,6 +82,16 @@ public class SDMXDataCubeModel extends ModuleModel {
 	 */
 	public SDMXDataCubeModel(String name) {
 		super(name);
+
+		// Initialize the sdmxDataCubeTransformer, which is a Spring bean.
+		// It is also referenced in spring-beans.xml.
+		Thread.currentThread().setContextClassLoader(
+				this.getClass().getClassLoader());
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext();
+		ctx.setConfigLocation("spring/spring-beans.xml");
+		ctx.refresh();
+
+		sdmxDataCubeTransformer = ctx.getBean(SDMXDataCubeTransformer.class);
 	}
 
 	// -------------------------------------------------------------------------
@@ -113,8 +121,19 @@ public class SDMXDataCubeModel extends ModuleModel {
 		return false;
 	}
 
+	/**
+	 * Launches a conversion process on a given project, using a given source.
+	 * 
+	 * @param project
+	 *            The project where a new DataCube source will be created.
+	 * @param source
+	 *            The source which will be converted.
+	 * @param destination
+	 *            Where the new source will be.
+	 * @throws Exception
+	 */
 	public void lauchSdmxToDatacubeProcess(Project project, XmlSource source,
-			TransformedRdfSource destination) throws Exception {
+			TransformedRdfSource destination) {
 
 		LOG.debug("Lauching process to convert the SDMX source {} to RDF {}",
 				source.getFilePath(), destination.getUri());
@@ -123,32 +142,33 @@ public class SDMXDataCubeModel extends ModuleModel {
 		Repository repo = org.datalift.fwk.Configuration.getDefault()
 				.getInternalRepository();
 
-		RdfUtils.upload(convert(source),
-				javax.ws.rs.core.MediaType.APPLICATION_XML_TYPE, repo, new URI(
-						d.getTargetGraph()), null);
+		try {
+			// Turtle is one of the lightest, ideal for direct upload.
+			RdfUtils.upload(convert(source, RDFFormat.TURTLE),
+					MediaTypes.TEXT_TURTLE_TYPE, repo,
+					new URI(d.getTargetGraph()), null);
+		} catch (RdfException e) {
+			LOG.fatal("Failed to upload RDF to source {}: {}", e,
+					d.getTargetGraph(), e.getMessage());
+		} catch (URISyntaxException e) {
+			LOG.fatal("Failed to upload RDF to source {}: {}", e,
+					d.getTargetGraph(), e.getMessage());
+		}
 
 	}
 
-	private InputStream convert(XmlSource source) {
-		// TODO Use the SdmxSource library
+	// TODO Find a way to define URI templates elsewhere.
+	private InputStream convert(XmlSource source, RDFFormat rdfFormat) {
+		ByteArrayOutputStream convertedStream = null;
 
-		String rdfxml = "<?xml version=\"1.0\"?>\n"
-				+ "<rdf:RDF\n"
-				+ "xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"\n"
-				+ "xmlns:cd=\"http://www.recshop.fake/cd#\">\n"
-				+ "<rdf:Description\n"
-				+ "rdf:about=\"http://www.recshop.fake/cd/Empire Burlesque\">\n"
-				+ "<cd:artist>Bob Dylan</cd:artist>\n"
-				+ "<cd:country>USA</cd:country>\n"
-				+ "<cd:company>Columbia</cd:company>\n"
-				+ "<cd:price>10.90</cd:price>\n" + "<cd:year>1985</cd:year>\n"
-				+ "</rdf:Description>\n" + "<rdf:Description\n"
-				+ "rdf:about=\"http://www.recshop.fake/cd/Hide your heart\">\n"
-				+ "<cd:artist>Bonnie Tyler</cd:artist>\n"
-				+ "<cd:country>UK</cd:country>\n"
-				+ "<cd:company>CBS Records</cd:company>\n"
-				+ "<cd:price>9.90</cd:price>\n" + "<cd:year>1988</cd:year>\n"
-				+ "</rdf:Description>\n" + "</rdf:RDF>\n";
-		return new ByteArrayInputStream(rdfxml.getBytes());
+		try {
+			convertedStream = sdmxDataCubeTransformer.convertSDMXToDataCube(
+					source.getInputStream(), rdfFormat);
+		} catch (IOException e) {
+			LOG.fatal("Failed to load stream of source {}: {}", e,
+					source.getUri(), e.getMessage());
+		}
+
+		return new ByteArrayInputStream(convertedStream.toByteArray());
 	}
 }
