@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<project default="launch" name="live-sdmx-datacube" basedir="/Users/Will/Projects/datalift-sdmxdatacube/sdmxdatacube">
+<project default="launch" name="live-sdmxdatacube" basedir="/Users/Will/Projects/datalift-sdmxdatacube/sdmxdatacube">
 
 	<!-- ================ Property Definitions ============================== -->
 
