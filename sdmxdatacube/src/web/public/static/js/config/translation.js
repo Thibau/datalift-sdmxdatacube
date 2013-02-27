@@ -1,0 +1,65 @@
+define({
+  // Translations from https://github.com/ericmbarnard/Knockout-Validation
+  validation : {
+    fr : {
+      required: 'Ce champ est obligatoire.',
+      min: 'Veuillez saisir une valeur supérieure ou égale à {0}.',
+      max: 'Veuillez saisir une valeur inférieure ou égale à {0}.',
+      minLength: 'Veuillez saisir au moins {0} caractères.',
+      maxLength: 'Veuillez saisir au plus {0} caractères.',
+      pattern: 'Veuillez corriger ce champ.',
+      step: 'Le pas d\'incrémentation de la valeur doit être de {0}.',
+      email: 'Ceci n\'est pas une adresse électronique valide.',
+      date: 'Veuillez saisir une date valide.',
+      dateISO: 'Veuillez saisir une date (ISO) valide.',
+      number: 'Veuillez saisir un nombre.',
+      digit: 'Veuillez saisir un chiffre.',
+      phoneUS: 'Veuillez saisir un numéro de téléphone valide.',
+      equal: 'Les valeurs doivent être égales.',
+      notEqual: 'Veuillez saisir une autre valeur.',
+      unique: 'Veuillez vérifier que la valeur est unique.',
+      uri: 'Veuillez saisir une URI valide.',
+      validObject : 'Chacun des champs doit être valide.'
+    },
+    it : {
+      required: 'Il campo è obbligatorio.',
+      min: 'Inserire un valore superiore od uguale a {0}.',
+      max: 'Inserire un valore inferiore od uguale a {0}.',
+      minLength: 'Inserire almeno {0} caratteri.',
+      maxLength: 'Inserire al massimo {0} caratteri.',
+      pattern: 'Controllare il valore inserito.',
+      step: 'Il valore deve essere incrementato di {0}.',
+      email: 'Indirizzo email non valido.',
+      date: 'Inserire una data valida.',
+      dateISO: 'Inserire una data valida.',
+      number: 'Inserire un valore numerico.',
+      digit: 'Inserire una cifra.',
+      phoneUS: 'Specificare un numero di telefono valido.',
+      equal: 'I valori devono essere uguali.',
+      notEqual: 'Il valore deve essere differente.',
+      unique: 'Il valore deve essere univoco.',
+      uri: 'Inserire una URI valida.',
+      validObject : 'Ogni campo deve essere valido.'
+    },
+    es : {
+      required: 'Este campo es obligatorio',
+      min: 'Por favor, introduzca un valor igual o mayor a {0}',
+      max: 'Por favor, introduzca un valor menor o igual a {0}',
+      minLength: 'Por favor, introduzca al menos {0} caracteres',
+      maxLength: 'Por favor, no introduzca más de {0} caracteres',
+      pattern: 'Por favor, compruebe este campo',
+      step: 'El valor debe incrementarse por {0}',
+      email: 'Este no es una dirección de email correcta',
+      date: 'Por favor, introduzca una fecha correcta',
+      dateISO: 'Por favor, introduzca una fecha correcta',
+      number: 'Por favor, introduzca un número',
+      digit: 'Por favor, introduzca un dígito',
+      phoneUS: 'Por favor, introduzca un número de teléfono válido para EEUU',
+      equal: 'Los valores deben ser iguales',
+      notEqual: 'Por favor, elija otro valor',
+      unique: 'Por favor, asegurese de que el valor sea único',
+      uri: 'Por favor, introduzca una URI correcta',
+      validObject : 'Cada campo debe ser válida.'
+    }
+  }
+});

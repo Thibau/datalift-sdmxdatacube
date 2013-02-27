@@ -39,8 +39,11 @@ import static org.datalift.fwk.util.StringUtils.urlify;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+<<<<<<< HEAD
+=======
 import java.util.Collection;
 
+>>>>>>> 039e07891a2bfb2d2a05bd6f64d6851d54d494e6
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -55,14 +58,24 @@ import javax.ws.rs.core.Response.Status;
 import org.datalift.fwk.MediaTypes;
 import org.datalift.fwk.project.Project;
 import org.datalift.fwk.project.Source;
+<<<<<<< HEAD
+=======
 import org.datalift.fwk.project.TransformedRdfSource;
+>>>>>>> 039e07891a2bfb2d2a05bd6f64d6851d54d494e6
 import org.datalift.fwk.project.XmlSource;
 import org.datalift.fwk.view.TemplateModel;
 import org.datalift.sdmxdatacube.jsontransporter.MessageTransporter;
 import org.datalift.sdmxdatacube.utils.ControllerHelper;
+import org.openrdf.rio.RDFFormat;
+import org.sdmxsource.rdf.model.RDFStructureOutputFormat;
+import org.sdmxsource.sdmx.api.model.StructureFormat;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.DefaultResourceLoader;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.sun.jersey.api.core.DefaultResourceConfig;
 
 /**
  * The SDMX DataCube module's main class which exposes the SDMXRDFParser engine
@@ -89,6 +102,10 @@ public class SDMXDataCubeController extends ModuleController {
 
 	protected SDMXDataCubeModel model;
 
+	StructureFormat structureFormat;
+
+	// SDMXDataCubeTransformer rdfDataTransformer;
+
 	// -------------------------------------------------------------------------
 	// Constructors
 	// -------------------------------------------------------------------------
@@ -100,6 +117,19 @@ public class SDMXDataCubeController extends ModuleController {
 		// TODO Switch to the right position.
 		super(MODULE_NAME, MODULE_POSITION);
 		model = new SDMXDataCubeModel(MODULE_NAME);
+
+		LOG.debug("Current classpath: {}",
+				System.getProperties().getProperty("java.class.path", null));
+
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext();
+		ctx.setClassLoader(this.getClass().getClassLoader());
+		ctx.setConfigLocation("spring/spring-beans.xml");
+		ctx.refresh();
+
+		// rdfDataTransformer = ctx.getBean(SDMXDataCubeTransformer.class);
+
+		structureFormat = new RDFStructureOutputFormat(RDFFormat.TURTLE);
+
 	}
 
 	// -------------------------------------------------------------------------
@@ -172,7 +202,11 @@ public class SDMXDataCubeController extends ModuleController {
 
 	/**
 	 * Form submit handler : launching SDMXDataCube.
+<<<<<<< HEAD
+	 * 
+=======
 	 *
+>>>>>>> 039e07891a2bfb2d2a05bd6f64d6851d54d494e6
 	 * @param project
 	 *            the project using SDMXDataCube.
 	 * @param inputSourceURI
@@ -205,12 +239,36 @@ public class SDMXDataCubeController extends ModuleController {
 			this.sendError(BAD_REQUEST, transporter.getGlobal());
 		}
 
+<<<<<<< HEAD
+=======
 		URI destUri = null;
 
+>>>>>>> 039e07891a2bfb2d2a05bd6f64d6851d54d494e6
 		LOG.debug("soSubmit : validation ok");
 		// Lauch SDMX to Datacube process
 		try {
 			Project p = this.getProject(new java.net.URI(project));
+<<<<<<< HEAD
+			LOG.debug("soSubmit : get project ok");
+			XmlSource s = (XmlSource) p.getSource(source);
+			LOG.debug("soSubmit : get source ok");
+			// StructureFormat structureFormat = new RDFStructureOutputFormat(
+			// RDFFormat.TURTLE);
+			// LOG.debug("soSubmit : get sourceFormat ok");
+			//
+			// // Output Structures, and then data
+			// SdmxBeans beans = outputStructures(structureFormat, s);
+			// LOG.debug("soSubmit : get sdmxBeans ok");
+			//
+			// DataFormat dataFormat = new RDFDataOutputFormat(
+			// (DataflowBean) beans.getDataflows().toArray()[0],
+			// RDFFormat.TURTLE);
+			// LOG.debug("soSubmit : get dataFormat ok");
+			//
+			// outputData(beans, dataFormat, s);
+			// LOG.debug("soSubmit : get outputData ok");
+
+=======
 			LOG.debug("doSubmit : get project ok");
 			XmlSource s = (XmlSource) p.getSource(source);
 			LOG.debug("doSubmit : get source ok");
@@ -233,6 +291,7 @@ public class SDMXDataCubeController extends ModuleController {
 			}
 
 			this.projectManager.saveProject(p);
+>>>>>>> 039e07891a2bfb2d2a05bd6f64d6851d54d494e6
 		} catch (URISyntaxException e) {
 			LOG.fatal(e);
 			this.sendError(Status.BAD_REQUEST, e.getMessage());
@@ -241,16 +300,24 @@ public class SDMXDataCubeController extends ModuleController {
 			this.sendError(Status.INTERNAL_SERVER_ERROR, e.getMessage());
 		}
 
+<<<<<<< HEAD
+		return Response.created(null).build();
+=======
 		return Response.created(destUri).build();
 	}
 
 	private String getSourceId(URI projectUri, String sourceName) {
 		return projectUri.getPath() + "/source/" + urlify(sourceName);
+>>>>>>> 039e07891a2bfb2d2a05bd6f64d6851d54d494e6
 	}
 
 	/**
 	 * Form validation handler : validate de form.
+<<<<<<< HEAD
+	 * 
+=======
 	 *
+>>>>>>> 039e07891a2bfb2d2a05bd6f64d6851d54d494e6
 	 * @param project
 	 *            the project using SDMXDataCube.
 	 * @param inputSourceURI
@@ -359,7 +426,10 @@ public class SDMXDataCubeController extends ModuleController {
 				}
 
 				// Check outputSourceName
+<<<<<<< HEAD
+=======
 
+>>>>>>> 039e07891a2bfb2d2a05bd6f64d6851d54d494e6
 				if (dest_title == null || dest_title.isEmpty())
 					transporter
 							.setError(

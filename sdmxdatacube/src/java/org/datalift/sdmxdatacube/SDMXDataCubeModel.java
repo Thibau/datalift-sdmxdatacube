@@ -34,25 +34,42 @@
 
 package org.datalift.sdmxdatacube;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.LinkedList;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 
+import org.datalift.fwk.MediaTypes;
 import org.datalift.fwk.project.Project;
 import org.datalift.fwk.project.Source;
 import org.datalift.fwk.project.Source.SourceType;
 import org.datalift.fwk.project.SparqlSource;
 import org.datalift.fwk.project.TransformedRdfSource;
 import org.datalift.fwk.project.XmlSource;
+import org.datalift.fwk.rdf.RdfException;
+import org.datalift.fwk.rdf.RdfUtils;
+import org.datalift.fwk.rdf.Repository;
 import org.datalift.sdmxdatacube.utils.SdmxFileUtils;
+import org.openrdf.rio.RDFFormat;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * A module to convert SDMX (XML) data to DataCube (RDF). Uses the SDMXRDFParser
  * library from SDMXSource.
  * 
  * @author T. Colas, T. Marmin
- * @version 090213
+ * @version 260213
  */
 public class SDMXDataCubeModel extends ModuleModel {
+
+	// -------------------------------------------------------------------------
+	// Instance members
+	// -------------------------------------------------------------------------
+
+	private SDMXDataCubeTransformer sdmxDataCubeTransformer;
+
 	// -------------------------------------------------------------------------
 	// Constructors
 	// -------------------------------------------------------------------------
@@ -65,6 +82,16 @@ public class SDMXDataCubeModel extends ModuleModel {
 	 */
 	public SDMXDataCubeModel(String name) {
 		super(name);
+
+		// Initialize the sdmxDataCubeTransformer, which is a Spring bean.
+		// It is also referenced in spring-beans.xml.
+		Thread.currentThread().setContextClassLoader(
+				this.getClass().getClassLoader());
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext();
+		ctx.setConfigLocation("spring/spring-beans.xml");
+		ctx.refresh();
+
+		sdmxDataCubeTransformer = ctx.getBean(SDMXDataCubeTransformer.class);
 	}
 
 	// -------------------------------------------------------------------------
@@ -95,90 +122,53 @@ public class SDMXDataCubeModel extends ModuleModel {
 	}
 
 	/**
-	 * SDMXDataCube error checker with message generation
+	 * Launches a conversion process on a given project, using a given source.
 	 * 
-	 * @param proj
-	 *            the project using SDMXDataCube.
-	 * @param inputSource
-	 *            context of our source (reference) data.
-	 * @param outputSourceName
-	 *            name of the source which will be created.
-	 * @param outputSourceURI
-	 *            URI of the source (graph) which will be created to store the
-	 *            result.
-	 * @return
+	 * @param project
+	 *            The project where a new DataCube source will be created.
+	 * @param source
+	 *            The source which will be converted.
+	 * @param destination
+	 *            Where the new source will be.
+	 * @throws Exception
 	 */
-	public final LinkedList<String> getErrorMessages(Project proj,
-			String inputSource, String outputSourceName, String outputSourceURI) {
+	public void lauchSdmxToDatacubeProcess(Project project, XmlSource source,
+			TransformedRdfSource destination) {
 
-		// TODO : Look at OntologyMapper.java
-		// LinkedList<String> errors = new LinkedList<String>();
+		LOG.debug("Lauching process to convert the SDMX source {} to RDF {}",
+				source.getFilePath(), destination.getUri());
+		TransformedRdfSource d = (TransformedRdfSource) destination;
 
-		// // We have to test every value one by one in order to add the right
-		// // error message.
-		// // TODO Add custom errors for empty values.
-		// try {
-		// Source s = proj.getSource(inputSource);
-		// if (s == null)
-		// errors.add(getTranslatedResource("error.inputSourceNotFound"));
-		// } catch (IllegalArgumentException e) {
-		// errors.add(getTranslatedResource("error.inputSourceNotSpecified"));
-		// }
+		Repository repo = org.datalift.fwk.Configuration.getDefault()
+				.getInternalRepository();
 
-		// try {
-		// Source s = proj.getSource(outputSourceURI);
-		// if (s != null)
-		// errors.add(getTranslatedResource("error.outputSourceAlreadyExists"));
-		// } catch (IllegalArgumentException e) {
-		// errors.add(getTranslatedResource("error.outputSourceURINotSpecified"));
-		// }
-
-		// if (outputSourceName.isEmpty())
-		// errors.add(getTranslatedResource("error.outputSourceNameNotSpecified"));
-
-		return null; // errors;
-	}
-
-	public final LinkedList<LinkedList<String>> launchSDMXDataCube(
-			Project proj, String inputSource, String outputSourceName,
-			String outputSourceURI) {
-		LinkedList<LinkedList<String>> ret = new LinkedList<LinkedList<String>>();
-		LinkedList<String> errors = this.getErrorMessages(proj, inputSource,
-				outputSourceName, outputSourceURI);
-		if (errors.isEmpty()) {
-			LOG.debug("lauching SDMXDataCube !");
-		} else {
-			// Should never happen.
-			LOG.fatal("Oops it should never have happened...");
-			ret = new LinkedList<LinkedList<String>>();
-			ret.add(errors);
+		try {
+			// Turtle is one of the lightest, ideal for direct upload.
+			RdfUtils.upload(convert(source, RDFFormat.TURTLE),
+					MediaTypes.TEXT_TURTLE_TYPE, repo,
+					new URI(d.getTargetGraph()), null);
+		} catch (RdfException e) {
+			LOG.fatal("Failed to upload RDF to source {}: {}", e,
+					d.getTargetGraph(), e.getMessage());
+		} catch (URISyntaxException e) {
+			LOG.fatal("Failed to upload RDF to source {}: {}", e,
+					d.getTargetGraph(), e.getMessage());
 		}
-		return ret;
+
 	}
 
-	/**
-	 * Generate a default output name to prefill the form, based on the current
-	 * project
-	 * 
-	 * @param proj
-	 *            the current project
-	 * @return the name
-	 */
-	public String generateOutputSourceName(Project proj) {
-		// TODO Generate a good name :)
-		return "TODO générer un nom ici";
-	}
+	// TODO Find a way to define URI templates elsewhere.
+	private InputStream convert(XmlSource source, RDFFormat rdfFormat) {
+		ByteArrayOutputStream convertedStream = null;
 
-	/**
-	 * Generate a default output URI for prefill the form, based on the current
-	 * project
-	 * 
-	 * @param proj
-	 *            the current project
-	 * @return the URI
-	 */
-	public String generateOutputSourceURI(Project proj) {
-		// TODO generate a good URI :)
-		return "TODO générer une bonne URI ini";
+		try {
+			convertedStream = sdmxDataCubeTransformer.convertSDMXToDataCube(
+					source.getInputStream(), rdfFormat);
+		} catch (IOException e) {
+			LOG.fatal("Failed to load stream of source {}: {}", e,
+					source.getUri(), e.getMessage());
+		}
+
+		return new ByteArrayInputStream(convertedStream.toByteArray());
 	}
 }
