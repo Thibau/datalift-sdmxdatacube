@@ -41,8 +41,7 @@ import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import javax.ws.rs.core.MediaType;
-
+import org.datalift.fwk.MediaTypes;
 import org.datalift.fwk.project.Project;
 import org.datalift.fwk.project.Source;
 import org.datalift.fwk.project.Source.SourceType;
@@ -144,8 +143,9 @@ public class SDMXDataCubeModel extends ModuleModel {
 				.getInternalRepository();
 
 		try {
-			RdfUtils.upload(convert(source, RDFFormat.RDFXML),
-					MediaType.APPLICATION_XML_TYPE, repo,
+			// Turtle is one of the lightest, ideal for direct upload.
+			RdfUtils.upload(convert(source, RDFFormat.TURTLE),
+					MediaTypes.TEXT_TURTLE_TYPE, repo,
 					new URI(d.getTargetGraph()), null);
 		} catch (RdfException e) {
 			LOG.fatal("Failed to upload RDF to source {}: {}", e,
@@ -157,7 +157,6 @@ public class SDMXDataCubeModel extends ModuleModel {
 
 	}
 
-	// TODO Use Turtle instead of RDFXML.
 	// TODO Find a way to define URI templates elsewhere.
 	private InputStream convert(XmlSource source, RDFFormat rdfFormat) {
 		ByteArrayOutputStream convertedStream = null;
