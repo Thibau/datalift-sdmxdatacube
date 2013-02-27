@@ -337,7 +337,7 @@ public class SDMXDataCubeController extends ModuleController {
 				}
 
 				// Check outputSourceURI
-				if (dest_graph_uri == null || dest_title.isEmpty())
+				if (dest_graph_uri == null || dest_graph_uri.isEmpty())
 					transporter
 							.setError(
 									"dest_graph_uri",
