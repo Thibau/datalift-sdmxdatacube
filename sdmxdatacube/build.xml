@@ -95,7 +95,7 @@
    -->
 
 	<property name="app.name" value="sdmxdatacube" />
-	<property name="app.version" value="0.6" />
+	<property name="app.version" value="0.7" />
 	<property name="app.path" value="/${app.name}" />
 	<property name="app.long.name" value="SDMX to Datacube converter module for DataLift" />
 
@@ -183,10 +183,10 @@
 			<include name="**/*.jar" />
 		</fileset>
 	</path>
-	<path id="resources.classpath">  
-		<pathelement location="${rsc.home}/"/>  
-		<pathelement location="${rsc.home}/spring/"/>  
-	</path> 
+	<path id="resources.classpath">
+		<pathelement location="${rsc.home}/"/>
+		<pathelement location="${rsc.home}/spring/"/>
+	</path>
 
 	<!-- ================ All Target ======================================== -->
 
