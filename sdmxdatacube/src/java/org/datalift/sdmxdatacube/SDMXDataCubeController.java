@@ -363,7 +363,7 @@ public class SDMXDataCubeController extends ModuleController {
 				if (dest_title == null || dest_title.isEmpty())
 					transporter
 							.setError(
-									"dest_graph_title",
+									"dest_title",
 									getTranslatedResource("error.outputSourceName.empty"));
 				else {
 
@@ -380,7 +380,7 @@ public class SDMXDataCubeController extends ModuleController {
 					if (already_exists)
 						transporter
 								.setError(
-										"dest_graph_title",
+										"dest_title",
 										getTranslatedResource("error.outputSourceName.alreadyexists"));
 				}
 			}
