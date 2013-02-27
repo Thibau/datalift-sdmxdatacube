@@ -1,0 +1,10 @@
+{
+  "source": "./schemas/",
+  "target": "./web/",
+  "assets": [],
+  "template": {
+    "path": "./templates/",
+    "file": "default",
+    "lib": "jade"
+  }
+}

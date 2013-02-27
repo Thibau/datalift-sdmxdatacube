@@ -1,0 +1,53 @@
+{
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-03/schema",
+  "title": "Validator results",
+  "name": "Validator results",
+  "description": "Values sent back by the server validator",
+  "id": "#validate",
+  "required": true,
+  "properties": {
+    "valid": {
+      "type": "boolean",
+      "title": "Status",
+      "description": "Tells whether the conversion is valid or not",
+      "id": "valid",
+      "required": true
+    },
+    "dest_graph_uri": {
+      "type": "string",
+      "title": "Graph URI errors",
+      "description": "Errors related to the URI of the new graph",
+      "id": "dest_graph_uri",
+      "required": false
+    },
+    "dest_title": {
+      "type": "string",
+      "title": "Source title errors",
+      "description": "Errors related to the title of the new source",
+      "id": "dest_title",
+      "required": false
+    },
+    "global": {
+      "type": "string",
+      "title": "Global errors",
+      "description": "Errors which aren't related to one specific field",
+      "id": "global",
+      "required": false
+    },
+    "project": {
+      "type": "string",
+      "title": "Project errors",
+      "description": "Errors when the given project is invalid",
+      "id": "project",
+      "required": false
+    },
+    "source": {
+      "type": "string",
+      "title": "Source URI errors",
+      "description": "Errors related to the URI of the source",
+      "id": "source",
+      "required": false
+    }
+  }
+}

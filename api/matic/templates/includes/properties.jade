@@ -1,0 +1,11 @@
+include ../mixins/required
+include ../mixins/header
+include ../mixins/dl
+
+each property, id in properties
+  section
+    mixin required(property)
+    h2 "#{id}":
+    div.properties
+      mixin header(property)
+      mixin dl(property, id)

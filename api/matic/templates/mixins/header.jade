@@ -1,0 +1,9 @@
+mixin header(obj)
+  if obj.title || obj.description
+    headergroup
+      if obj.title && typeof obj.title === 'string'
+        h3= obj.title
+        - delete obj.title
+      if obj.description && typeof obj.description === 'string'
+        p= obj.description
+        - delete obj.description
