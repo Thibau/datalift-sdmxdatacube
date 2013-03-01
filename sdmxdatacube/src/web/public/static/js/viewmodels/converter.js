@@ -41,7 +41,7 @@ define([
         return new Source(elt.parent, elt.project, elt.title, elt.uri, elt.uriPattern, elt.creator, elt.created);
       });
 
-      var localCurrentSource = fromLocal && ko.utils.parseJson(localStorage.getItem(g.localStorageCurrentSource));
+      var localCurrentSource = fromLocal && localStorage.getItem(g.localStorageCurrentSource) != "undefined" && JSON.parse(localStorage.getItem(g.localStorageCurrentSource));
       self.currentSource(localCurrentSource || self.sources[0]);
     };
 
