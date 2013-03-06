@@ -89,7 +89,7 @@
           <div class="tab-content">
 
             <!-- Converter -->
-            <div class="tab-pane active" id="converter">
+            <div class="tab-pane fade active" id="converter">
               <div class="row-fluid">
                 <div class="span12">
                   <form data-bind="submit: launch" action="${moduleUri}" method="post" enctype="application/x-www-form-urlencoded">
@@ -264,12 +264,12 @@
             </div>
 
             <!-- Parameters -->
-            <div class="tab-pane" id="parameters">
+            <div class="tab-pane fade" id="parameters">
               <p class="offset5 span1 text-warning" style="font-size: 500%; margin:20px">&empty;</p>
             </div>
 
             <!-- History -->
-            <div class="tab-pane" id="history">
+            <div class="tab-pane fade" id="history">
               <div class="row-fluid">
                 <div class="span12">
                   <h3>Previously transformed sources</h3>
@@ -298,7 +298,7 @@
             </div>
 
             <!-- Documentation -->
-            <div class="tab-pane" id="documentation">
+            <div class="tab-pane fade" id="documentation">
               <div class="row-fluid">
                 <!-- SDMX -->
                 <div class="span6">
