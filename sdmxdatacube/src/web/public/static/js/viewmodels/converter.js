@@ -41,7 +41,8 @@ define([
         return new Source(elt.parent, elt.project, elt.title, elt.uri, elt.uriPattern, elt.creator, elt.created);
       });
 
-      var localCurrentSource = fromLocal && localStorage.getItem(g.localStorageCurrentSource) != "undefined" && JSON.parse(localStorage.getItem(g.localStorageCurrentSource));
+      // First test if we want to use localStorage, then if there is something in it, finally retrieve the item.
+      var localCurrentSource = fromLocal && localStorage.getItem(g.localStorageCurrentSource) && JSON.parse(localStorage.getItem(g.localStorageCurrentSource));
       self.currentSource(localCurrentSource || self.sources[0]);
     };
 

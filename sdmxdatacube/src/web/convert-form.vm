@@ -72,9 +72,6 @@
         </div>
       </div>
 
-
-
-
       <div class="row-fluid">
         <div class="tabbable tabs-left">
 
@@ -96,11 +93,17 @@
 
                     <!-- Old source — select its name / URI -->
                     <fieldset data-bind="disable: $root.state.isProcessing()">
-                      <div class="control-group">
-                        <label for="inputSource" class="control-label">#i18n('input.select.label')</label>
-                        <div class="controls">
-                          <select name="inputSource" id="inputSource" data-bind="options: sources, value: currentSource, optionsText: function(elt) { return elt.parent.title + ' &#9670; ' + elt.parent.uri; }" class="span8" autofocus></select>
-                          <p class="help-block span4 pull-right">#i18n('input.help.text')</p>
+                      <div class="row-fluid">
+                        <div class="span8">
+                          <div class="control-group">
+                            <label for="inputSource" class="control-label">#i18n('input.select.label')</label>
+                            <div class="controls">
+                              <select name="inputSource" id="inputSource" data-bind="options: sources, value: currentSource, optionsText: function(elt) { return elt.parent.title + ' &#9670; ' + elt.parent.uri; }" class="input-block-level" autofocus></select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="span4">
+                          <p class="help-block">#i18n('input.help.text')</p>
                         </div>
                       </div>
                     </fieldset>

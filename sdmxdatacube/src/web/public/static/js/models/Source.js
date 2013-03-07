@@ -4,8 +4,9 @@ define([
   'validation',
   'config/rules',
   'config/global',
-  'models/SourceTransporter'
-], function($, ko, validation, rules, g, SourceTransporter){
+  'models/SourceTransporter',
+  'extends/custom-rules'
+], function ($, ko, validation, rules, g, SourceTransporter) {
   'use strict';
 
   /**
@@ -21,7 +22,7 @@ define([
    * @param {String} creator    Who created the source.
    * @param {Date} created      When this source was created.
    */
-  var Source = function(parent, project, title, uri, uriPattern, creator, created) {
+  var Source = function (parent, project, title, uri, uriPattern, creator, created) {
     var self = this;
 
     // Parent is a JS object with properties title and uri.
@@ -42,19 +43,19 @@ define([
       But this only works for sync rules, whereas remote validation is async by nature.
      */
 
-    var generateRemoteRule = function(field) {
+    var generateRemoteRule = function (field) {
       return {
         remote : {
           // Only remote validate if all fields are completed here and at least one of them has been modified.
           // TODO Beware the end of this line.
           // The problem is : isModified returns the status of the item since its initialization value, not since its last value.
-          onlyIf : function() {return self[field]() && self[field].isModified() && (self[field]() !== JSON.parse(localStorage.getItem(g.localStorageCurrentSource))[field]);},
+          onlyIf : function () {return self[field]() && self[field].isModified() && (self[field]() !== JSON.parse(localStorage.getItem(g.localStorageCurrentSource))[field]);},
           params: {
-            beforeSend : function(jqxhr, settings) {
+            beforeSend : function (jqxhr, settings) {
               var parameterString = '';
               // Here, settings.data is already 'application/x-www-form-urlencoded'
               // Thus we need to append our URL encoded values to the string.
-              $.each(new SourceTransporter(ko.toJS(self), true), function(key, val) {
+              $.each(new SourceTransporter(ko.toJS(self), true), function (key, val) {
                 parameterString += '&' + key + '=' + encodeURIComponent(val);
               });
               settings.data = parameterString.substring(1);
@@ -70,11 +71,11 @@ define([
     self.uri.extend(generateRemoteRule('uri'));
     self.uriPattern.extend(generateRemoteRule('uriPattern'));
 
-    self.isValid = function() {
+    self.isValid = function () {
       return self.title.isValid() && self.uri.isValid() && self.uriPattern.isValid();
     };
 
-    self.isValidating = function() {
+    self.isValidating = function () {
       return self.title.isValidating() || self.uri.isValidating() || self.uriPattern.isValidating();
     };
   };
