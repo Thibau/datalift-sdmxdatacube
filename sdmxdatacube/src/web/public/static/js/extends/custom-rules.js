@@ -3,7 +3,7 @@ define([
   'knockout',
   'validation',
   'config/global'
-], function($, ko, validation, g){
+], function ($, ko, validation, g) {
   'use strict';
 
   var regex = {};
@@ -56,10 +56,10 @@ define([
           accept : 'application/json',
           // The data needs to be set at execution time with beforeSend.
           data : {},
-          success : function(data, status, jqxhr) {
+          success : function (data, status, jqxhr) {
             callback(data.valid);
           },
-          error : function(jqxhr, status, error) {
+          error : function (jqxhr, status, error) {
             var result = JSON.parse(jqxhr.responseText);
 
             callback({

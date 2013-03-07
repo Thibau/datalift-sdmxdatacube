@@ -2,7 +2,7 @@ define([
   'jquery',
   'knockout',
   'config/global'
-], function($, ko, g){
+], function ($, ko, g) {
   'use strict';
 
   /**
@@ -11,7 +11,7 @@ define([
    *
    * It contains an array of sources which is persisted in localStorage.
    */
-  var Record = function() {
+  var Record = function () {
     var self = this;
 
     self.previousSources = ko.observableArray();
@@ -19,7 +19,7 @@ define([
     /**
      * Initializes the record from localStorage.
      */
-    self.initialize = function() {
+    self.initialize = function () {
       var localHistory = ko.utils.parseJson(localStorage.getItem(g.localStorageHistorySources));
       self.previousSources(localHistory || []);
     };
@@ -31,7 +31,7 @@ define([
      * there aren't too many sources and slicing the array accordingly.
      * @param  {Source} source A Source object.
      */
-    self.append = function(source) {
+    self.append = function (source) {
       self.previousSources.push(source);
 
       var nbSources = self.previousSources().length;

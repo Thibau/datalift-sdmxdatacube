@@ -20,8 +20,8 @@
     <link rel="stylesheet" href="${moduleUri}/static/css/bootstrap.css">
     <link rel="stylesheet" href="${moduleUri}/static/css/bootstrap-responsive.css">
 
-    <link rel="stylesheet" href="${moduleUri}/static/css/sdmxdatacube.css">
-    ## Prod/Dev : <link rel="stylesheet" href="http://localhost:1337/static/css/sdmxdatacube.css">
+    ## Prod/Dev : <link rel="stylesheet" href="${moduleUri}/static/css/sdmxdatacube.css">
+    <link rel="stylesheet" href="http://localhost:1337/static/css/sdmxdatacube.css">
 
     <!-- fav and touch icons -->
     <link rel="shortcut icon" href="${moduleUri}/static/img/favicon.ico">
@@ -81,7 +81,7 @@
           <!-- Nav tabs -->
           <ul class="nav nav-tabs">
             <li class="active"><a href="#converter" data-toggle="tab"><i class="icon-briefcase"></i> #i18n('converter.tab.label')</a></li>
-            <!-- <li><a href="#parameters" data-toggle="tab"><i class="icon-cog"></i> #i18n('parameters.tab.label')</a></li> -->
+            <li><a href="#parameters" data-toggle="tab"><i class="icon-cog"></i> #i18n('parameters.tab.label')</a></li>
             <li><a href="#history" data-toggle="tab"><i class="icon-calendar"></i> #i18n('history.tab.label')</a></li>
             <li><a href="#documentation" data-toggle="tab"><i class="icon-book"></i> #i18n('documentation.tab.label')</a></li>
           </ul>
@@ -89,7 +89,7 @@
           <div class="tab-content">
 
             <!-- Converter -->
-            <div class="tab-pane fade active" id="converter">
+            <div class="tab-pane active" id="converter">
               <div class="row-fluid">
                 <div class="span12">
                   <form data-bind="submit: launch" action="${moduleUri}" method="post" enctype="application/x-www-form-urlencoded">
@@ -264,12 +264,12 @@
             </div>
 
             <!-- Parameters -->
-            <div class="tab-pane fade" id="parameters">
+            <div class="tab-pane" id="parameters">
               <p class="offset5 span1 text-warning" style="font-size: 500%; margin:20px">&empty;</p>
             </div>
 
             <!-- History -->
-            <div class="tab-pane fade" id="history">
+            <div class="tab-pane" id="history">
               <div class="row-fluid">
                 <div class="span12">
                   <h3>Previously transformed sources</h3>
@@ -298,7 +298,7 @@
             </div>
 
             <!-- Documentation -->
-            <div class="tab-pane fade" id="documentation">
+            <div class="tab-pane" id="documentation">
               <div class="row-fluid">
                 <!-- SDMX -->
                 <div class="span6">
@@ -400,8 +400,8 @@
       };
     </script>
 
-    <script data-main="${moduleUri}/static/js/main" src="${moduleUri}/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
-    ## Prod/Dev : <script data-main="http://localhost:1337/static/js/main.js" src="http://localhost:1337/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
+    ## Prod/Dev : <script data-main="${moduleUri}/static/js/main" src="${moduleUri}/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
+    <script data-main="http://localhost:1337/static/js/main.js" src="http://localhost:1337/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
 
   </body>
 </html>

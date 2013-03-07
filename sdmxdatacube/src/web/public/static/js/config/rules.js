@@ -1,8 +1,6 @@
 define([
-  'knockout',
-  'validation',
-  'extends/custom-rules'
-], function(ko, validation) {
+  'config/global'
+], function (g) {
   return {
     source : {
       title : {
