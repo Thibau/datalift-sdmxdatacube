@@ -20,7 +20,7 @@ define([
      * Initializes the record from localStorage.
      */
     self.initialize = function () {
-      var localHistory = ko.utils.parseJson(localStorage.getItem(g.localStorageHistorySources));
+      var localHistory = localStorage.getItem(g.localStorageHistorySources) && ko.utils.parseJson(localStorage.getItem(g.localStorageHistorySources));
       self.previousSources(localHistory || []);
     };
 

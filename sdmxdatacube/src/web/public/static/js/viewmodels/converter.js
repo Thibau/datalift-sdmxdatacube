@@ -5,8 +5,8 @@ define([
   'models/Source',
   'models/SourceTransporter',
   'models/State',
-  'validation'
-], function ($, ko, g, Source, SourceTransporter, State, validation) {
+  'models/Record'
+], function ($, ko, g, Source, SourceTransporter, State, Record) {
   'use strict';
 
   /**
@@ -24,6 +24,7 @@ define([
     self.currentSource = ko.observable();
     self.viewResults   = ko.observable(viewResults);
     self.state         = new State();
+    self.record        = new Record();
 
     /*
     TODO :
@@ -62,6 +63,7 @@ define([
          success: function (data, status, jqxhr) {
             self.state.launchingSuccess(jqxhr.getResponseHeader('Location'), self.viewResults());
 
+            self.record.append(self.currentSource());
             localStorage.removeItem(g.localStorageCurrentSource);
          },
          error: function (jqxhr, status, error) {

@@ -281,19 +281,22 @@
                     <thead>
                       <tr>
                         <th><i class="icon-flag"></i> </th>
-                        <th><i class="icon-comment"></i> Title</th>
+                        <th><i class="icon-certificate"></i> Title</th>
                         <th><i class="icon-road"></i> URI</th>
                         <th><i class="icon-time"></i> Created</th>
-                        <th><i class="icon-folder-open"></i> Parent</th>
-                        <th><i class="icon-play-circle"></i> Replay</th>
+                        <th><i class="icon-chevron-up"></i> Origin</th>
+                        <th>&nbsp;&nbsp;<i class="icon-play-circle"></i></th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr><td>1</td><td>Lorem ipsum.</td><td>Lorem ipsum.</td><td>Lorem ipsum.</td><td>Lorem ipsum.</td><td><button class="btn btn-small btn-inverse" type="button"><i class="icon-play"></i></button> <button class="btn btn-link" type="button"><i class="icon-trash"></i></button></td></tr>
-                      <tr><td>2</td><td>Lorem ipsum.</td><td>Lorem ipsum.</td><td>Lorem ipsum.</td><td>Lorem ipsum.</td><td><button class="btn btn-small btn-inverse" type="button"><i class="icon-play"></i></button> <button class="btn btn-link" type="button"><i class="icon-trash"></i></button></td></tr>
-                      <tr><td>3</td><td>Lorem ipsum.</td><td>Lorem ipsum.</td><td>Lorem ipsum.</td><td>Lorem ipsum.</td><td><button class="btn btn-small btn-inverse" type="button"><i class="icon-play"></i></button> <button class="btn btn-link" type="button"><i class="icon-trash"></i></button></td></tr>
-                      <tr><td>4</td><td>Lorem ipsum.</td><td>Lorem ipsum.</td><td>Lorem ipsum.</td><td>Lorem ipsum.</td><td><button class="btn btn-small btn-inverse" type="button"><i class="icon-play"></i></button> <button class="btn btn-link" type="button"><i class="icon-trash"></i></button></td></tr>
-                      <tr><td>5</td><td>Lorem ipsum.</td><td>Lorem ipsum.</td><td>Lorem ipsum.</td><td>Lorem ipsum.</td><td><button class="btn btn-small btn-inverse" type="button"><i class="icon-play"></i></button> <button class="btn btn-link" type="button"><i class="icon-trash"></i></button></td></tr>
+                    <tbody data-bind="foreach: {data: record.previousSources, as: 'previous'}">
+                      <tr>
+                        <td data-bind="text: $index() + 1"></td>
+                        <td data-bind="text: previous.title"></td>
+                        <td data-bind="text: previous.uri"></td>
+                        <td data-bind="text: previous.created"></td>
+                        <td data-bind="text: previous.parent.title"></td>
+                        <td><button class="btn btn-small" type="button" title=""><i class="icon-repeat"></i></button></td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -374,6 +377,10 @@
 
     <script type="text/javascript" language="javascript">
       // Inline parameters used to transmit default values to the client.
+      var today = new Date();
+      var month = today.getMonth() + 1;
+      var day = today.getDate();
+      var prettyToday = today.getFullYear() + '-' + (month < 10 ? '0' + month : month) + '-' + (day < 10 ? '0' + day : day) + ' ' + today.getHours() + ':' + today.getMinutes();
       var inlineParameters = {
         defaults : {
           sources : [
@@ -392,7 +399,7 @@
                   uri : "$esc.javascript($helper.generateSourceURI($s))",
                   uriPattern : "http://www.ecb.int/rdf/{0}/{3}({4})/{1}-{5}",
                   creator : "$esc.javascript(${securityCtx.userPrincipal})",
-                  created : new Date()
+                  created :  prettyToday
                 },
               #end
             #end
