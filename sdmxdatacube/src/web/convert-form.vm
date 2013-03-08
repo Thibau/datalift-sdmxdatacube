@@ -19,6 +19,7 @@
 
     <link rel="stylesheet" href="${moduleUri}/static/css/bootstrap.css">
     <link rel="stylesheet" href="${moduleUri}/static/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="${moduleUri}/static/css/magicsuggest-1.2.0.css">
 
     <link rel="stylesheet" href="${moduleUri}/static/css/sdmxdatacube.css">
     ## Prod/Dev : <link rel="stylesheet" href="http://localhost:1337/static/css/sdmxdatacube.css">
@@ -143,15 +144,15 @@
                         </div>
                       </div>
 
-                      <!-- URI pattern -->
+                      <!-- Identifiable URI pattern -->
                       <div class="row-fluid">
                         <div class="span8">
                           <div class="control-group" data-bind="validationElement: uriPattern, css : {success : uriPattern.isModified() && uriPattern.isValid() && !uriPattern.isValidating(), info : uriPattern.isValidating()}">
-                            <label for="uriPattern" class="control-label">#i18n('pattern.input.label')</label>
+                            <label for="uriPattern" class="control-label">#i18n('pattern.input.label') &mdash; #i18n('identifiable.input.label')</label>
                             <div class="controls">
                               <input name="uriPattern" id="uriPattern" data-bind="value: uriPattern" type="text" class="input-block-level" required>
                               <p class="help-block">
-                                #i18n('uripattern.help.label')
+                                #i18n('uripattern.help.label') &mdash; #i18n('identifiable.input.label')
                                 <span class="validation-message" data-bind="validationMessage: uriPattern"></span>
                               </p>
                             </div>
@@ -159,7 +160,27 @@
                         </div>
 
                         <div class="span4">
-                          <p class="help-block">#i18n('uripattern.help.text')</p>
+                          <p class="help-block">#i18n('uripattern.help.text') &mdash; #i18n('identifiable.help.text')</p>
+                        </div>
+                      </div>
+
+                      <!-- Maintainable URI pattern -->
+                      <div class="row-fluid">
+                        <div class="span8">
+                          <div class="control-group">
+                            <label class="control-label">#i18n('pattern.input.label') &mdash; #i18n('maintainable.input.label')</label>
+                            <div class="controls">
+                              <div data-bind="magicSuggest: {options: {}, data: {}, defaults: {}}">
+                              </div>
+                              <p class="help-block">
+                                #i18n('uripattern.help.label') &mdash; #i18n('maintainable.input.label')
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="span4">
+                          <p class="help-block">#i18n('uripattern.help.text') &mdash; #i18n('maintainable.help.text')</p>
                         </div>
                       </div>
                     </fieldset>

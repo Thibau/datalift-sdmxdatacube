@@ -6,13 +6,15 @@ require.config({
     jquery : 'libs/jquery-1.9.1.min',
     bootstrap : 'libs/bootstrap-2.3.0.min',
     knockout : 'libs/knockout-2.2.1.min',
-    validation : 'libs/knockout.validation-1.0.2.min'
+    validation : 'libs/knockout.validation-1.0.2.min',
+    magicsuggest : 'libs/magicsuggest-1.2.0-min'
   },
   shim : {
     // Set dependencies.
     'bootstrap' : ['jquery'],
     'validation' : ['knockout'],
-    'extends/custom-rules' : ['validation']
+    'extends/custom-rules' : ['validation'],
+    'magicsuggest' : ['jquery']
   }
 });
 
