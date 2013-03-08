@@ -1,6 +1,6 @@
 # Datalift — SDMX2DataCube
 
-Version: 0.7
+Version: 0.8
 Date: 2013-03-08
 Authors: [Thibaud Colas](https://github.com/ThibWeb), [Thibaut Marmin](https://github.com/marminthibaut)
 Repository: [GitHub](https://github.com/Thibau/datalift-sdmxdatacube/)
