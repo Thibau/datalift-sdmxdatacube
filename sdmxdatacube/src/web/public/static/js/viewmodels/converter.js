@@ -43,8 +43,8 @@ define([
       });
 
       // First test if we want to use localStorage, then if there is something in it, finally retrieve the item.
-      var localCurrentSource = fromLocal && localStorage.getItem(g.localStorageCurrentSource) && JSON.parse(localStorage.getItem(g.localStorageCurrentSource));
-      self.currentSource(localCurrentSource || self.sources[0]);
+      //var localCurrentSource = fromLocal && localStorage.getItem(g.localStorageCurrentSource) && JSON.parse(localStorage.getItem(g.localStorageCurrentSource));
+      self.currentSource(self.sources[0]);
     };
 
     self.initialize(true);
