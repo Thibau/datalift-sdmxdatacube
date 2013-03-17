@@ -49,7 +49,7 @@ define([
           // Only remote validate if all fields are completed here and at least one of them has been modified.
           // TODO Beware the end of this line.
           // The problem is : isModified returns the status of the item since its initialization value, not since its last value.
-          onlyIf : function () {return self[field]() && self[field].isModified() && (self[field]() !== JSON.parse(localStorage.getItem(g.localStorageCurrentSource))[field]);},
+          onlyIf : function () {return self[field]() && self[field].isModified() && (self[field]() !== ko.utils.parseJson(localStorage.getItem(g.localStorage.current))[field]);},
           params: {
             beforeSend : function (jqxhr, settings) {
               var parameterString = '';

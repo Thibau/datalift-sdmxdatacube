@@ -43,8 +43,8 @@ define([
       });
 
       // First test if we want to use localStorage, then if there is something in it, finally retrieve the item.
-      //var localCurrentSource = fromLocal && localStorage.getItem(g.localStorageCurrentSource) && JSON.parse(localStorage.getItem(g.localStorageCurrentSource));
-      self.currentSource(self.sources[0]);
+      var localCurrentSource = fromLocal && (typeof localStorage.getItem(g.localStorage.current) !== "undefined") && ko.utils.parseJson(localStorage.getItem(g.localStorage.current));
+      self.currentSource(localCurrentSource || self.sources[0]);
     };
 
     self.initialize(true);
@@ -64,7 +64,7 @@ define([
             self.state.launchingSuccess(jqxhr.getResponseHeader('Location'), self.viewResults());
 
             self.record.append(self.currentSource());
-            localStorage.removeItem(g.localStorageCurrentSource);
+            localStorage.removeItem(g.localStorage.current);
          },
          error: function (jqxhr, status, error) {
             self.state.launchingError(jqxhr.responseText);
@@ -77,13 +77,13 @@ define([
      */
     self.reset = function () {
       self.initialize(false);
-      localStorage.removeItem(g.localStorageCurrentSource);
+      localStorage.removeItem(g.localStorage.current);
     };
 
     // Internal computed observable that fires whenever anything changes.
     ko.computed(function () {
       // Store a clean copy to local storage.
-      localStorage.setItem(g.localStorageCurrentSource, ko.toJSON(self.currentSource()));
+      localStorage.setItem(g.localStorage.current, ko.toJSON(self.currentSource()));
     }).extend({
        // Save at most twice per second.
       throttle: 500

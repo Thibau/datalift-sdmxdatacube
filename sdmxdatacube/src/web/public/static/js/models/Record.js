@@ -20,7 +20,7 @@ define([
      * Initializes the record from localStorage.
      */
     self.initialize = function () {
-      var localHistory = localStorage.getItem(g.localStorageHistorySources) && ko.utils.parseJson(localStorage.getItem(g.localStorageHistorySources));
+      var localHistory = (typeof localStorage.getItem(g.localStorage.history) !== "undefined") && ko.utils.parseJson(localStorage.getItem(g.localStorage.history));
       self.previousSources(localHistory || []);
     };
 
@@ -39,7 +39,7 @@ define([
       if (nbSources > g.maxHistorySources) {
         self.previousSources(self.previousSources().slice(nbSources - g.maxHistorySources, g.maxHistorySources));
       }
-      localStorage.setItem(g.localStorageHistorySources, ko.toJSON(self.previousSources()));
+      localStorage.setItem(g.localStorage.history, ko.toJSON(self.previousSources()));
     };
 
   };

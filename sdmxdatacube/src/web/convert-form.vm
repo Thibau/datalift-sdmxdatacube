@@ -21,8 +21,8 @@
     <link rel="stylesheet" href="${moduleUri}/static/css/bootstrap-responsive.css">
     <link rel="stylesheet" href="${moduleUri}/static/css/magicsuggest-1.2.0.css">
 
-    <link rel="stylesheet" href="${moduleUri}/static/css/sdmxdatacube.css">
-    ## Prod/Dev : <link rel="stylesheet" href="http://localhost:1337/static/css/sdmxdatacube.css">
+    ## Prod/Dev : <link rel="stylesheet" href="${moduleUri}/static/css/sdmxdatacube.css">
+    <link rel="stylesheet" href="http://localhost:1337/static/css/sdmxdatacube.css">
 
     <!-- fav and touch icons -->
     <link rel="shortcut icon" href="${moduleUri}/static/img/favicon.ico">
@@ -397,11 +397,15 @@
     </div><!-- /container-fluid -->
 
     <script type="text/javascript" language="javascript">
+      var prettyToday = function () {
+        var today = new Date(),
+            month = today.getMonth() + 1,
+            day   = today.getDate();
+
+        return today.getFullYear() + '-' + (month < 10 ? '0' + month : month) + '-' + (day < 10 ? '0' + day : day) + ' ' + today.getHours() + ':' + today.getMinutes();
+      };
+
       // Inline parameters used to transmit default values to the client.
-      var today = new Date();
-      var month = today.getMonth() + 1;
-      var day = today.getDate();
-      var prettyToday = today.getFullYear() + '-' + (month < 10 ? '0' + month : month) + '-' + (day < 10 ? '0' + day : day) + ' ' + today.getHours() + ':' + today.getMinutes();
       var inlineParameters = {
         defaults : {
           sources : [
@@ -420,7 +424,7 @@
                   uri : "$esc.javascript($helper.generateSourceURI($s))",
                   uriPattern : "http://www.ecb.int/rdf/{0}/{3}({4})/{1}-{5}",
                   creator : "$esc.javascript(${securityCtx.userPrincipal})",
-                  created :  prettyToday
+                  created :  prettyToday()
                 },
               #end
             #end
@@ -431,8 +435,8 @@
       };
     </script>
 
-    <script data-main="${moduleUri}/static/js/main" src="${moduleUri}/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
-    ## Prod/Dev : <script data-main="http://localhost:1337/static/js/main.js" src="http://localhost:1337/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
+    ## Prod/Dev : <script data-main="${moduleUri}/static/js/main" src="${moduleUri}/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
+    <script data-main="http://localhost:1337/static/js/main.js" src="http://localhost:1337/static/js/libs/require-2.1.4.min.js" type="text/javascript" language="javascript"></script>
 
   </body>
 </html>
