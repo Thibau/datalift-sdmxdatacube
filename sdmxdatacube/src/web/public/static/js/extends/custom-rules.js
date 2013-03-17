@@ -51,7 +51,7 @@ define([
     validator : function (val, params, callback) {
 
       var defaults = {
-          url : g.remoteValidatorURL,
+          url : g.remote + g.path.validate,
           type : 'POST',
           accept : 'application/json',
           // The data needs to be set at execution time with beforeSend.

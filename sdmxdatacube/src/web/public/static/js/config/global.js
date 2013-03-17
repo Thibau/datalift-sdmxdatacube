@@ -1,8 +1,11 @@
 define({
   ENTER_KEY: 13,
   // Better than replace location.search, handles hashes too.
-  remoteValidatorURL : window.location.href.substring(0, window.location.href.indexOf('?')) + '/validate',
-  localStorage : {
+  remote : window.location.href.substring(0, window.location.href.indexOf('?')),
+  path: {
+    validate: '/validate'
+  },
+  localStorage: {
     current: 'sdmxdatacubeCurrentSource',
     history: 'sdmxdatacubeHistorySource'
   },

@@ -36,10 +36,7 @@ define([
       self.isProcessing(false);
       self.isSuccess(true);
       self.result(location);
-      if (viewResults) {
-        // TODO
-      }
-      else {
+      if (!viewResults) {
         self.redirectingStart(location);
       }
     };
