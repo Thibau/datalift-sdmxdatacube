@@ -26,14 +26,16 @@ define([
     var self = this;
 
     // Parent is a JS object with properties title and uri.
-    self.parent     = parent;
     // Project is also a JS object with properties title and uri.
+    self.parent     = parent;
     self.project    = project;
-    self.title      = ko.observable(title).extend(rules.source.title);
-    self.uri        = ko.observable(uri).extend(rules.source.uri);
-    self.uriPattern = ko.observable(uriPattern).extend(rules.source.uriPattern);
+    self.title      = ko.observable(title);
+    self.uri        = ko.observable(uri);
+    self.uriPattern = ko.observable(uriPattern);
     self.creator    = ko.observable(creator);
     self.created    = ko.observable(created);
+
+    var validated = ['title', 'uri', 'uriPattern'];
 
     /*
       Those function are all kind of stubs for a knockout validation object.
@@ -42,9 +44,10 @@ define([
       thus meaning that each validatable inside self must be valid.
       But this only works for sync rules, whereas remote validation is async by nature.
      */
-
-    var generateRemoteRule = function (field) {
-      return {
+    var generateRules = function (field) {
+      // Client rules, then server rules.
+      self[field].extend(rules.source[field]);
+      self[field].extend({
         remote : {
           // Only remote validate if all fields are completed here and at least one of them has been modified.
           // TODO Beware the end of this line.
@@ -64,19 +67,18 @@ define([
             }
           }
         }
-      };
+      });
     };
 
-    self.title.extend(generateRemoteRule('title'));
-    self.uri.extend(generateRemoteRule('uri'));
-    self.uriPattern.extend(generateRemoteRule('uriPattern'));
+    // title, uri and uriPattern have validation rules.
+    validated.forEach(generateRules);
 
     self.isValid = function () {
-      return self.title.isValid() && self.uri.isValid() && self.uriPattern.isValid();
+      return validated.every(function (elt) {return self[elt].isValid();});
     };
 
     self.isValidating = function () {
-      return self.title.isValidating() || self.uri.isValidating() || self.uriPattern.isValidating();
+      return validated.some(function (elt) {return self[elt].isValidating();});
     };
   };
 
