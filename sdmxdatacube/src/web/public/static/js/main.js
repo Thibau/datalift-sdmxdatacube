@@ -28,6 +28,7 @@ require([
   'bootstrap',
   'validation'
 ], function (ko, g, i18n, ConverterViewModel, validation) {
+  'use strict';
   /*
     Here it is time for some explanation.
     RequireJS modules define their dependencies explicitly,
@@ -38,8 +39,7 @@ require([
     -- tl;dr;
     This is a "temporary" fix.
    */
-  //'use strict';
-  var parameters = inlineParameters;
+  var parameters = window.inlineParameters;
 
   // Configure the validation to use parameters defined in global.
   ko.validation.configure(g.validationParameters);
