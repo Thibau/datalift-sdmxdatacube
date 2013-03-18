@@ -52,8 +52,30 @@ The conversion engine relies on the SDMXRDFParser library, which is based on SDM
 
 ## What's the module's future
 
-TODO
+This module will (hopefully) soon be integrated as part of Datalift's main modules repository and further developed to better integrate with its conversion engine. Its interface will (hopefully) better answer the needs of its main users. A better integration of MagicSuggest is also necessary.
 
 ## External resources
 
-TODO
+### General
+
+- http://datalift.org/
+- http://sdmx.org/
+- http://www.w3.org/TR/vocab-data-cube/
+- https://webgate.ec.europa.eu/fpfis/mwikis/sdmx/
+- http://eurostat.linked-statistics.org/
+- http://csarven.ca/linked-sdmx-data
+
+### Client
+
+- http://twitter.github.com/bootstrap/
+- http://nicolasbize.github.com/magicsuggest/
+- http://knockoutjs.com/
+- http://requirejs.org
+- http://jquery.com/
+
+### Server
+
+- http://openrdf.org/
+- http://www.sdmxsource.org/
+- http://jersey.java.net/
+- https://code.google.com/p/google-gson/
