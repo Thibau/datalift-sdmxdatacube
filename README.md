@@ -34,7 +34,21 @@ This process can be automated by using one of the two build scripts : `reload_mo
 
 ## How is it built
 
-TODO
+SDMX2DataCube is a Datalift module, thus uses the [Sesame](http://openrdf.org/) triplestore, the Jersey JAX-RS implementation and [GSON](https://code.google.com/p/google-gson/).
+
+This module is designed to feel snappy to use, the first request loads the whole interface and every subsequent call is full AJAJ.
+
+The frontend is built with [Twitter Bootstrap](http://twitter.github.com/bootstrap/), [KnockoutJS](http://knockoutjs.com/) and [RequireJS](http://requirejs.org/). We use RequireJS to help organize the JavaScript code, separating it into modules.
+
+The conversion engine relies on the SDMXRDFParser library, which is based on SDMXSource and [Spring](http://www.springsource.org/).
+
+### Points of interest
+
+* This module is built with strict mode enabled ("use strict").
+* JSON exchanges format are defined with [JSON Schema](http://json-schema.org/).
+* [Knockout Validation](https://github.com/ericmbarnard/Knockout-Validation) is used to manage form validation (client- and server-side).
+* This module shares a small common code base (via inheritance) with the StringToURI module.
+* Due to the integration of the SDMXRDFParser library, which requires Spring, this module is quite heavy (± 50Mo).
 
 ## What's the module's future
 
