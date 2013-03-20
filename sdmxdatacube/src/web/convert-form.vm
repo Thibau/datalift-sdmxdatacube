@@ -119,7 +119,7 @@
                           <div class="control-group" data-bind="validationElement: title, css : {success : title.isModified() && title.isValid() && !title.isValidating(), info : title.isValidating()}">
                             <label for="outputSourceName" class="control-label">#i18n('title.input.label')</label>
                             <div class="controls">
-                              <input name="outputSourceName" id="outputSourceName" data-bind="value: title" type="text" class="input-block-level" required>
+                              <input name="outputSourceName" id="outputSourceName" data-bind="value: title" type="text" class="input-block-level" inputmode="verbatim" required>
                               <p class="help-block">
                                 #i18n('title.help.label')
                                 <span class="validation-message" data-bind="validationMessage: title"></span>
@@ -131,7 +131,7 @@
                           <div class="control-group" data-bind="validationElement: uri, css : {success : uri.isModified() && uri.isValid() && !uri.isValidating(), info : uri.isValidating()}">
                             <label for="outputSourceURI" class="control-label">#i18n('uri.input.label')</label>
                             <div class="controls">
-                              <input name="outputSourceURI" id="outputSourceURI" data-bind="value: uri" type="text" class="input-block-level" required>
+                              <input name="outputSourceURI" id="outputSourceURI" data-bind="value: uri" type="url" class="input-block-level" required>
                               <p class="help-block">
                                 #i18n('uri.help.label')
                                 <span class="validation-message" data-bind="validationMessage: uri"></span>
@@ -150,7 +150,7 @@
                           <div class="control-group" data-bind="validationElement: uriPattern, css : {success : uriPattern.isModified() && uriPattern.isValid() && !uriPattern.isValidating(), info : uriPattern.isValidating()}">
                             <label for="uriPattern" class="control-label">#i18n('pattern.input.label') &mdash; #i18n('identifiable.input.label')</label>
                             <div class="controls">
-                              <input name="uriPattern" id="uriPattern" data-bind="value: uriPattern" type="text" class="input-block-level" required>
+                              <input name="uriPattern" id="uriPattern" data-bind="value: uriPattern" type="text" class="input-block-level" inputmode="url" required>
                               <p class="help-block">
                                 #i18n('uripattern.help.label') &mdash; #i18n('identifiable.input.label')
                                 <span class="validation-message" data-bind="validationMessage: uriPattern"></span>
