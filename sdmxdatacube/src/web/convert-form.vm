@@ -19,7 +19,7 @@
 
     <link rel="stylesheet" href="${moduleUri}/static/css/bootstrap.css">
     <link rel="stylesheet" href="${moduleUri}/static/css/bootstrap-responsive.css">
-    <link rel="stylesheet" href="${moduleUri}/static/css/magicsuggest-1.2.0.css">
+    <link rel="stylesheet" href="${moduleUri}/static/css/magicsuggest-1.2.3-min.css">
 
     <link rel="stylesheet" href="${moduleUri}/static/css/sdmxdatacube.css">
     ## Prod/Dev : <link rel="stylesheet" href="http://localhost:1337/static/css/sdmxdatacube.css">

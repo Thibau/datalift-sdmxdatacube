@@ -7,7 +7,7 @@ require.config({
     bootstrap : 'libs/bootstrap-2.3.0.min',
     knockout : 'libs/knockout-2.2.1.min',
     validation : 'libs/knockout.validation-1.0.2.min',
-    magicsuggest : 'libs/magicsuggest-1.2.0-min'
+    magicsuggest : 'libs/magicsuggest-1.2.3-min'
   },
   shim : {
     // Set dependencies.
