@@ -63,10 +63,10 @@ import org.springframework.stereotype.Service;
 /**
  * A Spring Bean which uses SDMXRDFParser from Metadata Technologies' SdmxSource
  * to convert SDMX 2.1 datasets / structures to DataCube.
- * 
+ *
  * This code is mainly from the example of usage provided by Matt Nelson
  * (org.sdmxsource.demo.rdf.main.RDFDataTransformer, rev 11 on SVN).
- * 
+ *
  * @author T. Colas, T. Marmin, Matt Nelson (Metadata Tech)
  * @version 260213
  */
@@ -144,7 +144,7 @@ public class SDMXDataCubeTransformer {
 
 		return out;
 	}
-	
+
 	public ByteArrayOutputStream convertSDMXToDataCube(InputStream sourceStream, RDFFormat rdfFormat) {
 		// TODO replace structures and data with dataset.
 		ReadableDataLocation dataset = readableDataLocationFactory.getReadableDataLocation(sourceStream);
@@ -158,41 +158,28 @@ public class SDMXDataCubeTransformer {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		/* Working on structure */
-		
+
 		// Build an object representation of the SDMX.
 		SdmxBeans beans = structureParsingManager.parseStructures(structures).getStructureBeans(false);
-		
+
 		// Write to the in memory manager, this is used to resolve cross-referenced structures later
 		inMemoryRetrievalManager.saveStructures(beans);
 
 		structureWritingManager.writeStructures(beans, new RDFStructureOutputFormat(rdfFormat), new ByteArrayOutputStream());
-		
+
 		/* Working on data */
-		
+
 		// Create a reader, we either need the datastructure at this point, or access to get the datastructure.
 		DataReaderEngine dataReader = dataReaderManager.getDataReaderEngine(data, new InMemoryRetrievalManager(beans));
-		
+
 		ByteArrayOutputStream convertedStream = new ByteArrayOutputStream();
 		DataWriterEngine dataWriter = dataWriterManager.getDataWriterEngine(new RDFDataOutputFormat((DataflowBean)beans.getDataflows().toArray()[0], rdfFormat), convertedStream);
 
 		// Copy to writer, copyheader=true, closewriter on completion=true
 		dataReaderWriterTransform.copyToWriter(dataReader, dataWriter, true, true);
-		
-		return convertedStream;
-	}
-	
-	public void hello() {
-		try {
-			StructureFormat structureFormat = new RDFStructureOutputFormat(RDFFormat.RDFXML);
-			SdmxBeans beans = outputStructures(structureFormat);
 
-			DataFormat dataFormat = new RDFDataOutputFormat((DataflowBean)beans.getDataflows().toArray()[0], RDFFormat.RDFXML);
-			outputData(beans, dataFormat);
-		}
-		catch (Exception e) {
-			
-		}
+		return convertedStream;
 	}
 }
