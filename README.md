@@ -1,7 +1,7 @@
 # Datalift — SDMX2DataCube
 
 Version: 0.8  
-Date: 2013-03-08  
+Date: 2013-03-23  
 Authors: [Thibaud Colas](https://github.com/ThibWeb), [Thibaut Marmin](https://github.com/marminthibaut)  
 Repository: [GitHub](https://github.com/Thibau/datalift-sdmxdatacube/)  
 Documentation: [GitHub Wiki](https://github.com/Thibau/datalift-sdmxdatacube/wiki)  
@@ -53,6 +53,8 @@ The conversion engine relies on the SDMXRDFParser library, which is based on SDM
 ## What's the module's future
 
 This module will (hopefully) soon be integrated as part of Datalift's main modules repository and further developed to better integrate with its conversion engine. Its interface will (hopefully) better answer the needs of its main users. A better integration of MagicSuggest is also necessary.
+
+A note about integration with SDMXRDFParser is available [here (french)](https://github.com/Thibau/datalift-sdmxdatacube/wiki/Int%C3%A9gration-avec-SDMXRDFParser).
 
 ## External resources
 
