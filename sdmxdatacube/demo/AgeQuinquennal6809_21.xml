@@ -1,0 +1,1497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Structure xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message ../../../SDMX%202.1/Version%20publi%C3%A9e/SDMX_2-1_ALL/SDMX_2-1_SECTION_3B_SDMX_ML_Schemas_Samples_2011May12/schemas/SDMXMessage.xsd"
+   xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message"
+   xmlns:s="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+   xmlns:r="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/registry"
+   xmlns:c="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+   <Header>
+      <ID>AGEQUINQUENNAL6809_21</ID>
+      <Test>false</Test>
+      <Prepared>2012-12-18T14:12:24</Prepared>
+      <Sender id="FR1"/>
+   </Header>
+   <Structures>
+      <s:Codelists>
+         <s:Codelist id="RP-AGEQUINQUENNAL6809-AGEQ65-CL" agencyID="FR1"
+            urn="urn:sdmx:org.sdmx.infomodel.codelist.Codelist=FR1:RP-AGEQUINQUENNAL6809-AGEQ65-CL(1.0)"
+            uri="http://id.insee.fr/codes/RP-AGEQUINQUENNAL6809-AGEQ65-CL/1.0">
+            <!-- Steven donne la borne sup pour l'identifiant, Franck la borne inf, et dans les noms des variables des tableaux on a rec01, rec02, etc. Quel
+                est le bon code? Par ailleurs, on peut se demander s'il y a besoin d'un code? -->
+            <c:Name xml:lang="fr-FR">Age quinquennal</c:Name>
+            <c:Name xml:lang="en-IE">Five-year age groups</c:Name>
+            <s:Code id="RP-AGEQUINQUENNAL6809-AGEQ65-CO-1">
+               <c:Name xml:lang="en-IE">From 0 to 4 years</c:Name>
+               <c:Name xml:lang="fr-FR">De 0 à 4 ans</c:Name>
+            </s:Code>
+            <s:Code id="RP-AGEQUINQUENNAL6809-AGEQ65-CO-2">
+               <c:Name xml:lang="en-IE">From 5 to 9 years</c:Name>
+               <c:Name xml:lang="fr-FR">De 5 à 9 ans</c:Name>
+            </s:Code>
+            <s:Code id="RP-AGEQUINQUENNAL6809-AGEQ65-CO-3">
+               <c:Name xml:lang="en-IE">From 10 to 14 years</c:Name>
+               <c:Name xml:lang="fr-FR">De 10 à 14 ans</c:Name>
+            </s:Code>
+            <s:Code id="RP-AGEQUINQUENNAL6809-AGEQ65-CO-4">
+               <c:Name xml:lang="fr-FR">15 à 19 ans</c:Name>
+               <c:Name xml:lang="en-IE">from 15 to 19 years</c:Name>
+            </s:Code>
+            <s:Code id="RP-AGEQUINQUENNAL6809-AGEQ65-CO-5">
+               <c:Name xml:lang="fr-FR">20 à 24 ans</c:Name>
+               <c:Name xml:lang="en-IE"> from 20 to 24 years</c:Name>
+            </s:Code>
+            <s:Code id="RP-AGEQUINQUENNAL6809-AGEQ65-CO-6">
+               <c:Name xml:lang="fr-FR">25 à 29 ans</c:Name>
+               <c:Name xml:lang="en-IE"> from 25 to 29 years</c:Name>
+            </s:Code>
+            <s:Code id="RP-AGEQUINQUENNAL6809-AGEQ65-CO-7">
+               <c:Name xml:lang="fr-FR">30 à 34 ans</c:Name>
+               <c:Name xml:lang="en-IE">from 30 to 34 years</c:Name>
+            </s:Code>
+            <s:Code id="RP-AGEQUINQUENNAL6809-AGEQ65-CO-8">
+               <c:Name xml:lang="fr-FR">35 à 39 ans</c:Name>
+               <c:Name xml:lang="en-IE">from 35 to 39 years</c:Name>
+            </s:Code>
+            <s:Code id="RP-AGEQUINQUENNAL6809-AGEQ65-CO-9">
+               <c:Name xml:lang="fr-FR">40 à 44 ans</c:Name>
+               <c:Name xml:lang="en-IE">from 40 to 44 years</c:Name>
+            </s:Code>
+            <s:Code id="RP-AGEQUINQUENNAL6809-AGEQ65-CO-10">
+               <c:Name xml:lang="fr-FR">45 à 49 ans</c:Name>
+               <c:Name xml:lang="en-IE">from 45 to 49 years</c:Name>
+            </s:Code>
+            <s:Code id="RP-AGEQUINQUENNAL6809-AGEQ65-CO-11">
+               <c:Name xml:lang="fr-FR">50 à 54 ans</c:Name>
+               <c:Name xml:lang="en-IE">from 50 to 54 years</c:Name>
+            </s:Code>
+            <s:Code id="RP-AGEQUINQUENNAL6809-AGEQ65-CO-12">
+               <c:Name xml:lang="fr-FR">55 à 59 ans</c:Name>
+               <c:Name xml:lang="en-IE">from 55 to 59 years</c:Name>
+            </s:Code>
+            <s:Code id="RP-AGEQUINQUENNAL6809-AGEQ65-CO-13">
+               <c:Name xml:lang="fr-FR">60 à 64 ans</c:Name>
+               <c:Name xml:lang="en-IE">from 60 to 64 years</c:Name>
+            </s:Code>
+            <s:Code id="RP-AGEQUINQUENNAL6809-AGEQ65-CO-14">
+               <c:Name xml:lang="fr-FR">65 ans ou plus</c:Name>
+               <c:Name xml:lang="en-IE">65 or over</c:Name>
+            </s:Code>
+         </s:Codelist>
+         <s:Codelist id="RP-AGEQUINQUENNAL6809-SEXE-CL" agencyID="FR1"
+            urn="urn:sdmx:org.sdmx.infomodel.codelist.Codelist=FR1:RP-SEXE-CL(1.0)"
+            uri="http://id.insee.fr/codes/RP-SEXE-CL/1.0">
+            <c:Name xml:lang="fr-FR">Sexe</c:Name>
+            <c:Name xml:lang="en-IE">Sex</c:Name>
+            <s:Code id="RP-AGEQUINQUENNAL6809-SEXE-CO-1">
+               <c:Name xml:lang="fr-FR">Hommes</c:Name>
+               <c:Name xml:lang="en-IE">Males</c:Name>
+            </s:Code>
+            <s:Code id="RP-AGEQUINQUENNAL6809-SEXE-CO-2">
+               <c:Name xml:lang="fr-FR">Femmes</c:Name>
+               <c:Name xml:lang="en-IE">Females</c:Name>
+            </s:Code>
+         </s:Codelist>
+         <s:Codelist id="RP-AGEQUINQUENNAL6809-RP-CL" agencyID="FR1"
+            urn="urn:sdmx:org.sdmx.infomodel.codelist.Codelist=FR1:RP-AGEQUINQUENNAL6809-RP-CL(1.0)"
+            uri="http://id.insee.fr/codes/RP-AGEQUINQUENNAL6809-RP-CL/1.0">
+            <c:Name xml:lang="en-IE">Dates for the Population Census rounds</c:Name>
+            <c:Name xml:lang="fr-FR">Dates des différents Recensements de la Population</c:Name>
+            <s:Code id="RP-AGEQUINQUENNAL6809-RP-CO-1">
+               <c:Name xml:lang="fr-FR">RP1968</c:Name>
+               <c:Name xml:lang="en-IE">1968PC</c:Name>
+               <c:Description xml:lang="fr-FR">Recensement de la Population 1968</c:Description>
+               <c:Description xml:lang="en-IE">1968 Population Census Round</c:Description>
+            </s:Code>
+            <s:Code id="RP-AGEQUINQUENNAL6809-RP-CO-2">
+               <c:Name xml:lang="fr-FR">RP1975</c:Name>
+               <c:Name xml:lang="en-IE">1975PC</c:Name>
+               <c:Description xml:lang="fr-FR">Recensement de la Population 1975</c:Description>
+               <c:Description xml:lang="en-IE">1975 Population Census Round</c:Description>
+            </s:Code>
+            <s:Code id="RP-AGEQUINQUENNAL6809-RP-CO-3">
+               <c:Name xml:lang="fr-FR">RP1982</c:Name>
+               <c:Name xml:lang="en-IE">1982PC</c:Name>
+               <c:Description xml:lang="fr-FR">Recensement de la Population 1982</c:Description>
+               <c:Description xml:lang="en-IE">1982 Population Census Round</c:Description>
+            </s:Code>
+            <s:Code id="RP-AGEQUINQUENNAL6809-RP-CO-4">
+               <c:Name xml:lang="fr-FR">RP1990</c:Name>
+               <c:Name xml:lang="en-IE">1990PC</c:Name>
+               <c:Description xml:lang="fr-FR">Recensement de la Population 1990</c:Description>
+               <c:Description xml:lang="en-IE">1990 Population Census Round</c:Description>
+            </s:Code>
+            <s:Code id="RP-AGEQUINQUENNAL6809-RP-CO-5">
+               <c:Name xml:lang="fr-FR">RP1999</c:Name>
+               <c:Name xml:lang="en-IE">1999PC</c:Name>
+               <c:Description xml:lang="fr-FR">Recensement de la Population 1999</c:Description>
+               <c:Description xml:lang="en-IE">1999 Population Census Round</c:Description>
+            </s:Code>
+            <s:Code id="RP-AGEQUINQUENNAL6809-RP-CO-6">
+               <c:Name xml:lang="fr-FR">RP2009</c:Name>
+               <c:Name xml:lang="en-IE">2009PC</c:Name>
+               <c:Description xml:lang="fr-FR">Recensement de la Population 2009</c:Description>
+               <c:Description xml:lang="en-IE">2009 Population Census Round</c:Description>
+            </s:Code>
+         </s:Codelist>
+         <s:Codelist id="RP-GEO-REG-CL" agencyID="FR1"
+            urn="urn:sdmx:org.sdmx.infomodel.codelist.Codelist=FR1:RP-GEO-REG-CL(1.0)"
+            uri="http://id.insee.fr/codes/RP-GEO-REG-CL/1.0">
+            <c:Name xml:lang="fr-FR">Liste de codes des régions du COG</c:Name>
+            <c:Name xml:lang="en-IE">Codelist for regions</c:Name>
+            <s:Code id="RP-GEO-REG-CO-1">
+               <c:Name xml:lang="en-IE">42</c:Name>
+               <c:Name xml:lang="fr-FR">42</c:Name>
+            </s:Code>
+            <s:Code id="RP-GEO-REG-CO-2">
+               <c:Name xml:lang="en-IE">72</c:Name>
+               <c:Name xml:lang="fr-FR">72</c:Name>
+            </s:Code>
+            <s:Code id="RP-GEO-REG-CO-3">
+               <c:Name xml:lang="en-IE">83</c:Name>
+               <c:Name xml:lang="fr-FR">83</c:Name>
+            </s:Code>
+            <s:Code id="RP-GEO-REG-CO-4">
+               <c:Name xml:lang="fr-FR">26</c:Name>
+               <c:Name xml:lang="en-IE">26</c:Name>
+            </s:Code>
+            <s:Code id="RP-GEO-REG-CO-5">
+               <c:Name xml:lang="fr-FR">53</c:Name>
+               <c:Name xml:lang="en-IE">53</c:Name>
+            </s:Code>
+            <s:Code id="RP-GEO-REG-CO-6">
+               <c:Name xml:lang="fr-FR">24</c:Name>
+               <c:Name xml:lang="en-IE">24</c:Name>
+            </s:Code>
+            <s:Code id="RP-GEO-REG-CO-7">
+               <c:Name xml:lang="fr-FR">21</c:Name>
+               <c:Name xml:lang="en-IE">21</c:Name>
+            </s:Code>
+            <s:Code id="RP-GEO-REG-CO-8">
+               <c:Name xml:lang="fr-FR">94</c:Name>
+               <c:Name xml:lang="en-IE">94</c:Name>
+            </s:Code>
+            <s:Code id="RP-GEO-REG-CO-9">
+               <c:Name xml:lang="fr-FR">43</c:Name>
+               <c:Name xml:lang="en-IE">43</c:Name>
+            </s:Code>
+            <s:Code id="RP-GEO-REG-CO-10">
+               <c:Name xml:lang="fr-FR">01</c:Name>
+               <c:Name xml:lang="en-IE">01</c:Name>
+            </s:Code>
+            <s:Code id="RP-GEO-REG-CO-11">
+               <c:Name xml:lang="fr-FR">03</c:Name>
+               <c:Name xml:lang="en-IE">03</c:Name>
+            </s:Code>
+            <s:Code id="RP-GEO-REG-CO-12">
+               <c:Name xml:lang="fr-FR">23</c:Name>
+               <c:Name xml:lang="en-IE">23</c:Name>
+            </s:Code>
+            <s:Code id="RP-GEO-REG-CO-13">
+               <c:Name xml:lang="fr-FR">11</c:Name>
+               <c:Name xml:lang="en-IE">11</c:Name>
+            </s:Code>
+            <s:Code id="RP-GEO-REG-CO-14">
+               <c:Name xml:lang="fr-FR">04</c:Name>
+               <c:Name xml:lang="en-IE">04</c:Name>
+            </s:Code>
+            <s:Code id="RP-GEO-REG-CO-15">
+               <c:Name xml:lang="en-IE">91</c:Name>
+               <c:Name xml:lang="fr-FR">91</c:Name>
+            </s:Code>
+            <s:Code id="RP-GEO-REG-CO-16">
+               <c:Name xml:lang="en-IE">74</c:Name>
+               <c:Name xml:lang="fr-FR">74</c:Name>
+            </s:Code>
+            <s:Code id="RP-GEO-REG-CO-17">
+               <c:Name xml:lang="en-IE">41</c:Name>
+               <c:Name xml:lang="fr-FR">41</c:Name>
+            </s:Code>
+            <s:Code id="RP-GEO-REG-CO-18">
+               <c:Name xml:lang="fr-FR">02</c:Name>
+               <c:Name xml:lang="en-IE">02</c:Name>
+            </s:Code>
+            <s:Code id="RP-GEO-REG-CO-19">
+               <c:Name xml:lang="fr-FR">06</c:Name>
+               <c:Name xml:lang="en-IE">06</c:Name>
+            </s:Code>
+            <s:Code id="RP-GEO-REG-CO-20">
+               <c:Name xml:lang="fr-FR">73</c:Name>
+               <c:Name xml:lang="en-IE">73</c:Name>
+            </s:Code>
+            <s:Code id="RP-GEO-REG-CO-21">
+               <c:Name xml:lang="fr-FR">31</c:Name>
+               <c:Name xml:lang="en-IE">31</c:Name>
+            </s:Code>
+            <s:Code id="RP-GEO-REG-CO-22">
+               <c:Name xml:lang="fr-FR">52</c:Name>
+               <c:Name xml:lang="en-IE">52</c:Name>
+            </s:Code>
+            <s:Code id="RP-GEO-REG-CO-23">
+               <c:Name xml:lang="fr-FR">22</c:Name>
+               <c:Name xml:lang="en-IE">22</c:Name>
+            </s:Code>
+            <s:Code id="RP-GEO-REG-CO-24">
+               <c:Name xml:lang="fr-FR">01</c:Name>
+               <c:Name xml:lang="en-IE">01</c:Name>
+            </s:Code>
+            <s:Code id="RP-GEO-REG-CO-25">
+               <c:Name xml:lang="fr-FR">54</c:Name>
+               <c:Name xml:lang="en-IE">54</c:Name>
+            </s:Code>
+            <s:Code id="RP-GEO-REG-CO-26">
+               <c:Name xml:lang="fr-FR">93</c:Name>
+               <c:Name xml:lang="en-IE">93</c:Name>
+            </s:Code>
+            <s:Code id="RP-GEO-REG-CO-27">
+               <c:Name xml:lang="fr-FR">82</c:Name>
+               <c:Name xml:lang="en-IE">82</c:Name>
+            </s:Code>
+         </s:Codelist>
+         <s:Codelist id="RP-GEO-DEP-CL" agencyID="FR1"
+            uri="http://id.insee.fr/codes/RP-GEO-DEP-CL/1.0"
+            urn="urn:sdmx:org.sdmx.infomodel.codelist.Codelist=FR1:RP-GEO-DEP-CL(1.0)">
+            <c:Name xml:lang="fr-FR">Liste de codes des départements du COG</c:Name>
+            <c:Name xml:lang="en-IE">Codelist for the COG "départements"</c:Name>
+            <s:Code id="RP-GEO-DEP-CO-1" uri="http://id.insee.fr/codes/RP-GEO-DEP-CO-1/1.0"
+               urn="urn:sdmx:org.sdmx.infomodel.codelist.Codelist=FR1:RP-GEO-DEP-CO-1(1.0)">
+               <c:Name xml:lang="fr-FR">01</c:Name>
+               <c:Name xml:lang="en-IE">01</c:Name>
+               <c:Description xml:lang="en-IE">Ain</c:Description>
+               <c:Description xml:lang="fr-FR">Ain</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-2">
+               <c:Name xml:lang="fr-FR">02</c:Name>
+               <c:Name xml:lang="en-IE">02</c:Name>
+               <c:Description xml:lang="en-IE">Aisne</c:Description>
+               <c:Description xml:lang="fr-FR">Aisne</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-3">
+               <c:Name xml:lang="fr-FR">03</c:Name>
+               <c:Name xml:lang="en-IE">03</c:Name>
+               <c:Description xml:lang="en-IE">Allier</c:Description>
+               <c:Description xml:lang="fr-FR">Allier</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-4">
+               <c:Name xml:lang="fr-FR">04</c:Name>
+               <c:Name xml:lang="en-IE">04</c:Name>
+               <c:Description xml:lang="fr-FR">Alpes-de-Haute-Provence</c:Description>
+               <c:Description xml:lang="en-IE">Alpes-de-Haute-Provence</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-5">
+               <c:Name xml:lang="fr-FR">05</c:Name>
+               <c:Name xml:lang="en-IE">05</c:Name>
+               <c:Description xml:lang="fr-FR">Hautes-Alpes</c:Description>
+               <c:Description xml:lang="en-IE">Hautes-Alpes</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-6">
+               <c:Name xml:lang="fr-FR">06</c:Name>
+               <c:Name xml:lang="en-IE">06</c:Name>
+               <c:Description xml:lang="fr-FR">Alpes-Maritimes</c:Description>
+               <c:Description xml:lang="en-IE">Alpes-Maritimes</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-7">
+               <c:Name xml:lang="fr-FR">07</c:Name>
+               <c:Name xml:lang="en-IE">07</c:Name>
+               <c:Description xml:lang="fr-FR">Ardèche</c:Description>
+               <c:Description xml:lang="en-IE">Ardèche</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-8">
+               <c:Name xml:lang="fr-FR">08</c:Name>
+               <c:Name xml:lang="en-IE">08</c:Name>
+               <c:Description xml:lang="fr-FR">Ardennes</c:Description>
+               <c:Description xml:lang="en-IE">Ardennes</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-9">
+               <c:Name xml:lang="fr-FR">09</c:Name>
+               <c:Name xml:lang="en-IE">09</c:Name>
+               <c:Description xml:lang="fr-FR">Ariège</c:Description>
+               <c:Description xml:lang="en-IE">Ariège</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-10">
+               <c:Name xml:lang="fr-FR">10</c:Name>
+               <c:Name xml:lang="en-IE">10</c:Name>
+               <c:Description xml:lang="fr-FR">Aube</c:Description>
+               <c:Description xml:lang="en-IE">Aube</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-11">
+               <c:Name xml:lang="fr-FR">11</c:Name>
+               <c:Name xml:lang="en-IE">11</c:Name>
+               <c:Description xml:lang="fr-FR">Aude</c:Description>
+               <c:Description xml:lang="en-IE">Aude</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-12">
+               <c:Name xml:lang="fr-FR">12</c:Name>
+               <c:Name xml:lang="en-IE">12</c:Name>
+               <c:Description xml:lang="fr-FR">Aveyron</c:Description>
+               <c:Description xml:lang="en-IE">Aveyron</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-13">
+               <c:Name xml:lang="fr-FR">13</c:Name>
+               <c:Name xml:lang="en-IE">13</c:Name>
+               <c:Description xml:lang="fr-FR">Bouches-du-Rhône</c:Description>
+               <c:Description xml:lang="en-IE">Bouches-du-Rhône</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-14">
+               <c:Name xml:lang="fr-FR">14</c:Name>
+               <c:Name xml:lang="en-IE">14</c:Name>
+               <c:Description xml:lang="fr-FR">Calvados</c:Description>
+               <c:Description xml:lang="en-IE">Calvados</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-15">
+               <c:Name xml:lang="fr-FR">15</c:Name>
+               <c:Name xml:lang="en-IE">15</c:Name>
+               <c:Description xml:lang="en-IE">Cantal</c:Description>
+               <c:Description xml:lang="fr-FR">Cantal</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-16">
+               <c:Name xml:lang="fr-FR">16</c:Name>
+               <c:Name xml:lang="en-IE">16</c:Name>
+               <c:Description xml:lang="en-IE">Charente</c:Description>
+               <c:Description xml:lang="fr-FR">Charente</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-17">
+               <c:Name xml:lang="fr-FR">17</c:Name>
+               <c:Name xml:lang="en-IE">17</c:Name>
+               <c:Description xml:lang="en-IE">Charente-Maritime</c:Description>
+               <c:Description xml:lang="fr-FR">Charente-Maritime</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-18">
+               <c:Name xml:lang="fr-FR">18</c:Name>
+               <c:Name xml:lang="en-IE">18</c:Name>
+               <c:Description xml:lang="fr-FR">Cher</c:Description>
+               <c:Description xml:lang="en-IE">Cher</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-19">
+               <c:Name xml:lang="fr-FR">19</c:Name>
+               <c:Name xml:lang="en-IE">19</c:Name>
+               <c:Description xml:lang="fr-FR">Corrèze</c:Description>
+               <c:Description xml:lang="en-IE">Corrèze</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-20">
+               <c:Name xml:lang="fr-FR">20</c:Name>
+               <c:Name xml:lang="en-IE">20</c:Name>
+               <c:Description xml:lang="fr-FR">Corse</c:Description>
+               <c:Description xml:lang="en-IE">Corse</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-2A">
+               <c:Name xml:lang="fr-FR">2A</c:Name>
+               <c:Name xml:lang="en-IE">2A</c:Name>
+               <c:Description xml:lang="fr-FR">Corse-du-Sud</c:Description>
+               <c:Description xml:lang="en-IE">Corse-du-Sud</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-2B">
+               <c:Name xml:lang="fr-FR">2B</c:Name>
+               <c:Name xml:lang="en-IE">2B</c:Name>
+               <c:Description xml:lang="fr-FR">Haute-Corse</c:Description>
+               <c:Description xml:lang="en-IE">Haute-Corse</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-21">
+               <c:Name xml:lang="fr-FR">21</c:Name>
+               <c:Name xml:lang="en-IE">21</c:Name>
+               <c:Description xml:lang="fr-FR">Côte-d'Or</c:Description>
+               <c:Description xml:lang="en-IE">Côte-d'Or</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-22">
+               <c:Name xml:lang="fr-FR">22</c:Name>
+               <c:Name xml:lang="en-IE">22</c:Name>
+               <c:Description xml:lang="fr-FR">Côtes-d'Armor</c:Description>
+               <c:Description xml:lang="en-IE">Côtes-d'Armor</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-23">
+               <c:Name xml:lang="fr-FR">23</c:Name>
+               <c:Name xml:lang="en-IE">23</c:Name>
+               <c:Description xml:lang="fr-FR">Creuse</c:Description>
+               <c:Description xml:lang="en-IE">Creuse</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-24">
+               <c:Name xml:lang="fr-FR">24</c:Name>
+               <c:Name xml:lang="en-IE">24</c:Name>
+               <c:Description xml:lang="fr-FR">Dordogne</c:Description>
+               <c:Description xml:lang="en-IE">Dordogne</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-25">
+               <c:Name xml:lang="fr-FR">25</c:Name>
+               <c:Name xml:lang="en-IE">25</c:Name>
+               <c:Description xml:lang="fr-FR">Doubs</c:Description>
+               <c:Description xml:lang="en-IE">Doubs</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-26">
+               <c:Name xml:lang="fr-FR">26</c:Name>
+               <c:Name xml:lang="en-IE">26</c:Name>
+               <c:Description xml:lang="fr-FR">Drôme</c:Description>
+               <c:Description xml:lang="en-IE">Drôme</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-27">
+               <c:Name xml:lang="fr-FR">27</c:Name>
+               <c:Name xml:lang="en-IE">27</c:Name>
+               <c:Description xml:lang="fr-FR">Eure</c:Description>
+               <c:Description xml:lang="en-IE">Eure</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-28">
+               <c:Name xml:lang="fr-FR">28</c:Name>
+               <c:Name xml:lang="en-IE">28</c:Name>
+               <c:Description xml:lang="en-IE">Eure-et-Loir</c:Description>
+               <c:Description xml:lang="fr-FR">Eure-et-Loir</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-29">
+               <c:Name xml:lang="fr-FR">29</c:Name>
+               <c:Name xml:lang="en-IE">29</c:Name>
+               <c:Description xml:lang="en-IE">Finistère</c:Description>
+               <c:Description xml:lang="fr-FR">Finistère</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-30">
+               <c:Name xml:lang="fr-FR">30</c:Name>
+               <c:Name xml:lang="en-IE">30</c:Name>
+               <c:Description xml:lang="en-IE">Gard</c:Description>
+               <c:Description xml:lang="fr-FR">Gard</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-31">
+               <c:Name xml:lang="fr-FR">31</c:Name>
+               <c:Name xml:lang="en-IE">31</c:Name>
+               <c:Description xml:lang="fr-FR">Haute-Garonne</c:Description>
+               <c:Description xml:lang="en-IE">Haute-Garonne</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-32">
+               <c:Name xml:lang="fr-FR">32</c:Name>
+               <c:Name xml:lang="en-IE">32</c:Name>
+               <c:Description xml:lang="fr-FR">Gers</c:Description>
+               <c:Description xml:lang="en-IE">Gers</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-33">
+               <c:Name xml:lang="fr-FR">33</c:Name>
+               <c:Name xml:lang="en-IE">33</c:Name>
+               <c:Description xml:lang="fr-FR">Gironde</c:Description>
+               <c:Description xml:lang="en-IE">Gironde</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-34">
+               <c:Name xml:lang="fr-FR">34</c:Name>
+               <c:Name xml:lang="en-IE">34</c:Name>
+               <c:Description xml:lang="fr-FR">Hérault</c:Description>
+               <c:Description xml:lang="en-IE">Hérault</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-35">
+               <c:Name xml:lang="fr-FR">35</c:Name>
+               <c:Name xml:lang="en-IE">35</c:Name>
+               <c:Description xml:lang="fr-FR">Ille-et-Vilaine</c:Description>
+               <c:Description xml:lang="en-IE">Ille-et-Vilaine</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-36">
+               <c:Name xml:lang="fr-FR">36</c:Name>
+               <c:Name xml:lang="en-IE">36</c:Name>
+               <c:Description xml:lang="fr-FR">Indre</c:Description>
+               <c:Description xml:lang="en-IE">Indre</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-37">
+               <c:Name xml:lang="fr-FR">37</c:Name>
+               <c:Name xml:lang="en-IE">37</c:Name>
+               <c:Description xml:lang="fr-FR">Indre-et-Loire</c:Description>
+               <c:Description xml:lang="en-IE">Indre-et-Loire</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-38">
+               <c:Name xml:lang="fr-FR">38</c:Name>
+               <c:Name xml:lang="en-IE">38</c:Name>
+               <c:Description xml:lang="fr-FR">Isère</c:Description>
+               <c:Description xml:lang="en-IE">Isère</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-39">
+               <c:Name xml:lang="fr-FR">39</c:Name>
+               <c:Name xml:lang="en-IE">39</c:Name>
+               <c:Description xml:lang="fr-FR">Jura</c:Description>
+               <c:Description xml:lang="en-IE">Jura</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-40">
+               <c:Name xml:lang="fr-FR">40</c:Name>
+               <c:Name xml:lang="en-IE">40</c:Name>
+               <c:Description xml:lang="fr-FR">Landes</c:Description>
+               <c:Description xml:lang="en-IE">Landes</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-41">
+               <c:Name xml:lang="fr-FR">41</c:Name>
+               <c:Name xml:lang="en-IE">41</c:Name>
+               <c:Description xml:lang="fr-FR">Loir-et-Cher</c:Description>
+               <c:Description xml:lang="en-IE">Loir-et-Cher</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-42">
+               <c:Name xml:lang="fr-FR">42</c:Name>
+               <c:Name xml:lang="en-IE">42</c:Name>
+               <c:Description xml:lang="en-IE">Loire</c:Description>
+               <c:Description xml:lang="fr-FR">Loire</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-43">
+               <c:Name xml:lang="fr-FR">43</c:Name>
+               <c:Name xml:lang="en-IE">43</c:Name>
+               <c:Description xml:lang="en-IE">Haute-Loire</c:Description>
+               <c:Description xml:lang="fr-FR">Haute-Loire</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-44">
+               <c:Name xml:lang="fr-FR">44</c:Name>
+               <c:Name xml:lang="en-IE">44</c:Name>
+               <c:Description xml:lang="en-IE">Loire-Atlantique</c:Description>
+               <c:Description xml:lang="fr-FR">Loire-Atlantique</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-45">
+               <c:Name xml:lang="fr-FR">45</c:Name>
+               <c:Name xml:lang="en-IE">45</c:Name>
+               <c:Description xml:lang="fr-FR">Loiret</c:Description>
+               <c:Description xml:lang="en-IE">Loiret</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-46">
+               <c:Name xml:lang="fr-FR">46</c:Name>
+               <c:Name xml:lang="en-IE">46</c:Name>
+               <c:Description xml:lang="fr-FR">Lot</c:Description>
+               <c:Description xml:lang="en-IE">Lot</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-47">
+               <c:Name xml:lang="fr-FR">47</c:Name>
+               <c:Name xml:lang="en-IE">47</c:Name>
+               <c:Description xml:lang="fr-FR">Lot-et-Garonne</c:Description>
+               <c:Description xml:lang="en-IE">Lot-et-Garonne</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-48">
+               <c:Name xml:lang="fr-FR">48</c:Name>
+               <c:Name xml:lang="en-IE">48</c:Name>
+               <c:Description xml:lang="fr-FR">Lozère</c:Description>
+               <c:Description xml:lang="en-IE">Lozère</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-49">
+               <c:Name xml:lang="fr-FR">49</c:Name>
+               <c:Name xml:lang="en-IE">49</c:Name>
+               <c:Description xml:lang="fr-FR">Maine-et-Loire</c:Description>
+               <c:Description xml:lang="en-IE">Maine-et-Loire</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-50">
+               <c:Name xml:lang="fr-FR">50</c:Name>
+               <c:Name xml:lang="en-IE">50</c:Name>
+               <c:Description xml:lang="fr-FR">Manche</c:Description>
+               <c:Description xml:lang="en-IE">Manche</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-51">
+               <c:Name xml:lang="fr-FR">51</c:Name>
+               <c:Name xml:lang="en-IE">51</c:Name>
+               <c:Description xml:lang="fr-FR">Marne</c:Description>
+               <c:Description xml:lang="en-IE">Marne</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-52">
+               <c:Name xml:lang="fr-FR">52</c:Name>
+               <c:Name xml:lang="en-IE">52</c:Name>
+               <c:Description xml:lang="fr-FR">Haute-Marne</c:Description>
+               <c:Description xml:lang="en-IE">Haute-Marne</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-53">
+               <c:Name xml:lang="fr-FR">53</c:Name>
+               <c:Name xml:lang="en-IE">53</c:Name>
+               <c:Description xml:lang="fr-FR">Mayenne</c:Description>
+               <c:Description xml:lang="en-IE">Mayenne</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-54">
+               <c:Name xml:lang="fr-FR">54</c:Name>
+               <c:Name xml:lang="en-IE">54</c:Name>
+               <c:Description xml:lang="fr-FR">Meurthe-et-Moselle</c:Description>
+               <c:Description xml:lang="en-IE">Meurthe-et-Moselle</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-55">
+               <c:Name xml:lang="fr-FR">55</c:Name>
+               <c:Name xml:lang="en-IE">55</c:Name>
+               <c:Description xml:lang="en-IE">Meuse</c:Description>
+               <c:Description xml:lang="fr-FR">Meuse</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-56">
+               <c:Name xml:lang="fr-FR">56</c:Name>
+               <c:Name xml:lang="en-IE">56</c:Name>
+               <c:Description xml:lang="en-IE">Morbihan</c:Description>
+               <c:Description xml:lang="fr-FR">Morbihan</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-57">
+               <c:Name xml:lang="fr-FR">57</c:Name>
+               <c:Name xml:lang="en-IE">57</c:Name>
+               <c:Description xml:lang="en-IE">Moselle</c:Description>
+               <c:Description xml:lang="fr-FR">Moselle</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-58">
+               <c:Name xml:lang="fr-FR">58</c:Name>
+               <c:Name xml:lang="en-IE">58</c:Name>
+               <c:Description xml:lang="fr-FR">Nièvre</c:Description>
+               <c:Description xml:lang="en-IE">Nièvre</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-59">
+               <c:Name xml:lang="fr-FR">59</c:Name>
+               <c:Name xml:lang="en-IE">59</c:Name>
+               <c:Description xml:lang="fr-FR">Nord</c:Description>
+               <c:Description xml:lang="en-IE">Nord</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-60">
+               <c:Name xml:lang="fr-FR">60</c:Name>
+               <c:Name xml:lang="en-IE">60</c:Name>
+               <c:Description xml:lang="fr-FR">Oise</c:Description>
+               <c:Description xml:lang="en-IE">Oise</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-61">
+               <c:Name xml:lang="fr-FR">61</c:Name>
+               <c:Name xml:lang="en-IE">61</c:Name>
+               <c:Description xml:lang="fr-FR">Orne</c:Description>
+               <c:Description xml:lang="en-IE">Orne</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-62">
+               <c:Name xml:lang="fr-FR">62</c:Name>
+               <c:Name xml:lang="en-IE">62</c:Name>
+               <c:Description xml:lang="fr-FR">Pas-de-Calais</c:Description>
+               <c:Description xml:lang="en-IE">Pas-de-Calais</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-63">
+               <c:Name xml:lang="fr-FR">63</c:Name>
+               <c:Name xml:lang="en-IE">63</c:Name>
+               <c:Description xml:lang="fr-FR">Puy-de-Dôme</c:Description>
+               <c:Description xml:lang="en-IE">Puy-de-Dôme</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-64">
+               <c:Name xml:lang="fr-FR">64</c:Name>
+               <c:Name xml:lang="en-IE">64</c:Name>
+               <c:Description xml:lang="fr-FR">Pyrénées-Atlantiques</c:Description>
+               <c:Description xml:lang="en-IE">Pyrénées-Atlantiques</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-65">
+               <c:Name xml:lang="fr-FR">65</c:Name>
+               <c:Name xml:lang="en-IE">65</c:Name>
+               <c:Description xml:lang="fr-FR">Hautes-Pyrénées</c:Description>
+               <c:Description xml:lang="en-IE">Hautes-Pyrénées</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-66">
+               <c:Name xml:lang="fr-FR">66</c:Name>
+               <c:Name xml:lang="en-IE">66</c:Name>
+               <c:Description xml:lang="fr-FR">Pyrénées-Orientales</c:Description>
+               <c:Description xml:lang="en-IE">Pyrénées-Orientales</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-67">
+               <c:Name xml:lang="fr-FR">67</c:Name>
+               <c:Name xml:lang="en-IE">67</c:Name>
+               <c:Description xml:lang="fr-FR">Bas-Rhin</c:Description>
+               <c:Description xml:lang="en-IE">Bas-Rhin</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-68">
+               <c:Name xml:lang="fr-FR">68</c:Name>
+               <c:Name xml:lang="en-IE">68</c:Name>
+               <c:Description xml:lang="fr-FR">Haut-Rhin</c:Description>
+               <c:Description xml:lang="en-IE">Haut-Rhin</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-69">
+               <c:Name xml:lang="fr-FR">69</c:Name>
+               <c:Name xml:lang="en-IE">69</c:Name>
+               <c:Description xml:lang="en-IE">Rhône</c:Description>
+               <c:Description xml:lang="fr-FR">Rhône</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-70">
+               <c:Name xml:lang="fr-FR">70</c:Name>
+               <c:Name xml:lang="en-IE">70</c:Name>
+               <c:Description xml:lang="en-IE">Haute-Saône</c:Description>
+               <c:Description xml:lang="fr-FR">Haute-Saône</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-71">
+               <c:Name xml:lang="fr-FR">71</c:Name>
+               <c:Name xml:lang="en-IE">71</c:Name>
+               <c:Description xml:lang="en-IE">Saône-et-Loire</c:Description>
+               <c:Description xml:lang="fr-FR">Saône-et-Loire</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-72">
+               <c:Name xml:lang="fr-FR">72</c:Name>
+               <c:Name xml:lang="en-IE">72</c:Name>
+               <c:Description xml:lang="fr-FR">Sarthe</c:Description>
+               <c:Description xml:lang="en-IE">Sarthe</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-73">
+               <c:Name xml:lang="fr-FR">73</c:Name>
+               <c:Name xml:lang="en-IE">73</c:Name>
+               <c:Description xml:lang="fr-FR">Savoie</c:Description>
+               <c:Description xml:lang="en-IE">Savoie</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-74">
+               <c:Name xml:lang="fr-FR">74</c:Name>
+               <c:Name xml:lang="en-IE">74</c:Name>
+               <c:Description xml:lang="fr-FR">Haute-Savoie</c:Description>
+               <c:Description xml:lang="en-IE">Haute-Savoie</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-75">
+               <c:Name xml:lang="fr-FR">75</c:Name>
+               <c:Name xml:lang="en-IE">75</c:Name>
+               <c:Description xml:lang="fr-FR">Paris</c:Description>
+               <c:Description xml:lang="en-IE">Paris</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-76">
+               <c:Name xml:lang="fr-FR">76</c:Name>
+               <c:Name xml:lang="en-IE">76</c:Name>
+               <c:Description xml:lang="fr-FR">Seine-Maritime</c:Description>
+               <c:Description xml:lang="en-IE">Seine-Maritime</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-77">
+               <c:Name xml:lang="fr-FR">77</c:Name>
+               <c:Name xml:lang="en-IE">77</c:Name>
+               <c:Description xml:lang="fr-FR">Seine-et-Marne</c:Description>
+               <c:Description xml:lang="en-IE">Seine-et-Marne</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-78">
+               <c:Name xml:lang="fr-FR">78</c:Name>
+               <c:Name xml:lang="en-IE">78</c:Name>
+               <c:Description xml:lang="fr-FR">Yvelines</c:Description>
+               <c:Description xml:lang="en-IE">Yvelines</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-79">
+               <c:Name xml:lang="fr-FR">79</c:Name>
+               <c:Name xml:lang="en-IE">79</c:Name>
+               <c:Description xml:lang="fr-FR">Deux-Sèvres</c:Description>
+               <c:Description xml:lang="en-IE">Deux-Sèvres</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-80">
+               <c:Name xml:lang="fr-FR">80</c:Name>
+               <c:Name xml:lang="en-IE">80</c:Name>
+               <c:Description xml:lang="fr-FR">Somme</c:Description>
+               <c:Description xml:lang="en-IE">Somme</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-81">
+               <c:Name xml:lang="fr-FR">81</c:Name>
+               <c:Name xml:lang="en-IE">81</c:Name>
+               <c:Description xml:lang="fr-FR">Tarn</c:Description>
+               <c:Description xml:lang="en-IE">Tarn</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-82">
+               <c:Name xml:lang="fr-FR">82</c:Name>
+               <c:Name xml:lang="en-IE">82</c:Name>
+               <c:Description xml:lang="en-IE">Tarn-et-Garonne</c:Description>
+               <c:Description xml:lang="fr-FR">Tarn-et-Garonne</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-83">
+               <c:Name xml:lang="fr-FR">83</c:Name>
+               <c:Name xml:lang="en-IE">83</c:Name>
+               <c:Description xml:lang="en-IE">Var</c:Description>
+               <c:Description xml:lang="fr-FR">Var</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-84">
+               <c:Name xml:lang="fr-FR">84</c:Name>
+               <c:Name xml:lang="en-IE">84</c:Name>
+               <c:Description xml:lang="fr-FR">Vaucluse</c:Description>
+               <c:Description xml:lang="en-IE">Vaucluse</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-85">
+               <c:Name xml:lang="fr-FR">85</c:Name>
+               <c:Name xml:lang="en-IE">85</c:Name>
+               <c:Description xml:lang="fr-FR">Vendée</c:Description>
+               <c:Description xml:lang="en-IE">Vendée</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-86">
+               <c:Name xml:lang="fr-FR">86</c:Name>
+               <c:Name xml:lang="en-IE">86</c:Name>
+               <c:Description xml:lang="fr-FR">Vienne</c:Description>
+               <c:Description xml:lang="en-IE">Vienne</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-87">
+               <c:Name xml:lang="fr-FR">87</c:Name>
+               <c:Name xml:lang="en-IE">87</c:Name>
+               <c:Description xml:lang="fr-FR">Haute-Vienne</c:Description>
+               <c:Description xml:lang="en-IE">Haute-Vienne</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-88">
+               <c:Name xml:lang="fr-FR">88</c:Name>
+               <c:Name xml:lang="en-IE">88</c:Name>
+               <c:Description xml:lang="fr-FR">Vosges</c:Description>
+               <c:Description xml:lang="en-IE">Vosges</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-89">
+               <c:Name xml:lang="fr-FR">89</c:Name>
+               <c:Name xml:lang="en-IE">89</c:Name>
+               <c:Description xml:lang="fr-FR">Yonne</c:Description>
+               <c:Description xml:lang="en-IE">Yonne</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-90">
+               <c:Name xml:lang="fr-FR">90</c:Name>
+               <c:Name xml:lang="en-IE">90</c:Name>
+               <c:Description xml:lang="fr-FR">Territoire de Belfort</c:Description>
+               <c:Description xml:lang="en-IE">Territoire de Belfort</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-91">
+               <c:Name xml:lang="fr-FR">91</c:Name>
+               <c:Name xml:lang="en-IE">91</c:Name>
+               <c:Description xml:lang="fr-FR">Essonne</c:Description>
+               <c:Description xml:lang="en-IE">Essonne</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-92">
+               <c:Name xml:lang="fr-FR">92</c:Name>
+               <c:Name xml:lang="en-IE">92</c:Name>
+               <c:Description xml:lang="fr-FR">Hauts-de-Seine</c:Description>
+               <c:Description xml:lang="en-IE">Hauts-de-Seine</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-93">
+               <c:Name xml:lang="fr-FR">93</c:Name>
+               <c:Name xml:lang="en-IE">93</c:Name>
+               <c:Description xml:lang="fr-FR">Seine-Saint-Denis</c:Description>
+               <c:Description xml:lang="en-IE">Seine-Saint-Denis</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-94">
+               <c:Name xml:lang="fr-FR">94</c:Name>
+               <c:Name xml:lang="en-IE">94</c:Name>
+               <c:Description xml:lang="fr-FR">Val-de-Marne</c:Description>
+               <c:Description xml:lang="en-IE">Val-de-Marne</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-95">
+               <c:Name xml:lang="fr-FR">95</c:Name>
+               <c:Name xml:lang="en-IE">95</c:Name>
+               <c:Description xml:lang="fr-FR">Val-d'Oise</c:Description>
+               <c:Description xml:lang="en-IE">Val-d'Oise</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-96">
+               <c:Name xml:lang="fr-FR">971</c:Name>
+               <c:Name xml:lang="en-IE">971</c:Name>
+               <c:Description xml:lang="fr-FR">Guadeloupe</c:Description>
+               <c:Description xml:lang="en-IE">Guadeloupe</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-972">
+               <c:Name xml:lang="fr-FR">972</c:Name>
+               <c:Name xml:lang="en-IE">972</c:Name>
+               <c:Description xml:lang="fr-FR">Martinique</c:Description>
+               <c:Description xml:lang="en-IE">Martinique</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-98">
+               <c:Name xml:lang="fr-FR">973</c:Name>
+               <c:Name xml:lang="en-IE">973</c:Name>
+               <c:Description xml:lang="fr-FR">Guyane</c:Description>
+               <c:Description xml:lang="en-IE">Guyane</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-99">
+               <c:Name xml:lang="fr-FR">974</c:Name>
+               <c:Name xml:lang="en-IE">974</c:Name>
+               <c:Description xml:lang="fr-FR">La Réunion</c:Description>
+               <c:Description xml:lang="en-IE">La Réunion</c:Description>
+            </s:Code>
+            <s:Code id="RP-GEO-DEP-CO-100">
+               <c:Name xml:lang="fr-FR">976</c:Name>
+               <c:Name xml:lang="en-IE">976</c:Name>
+               <c:Description xml:lang="fr-FR">Mayotte</c:Description>
+               <c:Description xml:lang="en-IE">Mayotte</c:Description>
+            </s:Code>
+         </s:Codelist>
+         <s:Codelist id="RP-OBSSTATU-CL" agencyID="EUROSTAT"
+            urn="urn:sdmx:org.sdmx.infomodel.codelist.Codelist=FR1:RP-OBSSTATU-CL(1.0)"
+            uri="http://id.insee.fr/codes/RP-OBSSTATU-CL/1.0">
+            <c:Name xml:lang="fr-FR">Liste de codes du statut de l'observation</c:Name>
+            <c:Name xml:lang="en-IE">Observation status code list</c:Name>
+            <s:Code id="RP-OBSSTATU-CO-1">
+               <c:Name xml:lang="fr-FR">b</c:Name>
+               <c:Name xml:lang="en-IE">b</c:Name>
+               <c:Description xml:lang="en-IE">Break in series</c:Description>
+               <c:Description xml:lang="fr-FR">Rupture de série</c:Description>
+            </s:Code>
+            <s:Code id="RP-OBSSTATU-CO-2">
+               <c:Name xml:lang="fr-FR">c</c:Name>
+               <c:Name xml:lang="en-IE">c</c:Name>
+               <c:Description xml:lang="en">Confidential</c:Description>
+               <c:Description xml:lang="de">Vertraulich</c:Description>
+               <c:Description xml:lang="fr">Confidentiel</c:Description>
+            </s:Code>
+            <s:Code id="RP-OBSSTATU-CO-3">
+               <c:Name xml:lang="fr-FR">e</c:Name>
+               <c:Name xml:lang="en-IE">e</c:Name>
+               <c:Description xml:lang="en-IE">Estimated value</c:Description>
+               <c:Description xml:lang="fr-FR">Valeur estimée</c:Description>
+            </s:Code>
+            <s:Code id="RP-OBSSTATU-CO-4">
+               <c:Name xml:lang="fr-FR">f</c:Name>
+               <c:Name xml:lang="en-IE">f</c:Name>
+               <c:Description xml:lang="en">Forecast</c:Description>
+               <c:Description xml:lang="fr">Prévision</c:Description>
+            </s:Code>
+            <s:Code id="RP-OBSSTATU-CO-5">
+               <c:Name xml:lang="fr-FR">i</c:Name>
+               <c:Name xml:lang="en-IE">i</c:Name>
+               <c:Description xml:lang="en">See explanatory text</c:Description>
+               <c:Description xml:lang="fr">Voir texte explicatif</c:Description>
+            </s:Code>
+            <s:Code id="RP-OBSSTATU-CO-6">
+               <c:Name xml:lang="fr-FR">n</c:Name>
+               <c:Name xml:lang="en-IE">n</c:Name>
+               <c:Description xml:lang="en">Not significant</c:Description>
+               <c:Description xml:lang="fr">Non significatif</c:Description>
+            </s:Code>
+            <s:Code id="RP-OBSSTATU-CO-7">
+               <c:Name xml:lang="fr-FR">p</c:Name>
+               <c:Name xml:lang="en-IE">p</c:Name>
+               <c:Description xml:lang="en">Provisional value</c:Description>
+               <c:Description xml:lang="fr">Valeur provisoire</c:Description>
+            </s:Code>
+            <s:Code id="RP-OBSSTATU-CO-8">
+               <c:Name xml:lang="fr-FR">r</c:Name>
+               <c:Name xml:lang="en-IE">r</c:Name>
+               <c:Description xml:lang="en">Revised value</c:Description>
+               <c:Description xml:lang="fr">Valeur révisée</c:Description>
+            </s:Code>
+            <s:Code id="RP-OBSSTATU-CO-9">
+               <c:Name xml:lang="fr-FR">s</c:Name>
+               <c:Name xml:lang="en-IE">s</c:Name>
+               <c:Description xml:lang="en">Eurostat estimate</c:Description>
+               <c:Description xml:lang="fr">Estimation Eurostat</c:Description>
+            </s:Code>
+            <s:Code id="RP-OBSSTATU-CO-10">
+               <c:Name xml:lang="fr-FR">u</c:Name>
+               <c:Name xml:lang="en-IE">u</c:Name>
+               <c:Description xml:lang="en">Unreliable or uncertain data</c:Description>
+               <c:Description xml:lang="fr">Donnée peu fiable ou incertaine</c:Description>
+            </s:Code>
+            <s:Code id="RP-OBSSTATU-CO-11">
+               <c:Name xml:lang="fr-FR">z</c:Name>
+               <c:Name xml:lang="en-IE">z</c:Name>
+               <c:Description xml:lang="en">Not applicable or Real zero or Zero by default</c:Description>
+               <c:Description xml:lang="fr">Non applicable ou Zéro réel ou Zéro par défaut</c:Description>
+            </s:Code>
+         </s:Codelist>
+      </s:Codelists>
+      
+      <s:Concepts>
+         <s:ConceptScheme id="RP-AGEQUINQUENNAL6809-CS" agencyID="FR1"
+            urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.ConceptScheme=FR1:RP-AGEQUINQUENNAL6809-CS(1.0)"
+            uri="http://id.insee.fr/concepts/RP-AGEQUINQUENNAL6809-CS/1.0">
+            <c:Name xml:lang="fr-FR">Concepts pour le tableau POP5</c:Name>
+            <c:Name xml:lang="en-IE">Concept Scheme for the table POP5</c:Name>
+            <s:Concept id="RP-RP-CNC">
+               <c:Name xml:lang="en-IE">Aux termes de la loi du 27 février 2002 relative à la démocratie de proximité, le recensement s'exécute au moyen d'enquêtes annuelles de recensement effectuées, les unes de manière exhaustive (dans les communes de moins de 10 000 habitants), les autres par sondage auprès d'un échantillon d'adresses (dans les communes de 10 000 habitants ou plus). L'enquête de recensement est l'action par laquelle sont collectées, chaque année, les informations permettant que le recensement remplisse les missions que la loi lui assigne, à savoir le dénombrement de la population de la France et de ses circonscriptions administratives, la description des caractéristiques démographiques et sociales de la population et le dénombrement et la description des caractéristiques des logements. L'enquête de recensement est préparée et réalisée par la commune ou par l'établissement public de coopération intercommunale (EPCI) si la commune lui a délégué sa compétence en la matière.</c:Name>
+               <c:Name xml:lang="fr-FR">In accordance with the law of 27 February 2002 relating to local democracy, the census is carried out by means of annual census surveys, some of which are exhaustive (in municipalities of less than 10,000 inhabitants), while others are conducted by sampling addresses (in municipalities of 10,000 inhabitants or more). The census survey is the act of collecting, each year, the information allowing the census to fulfil the missions required by the law, that is, a count of the population of France and its administrative constituencies, a description of the demographic and social characteristics of the population, and a count and a description of the characteristics of dwellings. The census survey is prepared and carried out either by the municipality or by the public inter-municipality cooperation establishment (EPCI) if the municipality has delegated competence to this entity for this purpose.</c:Name>
+            </s:Concept>
+            <s:Concept id="RP-AGE-CNC">
+               <c:Name xml:lang="fr-FR">Âge</c:Name>
+               <c:Name xml:lang="en-IE">Age</c:Name>
+               <c:Description xml:lang="fr-FR">L'âge est la durée écoulée depuis la naissance. Il
+                    peut être calculé selon deux définitions : - l'âge par génération ou âge atteint
+                    dans l'année, - l'âge en années révolues. L'âge généralement utilisé est l'âge
+                    atteint dans l'année. Il correspond à la différence entre l'année de l'événement
+                    et l'année de naissance de l'individu. L'âge en années révolues est l'âge au
+                    dernier anniversaire. Aussi, à la date de l'événement, dans une même génération,
+                    l'âge en années révolues n'est pas le même pour toutes les personnes. Par
+                    exemple, un individu né le 10 octobre 1925 décède le 18 avril 1999. Il a 74 ans
+                    en âge atteint dans l'année : 1999 moins 1925 égale 74. Mais il a 73 ans en
+                    années révolues : 18 avril 1999 moins 10 octobre 1925 égale 73 ans 6 mois et 8
+                    jours. Ainsi, pour un individu ayant x ans en âge atteint dans l'année, si
+                    l'événement a eu lieu à la date d : - l'individu ayant son anniversaire après la
+                    date d aura comme âge en années révolues (x-1) ; - l'individu ayant son
+                    anniversaire à la date d ou avant aura comme âge en années révolues (x). Seule
+                    exception : l'événement a lieu le 31 décembre. A cette date, le classement par
+                    âge atteint dans l'année et par âge en années révolues sont identiques. Et au
+                    1er janvier, l'âge atteint dans l'année est égal à l'âge en années révolues plus
+                    un. </c:Description>
+               <c:Description xml:lang="en-IE">Age is the amount of time passed since birth. It may
+                    be calculated according to two definitions : - age by generation or age reached
+                    in the year ; - age in number of years passed. The age that is generally used is
+                    the age reached in the year. It corresponds to the difference between the year
+                    of the event and the year of the individual's birth. Age in years passed is the
+                    age of the last birthday. Therefore, on the date of the event, within the same
+                    generation, the age in number of years passed is not the same for all people.
+                    For example, an individual born on 10 October 1925 dies on 18 April 1999. He is
+                    74 years old in age reached in the year: 1999 minus 1925 equals 74. But he is 73
+                    in number of years passed: 18 April 1999 minus 10 October 1925 equals 73 years 6
+                    months and 8 days. As such, for an individual who is x years old in age reached
+                    in the year, if the event takes place on date d : - the individual having his
+                    birthday after the date d will have his age in number of years passed (x-1) ; -
+                    the individual having his birthday on the date d or before will have his age in
+                    number of years passed (x). The only exception: the event takes place on 31
+                    December. On this date, the classification by age reached in the year and by age
+                    in years passed are the same. And on 1 January, the age reached in the year is
+                    equal to the age in years passed plus one.</c:Description>
+            </s:Concept>
+            <s:Concept id="RP-AGEQUINQ-CNC">
+               <c:Name xml:lang="fr-FR">Age quinquennal</c:Name>
+               <c:Name xml:lang="en-IE">Five-year age groups</c:Name>
+               <s:Parent>
+                  <Ref xmlns="" id="RP-AGEQUINQUENNAL6809-CNC-AGE"/>
+               </s:Parent>
+            </s:Concept>
+            <s:Concept id="RP-SEXE-CNC">
+               <c:Name xml:lang="fr-FR">Sexe</c:Name>
+               <c:Name xml:lang="en-IE">Sex</c:Name>
+            </s:Concept>
+            <s:Concept id="RP-GEO-CNC">
+               <c:Name xml:lang="fr-FR">Géographie 2011, Géographie courante</c:Name>
+               <c:Name xml:lang="en-IE">2011 geography, current geography</c:Name>
+               <c:Description xml:lang="fr-FR">
+                  Les données dans l'onglet DEP sont entièrement fournies dans la géographie en vigueur au recensement de 2009 (c'est-à-dire dans les contours précisés par le Code Officiel Géographique en cours au 1er janvier 2011), afin que leurs comparaisons dans le temps se fassent sur un champ géographique stable. Cela signifie que lorsqu'une commune a changé de département avant 2011, on a affecté ses habitants au département auquel elle appartient en 2011, et ce pour chacun des recensements de 1968 à 2009. A titre d'exemple, la commune de Ytres est passée de la Somme au Pas-de-Calais en 1971 : dans le tableau, sa population alimente ainsi celle du Pas-de-Calais pour tous les recensements considérés, y compris celui de 1968, alors que la commune était à cette époque rattachée à la Somme.
+                  Pour distinguer la géographie 2011 de la géographie courante, tous les codes de variables en géographie 2011 sont suffixés par 11.
+                  Dans l'onglet COM, le découpage géographique est au contraire en géographie courante. Toutes les communes y sont donc répertoriées, y compris celles qui ont connu un événement géographique, du type fusion ou séparation avec une autre commune, et qui n'apparaissent plus dans le Code Officiel Géographique au 1er janvier 2011.
+                  Exemples : 
+                  - Cas d'une fusion : le 28 février 2000, la commune Octeville (50383) a fusionné avec la commune Cherbourg (50129), devenue Cherbourg-Octeville. Les données de Octeville sont donc indiquées dans le tableau pour les recensements de 1968 à 1999, mais pas pour le recensement de 2009 puisqu'elles sont agrégées à celles de Cherbourg. Quant aux données de Cherbourg, il est nécessaire de conserver à l'esprit que leur évolution entre 1999 et 2009 est en partie due à l'intégration de Octeville.
+                  - Cas d'une séparation : en 1997, la commune Haucourt-en-Cambrésis (59287) est rétablie par séparation de Ligny-Haucourt (59349) qui devient Ligny-en-Cambrésis. Dans le tableau, la commune 59287 ne dispose donc de données que pour les recensements de 1999 et 2009, puisqu'auparavant elles étaient agrégées à celles de la commune 59349. S'agissant des données de cette dernière, il faut garder en tête que leur évolution entre 1990 et 1999 est en partie due à la scission de la commune. 
+                  - Cas des communes de la Corse : en 1976, le département 20 (Corse) est découpé en deux départements, 2A (Corse du Sud) et 2B (Haute-Corse). Les données d'une même commune corse apparaissent donc sur deux lignes différentes dans le tableau, une avec le code département à 20 (pour les données des recensements antérieurs à 1976), une autre avec le code 2A ou 2B (pour les données des recensements postérieurs à 1976). 
+                </c:Description>
+            </s:Concept>
+            <s:Concept id="RP-REG-CNC">
+               <c:Name xml:lang="fr-FR">Région</c:Name>
+               <c:Name xml:lang="en-IE">Region</c:Name>
+               <c:Description xml:lang="fr-FR">Structure la plus récente de l'administration locale
+                    française, la région est devenue collectivité territoriale à la suite des lois
+                    de décentralisation, le 16 mars 1986, date de la première élection des
+                    conseillers régionaux élus au suffrage universel; son existence a été consacrée
+                    par la révision constitutionnelle du 28 mars 2003. Les conseillers régionaux
+                    élisent le président du conseil régional qui gère le budget, dirige le personnel
+                    et conduit la politique de la région. Les compétences propres de la région
+                    concernent principalement l'aménagement du territoire, le développement
+                    économique, la formation professionnelle, la construction ou l'entretien des
+                    lycées, les transports ferroviaires de voyageurs. Il y a en France 26 régions
+                    dont 5 d'outre-mer. La collectivité territoriale de Corse est le plus souvent
+                    assimilée à une région.</c:Description>
+               <c:Description xml:lang="en-IE">The region, as the most recent structure in French
+                    local government, became a territorial authority following the decentralisation
+                    laws of March 16, 1986, date of the first election of regional councillors
+                    elected by universal suffrage. Its existence was confirmed by the constitutional
+                    revision of March 28, 2003. The regional councillors elect the president of the
+                    regional council who manages the budget, the personnel and the policy of the
+                    region. The specific purviews of the region concern mainly regional development,
+                    economic development, vocational training, construction or maintenance of high
+                    schools, rail passenger transport. There are 26 regions in France including 5
+                    overseas. The territorial authority of Corsica is more often than not
+                    assimilated with a region.</c:Description>
+            </s:Concept>
+            <s:Concept id="RP-DEP-CNC">
+               <c:Name xml:lang="fr-FR">Département</c:Name>
+               <c:Name xml:lang="en-IE">Department</c:Name>
+               <c:Description xml:lang="fr-FR">Création de la Révolution (loi du 22 décembre 1789),
+                    le département devient collectivité locale autonome, avec un organe délibérant
+                    et un exécutif élus, par la loi du 10 août 1871.Il est géré par un conseil
+                    général élu pour 6 ans au suffrage universel, qui élit à son tour un président,
+                    exécutif du département qui prépare et exécute les délibérations du conseil
+                    général, gère le budget et dirige le personnel. Le département a de larges
+                    compétences : action sociale, construction et entretien des collèges,
+                    remembrement rural, organisation des transports scolaires,... Depuis avril 2011,
+                    on compte 101 départements (dont 5 d'outre-mer). Un département appartient à une
+                    région et une seule. Chaque région d'outre-mer n'est formée que d'un seul
+                    département.</c:Description>
+               <c:Description xml:lang="en-IE">A creation of the French Revolution (22 December 1789 law), the department became an autonomous local authority, with an elected deliberating body and executive, under the 10 August 1871 law. It is managed by a departmental council elected for 6 years by universal suffrage, which in turn elects a president, the department's executive, who prepares and executes the deliberations of the departmental council, manages the budget and manages the personnel.
+                    The department has wide-reaching competencies: social action, construction and maintenance of secondary schools, rural reparcelling, organisation of school transport, etc.
+                    Since april 2011, there are 101 departments (including 5 overseas). A department belongs to one and only one region. Each overseas region has only one department.</c:Description>
+            </s:Concept>
+            <s:Concept id="RP-COM-CNC">
+               <c:Name xml:lang="fr-FR">Département</c:Name>
+               <c:Name xml:lang="en-IE">Department</c:Name>
+               <c:Description xml:lang="fr-FR">
+                  La commune est la plus petite subdivision administrative française mais c'est aussi la plus ancienne, puisqu'elle a succédé aux villes et paroisses du Moyen Âge. Elle a été instituée en 1789 avant de connaître un début d'autonomie avec la loi du 5 avril 1884, véritable charte communale.
+                  Le maire est l'exécutif de la commune qu'il représente et dont il gère le budget. Il est l'employeur du personnel communal et exerce les compétences de proximité (écoles, urbanisme, action sociale, voirie, transports scolaires, ramassage des ordures ménagères, assainissement...).
+                  Il est également agent de l'État pour les fonctions d'état civil, d'ordre public, d'organisation des élections et de délivrance de titres réglementaires.
+                  Au 1er janvier 2010 on comptait 36 682 communes, dont 36 570 en métropole. Sont venues s'y ajouter en avril les 17 communes de Mayotte.
+               </c:Description>
+               <c:Description xml:lang="en-IE">
+                  The municipality is the smallest French administrative subdivision but is also the oldest, because it succeeded the towns and parishes of the Middle Ages. It was established in 1789 before experiencing initial autonomy with the 5 April 1884 law, a municipality charter.
+                  The mayor is the executive of the municipality that he represents and manages its budget. He employs the municipality's personnel and has local competence (schools, town planning, social action, streets, school transport, collection of household waste, sewerage, etc.).
+                  He is also an agent of the State for the functions of civil status, public order, the organisation of elections and the issuance of regulatory titles.
+                  At 1 January 2010, there were 36,682 municipalities, including 36,570 in Metropolitan France.
+               </c:Description>
+            </s:Concept>
+            <!--       <s:Concept id="RP-AGEQUINQUENNAL6809-CNC-TIME-PERIOD">
+                    <c:Name xml:lang="fr-FR">Temps ou intervalle de temps</c:Name>
+                    <c:Name xml:lang="en-IE">Time period or range</c:Name>
+                    </s:Concept>-->
+            <s:Concept id="RP-COMDEP-CNC">
+               <c:Name xml:lang="fr-FR">Libellé du département</c:Name>
+               <c:Name xml:lang="en-IE">Department label</c:Name>
+               <c:Description xml:lang="fr-FR">
+                  C'est le dernier nom officiel du département qui est indiqué.
+                  Depuis le recensement de 1968, trois départements ont changé de nom : les Basses-Pyrénées sont devenues les Pyrénées-Atlantiques en 1969, les Basses-Alpes, les Alpes-de-Haute-Provence en 1970 et les Côtes-du-Nord, les Côtes d'Armor en 1990.
+               </c:Description>
+               <c:Description xml:lang="en-IE">
+                  This is the last official department name the  that is indicated.
+                  Since the 1968 Census, three departments have changed their name: Basses-Pyrénées became Pyrénées-Atlantiques in 1969, Basses-Alpes, Alpes in 1970 and Côtes-du-Nord, Côtes d'Armor in 1990.
+               </c:Description>
+<s:Parent>
+   <Ref xmlns="" id="RP-DEP-CNC"/>
+</s:Parent>
+            </s:Concept>
+            <s:Concept id="RP-COMLIB-CNC">
+               <c:Name xml:lang="fr-FR">Libellé de commune</c:Name>
+               <c:Name xml:lang="en-IE">Municipality label</c:Name>
+               <c:Description xml:lang="fr-FR">
+                  C'est le dernier nom officiel de la commune qui est indiqué.
+                  Exemple : la commune 59349 a pour nom Ligny-en-Cambrésis même si avant 1997, date de sa séparation d'avec Haucourt-en-Cambrésis, elle s'appelait Ligny-Haucourt.
+               </c:Description>
+               <c:Description xml:lang="en-IE">
+                  This is the last official name of the municipality that is indicated.
+                  Example: the municipality 59349 is named Ligny-en-Cambrésis even though before 1997, the date of his separation from Haucourt-en-Cambrésis, it was called Ligny-Haucourt.
+               </c:Description>
+               <s:Parent>
+                  <Ref xmlns="" id="RP-COM-CNC"/>
+               </s:Parent>
+            </s:Concept>
+            <s:Concept id="OBSSTATU-CNC">
+               <c:Name xml:lang="fr-FR">Statut de l'observation</c:Name>
+               <c:Name xml:lang="en-IE">Observation value</c:Name>
+            </s:Concept>
+            <s:Concept id="OBSVAL-CNC">
+               <c:Name xml:lang="fr-FR">Mesure</c:Name>
+               <c:Name xml:lang="en-IE">Measure</c:Name>
+            </s:Concept>
+            <s:Concept id="RP-COMSTBL-CNC">
+               <c:Name xml:lang="fr-FR">Indicateur de stabilité de la commune : Signale, pour la commune considérée, la survenue (codée 0) ou non (codée 1), entre 1968 et 2011, d'un événement géographique (création, fusion avec une autre commune, séparation d'avec une autre commune, changement de département).
+                  Dans le cas d'un code 0, se reporter à l'onglet Modifications_territoriales pour plus d'informations sur l'événement géographique et les autres communes impliquées.</c:Name>
+               <c:Name xml:lang="en-IE">Commune stability indicator
+                  Reports the occurrence for the considered municipality (coded 0) or not (coded 1) - between 1968 and 2011 - of a geographic event (creation, merging with another municipality, separation from another municipality, Department change).
+                  In the case of a code 0, refer to the Modifications_territoriales tab for more information on the geographic event and the other municipalities involved.
+               </c:Name>
+            </s:Concept>
+            
+         </s:ConceptScheme>
+      </s:Concepts>
+
+      <s:DataStructures>
+         <s:DataStructure agencyID="FR1" id="RP-AGEQUINQUENNAL6809-DEP-DSD"
+            urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=FR1:RP-AGEQUINQUENNAL6809-DEP-DSD(1.0)"
+            uri="http://id.insee.fr/codes/RP-AGEQUINQUENNAL6809-DEP-DSD/1.0">
+            <c:Name xml:lang="fr-FR">DSD pour la feuille Département tableau détaillé AgeQuinquennal6809 (Recensement de la Population)</c:Name>
+            <c:Name xml:lang="en-IE">DSD for the worksheet Département of the AgeQuinquennal6809 detailed table (Population Census)</c:Name>
+            <s:DataStructureComponents>
+               <s:DimensionList id="DimensionDescriptor"
+                  urn="urn:sdmx:org.sdmx.infomodel.dimensionlist.DimensionList=FR1:RP-AGEQUINQUENNAL6809-DEP-DSD(1.0).DimensionDescriptor"
+                  uri="http://id.insee.fr/dimensions/RP-AGEQUINQUENNAL6809-DSD/1.0/DimensionDescriptor">
+                  <s:Dimension id="RP-AGEQUINQUENNAL6809-DEP-DIM-1">
+                     <s:ConceptIdentity>
+                        <Ref xmlns="" maintainableParentID="RP-AGEQUINQUENNAL6809-CS"
+                           id="RP-AGEQUINQ-CNC" agencyID="FR1"/>
+                     </s:ConceptIdentity>
+                     <s:LocalRepresentation>
+                        <s:Enumeration>
+                           <Ref xmlns="" agencyID="FR1" id="RP-AGEQUINQUENNAL6809-AGEQ65-CL"/>
+                        </s:Enumeration>
+                     </s:LocalRepresentation>
+                  </s:Dimension>
+                  <s:Dimension id="RP-AGEQUINQUENNAL6809-DEP-DIM-2">
+                     <s:ConceptIdentity>
+                        <Ref xmlns="" maintainableParentID="RP-AGEQUINQUENNAL6809-CS"
+                           id="RP-SEXE-CNC" agencyID="FR1"/>
+                     </s:ConceptIdentity>
+                     <s:LocalRepresentation>
+                        <s:Enumeration>
+                           <Ref xmlns="" agencyID="FR1" id="RP-AGEQUINQUENNAL6809-SEXE-CL"/>
+                        </s:Enumeration>
+                     </s:LocalRepresentation>
+                  </s:Dimension>
+                  <s:Dimension id="RP-AGEQUINQUENNAL6809-DEP-DIM-3">
+                     <s:ConceptIdentity>
+                        <Ref xmlns="" maintainableParentID="RP-AGEQUINQUENNAL6809-CS" id="RP-RP-CNC"
+                           agencyID="FR1"/>
+                     </s:ConceptIdentity>
+                     <s:LocalRepresentation>
+                        <s:Enumeration>
+                           <Ref xmlns="" agencyID="FR1" id="RP-AGEQUINQUENNAL6809-RP-CL"/>
+                        </s:Enumeration>
+                     </s:LocalRepresentation>
+                  </s:Dimension>
+                  <s:Dimension id="RP-AGEQUINQUENNAL6809-DEP-DIM-4">
+                     <s:ConceptIdentity>
+                        <Ref xmlns="" maintainableParentID="RP-AGEQUINQUENNAL6809-CS"
+                           id="RP-DEP-CNC" agencyID="FR1"/>
+                     </s:ConceptIdentity>
+                     <s:LocalRepresentation>
+                        <s:Enumeration>
+                           <Ref xmlns="" agencyID="FR1" id="RP-GEO-DEP-CL"/>
+                        </s:Enumeration>
+                     </s:LocalRepresentation>
+                  </s:Dimension>
+                  <!--  <s:TimeDimension uri="" id="TIME-PERIOD">
+                            <s:ConceptIdentity>
+                                <Ref xmlns="" maintainableParentID="RP-AGEQUINQUENNAL6809-CS-1"
+                                    id="RP-AGEQUINQUENNAL6809-CNC-TIME-PERIOD" agencyID="FR1"/>
+                            </s:ConceptIdentity>
+                            <s:LocalRepresentation>
+                                <s:TextFormat/>
+                            </s:LocalRepresentation>
+                            </s:TimeDimension>-->
+               </s:DimensionList>
+               <s:AttributeList id="AttributeDescriptor"
+                  urn="urn:sdmx:org.sdmx.infomodel.attributelist.AttributeList=FR1:RP-AGEQUINQUENNAL6809-DEP-DSD(1.0).AttributeDescriptor"
+                  uri="http://id.insee.fr/attributes/RP-AGEQUINQUENNAL6809-DEP-DSD/1.0/AttributeDescriptor">
+                  <s:Attribute assignmentStatus="Conditional" id="RP-AGEQUINQUENNAL6809-DEP-ATT-1">
+                     <s:ConceptIdentity>
+                        <Ref xmlns="" maintainableParentID="RP-AGEQUINQUENNAL6809-CS"
+                           id="OBSSTATU-CNC" agencyID="FR1"/>
+                     </s:ConceptIdentity>
+                     <s:LocalRepresentation>
+                        <s:Enumeration>
+                           <Ref xmlns="" agencyID="FR1" id="RP-OBSSTATU-CL"/>
+                        </s:Enumeration>
+                     </s:LocalRepresentation>
+                     <s:AttributeRelationship>
+                        <s:PrimaryMeasure>
+                           <Ref xmlns="" id="OBS_VALUE"/>
+                        </s:PrimaryMeasure>
+                     </s:AttributeRelationship>
+                  </s:Attribute>
+                  <s:Attribute assignmentStatus="Mandatory" id="RP-AGEQUINQUENNAL6809-DEP-ATT-2">
+                     <s:ConceptIdentity>
+                        <Ref xmlns="" maintainableParentID="RP-AGEQUINQUENNAL6809-CS"
+                           id="RP-REG-CNC" agencyID="FR1"/>
+                     </s:ConceptIdentity>
+                     <s:LocalRepresentation>
+                        <s:Enumeration>
+                           <Ref xmlns="" agencyID="FR1" id="RP-GEO-REG-CL"/>
+                        </s:Enumeration>
+                     </s:LocalRepresentation>
+                     <s:AttributeRelationship>
+                        <s:Dimension>
+                           <Ref xmlns="" id="RP-AGEQUINQUENNAL6809-DEP-DIM-4"/>
+                        </s:Dimension>
+                     </s:AttributeRelationship>
+                  </s:Attribute>
+               </s:AttributeList>
+               <s:MeasureList id="MeasureDescriptor"
+                  urn="urn:sdmx:org.sdmx.infomodel.measurelist.MeasureList=FR1:RP-AGEQUINQUENNAL6809-DEP-DSD(1.0).MeasureDescriptor"
+                  uri="http://id.insee.fr/measures/RP-AGEQUINQUENNAL6809-DEP-DSD/1.0/MeasureDescriptor">
+                  <s:PrimaryMeasure id="OBS_VALUE"
+                     urn="urn:sdmx:org.sdmx.infomodel.primarymeasure.PrimaryMeasure=FR1:RP-AGEQUINQUENNAL6809-DEP-DSD(1.0).MeasureDescriptor"
+                     uri="http://id.insee.fr/measures/RP-AGEQUINQUENNAL6809-DEP-DSD/1.0/MeasureDescriptor">
+                     <s:ConceptIdentity>
+                        <Ref xmlns="" maintainableParentID="RP-AGEQUINQUENNAL6809-CS"
+                           id="OBSVAL-CNC" agencyID="FR1"/>
+                     </s:ConceptIdentity>
+                  </s:PrimaryMeasure>
+               </s:MeasureList>
+            </s:DataStructureComponents>
+         </s:DataStructure>
+         <s:DataStructure agencyID="FR1" id="RP-AGEQUINQUENNAL6809-COM-DSD"
+            urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=FR1:RP-AGEQUINQUENNAL6809-COM-DSD(1.0)"
+            uri="http://id.insee.fr/codes/RP-AGEQUINQUENNAL6809-COM-DSD/1.0">
+            <c:Name xml:lang="fr-FR">DSD pour la feuille Communes tableau détaillé AgeQuinquennal6809 (Recensement de la Population)</c:Name>
+            <c:Name xml:lang="en-IE">DSD for the worksheet Communes of the AgeQuinquennal6809 detailed table (Population Census)</c:Name>
+            <s:DataStructureComponents>
+               <s:DimensionList id="DimensionDescriptor"
+                  urn="urn:sdmx:org.sdmx.infomodel.dimensionlist.DimensionList=FR1:RP-AGEQUINQUENNAL6809-COM-DSD(1.0).DimensionDescriptor"
+                  uri="http://id.insee.fr/dimensions/RP-AGEQUINQUENNAL6809-DSD/1.0/DimensionDescriptor">
+                  <s:Dimension id="RP-AGEQUINQUENNAL6809-COM-DIM-1">
+                     <s:ConceptIdentity>
+                        <Ref xmlns="" maintainableParentID="RP-AGEQUINQUENNAL6809-CS"
+                           id="RP-AGEQUINQ-CNC" agencyID="FR1"/>
+                     </s:ConceptIdentity>
+                     <s:LocalRepresentation>
+                        <s:Enumeration>
+                           <Ref xmlns="" agencyID="FR1" id="RP-AGEQUINQUENNAL6809-AGEQ65-CL"/>
+                        </s:Enumeration>
+                     </s:LocalRepresentation>
+                  </s:Dimension>
+                  <s:Dimension id="RP-AGEQUINQUENNAL6809-COM-DIM-2">
+                     <s:ConceptIdentity>
+                        <Ref xmlns="" maintainableParentID="RP-AGEQUINQUENNAL6809-CS"
+                           id="RP-SEXE-CNC" agencyID="FR1"/>
+                     </s:ConceptIdentity>
+                     <s:LocalRepresentation>
+                        <s:Enumeration>
+                           <Ref xmlns="" agencyID="FR1" id="RP-AGEQUINQUENNAL6809-SEXE-CL"/>
+                        </s:Enumeration>
+                     </s:LocalRepresentation>
+                  </s:Dimension>
+                  <s:Dimension id="RP-AGEQUINQUENNAL6809-COM-DIM-3">
+                     <s:ConceptIdentity>
+                        <Ref xmlns="" maintainableParentID="RP-AGEQUINQUENNAL6809-CS" id="RP-RP-CNC"
+                           agencyID="FR1"/>
+                     </s:ConceptIdentity>
+                     <s:LocalRepresentation>
+                        <s:Enumeration>
+                           <Ref xmlns="" agencyID="FR1" id="RP-AGEQUINQUENNAL6809-RP-CL"/>
+                        </s:Enumeration>
+                     </s:LocalRepresentation>
+                  </s:Dimension>
+                  <s:Dimension id="RP-AGEQUINQUENNAL6809-CODGEOCOM-DIM-4">
+                     <s:ConceptIdentity>
+                        <Ref xmlns="" maintainableParentID="RP-AGEQUINQUENNAL6809-CS"
+                           id="RP-COM-CNC" agencyID="FR1"/>
+                     </s:ConceptIdentity>
+                     <s:LocalRepresentation>
+                        <s:Enumeration>
+                           <Ref xmlns="" agencyID="FR1" id="RP-GEO-CODGEOCOM-CL"/>
+                        </s:Enumeration>
+                     </s:LocalRepresentation>
+                  </s:Dimension>
+                  <!--  <s:TimeDimension uri="" id="TIME-PERIOD">
+                       <s:ConceptIdentity>
+                       <Ref xmlns="" maintainableParentID="RP-AGEQUINQUENNAL6809-CS-1"
+                       id="RP-AGEQUINQUENNAL6809-CNC-TIME-PERIOD" agencyID="FR1"/>
+                       </s:ConceptIdentity>
+                       <s:LocalRepresentation>
+                       <s:TextFormat/>
+                       </s:LocalRepresentation>
+                       </s:TimeDimension>-->
+               </s:DimensionList>
+               <s:AttributeList id="AttributeDescriptor"
+                  urn="urn:sdmx:org.sdmx.infomodel.attributelist.AttributeList=FR1:RP-AGEQUINQUENNAL6809-COM-DSD(1.0).AttributeDescriptor"
+                  uri="http://id.insee.fr/attributes/RP-AGEQUINQUENNAL6809-COM-DSD/1.0/AttributeDescriptor">
+                  <s:Attribute assignmentStatus="Conditional" id="RP-AGEQUINQUENNAL6809-COM-ATT-1">
+                     <s:ConceptIdentity>
+                        <Ref xmlns="" maintainableParentID="RP-AGEQUINQUENNAL6809-CS"
+                           id="OBSSTATU-CNC" agencyID="FR1"/>
+                     </s:ConceptIdentity>
+                     <s:LocalRepresentation>
+                        <s:Enumeration>
+                           <Ref xmlns="" agencyID="FR1" id="RP-OBSSTATU-CL"/>
+                        </s:Enumeration>
+                     </s:LocalRepresentation>
+                     <s:AttributeRelationship>
+                        <s:PrimaryMeasure>
+                           <Ref xmlns="" id="OBS_VALUE"/>
+                        </s:PrimaryMeasure>
+                     </s:AttributeRelationship>
+                  </s:Attribute>
+                  <s:Attribute assignmentStatus="Mandatory" id="RP-AGEQUINQUENNAL6809-COM-ATT-2">
+                     <s:ConceptIdentity>
+                        <Ref xmlns="" maintainableParentID="RP-AGEQUINQUENNAL6809-CS"
+                           id="RP-REG-CNC" agencyID="FR1"/>
+                     </s:ConceptIdentity>
+                     <s:LocalRepresentation>
+                        <s:Enumeration>
+                           <Ref xmlns="" agencyID="FR1" id="RP-GEO-REG-CL"/>
+                        </s:Enumeration>
+                     </s:LocalRepresentation>
+                     <s:AttributeRelationship>
+                        <s:Dimension>
+                           <Ref xmlns="" id="RP-GEO-CODGEOCOM-CL"/>
+                        </s:Dimension>
+                     </s:AttributeRelationship>
+                  </s:Attribute>
+                  <s:Attribute assignmentStatus="Mandatory" id="RP-AGEQUINQUENNAL6809-COM-ATT-5">
+                     <s:ConceptIdentity>
+                        <Ref xmlns="" maintainableParentID="RP-AGEQUINQUENNAL6809-CS"
+                           id="RP-COMSTBL-CNC" agencyID="FR1"/>
+                     </s:ConceptIdentity>
+                     <s:LocalRepresentation>
+                        <s:Enumeration>
+                           <Ref xmlns="" agencyID="FR1" id="RP-COMSTBL-CL"/>
+                        </s:Enumeration>
+                     </s:LocalRepresentation>
+                     <s:AttributeRelationship>
+                        <s:Dimension>
+                           <Ref xmlns="" id="RP-GEO-CODGEOCOM-CL"/>
+                        </s:Dimension>
+                     </s:AttributeRelationship>
+                  </s:Attribute>
+                  <s:Attribute assignmentStatus="Mandatory" id="RP-AGEQUINQUENNAL6809-COM-ATT-6">
+                     <s:ConceptIdentity>
+                        <Ref xmlns="" maintainableParentID="RP-AGEQUINQUENNAL6809-CS"
+                           id="RP-COMLIB-CNC" agencyID="FR1"/>
+                     </s:ConceptIdentity>
+                     <s:LocalRepresentation>
+                        <s:Enumeration>
+                           <Ref xmlns="" agencyID="FR1" id="RP-GEO-COMLIB-CL"/>
+                        </s:Enumeration>
+                     </s:LocalRepresentation>
+                     <s:AttributeRelationship>
+                        <s:Dimension>
+                           <Ref xmlns="" id="RP-GEO-CODGEOCOM-CL"/>
+                        </s:Dimension>
+                     </s:AttributeRelationship>
+                  </s:Attribute>
+                  <s:Attribute assignmentStatus="Mandatory" id="RP-AGEQUINQUENNAL6809-COM-ATT-3">
+                     <s:ConceptIdentity>
+                        <Ref xmlns="" maintainableParentID="RP-AGEQUINQUENNAL6809-CS"
+                           id="RP-DEP-CNC" agencyID="FR1"/>
+                     </s:ConceptIdentity>
+                     <s:LocalRepresentation>
+                        <s:Enumeration>
+                           <Ref xmlns="" agencyID="FR1" id="RP-GEO-DEP-CL"/>
+                        </s:Enumeration>
+                     </s:LocalRepresentation>
+                     <s:AttributeRelationship>
+                        <s:Dimension>
+                           <Ref xmlns="" id="RP-GEO-CODGEOCOM-CL"/>
+                        </s:Dimension>
+                     </s:AttributeRelationship>
+                  </s:Attribute>
+                  <s:Attribute assignmentStatus="Mandatory" id="RP-AGEQUINQUENNAL6809-COM-ATT-4">
+                     <s:ConceptIdentity>
+                        <Ref xmlns="" maintainableParentID="RP-AGEQUINQUENNAL6809-CS"
+                           id="RP-DEP-CNC" agencyID="FR1"/>
+                     </s:ConceptIdentity>
+                     <s:LocalRepresentation>
+                        <s:Enumeration>
+                           <Ref xmlns="" agencyID="FR1" id="RP-GEO-COM-CL"/>
+                        </s:Enumeration>
+                     </s:LocalRepresentation>
+                     <s:AttributeRelationship>
+                        <s:Dimension>
+                           <Ref xmlns="" id="RP-GEO-CODGEOCOM-CL"/>
+                        </s:Dimension>
+                     </s:AttributeRelationship>
+                  </s:Attribute>
+                  <s:Attribute assignmentStatus="Mandatory" id="RP-AGEQUINQUENNAL6809-COM-ATT-7">
+                     <s:ConceptIdentity>
+                        <Ref xmlns="" maintainableParentID="RP-AGEQUINQUENNAL6809-CS"
+                           id="RP-GEO-CNC" agencyID="FR1"/>
+                     </s:ConceptIdentity>
+                     <s:LocalRepresentation>
+                       <s:TextFormat />
+                     </s:LocalRepresentation>
+                     <s:AttributeRelationship>
+                     <s:None/>
+                     </s:AttributeRelationship>
+                  </s:Attribute>
+               </s:AttributeList>
+               <s:MeasureList id="MeasureDescriptor"
+                  urn="urn:sdmx:org.sdmx.infomodel.measurelist.MeasureList=FR1:RP-AGEQUINQUENNAL6809-COM-DSD(1.0).MeasureDescriptor"
+                  uri="http://id.insee.fr/measures/RP-AGEQUINQUENNAL6809-COM-DSD/1.0/MeasureDescriptor">
+                  <s:PrimaryMeasure id="OBS_VALUE"
+                     urn="urn:sdmx:org.sdmx.infomodel.primarymeasure.PrimaryMeasure=FR1:RP-AGEQUINQUENNAL6809-COM-DSD(1.0).MeasureDescriptor"
+                     uri="http://id.insee.fr/measures/RP-AGEQUINQUENNAL6809-COM-DSD/1.0/MeasureDescriptor">
+                     <s:ConceptIdentity>
+                        <Ref xmlns="" maintainableParentID="RP-AGEQUINQUENNAL6809-CS"
+                           id="OBSVAL-CNC" agencyID="FR1"/>
+                     </s:ConceptIdentity>
+                  </s:PrimaryMeasure>
+               </s:MeasureList>
+            </s:DataStructureComponents>
+         </s:DataStructure>
+      </s:DataStructures>
+      
+      <s:StructureSets>
+         <s:StructureSet agencyID="FR1" id="RP-GEO-COD-SS"
+            urn="urn:sdmx:org.sdmx.infomodel.structureset.StructureSet=FR1:RP-GEO-COD-SS(1.0)" 
+            uri="http://id.insee.fr/structuresets/RP-GEO-COD-SS/1.0">
+            <c:Name xml:lang="fr-FR">Appariement de codes</c:Name>
+            <c:Name xml:lang="fr-FR">Codes mapping</c:Name>
+            <s:CodelistMap id="RP-GEO-DECOD20-CLM"
+               urn="urn:sdmx:org.sdmx.infomodel.codelistmap.CodeListMap=FR1:RP-GEO-DECOD20-SS(1.0).RP-GEO-DEPCOD20-CLM" 
+               uri="http://id.insee.fr/codemaps/RP-GEO-DEPCOD20-SS/1.0/RP-GEO-DEPCOD20-CLM">
+               <c:Name xml:lang="fr-FR">Appariement de codes département pour la Corse</c:Name>
+               <c:Name xml:lang="en-IE">Department codes mapping for Corsica</c:Name>
+               <s:Source><Ref xmlns="" agencyID="FR1" id="RP-GEO-DEP-CL"/></s:Source>
+               <s:Target><Ref xmlns="" agencyID="FR1" id="RP-GEO-DEP-CL"/></s:Target>
+               <s:CodeMap>
+                  <s:Source>
+                     <Ref xmlns="" id="RP-GEO-DEP-CO-20"/>
+                  </s:Source>
+                  <s:Target>
+                     <Ref xmlns="" id="RP-GEO-DEPLIB-CO-2A"/>
+                  </s:Target>
+               </s:CodeMap>
+               <s:CodeMap>
+                  <s:Source>
+                     <Ref xmlns="" id="RP-GEO-DEPCOD-CO-20"/>
+                  </s:Source>
+                  <s:Target>
+                     <Ref xmlns="" id="RP-GEO-DEPLIB-CO-2B"/>
+                  </s:Target>
+               </s:CodeMap>
+            </s:CodelistMap>
+         </s:StructureSet>
+         </s:StructureSets>
+      
+      <s:Constraints>
+         <s:ContentConstraint agencyID="FR1" id="RP-AGEQUINQUENNAL6809-COM-CC" 
+            urn="urn:sdmx:org.sdmx.infomodel.contentconstraint.ContentConstraint=FR1:RP-AGEQUINQUENNAL6809-COM-CC(1.0)" 
+            uri="http://id.insee.fr/constraints/RP-AGEQUINQUENNAL6809-COM-CC/1.0">
+            <c:Name xml:lang="fr-FR"> Contrainte permettant de représenter la géographie 2011 communale à partir 
+               de la liste de codes des communes en géographie courante (en neutralisant l'association du code 20
+               avec les RP postérieurs à 1975)</c:Name>
+            <c:Name xml:lang="en-IE"> Constraint that allows to represent 2011 municipal géography through the code list
+               of municipalities in current géography (by canceling out the link between the code 20 and the Population Censuses later than 1975)</c:Name>
+            <s:ConstraintAttachment>
+               <s:DataSet>
+                  <c:DataProvider><Ref xmlns="" maintainableParentID="FR1" id="FR11" agencyID="FR1"/></c:DataProvider>
+                  <c:ID>AGEQUINQUENNAL6809_DONNEES_21</c:ID>
+               </s:DataSet>
+            </s:ConstraintAttachment>
+            <s:CubeRegion include="false">
+               <c:Attribute id="RP-AGEQUINQUENNAL6809-COM-ATT-5" include="false">
+                  <c:Value>20</c:Value>
+               </c:Attribute>
+            </s:CubeRegion>
+         </s:ContentConstraint>
+      </s:Constraints>
+
+   </Structures>
+
+
+</Structure>
