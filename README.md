@@ -1,10 +1,10 @@
 # Datalift — SDMX2DataCube
 
-Version: 0.8  
-Date: 2013-03-23  
-Authors: [Thibaud Colas](https://github.com/ThibWeb), [Thibaut Marmin](https://github.com/marminthibaut)  
-Repository: [GitHub](https://github.com/Thibau/datalift-sdmxdatacube/)  
-Documentation: [GitHub Wiki](https://github.com/Thibau/datalift-sdmxdatacube/wiki)  
+Version: 0.8
+Date: 2013-03-23
+Authors: [Thibaud Colas](https://github.com/thibaudcolas), [Thibaut Marmin](https://github.com/marminthibaut)
+Repository: [GitHub](https://github.com/Thibau/datalift-sdmxdatacube/)
+Documentation: [GitHub Wiki](https://github.com/Thibau/datalift-sdmxdatacube/wiki)
 
 [![Code Climate](https://codeclimate.com/github/Thibau/datalift-sdmxdatacube.png)](https://codeclimate.com/github/Thibau/datalift-sdmxdatacube)
 
